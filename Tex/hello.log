@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  6 SEP 2017 15:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  11 SEP 2017 17:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -445,58 +445,304 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count100
-)) (./hello.aux)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen113
+\Hy@linkcounter=\count101
+\Hy@pagecounter=\count102
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count103
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count104
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen114
+\Fld@menulength=\count105
+\Field@Width=\dimen115
+\Fld@charsize=\dimen116
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count106
+\c@Item=\count107
+\c@Hfootnote=\count108
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count109
+\c@bookmark@seq@number=\count110
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip46
+)
+(./hello.aux)
 \openout1 = `hello.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count101
-\scratchdimen=\dimen113
+\scratchcounter=\count111
+\scratchdimen=\dimen117
 \scratchbox=\box28
-\nofMPsegments=\count102
-\nofMParguments=\count103
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count104
-\MPscratchDim=\dimen114
-\MPnumerator=\count105
-\makeMPintoPDFobject=\count106
-\everyMPtoPDFconversion=\toks22
+\nofMPsegments=\count112
+\nofMParguments=\count113
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count114
+\MPscratchDim=\dimen118
+\MPnumerator=\count115
+\makeMPintoPDFobject=\count116
+\everyMPtoPDFconversion=\toks23
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 15.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+\AtBeginShipoutBox=\box29
+Package hyperref Info: Link coloring OFF on input line 14.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count117
+)
+LaTeX Info: Redefining \ref on input line 14.
+LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \nameref on input line 14.
+
+(./hello.out) (./hello.out)
+\@outlinefile=\write3
+\openout3 = `hello.out'.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 15.
+LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 18.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 18.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 18.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 20.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 20.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 20.
+
+Overfull \hbox (17.0227pt too wide) in paragraph at lines 22--23
+\T1/cmr/m/n/10 schaft-ler in der Geo-in-for-ma-tik Ab-tei-lung des Geo-gra-phi-
+schen In-sti-tuts der Ruprecht-
+ []
+
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 24.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 24.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 24.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 28.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 28.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 28.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 30.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 34.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 34.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 34.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 39.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 39.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 39.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 43.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 43.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 43.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 45.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 45.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 45.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 48.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 48.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 48.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 50.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 50.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 50.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 52.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 52.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 52.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 56.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 56.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 56.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 56.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 56.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 56.
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 59.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 61.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 61.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 61.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 65.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 65.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 67.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.59 ... um den Zielpunkt (osm tag emergency=fire_
+l.67 ... um den Zielpunkt (osm tag emergency=fire_
                                                   hydrant)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -508,7 +754,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.60 \item
+l.68 \item
            Beschleunigung
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -520,7 +766,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.60 \item B
+l.68 \item B
             eschleunigung
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -532,7 +778,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.60 \item B
+l.68 \item B
             eschleunigung
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -544,8 +790,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \item
-           rush hour / tag & nacht unterscheidung (nachts weniger los auf st...
+l.69 \item
+           rush hour / Tag & Nacht Unterscheidung (nachts weniger los auf St...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -553,16 +799,16 @@ If that doesn't work, type  X <return>  to quit.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.61 \item r
-            ush hour / tag & nacht unterscheidung (nachts weniger los auf st...
+l.69 \item r
+            ush hour / Tag & Nacht Unterscheidung (nachts weniger los auf St...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Missing } inserted.
 <inserted text> 
                 }
-l.61 \item r
-            ush hour / tag & nacht unterscheidung (nachts weniger los auf st...
+l.69 \item r
+            ush hour / Tag & Nacht Unterscheidung (nachts weniger los auf St...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -570,7 +816,7 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (114.88164pt too wide) in paragraph at lines 59--61
+Overfull \hbox (114.88164pt too wide) in paragraph at lines 67--69
 []\T1/cmr/m/n/10 Suche nach Lösch-was-ser quel-len um den Ziel-punkt (osm tag e
 mergency=fire$[]\OML/cmm/m/it/10 ydrant\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 Beschl
 eunigung[][]$ 
@@ -579,8 +825,8 @@ eunigung[][]$
 ! Extra }, or forgotten \endgroup.
 \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
-l.61 \item r
-            ush hour / tag & nacht unterscheidung (nachts weniger los auf st...
+l.69 \item r
+            ush hour / Tag & Nacht Unterscheidung (nachts weniger los auf St...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
 you forgot something else, as in `\hbox{$x}'. In such cases
@@ -588,8 +834,8 @@ the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
 ! Misplaced alignment tab character &.
-l.61 \item rush hour / tag &
-                             nacht unterscheidung (nachts weniger los auf st...
+l.69 \item rush hour / Tag &
+                             Nacht Unterscheidung (nachts weniger los auf St...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -597,31 +843,99 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[2] (./hello.aux) ) 
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 73.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 73.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 73.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.76 ...g/wp-content/uploads/2010/05/Diplomarbeit_
+                                                  Neis.pdf
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+LaTeX Warning: Command \textendash invalid in math mode on input line 78.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.79 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (27.57568pt too wide) in paragraph at lines 75--79
+\T1/cmr/m/n/10 http://www.geog.uni-heidelberg.de/md/chemgeo/geog/gis/corp07-aas
+-pn-az-final.pdf
+ []
+
+
+Overfull \hbox (388.4863pt too wide) in paragraph at lines 75--79
+\T1/cmr/m/n/10 http://neis-one.org/wp-content/uploads/2010/05/Diplomarbeit$[]\O
+ML/cmm/m/it/10 eis:pdfEdsgerW:Dijkstra:Anoteontwoproblemsinconnexionwithgraphs:
+NumerischeMathematik; \OT1/cmr/m/n/10 1 :
+ []
+
+
+Overfull \hbox (72.06711pt too wide) in paragraph at lines 75--79
+\OT1/cmr/m/n/10 269^^U271\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1959\OML/cmm/m/it/1
+0 :\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 http \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 ==
+www \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 m\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 :m
+a:tum:de=foswiki=pub=MN\OT1/cmr/m/n/10 0506\OML/cmm/m/it/10 =WebHome=dijkstra:p
+df\OT1/cmr/m/n/10 )$ 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 80.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 80.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 80.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 80.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 80.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 80.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 80.
+[2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 80.
+ (./hello.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 80.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 80.
+Package rerunfilecheck Info: File `hello.out' has not changed.
+(rerunfilecheck)             Checksum: 04DD1A00BA8C9720B9C385E838B9A8BF;865.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
+ ) 
 Here is how much of TeX's memory you used:
- 2892 strings out of 493029
- 33257 string characters out of 6136234
- 95702 words of memory out of 5000000
- 6397 multiletter control sequences out of 15000+600000
+ 6722 strings out of 493029
+ 92230 string characters out of 6136234
+ 183520 words of memory out of 5000000
+ 10157 multiletter control sequences out of 15000+600000
  17672 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,8n,24p,618b,201s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}<
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/typ
-e1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-rm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm1728.pfb>
-Output written on hello.pdf (2 pages, 182385 bytes).
+ 29i,8n,32p,630b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfrm1728.pfb>
+Output written on hello.pdf (2 pages, 197591 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
