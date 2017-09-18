@@ -5,7 +5,7 @@ i hope this is something you can work with.
 
 The .osm file for the area is [here](https://github.com/TheGreatRefrigerator/ba_thesis/tree/master/data)
 
-#### Emergency Changes
+### Emergency Changes
 
 I think [these](https://gitlab.gistools.geog.uni-heidelberg.de/giscience/openrouteservice/core/commit/94abcf170f3cc001c7c4844e168ed4fab1042608) should be the ony changes, i applied to the files, that are not yet in the github repository. 
 
@@ -15,15 +15,17 @@ I think [these](https://gitlab.gistools.geog.uni-heidelberg.de/giscience/openrou
 - commented the whole hgv stuff out of the collect function (with the new indentation the commit looks larger than it is!) 
 
 
-#### Duration and Distances 
+### Duration and Distances 
 
 I was not exactly sure, which of the distances and speeds you need, so have them all, haha.
 I tried to display the values as good as possible, so it will be easy for you to work with them:
 
-##### waypoints as minutes
+#### waypoints as minutes
 
-This is the test drive with the Fire truck where each waypoint is 1 minute:
-http://emergency.openrouteservice.org/directions?n1=48.460358&n2=10.807242&n3=15&a=48.45414,10.824698,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km 
+[This](http://emergency.openrouteservice.org/directions?n1=48.460358&n2=10.807242&n3=15&a=48.45414,10.824698,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km 
+) is the test drive with the Fire truck where each waypoint is 1 minute:
+
+![time](https://user-images.githubusercontent.com/23240110/30568811-8d74bd56-9cd7-11e7-86e9-930772f2151d.png)
 
 [The response](https://github.com/TheGreatRefrigerator/ba_thesis/blob/master/json%20examples/time.json)
 
@@ -47,11 +49,12 @@ Here are the Results for each point:
 
 (table as .xls in this folder)
 
-##### waypoints as avgspeed separator
+#### waypoints as avgspeed separator
 
-And this is the same route with the avgspeed segments as waypoints, so point "A" to "1" has the same speed for the whole segment.
+And [this](http://emergency.openrouteservice.org/directions?n1=48.454211&n2=10.81059&n3=15&a=48.45414,10.824698,48.45529,10.824318,48.455721,10.824511,48.458745,10.816139,48.463354,10.802576,48.463704,10.792684,48.46656,10.789777&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km) is the same route with the avgspeed segments as waypoints, so point "A" to "1" has the same speed for the whole segment.
 There is one segment for each "extras.avgspeed.values" of the response form the first request:
-http://emergency.openrouteservice.org/directions?n1=48.454211&n2=10.81059&n3=15&a=48.45414,10.824698,48.45529,10.824318,48.455721,10.824511,48.458745,10.816139,48.463354,10.802576,48.463704,10.792684,48.46656,10.789777&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
+
+![avgspeed](https://user-images.githubusercontent.com/23240110/30568818-8fb7baf0-9cd7-11e7-9293-0d7063a4f61c.png)
 
 [The response](https://github.com/TheGreatRefrigerator/ba_thesis/blob/master/json%20examples/speed.json)
 
@@ -76,6 +79,6 @@ Here are the Results for each point:
 
 (table as .xls in this folder)
 
-Here you can see both in one picture with.
+Here you can see both in one picture with. Yellow waypoints are minutes, blue avgspeed separators.
 
 ![overlay](https://user-images.githubusercontent.com/23240110/30567994-26d4b2b2-9cd3-11e7-846a-563c7ab7734f.png)
