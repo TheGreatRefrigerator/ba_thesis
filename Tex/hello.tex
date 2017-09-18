@@ -50,7 +50,33 @@ algorithmus Dijkstra + contraction hierarchies
 
 \subsection{Isochronen Berechnung}
 
-marching squares, delauny erklären + unsere implementierung 
+marching squares grid based , delauny erklären shape based(triangles) + unsere implementierung shape based (points)
+
+grid based:
+ grid is formed around the center point. depending on the mesh size it is more accurate or more coarse.
+ The vertices on the grid get values depending on the snapped distance to the roadgraph.
+ Points are marked on the edges between two vertices, where the value complies with the requested value.
+ 
+Advantages of this algorithm : can be really fast and cover large distances and long timespans. can contain holes
+Disadvantage: not very accurate in coarse mode. with fine grained grid accurate but high ressource consumption.
+
+TIN:
+TODO
+
+Shape based:
+- Uses Dijkstra algorithm to mark all reachable Edges
+- Extract points from edge geometry(real world geom, becaus in graph we only have simple straight lines between nodes, geometry is saved in the graph edge as parameter)
+- invisible bubbles (buffer) will be drawn around points so close points can be skipped
+- build a point cloud with remaining points
+- use Alpha shapes algorithm to draw isochrones around the point line
+
+ Distance limitation 100km. resulting in different time limitation for different profiles (1hour car , 5hours bike, 20 hours foot)
+
+Advantage: accurate, fast computation time
+Disadvantage: Alpha shape library -> no holes.
+
+
+
 
 Max erklären lassen
 Einfache erklärung !
