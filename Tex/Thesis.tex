@@ -96,6 +96,9 @@ marching squares grid based (recursive grid?), delauny erklären shape based(tri
 
 Gitter basierter Ansatz:
 Beim "marching squares" algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
+
+(Abb. recursive grid / marching squares)
+
 Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer.
 
 TIN:
@@ -119,6 +122,10 @@ Disadvantage: Alpha shape library -> no holes.
 
 \subsection{Informations Erhebung}
 Fragebogen für Feuerwehr Lützelburg\footnote{Lützelburg ist eine stadt in Bayern}
+
+\subsection{Aufbau graph backend}
+
+	3
 
 \subsection{Limitierende Faktoren}
 
