@@ -58,23 +58,23 @@ Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. I
 (Abb gerichtet Graph)
 
 Gewichtete Graphen
-In dieser Arbeit bezeichnet der Begriff "gewichteter Graph" einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert 
-zugewiesen wird. Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
+In dieser Arbeit bezeichnet der Begriff "gewichteter Graph" einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert zugewiesen wird. Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
 (Abb gewichtet Graph)
 
-
+Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Beispiel die Bestimmung maximaler (Durch-)Flüsse in Rohrsystemen oder das Berechnen kürzester Wege.
 
 \subsection{Routing}
 
-Routing, Wortherkunft anwendung hier.
+Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet "das Ermitteln eines geeigneten [besonders günstigen] Wegs für die Übertragung von Daten in einem Netzwerk"(cite DUDEN). In der Navigation bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von A nach B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
 
-In der Geoinformatik benutzen wir Graphen um Geodaten darzustellen und . 
+Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
 
-Use Case von graphen für routing
+Eine der naheliegendsten Problemstellungen ist das "shortest path problem" bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
 
-what is shortest pathing
-kürzester weg 
+- what is shortest pathing
+Das Problem des kürzesten Weges 
+
 
 what algorithms can be used
 
@@ -154,5 +154,6 @@ Edsger W. Dijkstra. A note on two problems in connexion with graphs. Numerische 
 1:269–271, 1959. (http://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf)
 http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
 
+Dudenredaktion (o. J.): „Tulpe“ auf Duden online. URL: http://www.duden.de/node/713429/revisions/1380643/view (Abrufdatum: 21.03.2016)
 
 \end{document}
