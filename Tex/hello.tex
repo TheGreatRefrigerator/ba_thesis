@@ -84,19 +84,19 @@ algorithmus Dijkstra
 
 \subsection{Isochronen Berechnung}
 
+Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Isochronen berechnet werden.
+Isochronen sind Linien gleicher Zeit. Für die Berechnung wird ein Zentrum und das Zeitlimit benötigt. Das resultierende Objekt ist ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
+Isochronen können auf unterschiedliche Arten berechnet werden. 
+
 Benutzt routing
 
 + shaping (darstellung)
 
-marching squares grid based , delauny erklären shape based(triangles) + unsere implementierung shape based (points)
+marching squares grid based (recursive grid?), delauny erklären shape based(triangles) + unsere implementierung shape based (points)
 
-grid based:
- grid is formed around the center point. depending on the mesh size it is more accurate or more coarse.
- The vertices on the grid get values depending on the snapped distance to the roadgraph.
- Points are marked on the edges between two vertices, where the value complies with the requested value.
- 
-Advantages of this algorithm : can be really fast and cover large distances and long timespans. can contain holes
-Disadvantage: not very accurate in coarse mode. with fine grained grid accurate but high ressource consumption.
+Gitter basierter Ansatz:
+Beim "marching squares" algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
+Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer.
 
 TIN:
 TODO
