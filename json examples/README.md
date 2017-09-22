@@ -1,7 +1,4 @@
-## README MAX!!
-
-Hey max,
-i hope this is something you can work with.
+## Texstdrive
 
 The .osm file for the area is [here](https://github.com/TheGreatRefrigerator/ba_thesis/tree/master/data)
 
@@ -17,8 +14,8 @@ I think [these](https://gitlab.gistools.geog.uni-heidelberg.de/giscience/openrou
 
 ### Duration and Distances 
 
-I was not exactly sure, which of the distances and speeds you need, so have them all, haha.
-I tried to display the values as good as possible, so it will be easy for you to work with them:
+I was not exactly sure, which of the distances and speeds will be needed, so here are all, haha.
+I tried to display the values as good as possible, so it will be easy for to work with them:
 
 #### waypoints as minutes
 
