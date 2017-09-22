@@ -23,11 +23,11 @@
 
 \section{Einleitung}
 
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als Hilfswissenschaftler des \href{http://www.openrouteservice.org}{openrouteservice}(ORS) tätig. Der ORS bietet neben einem Geocoding, Routing und Locations Service auch einen Isochrones Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Im Gegensatz zum Rettungsdienst, welcher in den Zuständigkeitsbereich der Bundesländer fällt, ist der Brandschutz eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards \cite{brandschutz bedarfsplan}.
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des \href{http://www.openrouteservice.org}{openrouteservice} (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen die wichtigsten Eigenschaften für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar. Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards \cite{brandschutz bedarfsplan}.
 
-Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
+Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
 
-In dieser Arbeit wird daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind. (Aufgrund des geringen Umfangs einer Bachelor Arbeit kann das in dieser Arbeit jedoch nicht erarbeitet wurden.) 
+In dieser Arbeit wird daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind. (Aufgrund des geringen Umfangs einer Bachelor Arbeit kann das in dieser Arbeit jedoch nicht erarbeitet werden.)
 
 Grundsätzlich basiert das Profil auf dem Backend des bereits bestehenden Routing Service des ORS. Zusätzlich werden Java Funktionen implementiert, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wurde das ORS Frontend mit Java-Script angepasst. Dadurch können die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden.
 (weitere Infos über technic details?)
@@ -66,11 +66,11 @@ Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Be
 
 \subsection{Routing}
 
-Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet "das Ermitteln eines geeigneten [besonders günstigen] Wegs für die Übertragung von Daten in einem Netzwerk"(cite DUDEN). In der Navigation bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von A nach B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
+Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt A zu Zielpunkt B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
 
 Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
 
-Eine der naheliegendsten Problemstellungen ist das "shortest path problem" für ein Paar von Knotenpunkten. Dabei wird der kürzeste Weg von einer Ecke zu einer anderen Ecke des Graphen gesucht. 2bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
+Eine der naheliegendsten Problemstellungen ist das \textit{shortest path problem} für ein Paar von Knotenpunkten. Dabei wird der kürzeste Weg von einer Ecke zu einer anderen Ecke des Graphen gesucht. bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
 
 - what is shortest pathing
 Das Problem des kürzesten Weges 
@@ -84,6 +84,8 @@ algorithmus Dijkstra
 
 \subsection{Isochronen Berechnung}
 
+Isochronen (Herkunft wort iso, chronos)
+
 Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Isochronen berechnet werden.
 Isochronen sind Linien gleicher Zeit. Für die Berechnung wird ein Zentrum und das Zeitlimit benötigt. Das resultierende Objekt ist ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
 Isochronen können auf unterschiedliche Arten berechnet werden. 
@@ -94,8 +96,8 @@ Benutzt routing
 
 marching squares grid based (recursive grid?), delauny erklären shape based(triangles) + unsere implementierung shape based (points)
 
-Gitter basierter Ansatz:
-Beim "marching squares" algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
+Gitterbasierter Ansatz:
+Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
 (Abb. recursive grid / marching squares)
 
@@ -105,8 +107,9 @@ TIN: Delaunay Triangulation
 TODO
 
 
-Formen basierter Ansatz:
-Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz (wiederholung :/). Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte der wirklichen Geometrie der Kante extrahiert. Jede Kante des Graphen stellt ein Wegstück der realen Welt dar. Im Graphen können Kanten allerdings nur durch gerade Linien dargestellt werden. Die 
+Formenbasierter Ansatz:
+Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz (wiederholung :/). Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte der Geometrie der Kante extrahiert. Jede Kante des Graphen stellt ein Wegstück der realen Welt dar. Im Graphen können Kanten allerdings nur durch gerade Linien dargestellt werden. Die wirkliche Geometrie ist deswegen auf der Kante gespeichert. Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
+Durch den Dijkstra Algorithmus können mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse und 
 
 Shape based:
 - Uses Dijkstra algorithm to mark all reachable Edges
