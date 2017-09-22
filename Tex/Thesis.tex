@@ -1,10 +1,16 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage[
+backend=biber,
+style=alphabetic,
+citestyle=authoryear
+]{biblatex}
+\usepackage[notoc]{tocbibind`}
 \usepackage{color}
 \usepackage{hyperref}
 \author{Amandus Stefan Butzer}
@@ -14,6 +20,22 @@
 \begin{document}
 
 \maketitle
+
+\
+
+\chapter*{Abstract}
+Abstract goes here
+
+\chapter*{Dedication}
+To mum and dad
+
+\chapter*{Declaration}
+I declare that..
+
+\chapter*{Acknowledgements}
+I want to thank...
+
+\tableofcontents
 
 (\section{Danksagung})
 
@@ -168,17 +190,5 @@ Beschleunigung
 rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
 
 
-
-\section{Literatur}
-
-http://www.geog.uni-heidelberg.de/md/chemgeo/geog/gis/corp07-aas-pn-az-final.pdf
-
-http://neis-one.org/wp-content/uploads/2010/05/Diplomarbeit\_Neis.pdf
-
-Edsger W. Dijkstra. A note on two problems in connexion with graphs. Numerische Mathematik,1:269–271, 1959. (http://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf)
-
-http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
-
-Dudenredaktion (o. J.): „Tulpe“ auf Duden online. URL: http://www.duden.de/node/713429/revisions/1380643/view (Abrufdatum: 21.03.2016)
 
 \end{document}
