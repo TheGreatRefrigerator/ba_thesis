@@ -23,14 +23,14 @@
 
 \section{Einleitung}
 
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser als Hilfswissenschaftler in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als Mitarbeiter des \href{http://www.openrouteservice.org}{openrouteservice}(ORS) tätig. Der ORS bietet neben einem Geocoding, Routing und Locations Service auch einen Isochrones Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Im Gegensatz zum Rettungsdienst, welcher in den Zuständigkeitsbereich der Bundesländer fällt, ist der Brandschutz eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards \cite{brandschutz bedarfsplan}.
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als Hilfswissenschaftler des \href{http://www.openrouteservice.org}{openrouteservice}(ORS) tätig. Der ORS bietet neben einem Geocoding, Routing und Locations Service auch einen Isochrones Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Im Gegensatz zum Rettungsdienst, welcher in den Zuständigkeitsbereich der Bundesländer fällt, ist der Brandschutz eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards \cite{brandschutz bedarfsplan}.
 
-Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, kann dieser für die Erstellung eines Brandschutzbedarfsplans genutzt werden. Bemängelt wurde allerdings, dass die Einsatzfahrzeuge in der Regel weit über das berechnete Gebiet für eine gegebene Zeit hinauskommen.
+Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
 
-In dieser Arbeit wurde daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Das Profil wurde derart gestaltet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind, die im Rahmen dieser Batchelor Arbeit aber nicht erarbeitet wurden. 
+In dieser Arbeit wird daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind. (Aufgrund des geringen Umfangs einer Bachelor Arbeit kann das in dieser Arbeit jedoch nicht erarbeitet wurden.) 
 
-Das ..... basiert auf dem ORS Backend, welches um die für das zusätzliche Profil benötigten Java Funktionen erweitert wurde. Zur Darstellung wurde das ORS Frontend mit Java-Script angepasst. 
-weitere Infos über technic details? 
+Grundsätzlich basiert das Profil auf dem Backend des bereits bestehenden Routing Service des ORS. Zusätzlich werden Java Funktionen implementiert, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wurde das ORS Frontend mit Java-Script angepasst. Dadurch können die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden.
+(weitere Infos über technic details?)
 
 \subsection{Motivation}
 
@@ -48,9 +48,9 @@ Ein Graph ist eine Sammlung von Punkten, bei denen einige Knotenpunkte durch Kan
 
 (simple graph picture)
 
-Graphen können sehr einfach dargestellt werden. Die Knoten eines Graphen können einfache, mehrfache oder gar keine Kanten haben. Darüber hinaus können mit sich selbst verbunden sein und eine Schleife bilden. Außerdem können zwei Punkte mit mehreren Kanten verbunden sein. Das erfüllt bei einem ungerichteten und ungewichteten Graphen allerdings keinen Zweck, da eine Kante für das Anzeigen der Relation ausreichend ist.
+Graphen können sehr einfach dargestellt werden. Die Knoten eines Graphen können einfache, mehrfache oder gar keine Kanten haben. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schleife bilden. Außerdem können zwei Punkte mit mehreren Kanten verbunden sein. Das erfüllt bei einem ungerichteten und ungewichteten Graphen allerdings keinen Zweck, da eine Kante für das Anzeigen der Relation ausreichend ist(richtig?).
 
-Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Es können also zwei graphen unterschiedlich angeordnet sein und dennoch einander entsprechen. Man spricht hier von (isomorphen ? NACHSCHAUEN) Graphen.
+Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Es können also zwei Graphen unterschiedlich angeordnet sein und dennoch einander entsprechen. Man spricht hier von (isomorphen ? NACHSCHAUEN) Graphen.
 
 Gerichtete Graphen
 Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
@@ -70,7 +70,7 @@ Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet "das Ermitteln
 
 Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
 
-Eine der naheliegendsten Problemstellungen ist das "shortest path problem" bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
+Eine der naheliegendsten Problemstellungen ist das "shortest path problem" für ein Paar von Knotenpunkten. Dabei wird der kürzeste Weg von einer Ecke zu einer anderen Ecke des Graphen gesucht. 2bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
 
 - what is shortest pathing
 Das Problem des kürzesten Weges 
@@ -101,8 +101,12 @@ Beim "marching squares" algorithmus wird um das Zentrum ein Gitter über dem Gra
 
 Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer.
 
-TIN:
+TIN: Delaunay Triangulation
 TODO
+
+
+Formen basierter Ansatz:
+Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz (wiederholung :/). Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte der wirklichen Geometrie der Kante extrahiert. Jede Kante des Graphen stellt ein Wegstück der realen Welt dar. Im Graphen können Kanten allerdings nur durch gerade Linien dargestellt werden. Die 
 
 Shape based:
 - Uses Dijkstra algorithm to mark all reachable Edges
@@ -125,7 +129,16 @@ Fragebogen für Feuerwehr Lützelburg\footnote{Lützelburg ist eine stadt in Bay
 
 \subsection{Aufbau graph backend}
 
-	3
+weightings 
+speed maps
+
+first tests, feedback from firebrigade
+way too far.
+
+calc weight for dijkstra
+calc millis for time add up
+
+
 
 \subsection{Limitierende Faktoren}
 
@@ -145,20 +158,22 @@ Hier ein paar räumliche Beispiele aussuchen und exemplarisch zeigen (Routing un
 
 Much more accurate than previous profile. 
 
-\section{Future Work/Ausblick}
+\section{Future Work or Ausblick}
 
-Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire_hydrant )
+Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire\_hydrant )
 Beschleunigung
-rush hour / Tag & Nacht Unterscheidung (nachts weniger los auf Straßen/ Fußgängerzonen ...)
+rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
 
 
 
 \section{Literatur}
 
 http://www.geog.uni-heidelberg.de/md/chemgeo/geog/gis/corp07-aas-pn-az-final.pdf
-http://neis-one.org/wp-content/uploads/2010/05/Diplomarbeit_Neis.pdf
-Edsger W. Dijkstra. A note on two problems in connexion with graphs. Numerische Mathematik,
-1:269–271, 1959. (http://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf)
+
+http://neis-one.org/wp-content/uploads/2010/05/Diplomarbeit\_Neis.pdf
+
+Edsger W. Dijkstra. A note on two problems in connexion with graphs. Numerische Mathematik,1:269–271, 1959. (http://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf)
+
 http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
 
 Dudenredaktion (o. J.): „Tulpe“ auf Duden online. URL: http://www.duden.de/node/713429/revisions/1380643/view (Abrufdatum: 21.03.2016)
