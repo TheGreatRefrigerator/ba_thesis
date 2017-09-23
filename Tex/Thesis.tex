@@ -1,18 +1,27 @@
-\documentclass[10pt,a4paper]{report}
+% setup
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
+\usepackage{csquotes}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage[
-backend=biber,
-style=alphabetic,
-citestyle=authoryear
-]{biblatex}
-\usepackage[notoc]{tocbibind`}
+
+%utils
 \usepackage{color}
 \usepackage{hyperref}
+
+% Bibliographie
+\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+\bibliography{Thesis}
+\usepackage[nottoc]{tocbibind}
+
+
+% todo command
+\newcommand\todo[1]{\textcolor{red}{#1}}
+
+% Document Infos
 \author{Amandus Stefan Butzer}
 \title{Erstellung eines Routing-Profils auf Basis von OSM / Öffentlichen Daten für Feuerwehrfahrzeuge}
 \date{\today}
@@ -21,35 +30,32 @@ citestyle=authoryear
 
 \maketitle
 
-\
 
-\chapter*{Abstract}
-Abstract goes here
+\section*{Kurzfassung}
+\todo{Deutsche Kurzfassung}
 
-\chapter*{Dedication}
-To mum and dad
+\section*{Abstract}
+\todo{Abstract in Englisch}
 
-\chapter*{Declaration}
-I declare that..
+\section*{Erklärung}
+\todo{Hiermit erkläre ich}
 
-\chapter*{Acknowledgements}
-I want to thank...
+\section*{Danksagungen}
+\todo{An dieser Stelle möchte ich all denen Danken.. }
 
 \tableofcontents
 
-(\section{Danksagung})
-
-\section{Kurzfassung}
-
-\section{abstract}
 
 \section{Einleitung}
 
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des \href{http://www.openrouteservice.org}{openrouteservice} (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen die wichtigsten Eigenschaften für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar. Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards \cite{brandschutz bedarfsplan}.
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des \href{http://www.openrouteservice.org}{openrouteservice} (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen die wichtigsten Eigenschaften für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar. Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (vgl.\cite{bedarfsplan}).
+
 
 Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
 
+
 In dieser Arbeit wird daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind. (Aufgrund des geringen Umfangs einer Bachelor Arbeit kann das in dieser Arbeit jedoch nicht erarbeitet werden.)
+
 
 Grundsätzlich basiert das Profil auf dem Backend des bereits bestehenden Routing Service des ORS. Zusätzlich werden Java Funktionen implementiert, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wurde das ORS Frontend mit Java-Script angepasst. Dadurch können die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden.
 (weitere Infos über technic details?)
@@ -61,18 +67,20 @@ Anwendbar für fast alle Einsatzfahrzeuge
 
 \section{Theoretische Grundlagen}
 
-Als Grundlage für die Berechnung kürzester Wege bedienen wir uns einer Speicherform der Mathematik, dem Graphen.
+Als Grundlage für die Berechnung kürzester Wege bedienen wir uns eines Speicherform der Mathematik, dem Graphen.
 
 \subsection{Graphen}
 
-Ein Graph ist eine Sammlung von Punkten, bei denen einige Knotenpunkte durch Kanten verbunden sind. 
+Ein Graph ist ein sehr nützliches Konzept um Objekte und deren Verbindungen untereinander zu modellieren. eine Sammlung von Punkten, bei denen einige Knotenpunkte durch Kanten verbunden sind. 
+(\cite[49]{kurt})
 (Graph definition with cite)
+
 
 (simple graph picture)
 
-Graphen können sehr einfach dargestellt werden. Die Knoten eines Graphen können einfache, mehrfache oder gar keine Kanten haben. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schleife bilden. Außerdem können zwei Punkte mit mehreren Kanten verbunden sein. Das erfüllt bei einem ungerichteten und ungewichteten Graphen allerdings keinen Zweck, da eine Kante für das Anzeigen der Relation ausreichend ist(richtig?).
+Der Vorteil von Graphen ist die einfache Darstellung.  Die Knoten eines Graphen können einfache, mehrfache oder gar keine Kanten haben. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schleife bilden. Außerdem können zwei Punkte mit mehreren Kanten verbunden sein. Das erfüllt bei einem ungerichteten und ungewichteten Graphen allerdings keinen Zweck, da eine Kante für das Anzeigen der Relation ausreichend ist(richtig?).
 
-Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Es können also zwei Graphen unterschiedlich angeordnet sein und dennoch einander entsprechen. Man spricht hier von (isomorphen ? NACHSCHAUEN) Graphen.
+Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Es können also zwei Graphen unterschiedlich angeordnet sein und dennoch einander entsprechen. Man spricht hier von isomorphen Graphen \todo{zitat}.
 
 Gerichtete Graphen
 Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
@@ -189,6 +197,6 @@ Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire\_hydra
 Beschleunigung
 rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
 
-
+\printbibliography
 
 \end{document}

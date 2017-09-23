@@ -1,0 +1,35 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {german}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Einleitung}{2}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1}Motivation}{2}{subsection.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Theoretische Grundlagen}{2}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}Graphen}{2}{subsection.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Routing}{3}{subsection.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3}Isochronen Berechnung}{4}{subsection.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Generierung des Routing-Profils}{5}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Informations Erhebung}{5}{subsection.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Aufbau graph backend}{5}{subsection.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Limitierende Faktoren}{5}{subsection.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}Erweiternde Faktoren}{5}{subsection.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Ergebnisse}{5}{section.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{ Vergleiche zwischen Firetruck - Emergency Vehicle - Car - Heavy Vehicle + exemplarische reale beispiele! }{5}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{ \color {red} Hier ein paar r\IeC {\"a}umliche Beispiele aussuchen und exemplarisch zeigen (Routing und Isochronen), welche \IeC {\"A}nderungen das Profil mit sich bringt, einerseits innerst\IeC {\"a}dtisch, andererseits auch au\IeC {\ss }erhalb der Stadt. Denn \IeC {\"A}nderungen als solches ist bisschen schwierig zu definieren. die Jungs aus L\IeC {\"u}tzelburg fragen, welches Gebiet mit den bereits vorhandenen Profilen wirklich schlechte Ergebnisse bringt und jetzt mit Emergency weitaus realitischere! }{5}{section*.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Fazit}{5}{section.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Future Work or Ausblick}{5}{section.6}

@@ -1,18 +1,14 @@
-\BOOKMARK [1][-]{section.1}{Danksagung}{}% 1
-\BOOKMARK [1][-]{section.2}{Kurzfassung}{}% 2
-\BOOKMARK [1][-]{section.3}{abstract}{}% 3
-\BOOKMARK [1][-]{section.4}{Einleitung}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Motivation}{section.4}% 5
-\BOOKMARK [1][-]{section.5}{Theoretische Grundlagen}{}% 6
-\BOOKMARK [2][-]{subsection.5.1}{Graphen}{section.5}% 7
-\BOOKMARK [2][-]{subsection.5.2}{Routing}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.3}{Isochronen Berechnung}{section.5}% 9
-\BOOKMARK [1][-]{section.6}{Generierung des Routing-Profils}{}% 10
-\BOOKMARK [2][-]{subsection.6.1}{Informations Erhebung}{section.6}% 11
-\BOOKMARK [2][-]{subsection.6.2}{Aufbau graph backend}{section.6}% 12
-\BOOKMARK [2][-]{subsection.6.3}{Limitierende Faktoren}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.4}{Erweiternde Faktoren}{section.6}% 14
-\BOOKMARK [1][-]{section.7}{Ergebnisse}{}% 15
-\BOOKMARK [1][-]{section.8}{Fazit}{}% 16
-\BOOKMARK [1][-]{section.9}{Future Work or Ausblick}{}% 17
-\BOOKMARK [1][-]{section.10}{Literatur}{}% 18
+\BOOKMARK [1][-]{section.1}{Einleitung}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Motivation}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Theoretische Grundlagen}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Graphen}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Routing}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Isochronen Berechnung}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Generierung des Routing-Profils}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Informations Erhebung}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Aufbau graph backend}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Limitierende Faktoren}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Erweiternde Faktoren}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Ergebnisse}{}% 12
+\BOOKMARK [1][-]{section.5}{Fazit}{}% 13
+\BOOKMARK [1][-]{section.6}{Future Work or Ausblick}{}% 14
