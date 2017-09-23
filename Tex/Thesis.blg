@@ -1,15 +1,17 @@
 [0] Config.pm:340> INFO - This is Biber 2.4
 [0] Config.pm:343> INFO - Logfile is 'Thesis.blg'
-[69] biber:287> INFO - === Sa Sep 23, 2017, 17:01:21
-[178] Biber.pm:348> INFO - Reading 'Thesis.bcf'
-[328] Biber.pm:742> INFO - Found 2 citekeys in bib section 0
-[334] Biber.pm:3151> INFO - Processing section 0
-[365] Biber.pm:3308> INFO - Looking for bibtex format file 'Thesis.bib' for section 0
-[388] bibtex.pm:1113> INFO - Decoding LaTeX character macros into UTF-8
-[408] bibtex.pm:974> INFO - Found BibTeX data source 'Thesis.bib'
-[477] UCollate.pm:65> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[478] UCollate.pm:65> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[478] Biber.pm:3028> INFO - Sorting list 'anyt/global' of type 'entry' with scheme 'anyt' and locale 'de-DE'
-[478] Biber.pm:3032> INFO - No sort tailoring available for locale 'de-DE'
-[481] bbl.pm:519> INFO - Writing 'Thesis.bbl' with encoding 'UTF-8'
-[492] bbl.pm:615> INFO - Output to Thesis.bbl
+[46] biber:287> INFO - === Sa Sep 23, 2017, 18:02:53
+[143] Biber.pm:348> INFO - Reading 'Thesis.bcf'
+[298] Biber.pm:742> INFO - Found 5 citekeys in bib section 0
+[304] Biber.pm:3151> INFO - Processing section 0
+[336] Biber.pm:3308> INFO - Looking for bibtex format file 'Thesis.bib' for section 0
+[369] bibtex.pm:1113> INFO - Decoding LaTeX character macros into UTF-8
+[397] bibtex.pm:974> INFO - Found BibTeX data source 'Thesis.bib'
+[446] Utils.pm:147> WARN - Name "Pascal Neis, Alexander Zipf, Rainer Helsper, Alexander Kehl" has too many commas: skipping name
+[502] UCollate.pm:65> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[502] UCollate.pm:65> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[502] Biber.pm:3028> INFO - Sorting list 'anyt/global' of type 'entry' with scheme 'anyt' and locale 'de-DE'
+[502] Biber.pm:3032> INFO - No sort tailoring available for locale 'de-DE'
+[507] bbl.pm:519> INFO - Writing 'Thesis.bbl' with encoding 'UTF-8'
+[520] bbl.pm:615> INFO - Output to Thesis.bbl
+[520] Biber.pm:109> INFO - WARNINGS: 1

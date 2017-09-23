@@ -19,6 +19,47 @@
 
 \refsection{0}
   \sortlist[entry]{anyt/global}
+    \entry{theory}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=ef95611aaa6551f2a39bf2efea6ee471}{%
+           family={Aigner},
+           family_i={A\bibinitperiod},
+           given={Martin},
+           given_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ef95611aaa6551f2a39bf2efea6ee471}
+      \strng{fullhash}{ef95611aaa6551f2a39bf2efea6ee471}
+      \field{labelalpha}{Aig15}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{labelyear}{2015}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Graphentheorie}
+      \field{year}{2015}
+    \endentry
+    \entry{dijkstra}{inbook}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=3fa72084538a27e0e2efc0508856455c}{%
+           family={Dijkstra},
+           family_i={D\bibinitperiod},
+           given={Edsger\bibnamedelima W.},
+           given_i={E\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{3fa72084538a27e0e2efc0508856455c}
+      \strng{fullhash}{3fa72084538a27e0e2efc0508856455c}
+      \field{labelalpha}{Dij59}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelyear}{1959}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Numerische Mathematik 1}
+      \field{title}{A note on two problems in connexion with graphs}
+      \field{year}{1959}
+    \endentry
     \entry{kurt}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=1c5075da493885d22b56ad27b9c4292a}{%
