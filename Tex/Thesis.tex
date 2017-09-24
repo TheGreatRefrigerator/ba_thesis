@@ -94,9 +94,9 @@ G = (V,R)
 (Abb gerichtet Graph)
 
 \subsubsection{Gewichtete Graphen}
-In dieser Arbeit bezeichnet der Begriff "gewichteter Graph" einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert zugewiesen wird.
+In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert zugewiesen wird.
 
-G = (V,E) mit c: R -> R_{+}
+$G = (V,E) mit c: R -> R_{\+}$
 
  Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
@@ -112,41 +112,63 @@ Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst al
 
 \subsection{Routing}
 
-Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation(Geoinformatik?) bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt A zu Zielpunkt B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
+Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation(Geoinformatik?) bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt s zu Zielpunkt z.
+Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
 
 Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
 
-Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen G \todo{formel} = (V,E) = K_{n}\footnote{K_{n} bezeichnet einen vollständigen Graphen bei dem jede Ecke V mit jeder anderen Ecke verbunden ist.} mit der Gewichtsfunktion c: E -> R_{+} gesucht, die jede Ecke V besucht(\cite[135]{algorithms}).
-Das Shortest Path Problem lässt sich in drei Typen unterscheiden denen jeweils ein gerichteter Graph G = (V,R) mit der Gewichtsfunktion c: R -> R zugrunde liegt. Beim \textit{Single Pair Shortest Path Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit a,b\in V gesucht. Das \textit{Single Source Shortest Path Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V. \cite[169f]{algorithms}
+Ein kürzester Weg hat die Eigenschaft, dass die Summe aller Kantengewichte des Weges minimal gegenüber allen anderen Wegen ist.
 
-- what is shortest pathing
-Das Problem des kürzesten Weges 
-\cite[191]{kurt}
+\subsubsection{Shortest Path Problem}
+Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen \todo{formel} $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke V mit jeder anderen Ecke verbunden ist.} mit der Gewichtsfunktion $c: E -> \mathbb{R}_{+}$ gesucht, die jede Ecke V besucht(\cite[135]{algorithms}).
+Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R -> \mathbb{R}$ zugrunde liegt. Beim \textit{Single Pair Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit $a,b\in V$ gesucht. Das \textit{Single Source Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V. \cite[169f]{algorithms}
 
-Der kürzeste Weg ist dabei jeweils derjenige mit der niedrigsten Gewichtskostenssumme.
-Für ein Routing von A nach B ist das SPP also die richtige Wahl. Allerdings führt die Lösung über das SSP, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
+Für ein Routing von Startecke s zur Zielecke z ist das SPP also die richtige Wahl. Allerdings führt die Lösung über das SSP, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
 
-
-algorithmus Dijkstra 
-
-nur für Graphen mit positiven Gewichten anwendbar (\todo{what problem?}). Für Graphen mit negativer Gewichtung gibt es den Algorithmus von Bellman und Ford.
+Beispiel:
+Ein Anschauliches Beispiel ohne Rechenaufwand für die Lösung des SSPs erhält man, wenn man auf die Karte eines Straßennetzes Fäden auf jede Straße legt. Die Fäden werden an Kreuzungen und am Startpunkt verknotet. Die Fäden stellen den Routing Graph dar. Nun wird der Graph am Startpunkt angehoben. Sofern sich nichts verheddert hat, stellen alle straffen Fäden die kürzeste Route zu den darunter hängenden Knoten dar (\cite[191]{kurt})
 
 
-\cite{dijkstra}
-Als Ausgangssituation haben wir einen gerichteten Graphen G = (V,R) mit einer Gewichtsfunktion c: \todo{funktion} sowie einen Startpunkt s \in V. Dijkstra's Algorithmus markiert den Startpunkt und berechnet die Kosten für die Bewegung von s zu jeder benachbarten Ecke. Die berechneten Kosten werden zusammen mit der ID der vorangehenden Ecke für jede Ecke gespeichert und sind die bisherigen kürzesten Wege. Die Ecke mit den geringsten Kosten wird als nächstes markiert. Dieser Vorgang wird wiederholt und die Kosten 
+\subsubsection{Dijkstra Algorithmus}
 
+Als Ausgangssituation haben wir einen gerichteten Graphen $G = (V,R)$ mit einer Gewichtsfunktion c: \todo{funktion} \footnote{ohne negative Kantengewichte} sowie einen Startpunkt $s \in V$. 
+Dijkstra's Algorithmus markiert den Startpunkt und berechnet die Kosten für die Bewegung von s zu jeder benachbarten Ecke. Die berechneten Kosten werden zusammen mit der ID der vorangehenden Ecke für jede Ecke gespeichert und sind die bisherigen kürzesten Wege. Die Ecke mit den geringsten Kosten wird als nächstes markiert. Dieser Vorgang wird wiederholt und die Kosten \todo{writewrite}
+
+scan node with shortest distance (sum of edge weights) in first start point
+calculate distance to the endpoints of all outgoing edges 
+write new minimum distance for nodes to queue
+minimum distance to an unscanned node equals the true shortest distance (proof \cite[197f]{kurt})
+repeat until no unscanned nodes in queue
+
+(\cite{dijkstra})
+
+Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Algorithmus nur für positive Kantengewichte anwendbar (\cite[194f]{kurt}).
 
 Damit wurde das SSP gelöst und einen kürzeste Wege zu jeder Ecke des Graphen vom Startpunkt. Daraus ergibt sich auch die Lösung des SPP für den Startpunkt zu jeder anderen Ecke. Es ist jedoch nicht sinnvoll für die Lösung eines SPP jedes mal das SSP für den kompletten Graphen zu berechnen. Das liefert nicht nur viele irrelevante Ergebnisse sondern kostet auch mehr Berechnungsressourcen und Zeit. Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
 
-speedups:
-Der Algorithmus wird jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem er den Zielpunkt erreicht hat (\cite[209]{kurt}). 
-early stopping 
+\subsubsection{Speedup Techniken}
 
-bi directional dijkstra
-Der Unterschied des bi directional Dijkstras zum normalen Algorithmus 
+early stopping 
+Der Algorithmus wird jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem er den Zielpunkt erreicht hat (\cite[209]{kurt}). 
+
+
+bidirectional dijkstra
+Beim bidirectional Dijkstra werden zeitgleich zwei Algorithmen nebeneinander ausgeführt. Einer auf s und einer auf z (auf einem umgekehrt gerichteten Graphen). Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$. Zu Begin wird für jeden Startpunkt die initiale der umliegenden Nodes durchgeführt. Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt. Wird eine Node aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Nodes geprüft. Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet. Die Node ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist(\cite[209f]{kurt}).
+
+\todo{Abbildung zwei Kreise, ein grosser kreis, einspaarung,}
+
+vergleich realität
+
+A*
+goal directed Search
+
+lenke suchraum richtung Ziel, ausbreitung nicht kreisförmig.
+für jede ecke wird die Distanz zum Ziel geschätzt
+Näher am Ziel liegende Punkte werden bevorzugt (\todo{this part...})
+\cite[210f]{kurt}
 
 + contraction hierarchies
-\cite[212]{kurt}
+(\cite[212]{kurt})
 
 \subsection{Isochronen Berechnung}
 
@@ -162,19 +184,20 @@ Benutzt routing
 
 marching squares grid based (recursive grid?), delauny erklären shape based(triangles) + unsere implementierung shape based (points)
 
-Gitterbasierter Ansatz:
+\subsubsection{Gitterbasierter Ansatz}
 Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
 (Abb. recursive grid / marching squares)
 
 Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer.
 
+\subsubsection{Delaunay}
 TIN: Delaunay Triangulation
-vgl \cite{isos}
-\todo adapt explanation
+(vgl \cite{isochrones})
+\todo{adapt explanation}
 
 
-Formenbasierter Ansatz:
+\subsubsection{Formenbasierter Ansatz}
 Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz (wiederholung :/). Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte der Geometrie der Kante extrahiert. Jede Kante des Graphen stellt ein Wegstück der realen Welt dar. Im Graphen können Kanten allerdings nur durch gerade Linien dargestellt werden. Die wirkliche Geometrie ist deswegen auf der Kante gespeichert. Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
 (Abb. Pictures shape based stuff)
 Durch den Dijkstra Algorithmus können mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
@@ -189,7 +212,8 @@ Fragebogen für Feuerwehr Lützelburg\footnote{Lützelburg ist eine stadt in Bay
 to allow different waytypes we have to accept them while creating the graph (kapitel bla)
 
 weightings 
- different weights for different profiles
+ different weights for different profiles , apply weights to dijkstra?
+ 
  for unusable edge -> weighting + unendlich (quelle ???)
  for emergency 
  
@@ -219,12 +243,16 @@ Hier ein paar räumliche Beispiele aussuchen und exemplarisch zeigen (Routing un
 
 \section{Fazit}
 
+Für diesen Zweck geeignet.
 Much more accurate than previous profile. 
+Für Allgemeingültigkeit weitere Tests nötig
+
+
 
 \section{Future Work or Ausblick}
 
 Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire\_hydrant )
-Beschleunigung
+Beschleunigung, bisher nur Faktor, für genauere Berechnungen exakte Beschleunigungsdaten der Jeweiligen Fahrzeugklasse benötigt. Bremsweg, Kurvengeschwindigkeit, Beschleunigungsweg.
 rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
 
 \printbibliography

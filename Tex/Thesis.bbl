@@ -60,6 +60,29 @@
       \field{title}{A note on two problems in connexion with graphs}
       \field{year}{1959}
     \endentry
+    \entry{graphhopper}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=981998a354cf483eac6b83bd17a134d3}{%
+           family={Karich},
+           family_i={K\bibinitperiod},
+           given={Peter},
+           given_i={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{981998a354cf483eac6b83bd17a134d3}
+      \strng{fullhash}{981998a354cf483eac6b83bd17a134d3}
+      \field{labelalpha}{Kar16}
+      \field{sortinit}{K}
+      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelyear}{2016}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Low Level API}
+      \field{year}{2016}
+      \verb{url}
+      \verb https://github.com/graphhopper/graphhopper/blob/master/docs/core/low-level-api.md
+      \endverb
+    \endentry
     \entry{kurt}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=1c5075da493885d22b56ad27b9c4292a}{%
@@ -79,6 +102,93 @@
       \field{labeltitlesource}{title}
       \field{title}{Algorithms and Data Structures}
       \field{year}{2008}
+    \endentry
+    \entry{isochrones}{inbook}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,hash=b1ff694d3df32638a2bf4fdc4b3e6ede}{%
+           family={Neis},
+           family_i={N\bibinitperiod},
+           given={Pascal},
+           given_i={P\bibinitperiod}}}%
+        {{uniquename=0,hash=308dda5782513ea81e85e19f65978829}{%
+           family={Zipf},
+           family_i={Z\bibinitperiod},
+           given={Alexander},
+           given_i={A\bibinitperiod}}}%
+        {{uniquename=0,hash=604ce6b62207fe9c50590164a3f7d48f}{%
+           family={Helsper},
+           family_i={H\bibinitperiod},
+           given={Rainer},
+           given_i={R\bibinitperiod}}}%
+        {{uniquename=0,hash=b44b8b17c5bfbcb43da4eaf92e6d0eef}{%
+           family={Kehl},
+           family_i={K\bibinitperiod},
+           given={Alexander},
+           given_i={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{4cde67295d5224ca472c627f69ac6c9a}
+      \strng{fullhash}{92ce8555a7928b6831ea30dbdef533e7}
+      \field{labelalpha}{Nei+08}
+      \field{sortinit}{N}
+      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
+      \field{labelyear}{2008}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Aktuelle Arbeiten auf dem Gebiet der informations- und Messtechnik}
+      \field{title}{Webbasierte Erreichbarkeitsanalyse – Vorschläge zur Definition eines Accessibility Analysis Service (AAS) auf Basis des OpenLS Route Service}
+      \field{year}{2008}
+    \endentry
+    \entry{osmgraph}{inbook}{}
+      \name{author}{7}{}{%
+        {{uniquename=0,hash=b421f4233e7756f48d79e720cc84b26f}{%
+           family={Rehrl},
+           family_i={R\bibinitperiod},
+           given={Karl},
+           given_i={K\bibinitperiod}}}%
+        {{uniquename=0,hash=64e4bf8006b4d4bd004ed8d2f81a9455}{%
+           family={Edlinger},
+           family_i={E\bibinitperiod},
+           given={Karl-Michael},
+           given_i={K\bibinithyphendelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=2e6f27d70d24f5f23445f147a537ab71}{%
+           family={Friedwagner},
+           family_i={F\bibinitperiod},
+           given={Andreas},
+           given_i={A\bibinitperiod}}}%
+        {{uniquename=0,hash=b30fb3f332bb393e8ee38850bf471239}{%
+           family={Hahn},
+           family_i={H\bibinitperiod},
+           given={Benedikt},
+           given_i={B\bibinitperiod}}}%
+        {{uniquename=0,hash=6d94d12a92cdb47f863157b9dbca7356}{%
+           family={Langhaler},
+           family_i={L\bibinitperiod},
+           given={Thomas},
+           given_i={T\bibinitperiod}}}%
+        {{uniquename=0,hash=8fd3a8379cbda9c60f92e446330e16fb}{%
+           family={Wagner},
+           family_i={W\bibinitperiod},
+           given={Andreas},
+           given_i={A\bibinitperiod}}}%
+        {{uniquename=0,hash=77854efdfdf328947f7a9ffdf286f9f1}{%
+           family={Wimmer},
+           family_i={W\bibinitperiod},
+           given={Michael},
+           given_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{bc5c0de3c228d27fa870091ef41a94f7}
+      \strng{fullhash}{e54f1073318d3b5d8120d535a346b1da}
+      \field{labelalpha}{Reh+12}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Angewandte Geoinformatik 2012}
+      \field{title}{Evaluierung von Verkehrsgraphen für die Berechnung von länderübergreifenden Erreichbarkeitspotenzialen am Beispiel von OpenStreetMap}
+      \field{year}{2012}
     \endentry
     \entry{bedarfsplan}{online}{}
       \name{author}{1}{}{%
@@ -101,6 +211,49 @@
       \field{year}{2015}
       \verb{url}
       \verb http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
+      \endverb
+    \endentry
+    \entry{algorithms}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=d08f36c00db9c97e9f7794958d2e717d}{%
+           family={Sven\bibnamedelimb Oliver\bibnamedelima Krumke},
+           family_i={S\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Harmut\bibnamedelima Noltemeier},
+           given_i={H\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{d08f36c00db9c97e9f7794958d2e717d}
+      \strng{fullhash}{d08f36c00db9c97e9f7794958d2e717d}
+      \field{labelalpha}{Sve12}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Graphentheoretische Konzepte und Algorithmen}
+      \field{year}{2012}
+    \endentry
+    \entry{osmrelation}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=8e978e4695d3801326884ada96ea5313}{%
+           family={Wiki},
+           family_i={W\bibinitperiod},
+           given={OSM},
+           given_i={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{8e978e4695d3801326884ada96ea5313}
+      \strng{fullhash}{8e978e4695d3801326884ada96ea5313}
+      \field{labelalpha}{Wik15}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelyear}{2015}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{DE:Relationen}
+      \field{year}{2015}
+      \verb{url}
+      \verb https://wiki.openstreetmap.org/wiki/DE:Relationen
       \endverb
     \endentry
   \endsortlist
