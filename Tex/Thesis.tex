@@ -75,6 +75,8 @@ Ein Graph ist ein sehr nützliches Konzept um Objekte und deren Verbindungen unt
 (\cite[49]{kurt})
 
 Ein Graph G ist die Funktion aus einer endlichen Eckenmenge V und einer endlichen Kantenmenge E
+
+	G = (V,E)
 (Graph definition with cite)
 
 
@@ -85,12 +87,18 @@ Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Knoten al
 Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}.
 
 \subsubsection{Gerichtete Graphen}
-Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
+Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt.
+
+G = (V,R)
 
 (Abb gerichtet Graph)
 
 \subsubsection{Gewichtete Graphen}
-In dieser Arbeit bezeichnet der Begriff "gewichteter Graph" einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert zugewiesen wird. Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
+In dieser Arbeit bezeichnet der Begriff "gewichteter Graph" einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert zugewiesen wird.
+
+G = (V,E) mit c: R -> R_{+}
+
+ Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
 (Abb gewichtet Graph)
 
@@ -100,29 +108,42 @@ Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Be
 
 Die OpenStreetMap(OSM) Datenstruktur und die Struktur eines Graphen sind im Prinzip gleich. Hier werden Punktobjekte als \textit{nodes}(Knoten) und Linienobjekte wie Straßen als \textit{ways}(Wege) bezeichnet. Ein way ist dabei die Verbindung zwischen zwei nodes. Zusätzich gibt es \textit{relations}(Relationen) die einem Set aus nodes und ways einen funktionalen Zusammenhang zuschreiben. Für Straßennetze ist dies äußerst hilfreich um zum Beispiel unterschiedliche Segmente eines Autobahnstücks zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
-Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden. Diese werden anhand ihrer OSM Tags identifiziert. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichnet Ways (zum Beispiel asphaltiert aber ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. und Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower nodes nennt man \textit{Pillar Nodes}. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert. Da Pillar Nodes somit nicht für den Routing Vorgang benötigt werden, ist dieser um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.  (\todo{mehr zu Gewichtung später in kapitel ... aufbau graph backend}(\todo{stimmt die reihenfolge max?}. Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
+Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden. Diese werden anhand ihrer OSM Tags identifiziert. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichnet Ways (zum Beispiel asphaltiert aber ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. und Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower nodes nennt man \textit{Pillar Nodes}.(\todo{Abb. Tower Nodes / Pillar nodes}) Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert. Da Pillar Nodes somit nicht für den Routing Vorgang benötigt werden, ist dieser um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.  (\todo{mehr zu Gewichtung später in kapitel ... aufbau graph backend}(\todo{stimmt die reihenfolge max?}. Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
 
 \subsection{Routing}
 
-Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt A zu Zielpunkt B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
+Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation(Geoinformatik?) bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt A zu Zielpunkt B. Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
 
 Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
 
-Eine der naheliegendsten Problemstellungen ist das \textit{shortest path problem} für ein Paar von Knotenpunkten. Dabei wird der kürzeste Weg von einer Ecke zu einer anderen Ecke des Graphen gesucht. bei welchem der kürzeste weg von einer Ecke zu entweder einer anderen Ecke, allen anderen Ecken 
+Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen G \todo{formel} = (V,E) = K_{n}\footnote{K_{n} bezeichnet einen vollständigen Graphen bei dem jede Ecke V mit jeder anderen Ecke verbunden ist.} mit der Gewichtsfunktion c: E -> R_{+} gesucht, die jede Ecke V besucht(\cite[135]{algorithms}).
+Das Shortest Path Problem lässt sich in drei Typen unterscheiden denen jeweils ein gerichteter Graph G = (V,R) mit der Gewichtsfunktion c: R -> R zugrunde liegt. Beim \textit{Single Pair Shortest Path Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit a,b\in V gesucht. Das \textit{Single Source Shortest Path Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V. \cite[169f]{algorithms}
 
 - what is shortest pathing
 Das Problem des kürzesten Weges 
 \cite[191]{kurt}
 
+Der kürzeste Weg ist dabei jeweils derjenige mit der niedrigsten Gewichtskostenssumme.
+Für ein Routing von A nach B ist das SPP also die richtige Wahl. Allerdings führt die Lösung über das SSP, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
 
-what algorithms can be used
 
 algorithmus Dijkstra 
 
+nur für Graphen mit positiven Gewichten anwendbar (\todo{what problem?}). Für Graphen mit negativer Gewichtung gibt es den Algorithmus von Bellman und Ford.
+
+
 \cite{dijkstra}
+Als Ausgangssituation haben wir einen gerichteten Graphen G = (V,R) mit einer Gewichtsfunktion c: \todo{funktion} sowie einen Startpunkt s \in V. Dijkstra's Algorithmus markiert den Startpunkt und berechnet die Kosten für die Bewegung von s zu jeder benachbarten Ecke. Die berechneten Kosten werden zusammen mit der ID der vorangehenden Ecke für jede Ecke gespeichert und sind die bisherigen kürzesten Wege. Die Ecke mit den geringsten Kosten wird als nächstes markiert. Dieser Vorgang wird wiederholt und die Kosten 
+
+
+Damit wurde das SSP gelöst und einen kürzeste Wege zu jeder Ecke des Graphen vom Startpunkt. Daraus ergibt sich auch die Lösung des SPP für den Startpunkt zu jeder anderen Ecke. Es ist jedoch nicht sinnvoll für die Lösung eines SPP jedes mal das SSP für den kompletten Graphen zu berechnen. Das liefert nicht nur viele irrelevante Ergebnisse sondern kostet auch mehr Berechnungsressourcen und Zeit. Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
 
 speedups:
-early stopping \cite{kurt}209]{kurt}
+Der Algorithmus wird jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem er den Zielpunkt erreicht hat (\cite[209]{kurt}). 
+early stopping 
+
+bi directional dijkstra
+Der Unterschied des bi directional Dijkstras zum normalen Algorithmus 
 
 + contraction hierarchies
 \cite[212]{kurt}
