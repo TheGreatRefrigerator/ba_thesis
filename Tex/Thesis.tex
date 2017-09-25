@@ -87,7 +87,7 @@ Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Knoten al
 Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}.
 
 \subsubsection{Gerichtete Graphen}
-Für das Routing ist es wichtig von einem Knoten zu einem anderen zu gelangen. Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt.
+Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt.
 
 G = (V,R)
 
@@ -98,7 +98,7 @@ In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-
 
 $G = (V,E) mit c: R -> R_{\+}$
 
- Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
+Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
 (Abb gewichtet Graph)
 
@@ -112,12 +112,10 @@ Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst al
 
 \subsection{Routing}
 
-Routing ist ein Begriff aus der Nachrichtentechnik und bezeichnet die Bestimmung des günstigsten Weges für die Übertragung von Daten in einem Netzwerk (cite DUDEN). In der Navigation(Geoinformatik?) bedeutet Routing ebenfalls das Ermitteln eines besonders günstigen (häufig des schnellsten) Weges von Startpunkt s zu Zielpunkt z.
-Das Netzwerk in dem dieser Weg ermittelt werden soll ist in diesem Fall ein gerichteter und gewichteter Graph, der ein reales Straßen- oder Wegenetz repräsentiert.
+Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können. Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet. Im Fachbereich der Geo Informations Systeme (GIS) werden hauptsächlich Straßennetze für Routing Analysen verwendet (\cite[165]{handbook}). Ein Weg P (\textit{engl: path}) von einem Startnode s zu einem Zielnode z ist eine Folge von benachbarten Ecken mit s als erster Ecke und z als letzter Ecke der Folge (\todo{Abb}).
+Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewichte\footnote{Normalerweise aller Kanten- und Knotengewichte. Es werden aber nur Graphen mit Kantengewichten benutzt.}.
 
-Wenn die Kante eines solchen Graphen also eine Straße darstellt, beinhaltet das Kantengewicht dabei die Distanz. Die Richtung der Kante ist äquivalent zur erlaubten Fahrtrichtung zum Beispiel im Fall von Einbahnstraßen oder Autobahnen.
-
-Ein kürzester Weg hat die Eigenschaft, dass die Summe aller Kantengewichte des Weges minimal gegenüber allen anderen Wegen ist.
+Eine der wichtigsten Netzwerk Analyse Operationen ist die Berechnung des kürzesten Weges zwischen zwei Ecken. Jedes Navigationssystem muss diese Aufgabe erfüllen können. Ein kürzester Weg hat die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen ist.
 
 \subsubsection{Shortest Path Problem}
 Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen \todo{formel} $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke V mit jeder anderen Ecke verbunden ist.} mit der Gewichtsfunktion $c: E -> \mathbb{R}_{+}$ gesucht, die jede Ecke V besucht(\cite[135]{algorithms}).
@@ -131,16 +129,9 @@ Ein Anschauliches Beispiel ohne Rechenaufwand für die Lösung des SSPs erhält 
 
 \subsubsection{Dijkstra Algorithmus}
 
-Als Ausgangssituation haben wir einen gerichteten Graphen $G = (V,R)$ mit einer Gewichtsfunktion c: \todo{funktion} \footnote{ohne negative Kantengewichte} sowie einen Startpunkt $s \in V$. 
-Dijkstra's Algorithmus markiert den Startpunkt und berechnet die Kosten für die Bewegung von s zu jeder benachbarten Ecke. Die berechneten Kosten werden zusammen mit der ID der vorangehenden Ecke für jede Ecke gespeichert und sind die bisherigen kürzesten Wege. Die Ecke mit den geringsten Kosten wird als nächstes markiert. Dieser Vorgang wird wiederholt und die Kosten \todo{writewrite}
+Als Ausgangssituation haben wir einen gerichteten Graphen $G = (V,R)$ mit einer Gewichtsfunktion c: \todo{funktion} \footnote{ohne negative Kantengewichte} sowie eine Startecke $s \in V$. Es gibt eine Warteliste W mit unmarkierten \textit{gesichteten} Ecken v. Dort sind die Kosten für den Weg von s nach v und die jeweilige vorangehende Ecke auf diesem Weg für alle v gepeichert ist. Die Kosten in dieser Liste sind die bisherigen kürzesten Wege für alle v. Sie können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt s mit den Kosten 0. Es gibt eine weitere Liste der kürzesten Wege K in der alle markierten Ecken gespeichert werden.
 
-scan node with shortest distance (sum of edge weights) in first start point
-calculate distance to the endpoints of all outgoing edges 
-write new minimum distance for nodes to queue
-minimum distance to an unscanned node equals the true shortest distance (proof \cite[197f]{kurt})
-repeat until no unscanned nodes in queue
-
-(\cite{dijkstra})
+Dijkstra's Algorithmus (vgl. \cite{dijkstra})markiert die Ecke mit den geringsten Kosten aus W und verschiebt diese nach K. Im ersten Durchlauf ist das die Startecke s. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in W gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist(vgl. \cite[197f]{kurt}).  Dieser Vorgang wird wiederholt bis alle Ecken aus W markiert wurden und W somit leer ist.
 
 Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Algorithmus nur für positive Kantengewichte anwendbar (\cite[194f]{kurt}).
 
@@ -161,28 +152,19 @@ vergleich realität
 
 A*
 goal directed Search
-
-lenke suchraum richtung Ziel, ausbreitung nicht kreisförmig.
-für jede ecke wird die Distanz zum Ziel geschätzt
-Näher am Ziel liegende Punkte werden bevorzugt (\todo{this part...})
-\cite[210f]{kurt}
+Der A* ist eine Variante des Dijkstra Algorithmus die den Suchraum in Richtung der Zielecke lenkt. Es wird durch eine Funkiton für jede Ecke die Distanz zum Ziel geschätzt. Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden. Es ergibt normalerweise Kresiförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt. Da der Zielpunkt so früher erreicht wird, müssen weniger Iterationen durchgeführt werden.(\cite[210f]{kurt})
 
 + contraction hierarchies
 (\cite[212]{kurt})
 
 \subsection{Isochronen Berechnung}
 
-Isochronen (Herkunft wort iso, chronos)
+Isochronen sind Linien gleicher Zeit (gr: iso gleich, chronos zeit).
 
-Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Isochronen berechnet werden.
-Isochronen sind Linien gleicher Zeit. Für die Berechnung wird ein Zentrum und das Zeitlimit benötigt. Das resultierende Objekt ist ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
-Isochronen können auf unterschiedliche Arten berechnet werden. 
+Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden. Dazu wird ein SSP für eine zentrale Ecke z mit einem gegebenen Zeitlimit t gelöst.
+Isochronen können mit unterschiedliche Methoden berechnet werden. Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
 
 Benutzt routing
-
-+ shaping (darstellung)
-
-marching squares grid based (recursive grid?), delauny erklären shape based(triangles) + unsere implementierung shape based (points)
 
 \subsubsection{Gitterbasierter Ansatz}
 Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
@@ -198,9 +180,9 @@ TIN: Delaunay Triangulation
 
 
 \subsubsection{Formenbasierter Ansatz}
-Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz (wiederholung :/). Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte der Geometrie der Kante extrahiert. Jede Kante des Graphen stellt ein Wegstück der realen Welt dar. Im Graphen können Kanten allerdings nur durch gerade Linien dargestellt werden. Die wirkliche Geometrie ist deswegen auf der Kante gespeichert. Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
+Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz. Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte (Pillar Nodes) aus der  WayGeometry der Kante extrahiert (\todo{vgl. Kapitel...}).  Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
 (Abb. Pictures shape based stuff)
-Durch den Dijkstra Algorithmus können mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
+Mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
 
 
 \section{Generierung des Routing-Profils}
