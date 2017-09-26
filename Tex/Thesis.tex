@@ -133,7 +133,7 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 \centering
 \includegraphics[width = \textwidth]{../media/einfachergraph.pdf} \\
 \caption{Darstellung von G}
-\label{Einfacher Graph}
+\label{fig:darstellung}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -151,17 +151,21 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 }
 \vspace{0.1cm}
 \caption{Adjazenzmatrix von G}
-\label{fig:right}
+\label{fig:matrix}
 \end{subfigure}
 \caption{Ein simpler Graph G}
-\label{fig:simpelgraph}
+\label{Einfacher Graph}
 \end{figure}
 
 (simple graph picture)
 
-Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (vgl Abb.) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4f]{theory})
+Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:darstellung}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4--5]{theory}) \par
 
-Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}.
+Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{fig:matrix} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte A und Reihe B zeigt also an, dass eine Kante von A nach B existiert. Für ungerichtete Graphen ist eine Kante von A nach B äquivalent mit einer Kante von B nach A. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($AA \rightarrow EE$). Der Speicherbedarf kann für so eine Matrix folglich nahezu halbiert werden, da nur eine Hälfte gespeichert werden muss.
+
+Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4f]{theory}).
+
+Es sollte nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}.
 
 \subsubsection{Gerichtete Graphen}
 Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt.
