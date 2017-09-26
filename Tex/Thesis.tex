@@ -1,5 +1,5 @@
 % setup
-\documentclass[10pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage{csquotes}
@@ -41,11 +41,11 @@
 	\vspace{1.5cm}
 	{\LARGE\bfseries Bachelorarbeit\par}
 	\vspace{2cm}
-	{\huge\bfseries Erstellung eines Routing-Profils auf Basis von OpenStreetMap Daten für Feuerwehrfahrzeuge\par}
+	{\Huge\bfseries Erstellung eines Routing-Profils auf Basis von OpenStreetMap Daten für Feuerwehrfahrzeuge\par}
 	\vspace{2cm}
 	{\Large\itshape Amandus Stefan Butzer\par}
-	\vspace{1.5cm}
-	{\large Geographisches Institut Abteilung Geoinformatik\par}
+	\vspace{2cm}
+	{\large Fakultät für Chemie und Geowissenschaften \par Geographisches Institut \par Abteilung Geoinformatik\par}
 	\vfill
 	{Betreut von\par Prof. Dr. Alexander Zipf}
 
@@ -78,7 +78,7 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 
 \newpage
 \section*{Danksagungen}
-\todo{An dieser Stelle möchte ich all denen Danken.. }
+\todo{An dieser Stelle möchte ich allen danken.. }
 
 \newpage
 \tableofcontents
@@ -131,37 +131,37 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
-\includegraphics[width = \textwidth]{../media/einfachergraph.pdf} \\
+\includegraphics[width = \textwidth]{../media/simpel.pdf} \\
 \caption{Darstellung von G}
-\label{fig:darstellung}
+\label{fig:simpel}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \centering
 {
 \begin{blockarray}{cccccc}
-  & A & B & C & D & E \\
+  & v1 & v2 & v3 & v4 & v5 \\
 \begin{block}{c(ccccc)}
-  A & 0 & 1 & 1 & 0 & 0 \\
-  B & 1 & 0 & 1 & 0 & 0 \\
-  C & 1 & 1 & 0 & 0 & 1 \\
-  D & 0 & 0 & 0 & 0 & 0 \\
-  E & 0 & 0 & 1 & 0 & 1 \\
+  v1 & 0 & 1 & 1 & 0 & 0 \\
+  v2 & 1 & 0 & 2 & 0 & 0 \\
+  v3 & 1 & 2 & 0 & 0 & 1 \\
+  v4 & 0 & 0 & 0 & 0 & 0 \\
+  v5 & 0 & 0 & 1 & 0 & 1 \\
 \end{block}
 \end{blockarray}
 }
 \vspace{0.1cm}
 \caption{Adjazenzmatrix von G}
-\label{fig:matrix}
+\label{mx:simpel}
 \end{subfigure}
 \caption{Ein simpler Graph G}
-\label{Einfacher Graph}
+\label{simpelGraph}
 \end{figure}
 
 (simple graph picture)
 
-Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:darstellung}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4--5]{theory}) \par
+Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simpel}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4--5]{theory}) \par
 
-Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{fig:matrix} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte A und Reihe B zeigt also an, dass eine Kante von A nach B existiert. Für ungerichtete Graphen ist eine Kante von A nach B äquivalent mit einer Kante von B nach A. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($AA \rightarrow EE$). Der Speicherbedarf kann für so eine Matrix folglich nahezu halbiert werden, da nur eine Hälfte gespeichert werden muss.
+Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte v1 und Reihe v2 zeigt also an, dass eine Kante von v1 nach v2 existiert. Für ungerichtete Graphen ist eine Kante von v1 nach v2 äquivalent mit einer Kante von v2 nach v1. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($AA \rightarrow EE$). Der Speicherbedarf für eine Matrix folglich halbiert werden, da die eine Hälfte mit der Anderen rekonstruiert werden kann (\cite[19]{algorithms}). Hat der Graph keine Schlingen, besteht die Hauptdiagonale nur aus Nullen und kann ebenfalls eingespaart werden.
 
 Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4f]{theory}).
 
