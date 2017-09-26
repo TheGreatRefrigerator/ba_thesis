@@ -190,29 +190,6 @@
       \field{title}{Evaluierung von Verkehrsgraphen für die Berechnung von länderübergreifenden Erreichbarkeitspotenzialen am Beispiel von OpenStreetMap}
       \field{year}{2012}
     \endentry
-    \entry{bedarfsplan}{online}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=c9ab9e87f955b350cc3d93c9c98040ee}{%
-           family={Stein},
-           family_i={S\bibinitperiod},
-           given={Jochen},
-           given_i={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{c9ab9e87f955b350cc3d93c9c98040ee}
-      \strng{fullhash}{c9ab9e87f955b350cc3d93c9c98040ee}
-      \field{labelalpha}{Ste15}
-      \field{sortinit}{S}
-      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
-      \field{labelyear}{2015}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Qualitätskriterien für die Bedarfsplanung von Feuerwehren in Städten}
-      \field{year}{2015}
-      \verb{url}
-      \verb http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
-      \endverb
-    \endentry
     \entry{algorithms}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=d08f36c00db9c97e9f7794958d2e717d}{%
@@ -255,6 +232,26 @@
       \verb{url}
       \verb https://wiki.openstreetmap.org/wiki/DE:Relationen
       \endverb
+    \endentry
+    \entry{handbook}{collection}{}
+      \name{editor}{1}{}{%
+        {{uniquename=0,hash=fc79c527b041939370ce5622e3665d26}{%
+           family={Wolfgang\bibnamedelima Kresse},
+           family_i={W\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={David\bibnamedelimb M.\bibnamedelimi Danko},
+           given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{fc79c527b041939370ce5622e3665d26}
+      \strng{fullhash}{fc79c527b041939370ce5622e3665d26}
+      \field{labelalpha}{Wol12}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{title}{Handbook of Geographic Information}
+      \field{year}{2012}
     \endentry
   \endsortlist
 \endrefsection

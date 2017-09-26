@@ -8,6 +8,13 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+%matrices
+\usepackage{blkarray}
+
+%figures & images
+\usepackage{graphicx}
+\usepackage{subcaption}
+
 %utils
 \usepackage{color}
 \usepackage{hyperref}
@@ -23,66 +30,136 @@
 
 % Document Infos
 \author{Amandus Stefan Butzer}
-\title{Erstellung eines Routing-Profils auf Basis von OSM / Öffentlichen Daten für Feuerwehrfahrzeuge}
+\title{Erstellung eines Routing-Profils auf Basis von OpenStreetMap Daten für Feuerwehrfahrzeuge}
 \date{\today}
 
 \begin{document}
+\begin{titlepage}
+\begin{center}
 
-\maketitle
+	{\scshape\LARGE Ruprecht-Karls-Universität Heidelberg\par}
+	\vspace{1.5cm}
+	{\LARGE\bfseries Bachelorarbeit\par}
+	\vspace{2cm}
+	{\huge\bfseries Erstellung eines Routing-Profils auf Basis von OpenStreetMap Daten für Feuerwehrfahrzeuge\par}
+	\vspace{2cm}
+	{\Large\itshape Amandus Stefan Butzer\par}
+	\vspace{1.5cm}
+	{\large Geographisches Institut Abteilung Geoinformatik\par}
+	\vfill
+	{Betreut von\par Prof. Dr. Alexander Zipf}
 
+	\vfill
 
-\section*{Kurzfassung}
-\todo{Deutsche Kurzfassung}
+% Bottom of the page
+	{\large \today\par}
+\end{center}
+\end{titlepage}
 
-\section*{Abstract}
+\newpage
+
+{\centering\section*{Zusammenfassung}}
+\todo{Deutsche Kurzfassung}\par
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\newpage
+{\centering\section*{Abstract}}
 \todo{Abstract in Englisch}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+\newpage
 \section*{Erklärung}
-\todo{Hiermit erkläre ich}
+\vspace{1cm}
+Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig verfasst, noch nicht anderweitig zu Prüfungszwecken vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt, sowie wörtlich und sinngemäße Zitate als solche gekennzeichnet habe.\par
+\bigskip
 
+{\flushleft Heidelberg den \today } {\hfill .....................................\par}
+{\hfill (Unterschrift)}
+
+\newpage
 \section*{Danksagungen}
 \todo{An dieser Stelle möchte ich all denen Danken.. }
 
+\newpage
 \tableofcontents
 
+\newpage
+\listoffigures
 
+
+\newpage
 \section{Einleitung}
 
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des \href{http://www.openrouteservice.org}{openrouteservice} (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen die wichtigsten Eigenschaften für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar. Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (vgl.\cite{bedarfsplan}).
-
+{Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des \href{http://www.openrouteservice.org}{openrouteservice} (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. \par
+\bigskip
+Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen die wichtigsten Eigenschaften für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
+Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (vgl.{bedarfsplan}). }
+\medskip
 
 Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
-
+\medskip
 
 In dieser Arbeit wird daher ein Emergency-Routing-Profil in Kooperation mit der \href{https://www.feuerwehr-luetzelburg.de}{Freiwilligen Feuerwehr Lützelburg} entwickelt. Die Implementierung ist auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind. (Aufgrund des geringen Umfangs einer Bachelor Arbeit kann das in dieser Arbeit jedoch nicht erarbeitet werden.)
-
+\smallskip
 
 Grundsätzlich basiert das Profil auf dem Backend des bereits bestehenden Routing Service des ORS. Zusätzlich werden Java Funktionen implementiert, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wurde das ORS Frontend mit Java-Script angepasst. Dadurch können die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden.
 (weitere Infos über technic details?)
 
 \subsection{Motivation}
-
+\todo{
 STVO
 Anwendbar für fast alle Einsatzfahrzeuge 
+}
 
+\newpage
 \section{Theoretische Grundlagen}
 
-Als Grundlage für die Berechnung kürzester Wege bedienen wir uns eines Speicherform der Mathematik, dem Graphen.
+Als Grundlage für die Berechnung kürzester Wege wird eine Speicherform aus der Mathematik benutzt, der Graph. 
 
 \subsection{Graphen}
 
-Ein Graph ist ein sehr nützliches Konzept um Objekte und deren Verbindungen untereinander zu modellieren. Die in der Graphentheorie verwendeten Termini belaufen sich dabei auf Knoten oder Ecken (engl: \textit{nodes} oder \textit{vertices}) für Objekte und Kanten (engl: \textit{edges}) für Verbindungen.
+Ein Graph ist ein sehr nützliches Konzept um Objekte und deren Verbindungen untereinander zu modellieren. Die in der Graphentheorie verwendeten Termini belaufen sich dabei auf Ecken (engl: \textit{nodes} oder \textit{vertices}) für Objekte und Kanten (engl: \textit{edges}) für Verbindungen.
 (\cite[49]{kurt})
 
-Ein Graph G ist die Funktion aus einer endlichen Eckenmenge V und einer endlichen Kantenmenge E
+Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Eckenmenge V und einer endlichen Kantenmenge E
 
-	G = (V,E)
-(Graph definition with cite)
+	$G = (V,E)$
 
+\cite[4]{theory}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/einfachergraph.pdf} \\
+\caption{Darstellung von G}
+\label{Einfacher Graph}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+{
+\begin{blockarray}{cccccc}
+  & A & B & C & D & E \\
+\begin{block}{c(ccccc)}
+  A & 0 & 1 & 1 & 0 & 0 \\
+  B & 1 & 0 & 1 & 0 & 0 \\
+  C & 1 & 1 & 0 & 0 & 1 \\
+  D & 0 & 0 & 0 & 0 & 0 \\
+  E & 0 & 0 & 1 & 0 & 1 \\
+\end{block}
+\end{blockarray}
+}
+\vspace{0.1cm}
+\caption{Adjazenzmatrix von G}
+\label{fig:right}
+\end{subfigure}
+\caption{Ein simpler Graph G}
+\label{fig:simpelgraph}
+\end{figure}
 
 (simple graph picture)
 
-Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Knoten als Punkte und die Kanten als Linien oder Pfeile dargestellt (vgl Abb.) (\cite[49]{kurt}). Zwischen zwei Knoten können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden. Sind zwei Knoten durch eine Kante verbunden bezeichnet man sie als \textit{benachbart}. Das erfüllt bei einem ungerichteten und ungewichteten Graphen allerdings keinen Zweck, da eine Kante für das Anzeigen der Relation ausreichend ist(richtig?).
+Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (vgl Abb.) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4f]{theory})
 
 Es sollte aber nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}.
 
@@ -186,7 +263,7 @@ Mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmitt
 
 
 \section{Generierung des Routing-Profils}
-
+Die Grundsätzlichen Überlegungen für 
 \subsection{Informations Erhebung}
 Fragebogen für Feuerwehr Lützelburg\footnote{Lützelburg ist eine stadt in Bayern}
 

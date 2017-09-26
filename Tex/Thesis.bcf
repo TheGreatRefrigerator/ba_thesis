@@ -2051,25 +2051,27 @@
     <bcf:datasource type="file" datatype="bibtex">Thesis.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">bedarfsplan</bcf:citekey>
-    <bcf:citekey order="2">kurt</bcf:citekey>
+    <bcf:citekey order="1">kurt</bcf:citekey>
+    <bcf:citekey order="2">theory</bcf:citekey>
     <bcf:citekey order="3">kurt</bcf:citekey>
     <bcf:citekey order="4">theory</bcf:citekey>
-    <bcf:citekey order="5">osmrelation</bcf:citekey>
-    <bcf:citekey order="6">osmgraph</bcf:citekey>
-    <bcf:citekey order="7">graphhopper</bcf:citekey>
-    <bcf:citekey order="8">osmgraph</bcf:citekey>
-    <bcf:citekey order="9">algorithms</bcf:citekey>
-    <bcf:citekey order="10">algorithms</bcf:citekey>
-    <bcf:citekey order="11">kurt</bcf:citekey>
-    <bcf:citekey order="12">kurt</bcf:citekey>
-    <bcf:citekey order="13">dijkstra</bcf:citekey>
-    <bcf:citekey order="14">kurt</bcf:citekey>
+    <bcf:citekey order="5">theory</bcf:citekey>
+    <bcf:citekey order="6">osmrelation</bcf:citekey>
+    <bcf:citekey order="7">osmgraph</bcf:citekey>
+    <bcf:citekey order="8">graphhopper</bcf:citekey>
+    <bcf:citekey order="9">osmgraph</bcf:citekey>
+    <bcf:citekey order="10">handbook</bcf:citekey>
+    <bcf:citekey order="11">algorithms</bcf:citekey>
+    <bcf:citekey order="12">algorithms</bcf:citekey>
+    <bcf:citekey order="13">kurt</bcf:citekey>
+    <bcf:citekey order="14">dijkstra</bcf:citekey>
     <bcf:citekey order="15">kurt</bcf:citekey>
     <bcf:citekey order="16">kurt</bcf:citekey>
     <bcf:citekey order="17">kurt</bcf:citekey>
     <bcf:citekey order="18">kurt</bcf:citekey>
-    <bcf:citekey order="19">isochrones</bcf:citekey>
+    <bcf:citekey order="19">kurt</bcf:citekey>
+    <bcf:citekey order="20">kurt</bcf:citekey>
+    <bcf:citekey order="21">isochrones</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="anyt/global" type="entry" sortscheme="anyt" sortnamekeyscheme="global">
   <bcf:sorting>
