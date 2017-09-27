@@ -2,4 +2,14 @@
 \defcounter {refsection}{0}\relax 
 \select@language {german}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Ein simpler Graph G\relax }}{8}{figure.caption.7}
+\contentsline {figure}{\numberline {1}{\ignorespaces Ein simpler Graph G\relax }}{8}{figure.caption.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2}{\ignorespaces Zwei isomorphe Graphen G und H\relax }}{9}{figure.caption.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3}{\ignorespaces Ein gerichteter Graph G\relax }}{10}{figure.caption.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4}{\ignorespaces Ein gewichteter Graph G\relax }}{11}{figure.caption.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5}{\ignorespaces Simplifizierung eines OSM Datensatzes\relax }}{12}{figure.caption.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6}{\ignorespaces Speedup Techniken f\IeC {\"u}r den Dijkstra Algorithmus\relax }}{15}{figure.caption.13}

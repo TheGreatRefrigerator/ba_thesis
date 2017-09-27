@@ -2070,10 +2070,7 @@
     <bcf:citekey order="17">kurt</bcf:citekey>
     <bcf:citekey order="18">kurt</bcf:citekey>
     <bcf:citekey order="19">kurt</bcf:citekey>
-    <bcf:citekey order="20">kurt</bcf:citekey>
-    <bcf:citekey order="21">kurt</bcf:citekey>
-    <bcf:citekey order="22">kurt</bcf:citekey>
-    <bcf:citekey order="23">isochrones</bcf:citekey>
+    <bcf:citekey order="20">isochrones</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="anyt/global" type="entry" sortscheme="anyt" sortnamekeyscheme="global">
   <bcf:sorting>
