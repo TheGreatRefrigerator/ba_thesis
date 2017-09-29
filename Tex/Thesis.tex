@@ -30,7 +30,7 @@
 
 % Document Infos
 \author{Amandus Stefan Butzer}
-\title{Erstellung eines Routing-Profils auf Basis von OpenStreetMap-Daten für Feuerwehrfahrzeuge}
+\title{Erstellung eines Routing-Profils für Feuerwehrfahrzeuge auf Basis von OpenStreetMap-Daten}
 \date{\today}
 
 \begin{document}
@@ -41,7 +41,7 @@
 	\vspace{1.5cm}
 	{\LARGE\bfseries Bachelorarbeit\par}
 	\vspace{2cm}
-	{\Huge\bfseries Erstellung eines Routing-Profils auf Basis von OpenStreetMap-Daten\par für Feuerwehrfahrzeuge\par}
+	{\Huge\bfseries Erstellung eines Routing-Profils für Feuerwehrfahrzeuge auf Basis von OpenStreetMap-Daten\par}
 	\vspace{2cm}
 	{\Large\itshape Amandus Stefan Butzer\par}
 	\vspace{2cm}
@@ -87,13 +87,13 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 \section{Einleitung}
 
 \subsection{Motivation}
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des openrouteservice (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an.
-\bigskip
-Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen eine bedeutsame Eigenschaft für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft im Projekt Openrouteservice (ORS) tätig. Dieser bietet neben einer Fülle von Webdiensten, wie Geocoding und Routing, auch einen Isochronen-Service an. 
+\colorbox{red!30}{kurze Beschreibung was Isochronen können und wozu sie gut sind}.
+Für Polizei, Rettungsdienst sowie Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener zeitlicher Hilfsfristen. Diese stellen eine bedeutende Eigenschaft für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
 Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (vgl.{bedarfsplan}). Daher bedienen sich diese Organisationen unterschiedlicher Hilfsmittel um Bedarfspläne für ihren Standort zu erstellen.
 \medskip
 
-Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werden, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
+Da mit dem Isochronen jene zeitlichen Erreichbarkeitsanalysen durchgeführt werden können, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet. Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen. \colorbox{red!30}{Um diese Nachteile zu überwinden, wurde eine Forschungskooperation mit der Frewilligen Feuerwehr Lützelburg ...}.
 \vspace{1.2cm}
 
 \textbf{§35 Abs. 1 StVO:}
@@ -103,13 +103,12 @@ Da mit dem Isochrones-Service des ORS Erreichbarkeitsanalysen durchgeführt werd
 
 \vspace{1.2cm}
 
-Dieser kurze Absatz der Straßenverkehrs-Ordnung ermöglicht es Einsatzfahrzeugen sich unter Benutzung von Martinshorn und Blaulicht über jede Vorschrift im Straßenverkehr hinwegzusetzen. Im Notfall hat das schnellste Erreichen des Zielorts eine höhere Priorität als Geschwindigkeitsbegrenzungen oder Fahrverbote. Bisher gibt es trotz einer großen Anzahl an Routing-Services keinen, der diese Tatsache berücksichtigt. 
+Dieser kurze Absatz der Straßenverkehrs-Ordnung ermöglicht es Einsatzfahrzeugen sich unter Benutzung von Martinshorn und Blaulicht über jede Vorschrift im Straßenverkehr hinwegzusetzen. In einem Notfall hat das schnellste Erreichen des Zielorts eine höhere Priorität als Geschwindigkeitsbegrenzungen oder Fahrverbote. Bisher gibt es trotz einer großen Anzahl an Routing-Services keinen, der diese Tatsache berücksichtigt. 
 
 
 \subsection{Zielsetzung}
-Das Ziel dieser Arbeit ist in Kooperation mit der Freiwilligen Feuerwehr Lützelburg zu Ermitteln, bis zu welchem Grad diese Notstandsvollmachten im Ernstfall in Anspruch genommen werden können. Auf Basis dieser Informationen soll dann ein Emergency-Routing-Profil (dt.:\textit{emergency} = Notfall) entwickelt werden. Die Implementierung wird aufgrund des Umfangs einer Bachelorarbeit auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind.
+Das Ziel dieser Arbeit ist in Kooperation mit der Freiwilligen Feuerwehr Lützelburg zu Ermitteln, bis zu welchem Grad diese Notstandsvollmachten im Ernstfall in Anspruch genommen werden können. Auf Basis dieser Informationen soll dann ein prototypisches Routing-Profil für Einsatzfahrzeuge entwickelt werden. Die Implementierung wird aufgrund des Umfangs einer Bachelorarbeit auf eine Fahrzeugklasse der Feuerwehr begrenzt \colorbox{red!30}{erklären, welches Fahrzeug?}. Allerdings wird bei der Erstellung dieses Routing-Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge einfach möglich sind.
 \vspace{0.5cm}
-
 
 Als Basis wird das Profil auf dem Backend des bereits bestehenden Routing Service des ORS aufgebaut. Zusätzlich sollen Java Funktionen implementiert werden, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wird das ORS Frontend mit Hilfe der Java-Script Programmiersprache angepasst. Dadurch sollen die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden. 
 \todo{(weitere Infos über technic details?)}
@@ -117,18 +116,18 @@ Als Basis wird das Profil auf dem Backend des bereits bestehenden Routing Servic
 \newpage
 \section{Theoretische Grundlagen}
 
-Als Grundlage für die Berechnung kürzester Wege wird eine Speicherform aus der Mathematik benutzt, der Graph. 
+Als Grundlage für die Berechnung kürzester Wege in einem Straßennetzwerk wird die Graphentheorie als Teilgebiet der Mathematik herangezogen. 
 
-\subsection{Graphen}
+\subsection{Graphentheorie}
 
-Ein Graph ist ein sehr nützliches Konzept um Objekte und deren Verbindungen untereinander zu modellieren. Die in der Graphentheorie verwendeten Termini belaufen sich dabei auf Ecken (engl: \textit{nodes} oder \textit{vertices}) für Objekte und Kanten (engl: \textit{edges}) für Verbindungen.
+Ein Graph ist eine abstrakte Struktur, die Objekte und deren Verbindungen untereinander modellieren kann. Die in der Graphentheorie verwendeten Termini belaufen sich dabei auf Ecken (engl: \textit{nodes} oder \textit{vertices}) für Objekte und Kanten (engl: \textit{edges}) für Verbindungen.
 (\cite[49]{kurt})
 
-Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Eckenmenge V und einer endlichen Kantenmenge E (\cite[4]{theory})
+Mathematisch ausgedrückt ist ein Graph ~$G$ die Funktion aus einer endlichen Eckenmenge ~$V$ und einer endlichen Kantenmenge ~$E$ (\cite[4]{theory})
 
 	$$G = (V,E)$$
 
-Für den Graphen in Abbildung ~\ref{simpleGraph} sehen V und E folgender maßen aus:
+Für den Graphen in Abbildung ~\ref{simpleGraph} sehen ~$V$ und ~$E$ folgendermaßen aus:
 
 $$V = \{(v_{1},v_{2},v_{3},v_{4},v_{5})\} $$
 $$E = \{(v_{1}v_{2},v_{1}v_{3},v_{2}v_{3},v_{2}v_{3},v_{3}v_{5})\} $$
@@ -163,9 +162,9 @@ $$E = \{(v_{1}v_{2},v_{1}v_{3},v_{2}v_{3},v_{2}v_{3},v_{3}v_{5})\} $$
 \label{simpleGraph}
 \end{figure}
 
-Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simple}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden ($v_{5}$). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
+Ein Vorteil von Graphen ist eine einfache Struktur. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simple}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüberhinaus können sie mit sich selbst verbunden sein und eine sogenannte Schlinge bilden ($v_{5}$). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
 
-Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{mx:simple} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte $v_{1}$ und Reihe $v_{2}$ zeigt also an, dass eine Kante von $v_{1}$ nach $v_{2}$ existiert. Für ungerichtete Graphen ist eine Kante von $v_{1}$ nach $v_{2}$ äquivalent mit einer Kante von $v_{2}$ nach $v_{1}$. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($v_{1}v_{1} \rightarrow v_{5}v_{5}$). Der Speicherbedarf für eine Matrix folglich halbiert werden, da die eine Hälfte mit der Anderen rekonstruiert werden kann (Abb. ~\ref{mx:iso}). Hat der Graph keine Schlingen, besteht die Hauptdiagonale nur aus Nullen und kann ebenfalls eingespart werden (\cite[19]{algorithms}).
+Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{mx:simple} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte $v_{1}$ und Reihe $v_{2}$ zeigt also an, dass eine Kante von $v_{1}$ nach $v_{2}$ existiert. Für ungerichtete Graphen ist eine Kante von $v_{1}$ nach $v_{2}$ äquivalent mit einer Kante von $v_{2}$ nach $v_{1}$. Daher ist die Adjazenzmatrix \colorbox{red!30}{erklären} für ungerichtete Graphen spiegelsymmetrisch entlang der Hauptdiagonale ($v_{1}v_{1} \rightarrow v_{5}v_{5}$). Der Speicherbedarf für eine Matrix folglich halbiert werden, da die eine Hälfte mit der Anderen rekonstruiert werden kann (Abb. ~\ref{mx:iso}). Besitzt der Graph keine Schlingen, besteht die Hauptdiagonale lediglich aus Nullen und kann ebenfalls eingespart werden (\cite[19]{algorithms}).
 
 Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4\psq]{theory}).
 
@@ -206,11 +205,11 @@ Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da 
 \label{isoGraph}
 \end{figure}
 
-Es sollte nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}. Daraus ergibt sich für isomorphe Graphen auch immer eine gleiche Adjazenzmatrix Abbildung (~\ref{isoGraph}).
+Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können, spricht man von isomorphen Graphen \cite[106]{theory}. Daraus ergibt sich für isomorphe Graphen auch immer eine gleiche Adjazenzmatrix Abbildung (~\ref{isoGraph}).
 
 
 \subsubsection{Gerichtete Graphen}
-Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
+Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten lediglich in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
 
 $$G = (V,R)$$
 
@@ -250,7 +249,7 @@ In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-
 
 $G = (V,E)$ mit $c: R \rightarrow \mathbb{R}$
 
-Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen gebraucht und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Bahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
+Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen benötigt und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
 \begin{figure}[h]
 \centering
@@ -282,14 +281,14 @@ Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen
 \label{weightedGraph}
 \end{figure}
 
-Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Beispiel die Bestimmung maximaler (Durch-)Flüsse in Rohrsystemen oder das Berechnen kürzester Wege.
+Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Beispiel die Bestimmung maximaler (Durch-)Flüsse in Rohrsystemen oder das Berechnen kürzester Wege. Andererseits kann ein gewichteter Graph für Routing-Zwecke eingesetzt werden, indem räumliche Positionen sowie Eigenschaften von Straßen in der Datenstruktur eines Graphen gespeichert werden.
 
 \subsubsection{Bau eines Graphen aus OpenStreetMap Daten}
 \label{sec:osmgraph}
 
-Die OpenStreetMap(OSM) Datenstruktur und die Struktur eines Graphen sind im Prinzip gleich. Hier werden Punktobjekte als \textit{Nodes}(Knoten) und Linienobjekte wie Straßen als \textit{Ways}(Wege) bezeichnet. Ein Way ist dabei die Verbindung zwischen zwei Nodes. Zusätzlich gibt es \textit{Relations}(Relationen) die einem Set aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben. Für Straßennetze ist dies äußerst hilfreich um zum Beispiel unterschiedliche Segmente eines Autobahnstücks zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
+Die OpenStreetMap(OSM) Datenstruktur kann als Graph abgebildet werden. Hier werden Punktobjekte als \textit{Nodes}(Knoten) und Linienobjekte wie Straßen als \textit{Ways}(Wege) bezeichnet. Ein Way ist dabei die Verbindung zwischen zwei Nodes. Zusätzlich gibt es \textit{Relations}(Relationen) die einem Set aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben. Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
-Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden. Diese werden anhand ihrer OSM Tags identifiziert. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichnet Ways (zum Beispiel asphaltiert aber ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. und Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes nennt man \textit{Pillar Nodes}. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.  (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}(\todo{stimmt die reihenfolge max?}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
+Um aus den OSM Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden und werden anhand ihrer OSM-Tags identifiziert. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant. (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}(\todo{stimmt die reihenfolge max?}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
 
 \begin{figure}[h]
 \centering
@@ -300,26 +299,23 @@ Um aus den OSM Daten einen routingfähigen Graphen zu erhalten müssen zuerst al
 
 \subsection{Routing}
 
-Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können. Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet. Im Fachbereich der Geo Informations Systeme (GIS) werden hauptsächlich Straßennetze für Routing Analysen verwendet (\cite[165]{handbook}). Ein Weg \textit{P} (\textit{engl: path}) von einem Startnode s zu einem Zielnode z ist eine Folge von benachbarten Ecken mit s als erster Ecke und z als letzter Ecke der Folge (\todo{Abb}).
+Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können. Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet. Im Fachbereich der Geoinformationssysteme (GIS) werden hauptsächlich Straßennetze für Routing-Analysen verwendet (\cite[165]{handbook}). Ein Weg \textit{P} (\textit{engl: path}) von einem Startnode s zu einem Zielnode z ist eine Folge von benachbarten Ecken mit s als erster Ecke und z als letzter Ecke der Folge (\todo{Abb}).
 Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewichte.
 
-Eine der wichtigsten Netzwerk Analyse Operationen ist die Berechnung des kürzesten Weges zwischen zwei Ecken. Jedes Navigationssystem muss diese Aufgabe erfüllen können. Ein kürzester Weg hat die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen ist.
+Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Knoten. Jedes Navigationssystem muss diese Aufgabe erfüllen können. Ein kürzester Weg hat demnach die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen im Graphen ist.
 
 \subsubsection{Shortest Path Problem}
-Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede des Graphen besucht(\cite[135]{algorithms}).
-Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R -> \mathbb{R}$ zugrunde liegt. Beim \textit{Single Pair Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit $a,b\in V$ gesucht. Das \textit{Single Source Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V (\cite[169\psq]{algorithms}).
+Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede des Graphen besucht(\cite[135]{algorithms}).
+Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R -> \mathbb{R}$ zugrunde liegt. Beim \textit{Single Pair Problem}(SPP) wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht. Das \textit{Single Source Problem}(SSP) möchte den kürzesten Weg einer Ecke $a~$ zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in $V~$ (\cite[169\psq]{algorithms}).
 
-Für ein Routing von Startecke s zur Zielecke z ist das SPP also die richtige Wahl. Allerdings führt die Lösung über das SSP, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
-
-Beispiel:
-Ein Anschauliches Beispiel ohne Rechenaufwand für die Lösung des SSPs erhält man, wenn man auf die Karte eines Straßennetzes Fäden auf jede Straße legt. Die Fäden werden an Kreuzungen und am Startpunkt verknotet. Die Fäden stellen den Routing Graph dar. Nun wird der Graph am Startpunkt angehoben. Sofern sich nichts verheddert hat, stellen alle straffen Fäden die kürzeste Route zu den darunter hängenden Knoten dar (\cite[191]{kurt}).
+Für eine Route von Startecke $s~$ zur Zielecke $z~$ \colorbox{red!30}{Kanten und Knoten hört sich besser an, finde ich evtl. einheitlich alles so?} ist das SPP demnach die richtige Wahl. Allerdings wird dazu das SSP herangezogen, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
 
 
-\subsubsection{Dijkstra Algorithmus}
+\subsubsection{Dijkstra-Algorithmus}
 
-Der Dijkstra benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$. Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken. Dort sind für alle v die Kosten für den bisher kürzesten Weg von s und die jeweilige vorangehende Ecke auf diesem Weg gepeichert. Die Kosten können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt s mit den trivialen Kosten 0. Es gibt eine weitere Liste der endgültig kürzesten Wege $K_{s}$ in der alle markierten Ecken gespeichert werden.
+Der \colorbox{red!30}{in 19xx entwickelte, Quelle nicht vergessen} Dijkstra-Algorithmus benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$. Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken. Dort sind für alle $v~$ die Kosten für den bisher kürzesten Weg von $s~$ und die jeweilige vorangehende Ecke auf diesem Weg gepeichert. Die Kosten können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt $s~$ mit den trivialen Kosten 0. Es gibt eine weitere Liste der endgültig kürzesten Wege $K_{s}$ in der alle markierten Ecken gespeichert werden.
 
-Dijkstra's Algorithmus markiert die Ecke mit den geringsten Kosten aus $W_{s}$ und verschiebt diese nach $K_{s}$. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in W gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist.  Dieser Vorgang wird wiederholt bis alle Ecken aus W markiert wurden und W somit leer ist.
+Dijkstra's Algorithmus markiert die Ecke mit den geringsten Kosten aus $W_{s}$ und verschiebt diese nach $K_{s}$. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in $W~$ gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist. Dieser Vorgang wird wiederholt bis alle Ecken aus W markiert wurden und W somit leer ist.
 
 % Init Dijkstra
 \begin{figure}[h]
@@ -416,7 +412,7 @@ Damit wurde das SSP gelöst und einen kürzeste Wege zu jeder Ecke des Graphen v
 \subsubsection{Speedup Techniken}
 
 \paragraph*{Early Stopping:}
-Der Algorithmus wird bisher jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem z erreicht wurde (~\ref{fig:normalD}). 
+Der Algorithmus wird bisher jedes mal für den ganzen Graphen ausgeführt, obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem z erreicht wurde (~\ref{fig:normalD}). 
 
 
 \paragraph*{Bidirectional Dijkstra:}
@@ -451,7 +447,7 @@ In der schematischen Abbildung ~\ref{fig:biD} wird die Einsparung gegenüber dem
 
 
 \paragraph*{A*:}
-Der A* Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt. Es wird durch eine Funkiton für jede Ecke die Distanz zum Ziel geschätzt. Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden. Die standardmäßig kreisförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt. Da der Zielpunkt so früher erreicht wird, müssen weniger Iterationen durchgeführt werden.
+Der A* Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt. Es wird durch eine Funktion für jede Ecke die Distanz zum Ziel geschätzt. Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden. Die standardmäßig kreisförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt. Da der Zielpunkt so früher erreicht wird, müssen weniger Iterationen durchgeführt werden.
 
 Diese und weitere Möglichkeiten sind in \cite[209--213]{kurt} ausführlich beschrieben.
 
@@ -459,13 +455,13 @@ Diese und weitere Möglichkeiten sind in \cite[209--213]{kurt} ausführlich besc
 
 Isochronen sind Linien gleicher Zeit (griech.: \textit{iso} = gleich + \textit{chronos} = Zeit).
 
-Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden. Dazu wird ein SSP für eine zentrale Ecke z mit einem gegebenen Zeitlimit t gelöst. 
-Isochronen können mit unterschiedliche Methoden berechnet werden. Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
+Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten, um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden. Dazu wird ein SSP für eine zentrale Ecke z mit einem gegebenen Zeitlimit t gelöst. 
+Isochronen können mit unterschiedlichen Methoden berechnet werden. Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
 
 
 \subsubsection{Gitterbasierter Ansatz}
 
-Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen(~\ref{fig:grid2}). Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
+Beim \textit{Marching Squares} Algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen(~\ref{fig:grid2}). Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
 \begin{figure}[h]
 \centering
@@ -499,17 +495,29 @@ Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über 
 \label{grid}
 \end{figure}
 
-Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer. Auch in Abbildung ~\ref{fig:grid4} wurde die größe der Maschen unglücklich gewählt. Eine Ecke mit Abstand 4 Minuten vom Zentrum liegt dadurch außerhalb der 5-Minuten-Isochrone.
+Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. 
+Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. 
+Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. 
+Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. 
+Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. 
+Das Ergebnis ist dementsprechend aber auch ungenauer. 
+Auch in Abbildung ~\ref{fig:grid4} wurde die größe der Maschen unglücklich gewählt. 
+Eine Ecke mit Abstand 4 Minuten vom Zentrum liegt dadurch außerhalb der 5-Minuten-Isochrone.
 
 \subsubsection{Dreiecksvermaschung}
-\cite{isochrones} beschreiben ein anschauliche Methode um Isochronen zu berechnen. Nach der Lösung des SSPs werden den Ecken des Graphen die geographische Koordinate der repräsentierten Kreuzung zugeteilt. Die Kanten werden nicht benötigt und daher entfernt. Es liegt also eine 3D-Punktwolke vor. Jeder Ecke wird nun die benötigte Zeit zugewiesen, mit der diese zu erreichen ist. Anschließend werden die Ecken nach dem Delaunay Triangulationsverfahren vermascht. Es entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null. Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben betrachtet die Randkanten des Trichters der Isochrone.
-
+\cite{isochrones} beschreiben ein anschauliche Methode um Isochronen zu berechnen. 
+Nach der Lösung des SSPs werden den Ecken des Graphen die geographische Koordinate der repräsentierten Kreuzung zugeteilt. Die Kanten werden nicht benötigt und daher entfernt. 
+Es liegt also eine 3D-Punktwolke vor. 
+Jeder Ecke wird nun die benötigte Zeit zugewiesen, mit der diese zu erreichen ist. 
+Anschließend werden die Ecken nach dem Delaunay Triangulationsverfahren vermascht. 
+Es entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null. 
+Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben betrachtet die Randkanten des Trichters der Isochrone.
 
 
 \subsubsection{Formenbasierter Ansatz}
-Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz. Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte (Pillar Nodes) aus der  WayGeometry der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}).  Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
+Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist einen Form-basierten Ansatz. Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte (Pillar Nodes) aus der WayGeometry der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}). Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der Alpha-Shape Algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
 (Abb. Pictures shape based stuff)
-Mit diesem Ansatz können Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
+Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der Alpha-Shapes verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
 
 \newpage
 \section{Generierung des Routing-Profils}
