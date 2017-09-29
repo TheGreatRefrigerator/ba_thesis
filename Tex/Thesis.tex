@@ -87,7 +87,7 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 \section{Einleitung}
 
 \subsection{Motivation}
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des openrouteservice (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an. \par
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft des openrouteservice (ORS) tätig. Der ORS bietet neben Geocoding, Routing und Location Service auch einen Isochrone Service an.
 \bigskip
 Immer wieder wurden Anfragen bezüglich Erreichbarkeitsanalysen aus dem Rettungs- und Brandschutzwesen erhalten. Für Polizei, Rettungsdienst und Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener Hilfsfristen. Diese stellen eine bedeutsame Eigenschaft für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
 Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (vgl.{bedarfsplan}). Daher bedienen sich diese Organisationen unterschiedlicher Hilfsmittel um Bedarfspläne für ihren Standort zu erstellen.
@@ -109,13 +109,11 @@ Dieser kurze Absatz der Straßenverkehrs-Ordnung ermöglicht es Einsatzfahrzeuge
 \subsection{Zielsetzung}
 Das Ziel dieser Arbeit ist in Kooperation mit der Freiwilligen Feuerwehr Lützelburg zu Ermitteln, bis zu welchem Grad diese Notstandsvollmachten im Ernstfall in Anspruch genommen werden können. Auf Basis dieser Informationen soll dann ein Emergency-Routing-Profil (dt.:\textit{emergency} = Notfall) entwickelt werden. Die Implementierung wird aufgrund des Umfangs einer Bachelorarbeit auf eine Fahrzeugklasse der Feuerwehr begrenzt. Allerdings wird bei der Erstellung des Emergency Profils darauf geachtet, dass Erweiterungen für diverse Einsatzfahrzeuge sehr einfach möglich sind.
 \vspace{0.5cm}
-\begin{flushleft}
 
 
 Als Basis wird das Profil auf dem Backend des bereits bestehenden Routing Service des ORS aufgebaut. Zusätzlich sollen Java Funktionen implementiert werden, die speziell auf das Emergency Profil zugeschnitten sind. Zur Darstellung wird das ORS Frontend mit Hilfe der Java-Script Programmiersprache angepasst. Dadurch sollen die Ergebnisse in verständlicher und anschaulicher Weise dargestellt werden. 
 \todo{(weitere Infos über technic details?)}
 
-\end{flushleft}
 \newpage
 \section{Theoretische Grundlagen}
 
@@ -130,6 +128,10 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 
 	$$G = (V,E)$$
 
+Für den Graphen in Abbildung ~\ref{simpleGraph} sehen V und E folgender maßen aus:
+
+$$V = \{(v_{1},v_{2},v_{3},v_{4},v_{5})\} $$
+$$E = \{(v_{1}v_{2},v_{1}v_{3},v_{2}v_{3},v_{2}v_{3},v_{3}v_{5})\} $$
 
 \begin{figure}[h]
 \centering
@@ -143,13 +145,13 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 \centering
 {
 \begin{blockarray}{cccccc}
-  & v1 & v2 & v3 & v4 & v5 \\
+  & $v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ \\
 \begin{block}{c(ccccc)}
-  v1 & 0 & 1 & 1 & 0 & 0 \\
-  v2 & 1 & 0 & 2 & 0 & 0 \\
-  v3 & 1 & 2 & 0 & 0 & 1 \\
-  v4 & 0 & 0 & 0 & 0 & 0 \\
-  v5 & 0 & 0 & 1 & 0 & 1 \\
+  $v_{1}$ & 0 & 1 & 1 & 0 & 0 \\
+  $v_{2}$ & 1 & 0 & 2 & 0 & 0 \\
+  $v_{3}$ & 1 & 2 & 0 & 0 & 1 \\
+  $v_{4}$ & 0 & 0 & 0 & 0 & 0 \\
+  $v_{5}$ & 0 & 0 & 1 & 0 & 1 \\
 \end{block}
 \end{blockarray}
 }
@@ -161,11 +163,11 @@ Mathematisch ausgedrückt ist ein Graph G die Funktion aus einer endlichen Ecken
 \label{simpleGraph}
 \end{figure}
 
-Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simple}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden (E). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4--5]{theory}) \par
+Der Vorteil von Graphen ist die einfache Darstellung. Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simple}) (\cite[49]{kurt}). Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen. Darüber hinaus können sie mit sich selbst verbunden sein und eine Schlinge bilden ($v_{5}$). Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart). Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objecte als \textit{inzident} zueinander bezeichnet. Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}. Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
 
-Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{mx:simple} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte v1 und Reihe v2 zeigt also an, dass eine Kante von v1 nach v2 existiert. Für ungerichtete Graphen ist eine Kante von v1 nach v2 äquivalent mit einer Kante von v2 nach v1. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($v1v1 \rightarrow v5v5$). Der Speicherbedarf für eine Matrix folglich halbiert werden, da die eine Hälfte mit der Anderen rekonstruiert werden kann (Abb. ~\ref{mx:iso}). Hat der Graph keine Schlingen, besteht die Hauptdiagonale nur aus Nullen und kann ebenfalls eingespart werden (\cite[19]{algorithms}).
+Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matritzen speichern lassen. Die Abbildung ~\ref{mx:simple} zeigt an, ob für die jeweilige Eckenkombination des Graphen G eine Kante existiert (1) oder nicht (0). Die Reihen sind die Start- und die Spalten die Endecken. Die '1' in Spalte $v_{1}$ und Reihe $v_{2}$ zeigt also an, dass eine Kante von $v_{1}$ nach $v_{2}$ existiert. Für ungerichtete Graphen ist eine Kante von $v_{1}$ nach $v_{2}$ äquivalent mit einer Kante von $v_{2}$ nach $v_{1}$. Daher ist die Adjazenzmatrix für ungerichtete Graphen Spiegelsymmetrisch entlang der Hauptdiagonale ($v_{1}v_{1} \rightarrow v_{5}v_{5}$). Der Speicherbedarf für eine Matrix folglich halbiert werden, da die eine Hälfte mit der Anderen rekonstruiert werden kann (Abb. ~\ref{mx:iso}). Hat der Graph keine Schlingen, besteht die Hauptdiagonale nur aus Nullen und kann ebenfalls eingespart werden (\cite[19]{algorithms}).
 
-Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4f]{theory}).
+Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4\psq]{theory}).
 
 \begin{figure}[h]
 \centering
@@ -187,13 +189,13 @@ Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da 
 \vspace{0.5cm}
 {
 \begin{blockarray}{cccccc}
-  & v1 & v2 & v3 & v4 & v5 \\
+  & $v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ \\
 \begin{block}{c(ccccc)}
-  v1 & $\ddots$ & 1 & 1 & 0 & 0 \\
-  v2 &   & $\ddots$ & 1 & 1 & 0 \\
-  v3 &   &   & $\ddots$ & 0 & 1 \\
-  v4 &   &   &   & $\ddots$ & 1 \\
-  v5 &   &   &   &   & $\ddots$ \\
+  $v_{1}$ & $\ddots$ & 1 & 1 & 0 & 0 \\
+  $v_{2}$ &   & $\ddots$ & 1 & 1 & 0 \\
+  $v_{3}$ &   &   & $\ddots$ & 0 & 1 \\
+  $v_{4}$ &   &   &   & $\ddots$ & 1 \\
+  $v_{5}$ &   &   &   &   & $\ddots$ \\
 \end{block}
 \end{blockarray}
 }
@@ -205,6 +207,7 @@ Im folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da 
 \end{figure}
 
 Es sollte nicht vergessen werden, dass ein Graph nicht die räumliche Position der Objekte sondern nur ihre Relation zueinander ausdrückt! Graphen können also komplett unterschiedlich aussehen und dennoch einander entsprechen. Wenn zwei Graphen bei gleichbleibenden Nachbarschaften der Ecken aufeinander abgebildet werden können spricht man von isomorphen Graphen \cite[106]{theory}. Daraus ergibt sich für isomorphe Graphen auch immer eine gleiche Adjazenzmatrix Abbildung (~\ref{isoGraph}).
+
 
 \subsubsection{Gerichtete Graphen}
 Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten nur in einer Richtung durchlaufen werden. Die Kanten werden daher durch Pfeile anstatt Linien dargestellt. 
@@ -224,13 +227,13 @@ Demnach ist auch
 \centering
 {
 \begin{blockarray}{cccccc}
-  & v1 & v2 & v3 & v4 & v5 \\
+  & $v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ \\
 \begin{block}{c(ccccc)}
-  v1 & 0 & 1 & 1 & 0 & 0 \\
-  v2 & 0 & 0 & 1 & 1 & 0 \\
-  v3 & 1 & 1 & 0 & 0 & 0 \\
-  v4 & 0 & 0 & 0 & 0 & 1 \\
-  v5 & 0 & 0 & 1 & 0 & 0 \\
+  $v_{1}$ & 0 & 1 & 1 & 0 & 0 \\
+  $v_{2}$ & 0 & 0 & 1 & 1 & 0 \\
+  $v_{3}$ & 1 & 1 & 0 & 0 & 0 \\
+  $v_{4}$ & 0 & 0 & 0 & 0 & 1 \\
+  $v_{5}$ & 0 & 0 & 1 & 0 & 0 \\
 \end{block}
 \end{blockarray}
 }
@@ -261,13 +264,13 @@ Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen
 \centering
 {
 \begin{blockarray}{cccccc}
-  & v1 & v2 & v3 & v4 & v5 \\
+  & $v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ \\
 \begin{block}{c(ccccc)}
-  v1 & 0 & 5 & 4 & 0 & 0 \\
-  v2 & 5 & 0 & 3 & 2 & 0 \\
-  v3 & 4 & 3 & 0 & 0 & 9 \\
-  v4 & 0 & 2 & 0 & 0 & 3 \\
-  v5 & 0 & 0 & 9 & 3 & 0 \\
+  $v_{1}$ & 0 & 5 & 4 & 0 & 0 \\
+  $v_{2}$ & 5 & 0 & 3 & 2 & 0 \\
+  $v_{3}$ & 4 & 3 & 0 & 0 & 9 \\
+  $v_{4}$ & 0 & 2 & 0 & 0 & 3 \\
+  $v_{5}$ & 0 & 0 & 9 & 3 & 0 \\
 \end{block}
 \end{blockarray}
 }
@@ -278,6 +281,7 @@ Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen
 \caption{Ein gewichteter Graph G}
 \label{weightedGraph}
 \end{figure}
+
 Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Beispiel die Bestimmung maximaler (Durch-)Flüsse in Rohrsystemen oder das Berechnen kürzester Wege.
 
 \subsubsection{Bau eines Graphen aus OpenStreetMap Daten}
@@ -302,40 +306,129 @@ Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewi
 Eine der wichtigsten Netzwerk Analyse Operationen ist die Berechnung des kürzesten Weges zwischen zwei Ecken. Jedes Navigationssystem muss diese Aufgabe erfüllen können. Ein kürzester Weg hat die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen ist.
 
 \subsubsection{Shortest Path Problem}
-Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist.} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede des Graphen besucht(\cite[135]{algorithms}).
-Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R -> \mathbb{R}$ zugrunde liegt. Beim \textit{Single Pair Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit $a,b\in V$ gesucht. Das \textit{Single Source Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V. \cite[169f]{algorithms}
+Die nächstliegendste Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{Traveling Salesman Problem}(TSP) verwechselt werden sollte. Beim TSP ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede des Graphen besucht(\cite[135]{algorithms}).
+Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R -> \mathbb{R}$ zugrunde liegt. Beim \textit{Single Pair Problem}(SPP) ist der kürzeste Weg von einer Ecke a zu einer Ecke b mit $a,b\in V$ gesucht. Das \textit{Single Source Problem}(SSP) möchte den kürzesten Weg einer Ecke a zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{All Pairs Shortest Path Problem}(APSP) sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in V (\cite[169\psq]{algorithms}).
 
 Für ein Routing von Startecke s zur Zielecke z ist das SPP also die richtige Wahl. Allerdings führt die Lösung über das SSP, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
 
 Beispiel:
-Ein Anschauliches Beispiel ohne Rechenaufwand für die Lösung des SSPs erhält man, wenn man auf die Karte eines Straßennetzes Fäden auf jede Straße legt. Die Fäden werden an Kreuzungen und am Startpunkt verknotet. Die Fäden stellen den Routing Graph dar. Nun wird der Graph am Startpunkt angehoben. Sofern sich nichts verheddert hat, stellen alle straffen Fäden die kürzeste Route zu den darunter hängenden Knoten dar (\cite[191]{kurt})
+Ein Anschauliches Beispiel ohne Rechenaufwand für die Lösung des SSPs erhält man, wenn man auf die Karte eines Straßennetzes Fäden auf jede Straße legt. Die Fäden werden an Kreuzungen und am Startpunkt verknotet. Die Fäden stellen den Routing Graph dar. Nun wird der Graph am Startpunkt angehoben. Sofern sich nichts verheddert hat, stellen alle straffen Fäden die kürzeste Route zu den darunter hängenden Knoten dar (\cite[191]{kurt}).
 
 
 \subsubsection{Dijkstra Algorithmus}
 
- einen gerichteten Graphen $G = (V,R)$ mit einer Gewichtsfunktion $c: R \rightarrow \mathbb{R}_{+}$ \footnote{ohne negative Kantengewichte} sowie eine Startecke $s \in V$. Es gibt eine Warteliste W mit unmarkierten \textit{gesichteten} Ecken v. Dort sind die Kosten für den Weg von s nach v und die jeweilige vorangehende Ecke auf diesem Weg für alle v gepeichert ist. Die Kosten in dieser Liste sind die bisherigen kürzesten Wege für alle v. Sie können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt s mit den Kosten 0. Es gibt eine weitere Liste der kürzesten Wege K in der alle markierten Ecken gespeichert werden.
+Der Dijkstra benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$. Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken. Dort sind für alle v die Kosten für den bisher kürzesten Weg von s und die jeweilige vorangehende Ecke auf diesem Weg gepeichert. Die Kosten können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt s mit den trivialen Kosten 0. Es gibt eine weitere Liste der endgültig kürzesten Wege $K_{s}$ in der alle markierten Ecken gespeichert werden.
 
-Dijkstra's Algorithmus (vgl. \cite{dijkstra})markiert die Ecke mit den geringsten Kosten aus W und verschiebt diese nach K. Im ersten Durchlauf ist das die Startecke s. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in W gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist(vgl. \cite[197f]{kurt}).  Dieser Vorgang wird wiederholt bis alle Ecken aus W markiert wurden und W somit leer ist.
+Dijkstra's Algorithmus markiert die Ecke mit den geringsten Kosten aus $W_{s}$ und verschiebt diese nach $K_{s}$. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in W gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist.  Dieser Vorgang wird wiederholt bis alle Ecken aus W markiert wurden und W somit leer ist.
 
-Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Algorithmus nur für positive Kantengewichte anwendbar (\cite[194f]{kurt}).
+% Init Dijkstra
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/dijkstra.pdf} \\
+\caption{G}
+\label{fig:dijkstra}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+{
+\begin{blockarray}{cccccc}
+  & $v_{1}$ & $v_{2}$ & $v_{3}$ & $v_{4}$ & $v_{5}$ \\
+\begin{block}{c(ccccc)}
+  $v_{1}$ & 0 & 5 & 4 & 0 & 0 \\
+  $v_{2}$ & 7 & 0 & 0 & 3 & 0 \\
+  $v_{3}$ & 4 & 2 & 0 & 0 & 8 \\
+  $v_{4}$ & 0 & 3 & 6 & 0 & 1 \\
+  $v_{5}$ & 0 & 0 & 8 & 1 & 0 \\
+\end{block}
+\end{blockarray}
+}
+\vspace{0.1cm}
+\caption{Adjazenzmatrix von G}
+\label{mx:dijkstra}
+\end{subfigure}
+\caption{Ein gewichteter und gerichteter Graph G}
+\label{dijkstraGraph}
+\end{figure}
 
-Damit wurde das SSP gelöst und einen kürzeste Wege zu jeder Ecke des Graphen vom Startpunkt. Daraus ergibt sich auch die Lösung des SPP für den Startpunkt zu jeder anderen Ecke. Es ist jedoch nicht sinnvoll für die Lösung eines SPP jedes mal das SSP für den kompletten Graphen zu berechnen. Das liefert nicht nur viele irrelevante Ergebnisse sondern kostet auch mehr Berechnungsressourcen und Zeit. Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
+Die Funktionsweise des Dijkstra Algorithmus wird am Graphen aus Abbildung ~\ref{dijkstraGraph} mit der Startecke $s=v_{1}$ veranschaulicht.
+
+Die erste Ecke der Warteschlange ist $s=v_{1}$. Da s der einzige Eintrag ist, sind die Kosten automatisch am geringsten. s wird von W nach K verschoben, markiert und die erreichbaren Ecken gesichtet. Das sind $v_{2}$ mit den Kosten 5 und $v_{3}$ mit den Kosten 4. Beide werden mit $v_{1}$ als Vorgänger in W eingetragen.
+Im zweiten Durchgang wird $v_{3}$ (geringste Kosten in W) markiert und nach K verschoben. Über $v_{3}$ erreichbare Ecken sind $v_{5}$ mit $4+8=12$ Kosten und $v_{2}$ mit $4+2=6$ Kosten. Da bereits ein kürzerer Weg nach $v_{2}$ besteht wird der aktuelle Pfad über $v_{3}$ verworfen.
+Als nächstes wird $v_{2}$ nach K verschoben. Die einzige neue von dort gesichtete Ecke ist $v_{4}$ mit 8 Kosten.
+Bei der vierten Wiederholung wird $v_{4}$ ($8<12$) markiert. Es werden $v_{3}$ und $v_{5}$ gesichtet. Für $v_{3}$ besteht bereits ein kürzerer Weg. Für $v_{5}$ ist der neue Weg über $v_{4}$ mit den Kosten von 9 allerdings kürzer als der Weg über $v_{3}$. $v_{5}$ wird aktualisiert und der längere Pfad verworfen.
+Im fünften Durchgang wird $v_{5}$ als letzte Ecke in W nach K verschoben. Von dort sind keine neuen Ecken sichtbar. Die Warteschlange ist leer und der Algorithmus damit beendet. 
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width = \textwidth]{../media/dijkstra1.pdf} \\
+\caption{1. Iteration}
+\vspace{0.5cm}
+\label{fig:dijkstra1}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width = \textwidth]{../media/dijkstra2.pdf} \\
+\caption{2. Iteration}
+\vspace{0.5cm}
+\label{fig:dijkstra2}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width = \textwidth]{../media/dijkstra3.pdf} \\
+\caption{3. Iteration}
+\vspace{0.5cm}
+\label{fig:dijkstra3}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width = \textwidth]{../media/dijkstra4.pdf} \\
+\caption{4. Iteration}
+\vspace{0.5cm}
+\label{fig:dijkstra4}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width = \textwidth]{../media/dijkstra5.pdf} \\
+\caption{5. Iteration}
+\vspace{0.5cm}
+\label{fig:dijkstra5}
+\end{subfigure}
+\begin{subfigure}{1\textwidth}
+\label{tab:dijkstraLists}
+\begin{tabular}{r|l|l}
+
+\multicolumn{1}{l}{} & \multicolumn{1}{|c}{$W_{s}$}                                                                        & \multicolumn{1}{|c}{$K_{s}$}                                                                                                                                \\ \hline
+1.                               & \begin{tabular}[c]{@{}l@{}}$v_{2}:5(v_{1})$ $v_{3}:4(v_{1})$\end{tabular}  & $v_{1}: 0(v_{1})$                                                                                                                    \\ \hline
+2.                               & \begin{tabular}[c]{@{}l@{}}$v_{2}:5(v_{1})$ $v_{5}:12(v_{3})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$\end{tabular}                                                          \\ \hline
+3.                               & \begin{tabular}[c]{@{}l@{}}$v_{5}:12(v_{3})$ $v_{4}:8(v_{2})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$\end{tabular}                                       \\ \hline
+4.                               & $v_{5}:9(v_{4})$                                                             & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$\end{tabular}                    \\ \hline
+5.                               & \multicolumn{1}{c|}{-}                                                       & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$ $v_{5}:9(v_{4})$\end{tabular} \\
+\end{tabular}
+\caption{$W_{s}$ und $K_{s}$ für jede Iteration}
+\end{subfigure}
+\caption{Kompletter Durchlauf eines Dijkstra Algorithmus}
+\label{dijkstraIterations}
+\end{figure}
+
+Der Algorithmus wird unter anderem in \cite{dijkstra} und \cite[194\psqq]{kurt} beschrieben.
+
+Damit wurde das SSP gelöst und einen kürzeste Wege zu jeder Ecke des Graphen vom Startpunkt. Daraus ergibt sich auch die Lösung aller SPP für s zu jeder anderen Ecke aus V. Es ist jedoch nicht sinnvoll für die Lösung eines SPP jedes mal das SSP für den kompletten Graphen zu berechnen. Das liefert nicht nur viele irrelevante Ergebnisse sondern kostet auch mehr Berechnungsressourcen und Zeit. Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
 
 \subsubsection{Speedup Techniken}
 
 \paragraph*{Early Stopping:}
-Der Algorithmus wird jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem er den Zielpunkt erreicht hat. 
+Der Algorithmus wird bisher jedes mal für den ganzen Graphen ausgeführt obwohl oft nur die Route für einen kleinen Bruchteil des Graphen benötigt wird. Die einfachste Methode ist den Dijkstra zu stoppen, nachdem z erreicht wurde (~\ref{fig:normalD}). 
 
 
 \paragraph*{Bidirectional Dijkstra:}
-Beim bidirectional Dijkstra werden zeitgleich zwei Algorithmen nebeneinander ausgeführt. Einer auf s und einer auf z (auf einem umgekehrt gerichteten Graphen). Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$. Zu Begin wird für jeden Startpunkt die initiale der umliegenden Nodes durchgeführt. Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt. Wird eine Node aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Nodes geprüft. Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet. Die Node ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.
+Beim bidirectional Dijkstra werden zeitgleich zwei Algorithmen nebeneinander ausgeführt. Einer auf s und einer auf z (auf einem umgekehrt gerichteten Graphen). Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$. Zu Begin wird für jeden Startpunkt die initiale der umliegenden Nodes durchgeführt. Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt. Wird eine Node aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Nodes geprüft. Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet. Die Node ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.\par
+In der schematischen Abbildung ~\ref{fig:biD} wird die Einsparung gegenüber dem Early Stopping deutlich. Der graue Bereich muss nicht berechnet werden. Die Bearbeitungszeit lässt sich also theoretisch um die Hälfte reduzieren\footnote{In der Realität wir dieser Wert selten erreicht. Bei Graphen mit einer höheren Eckendichte in Nähe von z könnte die Bearbeitungszeit sogar größer werden. Allgemein wird aber ein signifikanter Vorteil erzielt.}.
 
 \begin{figure}[h]
 \centering
 \begin{subfigure}{0.30\textwidth}
 \centering
 \includegraphics[width = \textwidth]{../media/normaldijkstra.pdf} \\
-\caption{Normaler D.}
+\caption{Early Stopping}
 \label{fig:normalD}
 \end{subfigure}
 \begin{subfigure}{0.30\textwidth}
@@ -360,22 +453,53 @@ Beim bidirectional Dijkstra werden zeitgleich zwei Algorithmen nebeneinander aus
 \paragraph*{A*:}
 Der A* Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt. Es wird durch eine Funkiton für jede Ecke die Distanz zum Ziel geschätzt. Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden. Die standardmäßig kreisförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt. Da der Zielpunkt so früher erreicht wird, müssen weniger Iterationen durchgeführt werden.
 
-Diese und weitere Möglichkeiten sind in (\cite[209--213]{kurt}) ausführlich beschrieben.
+Diese und weitere Möglichkeiten sind in \cite[209--213]{kurt} ausführlich beschrieben.
 
 \subsection{Isochronen Berechnung}
 
 Isochronen sind Linien gleicher Zeit (griech.: \textit{iso} = gleich + \textit{chronos} = Zeit).
 
-Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden. Dazu wird ein SSP für eine zentrale Ecke z mt einem gegebenen Zeitlimit t gelöst. 
+Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden. Dazu wird ein SSP für eine zentrale Ecke z mit einem gegebenen Zeitlimit t gelöst. 
 Isochronen können mit unterschiedliche Methoden berechnet werden. Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
 
 
 \subsubsection{Gitterbasierter Ansatz}
-Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen. Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
-(Abb. recursive grid / marching squares)
+Beim \textit{marching squares} algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet. Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen(~\ref{fig:grid2}). Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt. Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
-Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.47\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/grid.pdf} \\
+\caption{Basis Graph mit kürzesten Wegen}
+\vspace{0.3cm}
+\label{fig:grid1}
+\end{subfigure}
+\begin{subfigure}{0.47\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/gridsnap.pdf} \\
+\caption{Gitterbildung}
+\vspace{0.3cm}
+\label{fig:grid2}
+\end{subfigure}
+\begin{subfigure}{0.44\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/gridedge.pdf} \\
+\caption{Kantenmarkierung}
+\label{fig:grid3}
+\end{subfigure}
+\begin{subfigure}{0.47\textwidth}
+\centering
+\includegraphics[width = \textwidth]{../media/gridiso.pdf} \\
+\caption{Resultierende Isochrone}
+\label{fig:grid4}
+\end{subfigure}
+\caption{Marching Squares Algorithmus}
+\label{grid}
+\end{figure}
+
+Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann. Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis. Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht. Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden. Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen. Das Ergebnis ist dementsprechend aber auch ungenauer. Auch in Abbildung ~\ref{fig:grid4} wurde die größe der Maschen unglücklich gewählt. Eine Ecke mit Abstand 4 Minuten vom Zentrum liegt dadurch außerhalb der 5-Minuten-Isochrone.
 
 \subsubsection{Dreiecksvermaschung}
 \cite{isochrones} beschreiben ein anschauliche Methode um Isochronen zu berechnen. Nach der Lösung des SSPs werden den Ecken des Graphen die geographische Koordinate der repräsentierten Kreuzung zugeteilt. Die Kanten werden nicht benötigt und daher entfernt. Es liegt also eine 3D-Punktwolke vor. Jeder Ecke wird nun die benötigte Zeit zugewiesen, mit der diese zu erreichen ist. Anschließend werden die Ecken nach dem Delaunay Triangulationsverfahren vermascht. Es entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null. Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben betrachtet die Randkanten des Trichters der Isochrone.
@@ -385,7 +509,7 @@ Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepass
 \subsubsection{Formenbasierter Ansatz}
 Die Implementierung des ORS zur Berechnung von Isochronen verwendet ist ein formen basierter Ansatz. Zuerst werden mit dem in Kapitel .. bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte (Pillar Nodes) aus der  WayGeometry der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}).  Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der alpha shape algorithmus(Zitat) angewandt um die Isochrone als Hülle um die Erreichbaren Wegsegmente zu zeichnen.
 (Abb. Pictures shape based stuff)
-Mit diesem Ansatz Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
+Mit diesem Ansatz können Distanzen bis zu 100km berechnet werden. Je nach Transportmittel entstehen also Unterschiedliche Zeitlimits für die Isochronen Berechnung: Mit dem Auto können bis zu einer Stunde, mit dem Rad bis zu fünf Stunden und zu Fuß sogar bis zu 20 Stunden abgefragt werden. Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der alpha shape Bibliothek verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
 
 \newpage
 \section{Generierung des Routing-Profils}
