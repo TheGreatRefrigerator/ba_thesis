@@ -1,0 +1,389 @@
+// emergency profile for testtrack with 15s + for start and end and 10+ for every turn
+{
+    "routes": [{
+        "summary": {
+            "distance": 3377,
+            "duration": 443.4
+        },
+        "geometry_format": "polyline",
+        "geometry": [
+            [10.824707, 48.454143],
+            [10.824609, 48.45427],
+            [10.824455, 48.454543],
+            [10.824372, 48.454774],
+            [10.824328, 48.455081],
+            [10.824318, 48.45529],
+            [10.824318, 48.45529],
+            [10.824444, 48.455481],
+            [10.824511, 48.455721],
+            [10.824283, 48.45573],
+            [10.82412, 48.455736],
+            [10.824066, 48.455738],
+            [10.823401, 48.45577],
+            [10.823023, 48.455746],
+            [10.822971, 48.455736],
+            [10.822636, 48.455673],
+            [10.82256, 48.455673],
+            [10.822435, 48.455673],
+            [10.82222, 48.455692],
+            [10.822121, 48.4557],
+            [10.821972, 48.455721],
+            [10.821783, 48.455772],
+            [10.821679, 48.455837],
+            [10.821602, 48.455896],
+            [10.821327, 48.456109],
+            [10.821216, 48.456204],
+            [10.821153, 48.456268],
+            [10.82105, 48.456374],
+            [10.820771, 48.456659],
+            [10.820723, 48.456708],
+            [10.820702, 48.45673],
+            [10.82051, 48.456827],
+            [10.820487, 48.45683],
+            [10.819933, 48.4569],
+            [10.819877, 48.456908],
+            [10.819625, 48.456947],
+            [10.81955, 48.456961],
+            [10.81908, 48.457067],
+            [10.818967, 48.457093],
+            [10.818836, 48.45713],
+            [10.818652, 48.457182],
+            [10.818478, 48.457231],
+            [10.818394, 48.457272],
+            [10.818324, 48.457307],
+            [10.818191, 48.457386],
+            [10.817703, 48.457762],
+            [10.817656, 48.457797],
+            [10.817355, 48.458022],
+            [10.817312, 48.458055],
+            [10.817164, 48.458154],
+            [10.816948, 48.458298],
+            [10.816718, 48.458452],
+            [10.816527, 48.458569],
+            [10.816139, 48.458745],
+            [10.815815, 48.458871],
+            [10.814649, 48.459282],
+            [10.814323, 48.459413],
+            [10.813911, 48.459657],
+            [10.813649, 48.459816],
+            [10.81325, 48.460101],
+            [10.812904, 48.460302],
+            [10.812222, 48.460645],
+            [10.811934, 48.460787],
+            [10.810288, 48.461671],
+            [10.809828, 48.461852],
+            [10.808919, 48.462123],
+            [10.808405, 48.462221],
+            [10.807302, 48.462395],
+            [10.805493, 48.462748],
+            [10.805113, 48.462819],
+            [10.803414, 48.463177],
+            [10.802576, 48.463354],
+            [10.802576, 48.463354],
+            [10.802329, 48.463406],
+            [10.802215, 48.46343],
+            [10.802071, 48.463464],
+            [10.801706, 48.463549],
+            [10.801118, 48.463687],
+            [10.800916, 48.463739],
+            [10.800394, 48.463874],
+            [10.79975, 48.464033],
+            [10.799576, 48.464076],
+            [10.799348, 48.464099],
+            [10.799069, 48.464127],
+            [10.798863, 48.464136],
+            [10.798806, 48.464138],
+            [10.798319, 48.464159],
+            [10.798251, 48.464169],
+            [10.798015, 48.464202],
+            [10.797869, 48.464223],
+            [10.797629, 48.464257],
+            [10.797558, 48.464267],
+            [10.797522, 48.464272],
+            [10.797389, 48.464274],
+            [10.797164, 48.464254],
+            [10.796901, 48.464231],
+            [10.796862, 48.464227],
+            [10.796766, 48.464227],
+            [10.796685, 48.464255],
+            [10.796586, 48.464376],
+            [10.796505, 48.464508],
+            [10.796415, 48.464595],
+            [10.796207, 48.464638],
+            [10.796026, 48.464657],
+            [10.795858, 48.464658],
+            [10.79558, 48.464617],
+            [10.79533, 48.464551],
+            [10.795151, 48.464462],
+            [10.795029, 48.464362],
+            [10.795005, 48.464343],
+            [10.794989, 48.464311],
+            [10.7949, 48.464146],
+            [10.794856, 48.464063],
+            [10.794771, 48.463903],
+            [10.794674, 48.463764],
+            [10.794543, 48.463684],
+            [10.794413, 48.463631],
+            [10.794215, 48.463609],
+            [10.79381, 48.463625],
+            [10.793605, 48.463635],
+            [10.793569, 48.463638],
+            [10.793041, 48.463677],
+            [10.792831, 48.463693],
+            [10.792684, 48.463704],
+            [10.792645, 48.464155],
+            [10.792629, 48.46434],
+            [10.792598, 48.464698],
+            [10.792542, 48.464879],
+            [10.792436, 48.465202],
+            [10.792303, 48.465577],
+            [10.792219, 48.465817],
+            [10.792164, 48.465976],
+            [10.792136, 48.46604],
+            [10.792099, 48.466128],
+            [10.792046, 48.466253],
+            [10.791977, 48.46635],
+            [10.791777, 48.46638],
+            [10.790845, 48.466445],
+            [10.790533, 48.466471],
+            [10.789777, 48.46656]
+        ],
+        "segments": [{
+            "distance": 132.2,
+            "duration": 54.5,
+            "detour_factor": 1.01,
+            "percentage": 3.91,
+            "steps": [{
+                "distance": 132.2,
+                "duration": 39.5,
+                "type": 11,
+                "instruction": "Head northwest on St. Floriansweg",
+                "name": "St. Floriansweg",
+                "way_points": [0, 5]
+            }, {
+                "distance": 0,
+                "duration": 15,
+                "type": 5,
+                "instruction": "Turn slight right onto Schulstraße",
+                "name": "Schulstraße",
+                "way_points": [5, 6]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Schulstraße, on the left",
+                "name": "",
+                "way_points": [6, 6]
+            }]
+        }, {
+            "distance": 50.3,
+            "duration": 21,
+            "detour_factor": 1.01,
+            "percentage": 1.49,
+            "steps": [{
+                "distance": 50.3,
+                "duration": 21,
+                "type": 11,
+                "instruction": "Head northeast on Schulstraße",
+                "name": "Schulstraße",
+                "way_points": [6, 8]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Schulstraße, on the left",
+                "name": "",
+                "way_points": [8, 8]
+            }]
+        }, {
+            "distance": 754.4,
+            "duration": 84.3,
+            "detour_factor": 1.07,
+            "percentage": 22.34,
+            "steps": [{
+                "distance": 204.2,
+                "duration": 119.7,
+                "type": 11,
+                "instruction": "Head west on Hauptstraße, A 5",
+                "name": "Hauptstraße, A 5",
+                "way_points": [8, 21]
+            }, {
+                "distance": 217.8,
+                "duration": 135.7,
+                "type": 5,
+                "instruction": "Turn slight right onto Lützelburger Straße, A 5",
+                "name": "Lützelburger Straße, A 5",
+                "way_points": [21, 35]
+            }, {
+                "distance": 278.6,
+                "duration": 185.1,
+                "type": 6,
+                "instruction": "Continue straight onto Lützelburger Straße",
+                "name": "Lützelburger Straße",
+                "way_points": [35, 51]
+            }, {
+                "distance": 53.8,
+                "duration": 33.9,
+                "type": 6,
+                "instruction": "Continue straight onto Gablinger Straße",
+                "name": "Gablinger Straße",
+                "way_points": [51, 53]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Gablinger Straße, on the left",
+                "name": "",
+                "way_points": [53, 53]
+            }]
+        }, {
+            "distance": 1143.5,
+            "duration": 96.5,
+            "detour_factor": 1.02,
+            "percentage": 33.86,
+            "steps": [{
+                "distance": 1143.5,
+                "duration": 141.5,
+                "type": 11,
+                "instruction": "Head northwest on Gablinger Straße",
+                "name": "Gablinger Straße",
+                "way_points": [53, 72]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Gablinger Straße, on the right",
+                "name": "",
+                "way_points": [72, 72]
+            }]
+        }, {
+            "distance": 832.3,
+            "duration": 104.2,
+            "detour_factor": 1.14,
+            "percentage": 24.65,
+            "steps": [{
+                "distance": 494.4,
+                "duration": 319.8,
+                "type": 11,
+                "instruction": "Head west on Gablinger Straße",
+                "name": "Gablinger Straße",
+                "way_points": [72, 101]
+            }, {
+                "distance": 337.9,
+                "duration": 234.3,
+                "type": 4,
+                "instruction": "Turn slight left onto Georgenstraße",
+                "name": "Georgenstraße",
+                "way_points": [101, 123]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Georgenstraße, on the right",
+                "name": "",
+                "way_points": [123, 123]
+            }]
+        }, {
+            "distance": 464.3,
+            "duration": 82.9,
+            "detour_factor": 1.21,
+            "percentage": 13.75,
+            "steps": [{
+                "distance": 300.3,
+                "duration": 123,
+                "type": 11,
+                "instruction": "Head north on Muttershofer Straße",
+                "name": "Muttershofer Straße",
+                "way_points": [123, 135]
+            }, {
+                "distance": 164,
+                "duration": 39.8,
+                "type": 0,
+                "instruction": "Turn left onto Muttershofer Straße",
+                "name": "Muttershofer Straße",
+                "way_points": [135, 139]
+            }, {
+                "distance": 0,
+                "duration": 0,
+                "type": 10,
+                "instruction": "Arrive at Muttershofer Straße, straight ahead",
+                "name": "",
+                "way_points": [139, 139]
+            }]
+        }],
+        "way_points": [0, 6, 8, 53, 72, 123, 139],
+        "extras": {
+            "avgspeed": {
+                "values": [
+                    [0, 5, 50],
+                    [5, 8, 30],
+                    [8, 53, 50],
+                    [53, 74, 80],
+                    [74, 123, 50],
+                    [123, 139, 60]
+                ],
+                "summary": [{
+                    "value": 50,
+                    "distance": 1691,
+                    "amount": 50.07
+                }, {
+                    "value": 80,
+                    "distance": 1171.4,
+                    "amount": 34.69
+                }, {
+                    "value": 60,
+                    "distance": 464.3,
+                    "amount": 13.75
+                }, {
+                    "value": 30,
+                    "distance": 50.3,
+                    "amount": 1.49
+                }]
+            }
+        },
+        "bbox": [10.789777, 48.463704, 10.792684, 48.46656]
+    }],
+    "bbox": [10.789777, 48.463704, 10.792684, 48.46656],
+    "info": {
+        "attribution": "openrouteservice.org, OpenStreetMap contributors",
+        "engine": {
+            "version": "4.3.0",
+            "build_date": "2017-09-29T17:44:01Z"
+        },
+        "service": "routing",
+        "timestamp": 1506717551800,
+        "query": {
+            "profile": "driving-emergency",
+            "preference": "fastest",
+            "coordinates": [
+                [10.824698, 48.45414],
+                [10.824318, 48.45529],
+                [10.824511, 48.455721],
+                [10.816139, 48.458745],
+                [10.802576, 48.463354],
+                [10.792684, 48.463704],
+                [10.789777, 48.46656]
+            ],
+            "language": "en",
+            "units": "m",
+            "geometry": true,
+            "geometry_format": "polyline",
+            "geometry_simplify": false,
+            "instructions_format": "text",
+            "instructions": true,
+            "elevation": false,
+            "options": {
+                "vehicle_type": "hgv",
+                "profile_params": {
+                    "restrictions": {
+                        "width": "5",
+                        "length": "7",
+                        "weight": "7.5",
+                        "height": "3"
+                    }
+                },
+                "maximum_speed": "80"
+            }
+        }
+    }
+}
