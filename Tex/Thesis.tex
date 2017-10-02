@@ -20,6 +20,9 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 
+%Java und Javascript Code
+\usepackage{listings}
+
 %Abkürzugen
 \usepackage[acronyms,automake,toc,nopostdot,nomain]{glossaries}
 \makeglossaries
@@ -528,9 +531,91 @@ Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die V
 
 \newpage
 \section{Generierung des Routing-Profils/Methodik?}
-Die Grundsätzlichen Überlegungen für 
+Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwähnt, auf den Notstandsvollmachten durch §35 Absatz 1 der StVO für Einsatzfahrzeuge des Rettungsdienstes, der Feuerwehr und der Polizei. Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen. Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann. Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt. Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}). Die Fragen wurden mit Hinblick auf die OSM Datenstruktur und das vorhandene ORS Backend gewählt. \todo{Umsetzung Infos auf in OSM Daten / Konformität} Einarbeitung der Funktionen in Backend scripts. Anpassung des Clients.
+
 \subsection{Informations Erhebung}
-Fragebogen für Feuerwehr Lützelburg\footnote{Lützelburg ist eine stadt in Bayern}
+
+\paragraph*{1. Maße der Fahrzeuge:} Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente. Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe. Hier stützt sich das ORS Backend auf Restriktionen durch die \gls{osm}-Tags: \lstinline!maxlength, maxwidth, maxheight, maxweigth! und \lstinline!maxaxleload! Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
+- Länge: 7 Meter
+- Breite: 2,5 Meter
+- Höhe: 3 Meter
+- Gewicht: 7,5 Tonnen
+- Achslast: k.A.\todo{ask Stefan} Tonnen 
+
+\paragraph*{2. Maximale Geschwindigkeiten auf unterschiedlichen Straßentypen:} 
+Für 
+Für genauere Beschreibungen der Typen: https://wiki.openstreetmap.org/wiki/DE:Key:highway
+
+Bisherige Angaben für HGV in km/h
+
+// highways (Autobahnen)
+motorway (Autobahn) : 80 bisher 80 (Kommt natürlich auf den Verkehr und dann auf die Rettungsgasse an) (Wenn es nur als Zubringer verwendet wird geht es wenn kein Stau ist schon. Ist der Einsatzort auf der Autobahn (VU oder ähnliches) Kommt es natürlich zu einem Stau, dann langsamer. Hier wäre vielleicht ein Schalter interessant auch auf der Gegenfahrbahn anfahren zu können auf der gleichen Höhe, bzw. auch gegen die Verkehrsrichtung auf der gleichen Bahn.
+
+motorway_link (Autobahn-Zubringer)  : bisher 50
+motorroad () : bisher 80
+trunk (Schnellstraße/Autobahnähnliche Straße/ Kraftfahrtstraße)  : bisher 80
+trunk_link (Zubringer zu Schnellstraße) : bisher 50
+
+// settlements
+primary (Bundesstraßen) : 80 bisher 60
+primary_link  : bisher 50
+secondary (Landes-/Staatsstraßen) : 80 bisher 60
+secondary_link  : bisher 50
+tertiary (Kreisstraßen) : 80 bisher 60
+tertiary_link  : bisher 50
+unclassified (Nebenstraße (oft keine Mittellinie))  : bisher 60
+residential (Straße an und in Wohngebieten) : 50 bisher 60
+living_street ("Spielstraße")  : bisher 10
+service (Erschließungsstraße) : bisher 20
+road (unbekannte Straße) : bisher 20
+track (Wald-/Feldweg) : bisher 15
+
+grade1: 25 bisher 20     // paved
+grade2: 15 bisher 15     // now unpaved - gravel mixed with ...
+grade3: 15 bisher 10     // ... hard and soft materials
+grade4: 10 bisher 5     // ... some hard or compressed materials
+grade5: 5 bisher 5     // ... no hard materials. soil/sand/grass
+\paragraph*{3. Dürfen vorgegebene Geschwindikeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
+
+Es dürfen vorgegebene Geschwindigkeiten überschritten werden, jedoch ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
+
+Maximale Geschwindikeit in 30 Zone: 50
+Maximale Geschwindikeit in Spielstraße: 20
+
+\paragraph*{4. Dürfen Gewicht und/oder Achslast für Straßen mit Vorgabe überschritten werden?}
+
+Allgemein zu Achslasten: Befestigung und Tragfähigkeit Zu- oder Durchfahrten für die Feuerwehr, Aufstellflächen und Bewegungsflächen sind so zu befestigen, dass sie von Feuerwehrfahrzeugen mit einer Achslast bis zu 10 t und einem zulässigen Gesamtgewicht bis zu 16 t befahren werden können.
+
+\paragraph*{5. Dürfen Einbahnstraßen in Entgegengesetzter Richtung durchfahren werden?}
+
+Einbahnstraßen dürfen in entgegengesetzter Richtung durchfahren werden.
+
+\paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. Straße durch Fahrzeug(e) blockiert ist?}
+
+Hier muss der Maschinist (Fahrer) abschätzen ob das sinnvoll ist. Kann er noch ausweichen/weiterfahren wenn einer entgegenkommt? Hängt natürlich von der Breite/Parksituation und Länge der Straße ab. Und natürlich wie viel Zeit er dadurch gewinnt..
+
+\paragraph*{7. Zu welchen weiteren Routen bzw. Verkehrsnetz bezogenen Besonderheiten kommt es im Einsatz?}
+
+Es darf natürlich in Straßen eingefahren werden, die an sich zum Beispiel wegen einer Brücke auf nur 7,5 t beschränkt ist aber bis zur Brücke ist es keine Problem darüber zu fahren muss man dann vor Ort wissen wie viel die Brücke wirklich aushält.
+Die POL, FW und Rettungsdienst dürfen auch die Bus-, Taxi- oder Tram-Spuren verwenden.
+
+\paragraph*{8. Ist es wichtig auf der richtigen Straßenseite anzukommen ?}
+
+An sich nicht.
+
+\paragraph*{9. Wäre eine Suche nach Hydranten, Löschwassertanks etc. am Zielort bzw. im Einzugsgebiet sinnvoll?}
+
+https://wiki.openstreetmap.org/wiki/DE:Key:emergency)
+
+Eine Suche nach Hydranten und sonstigen Löschwasser-Quellen ( Seen, Tanks, Flüsse) ist auf jeden Fall sinnvoll. Nicht immer gibt es vor Ort was und dann muss schnell nachgefordert werden, wenn das nicht schon bei der Erst-Alarmierung gemacht worden ist.
+
+\paragraph*{10. Dürfen folgende Wegtypen befahren werden? Wenn ja mit welcher Geschwindigkeit}
+
+aeroway=runway (Start/Landebahn): ja 80….
+aeroway=taxilane (Rollweg) : ja, 80….
+highway=raceway (Rennstrecke): ja, 80….
+highway=cycleway (Radweg): ja, 10 .
+
 
 \subsection{Aufbau graph backend}
 \label{backendGraphBuild}
@@ -577,9 +662,9 @@ Hier ein paar räumliche Beispiele aussuchen und exemplarisch zeigen (Routing un
 \newpage
 \section{Fazit}
 
-Für diesen Zweck geeignet.
+Das Vorhandene Profil ist für diesen Zweck geeignet.
 Much more accurate than previous profile. 
-Für Allgemeingültigkeit weitere Tests nötig
+Für Allgemeingültigkeit weitere Tests nötig. Immer in hinblick auf OSM-Data, keine endgültige Sicherheit gewährleistet.
 Welches für weitere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei erweitert werden kann, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
 
 \newpage
@@ -589,7 +674,20 @@ Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire\_hydra
 Beschleunigung, bisher nur Faktor, für genauere Berechnungen exakte Beschleunigungsdaten der Jeweiligen Fahrzeugklasse benötigt. Bremsweg, Kurvengeschwindigkeit, Beschleunigungsweg.
 rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
 
+\newpage
 \printbibliography
+
+\newpage
+\section*{Anhang}
+\label{sec:anhang}
+
+\subsection*{Links}
+
+\href{https://docs.google.com/document/d/1nwjmea0jwauJWezk_2TMQs5CbAHv7he2NI4kxqMu2w4/}{Fragenkatalog}\par
+\smallskip
+\href{http://emergency.openrouteservice.org/reach?n1=48.456787&n2=10.823207&n3=14&a=48.454054,10.824484&b=5b&i=0&j1=5&j2=1&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km}{Emergency Profil}
+
+\subsection*{CodeFiles}
 
 \newpage
 \section*{Danksagungen}
