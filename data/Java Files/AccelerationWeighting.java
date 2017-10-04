@@ -20,6 +20,7 @@
  */
 package heigit.ors.routing.graphhopper.extensions.weighting;
 
+import com.graphhopper.routing.VirtualEdgeIteratorState;
 import com.graphhopper.routing.util.FlagEncoder;
 import com.graphhopper.routing.weighting.FastestWeighting;
 import com.graphhopper.storage.GraphHopperStorage;
@@ -57,7 +58,6 @@ public class AccelerationWeighting extends FastestWeighting {
 			double lat2 = currEdgeGeom.getLat(1);
 
 			double bearingAfter = (int)Math.round(_angleCalc.calcAzimuth(lat1, lon1, lat2, lon2));
-			//bearingAfter =  _angleCalc.alignOrientation(bearingBefore, bearingAfter);
 			double res = Math.abs(bearingBefore - bearingAfter);
 			if (res > 180)
 			{
@@ -76,7 +76,7 @@ public class AccelerationWeighting extends FastestWeighting {
 		if (prevOrNextEdgeId == -1 || edgeState.getEdge() >= _maxEdges || prevOrNextEdgeId >= _maxEdges)
 		{
 			//TODO factor for first and last edge
-			return 1.0;
+			return 1.3;
 		}
 
 		PointList currEdgeGeom, prevEdgeGeom;
@@ -105,16 +105,20 @@ public class AccelerationWeighting extends FastestWeighting {
 	private boolean isFullTurn(double angle)
 	{
 		return angle > 50 && angle <= 140;
-	}
+	} 
 
 	@Override
 	public long calcMillis(EdgeIteratorState edgeState, boolean reverse, int prevOrNextEdgeId) {
-		if (prevOrNextEdgeId == -1 || edgeState.getEdge() >= _maxEdges || prevOrNextEdgeId >= _maxEdges)
+		//if ((!reverse && (edgeState.getEdge() >= _maxEdges)) || (reverse && prevOrNextEdgeId >= _maxEdges))
+		if (prevOrNextEdgeId == -1 )
+			return 0;
+		
+		if (edgeState instanceof VirtualEdgeIteratorState || prevOrNextEdgeId >= _maxEdges || edgeState.getEdge() >= _maxEdges)//  edgeState.getEdge() >= _maxEdges || prevOrNextEdgeId >= _maxEdges)
 		{
 			// compute acceleration for departure and finish edges.
-			return 0;
+			return 15000;
 		}
-
+ 
 		PointList currEdgeGeom, prevEdgeGeom;
 		if (reverse)
 		{
@@ -161,7 +165,10 @@ public class AccelerationWeighting extends FastestWeighting {
 					
 			return (long)(-weight + accelTime + fullSpeedTime);*/
 			
-			return 0;// 10 seconds for every turn
+			long lastPart = 12;
+			long currentPart = 8;
+			
+			return (lastPart + currentPart)*1000;// 10 seconds for every turn
 		}
 
 		return 0;
