@@ -1,5 +1,8 @@
 % setup
 \documentclass[12pt,a4paper]{article}
+%\documentclass[a4paper,12pt]{scrreprt}
+\usepackage[left= 2.5cm,right = 2.5cm, bottom = 2.5 cm, top = 2.5cm]{geometry}
+
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage{csquotes}
@@ -33,6 +36,24 @@
 \bibliography{Thesis}
 \usepackage[nottoc]{tocbibind}
 
+% Header Footer
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+\clearpairofpagestyles
+%\pagestyle{fancy}
+%
+\lehead{}
+\chead{}
+\ihead{\slshape}
+%%
+\lefoot{}
+\cfoot{}
+\rofoot{\thepage}
+\pagestyle{scrheadings}
+
+\setkomafont{pageheadfoot}{\small}
+
+% no indent
+\setlength{\parindent}{0pt}
 
 % todo command
 \newcommand\todo[1]{\textcolor{red}{#1}}
@@ -47,16 +68,19 @@
 \begin{center}
 
 	{\scshape\LARGE Ruprecht-Karls-Universität Heidelberg\par}
-	\vspace{1.5cm}
-	{\LARGE\bfseries Bachelorarbeit\par}
-	\vspace{2cm}
+	\vspace{1.0cm}
+	{\large Fakultät für Chemie und Geowissenschaften \par Geographisches Institut \par Abteilung Geoinformatik\par}
+	\vspace{2.5cm}
 	{\Huge\bfseries Erstellung eines Routing-Profils für Feuerwehrfahrzeuge auf Basis von OpenStreetMap-Daten\par}
 	\vspace{2cm}
 	{\Large\itshape Amandus Stefan Butzer\par}
 	\vspace{2cm}
-	{\large Fakultät für Chemie und Geowissenschaften \par Geographisches Institut \par Abteilung Geoinformatik\par}
+	{\LARGE\bfseries Bachelorarbeit\par}
+	
 	\vfill
-	{Betreut von\par Prof. Dr. Alexander Zipf}
+	{\bfseries Geprüft von:}
+	{\par 1. Prof. Dr. Alexander Zipf}
+	{\par 2. Prof. Dr. Joao Porto de Albuquerque}
 
 	\vfill
 
@@ -66,6 +90,7 @@
 \end{titlepage}
 
 \newpage
+\pagenumbering{Roman}
 
 {\centering\section*{Zusammenfassung}}
 \todo{Deutsche Kurzfassung}\par
@@ -77,15 +102,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 \newpage
-\section*{Erklärung}
-\vspace{1cm}
-Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig verfasst, noch nicht anderweitig zu Prüfungszwecken vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt, sowie wörtlich und sinngemäße Zitate als solche gekennzeichnet habe.\par
-\bigskip
-
-{\flushleft Heidelberg den \today } {\hfill .....................................\par}
-{\hfill (Unterschrift)}
-
-\newpage
 \tableofcontents
 
 \newpage
@@ -95,6 +111,7 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
 \newpage
+\pagenumbering{arabic}
 \section{Einleitung}
 
 \subsection{Motivation}
@@ -258,7 +275,7 @@ Demnach muss in Abbildung~\ref{fig:directed} um von $v_{5}$ nach $v_{4}$ zu gela
 \subsubsection{Gewichtete Graphen}
 In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert ~$c$ zugewiesen wird.
 
-$$G = (V,E)$$ mit $$c: R \rightarrow \mathbb{R}$$
+$$G = (V,E)$$ mit $$c: E \rightarrow \mathbb{R}$$
 
 Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen benötigt und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
@@ -317,7 +334,7 @@ Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzes
 
 \subsubsection{Shortest Path Problem}
 Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{\gls{tsp}} verwechselt werden sollte. Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jeden Knoten des Graphen besucht(\cite[135]{algorithms}).
-Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,R)$ mit der Gewichtsfunktion $c: R \rightarrow \mathbb{R}$ zugrunde liegt. Beim \textit{\gls{spp}} wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht. Das \textit{\gls{ssp}} möchte den kürzesten Weg einer Ecke $a~$ zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{\gls{apsp}} sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in $V~$ (\cite[169\psq]{algorithms}).
+Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,E)$ mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}$ zugrunde liegt. Beim \textit{\gls{spp}} wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht. Das \textit{\gls{ssp}} möchte den kürzesten Weg einer Ecke $a~$ zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{\gls{apsp}} sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in $V~$ (\cite[169\psq]{algorithms}).
 
 Für eine Route von Startecke $s~$ zur Zielecke $z~$ ist das \gls{spp} demnach die richtige Wahl. Allerdings wird dazu das \gls{ssp} herangezogen, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
 
@@ -678,9 +695,10 @@ rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fuß
 
 \newpage
 \printbibliography
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 
 \newpage
-\section*{Anhang}
+\section{Anhang}
 \label{sec:anhang}
 
 \subsection*{Links}
@@ -690,6 +708,15 @@ rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fuß
 \href{http://emergency.openrouteservice.org/reach?n1=48.456787&n2=10.823207&n3=14&a=48.454054,10.824484&b=5b&i=0&j1=5&j2=1&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km}{Emergency Profil}
 
 \subsection*{CodeFiles}
+
+\newpage
+\section*{Erklärung}
+\vspace{1cm}
+Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig verfasst, noch nicht anderweitig zu Prüfungszwecken vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt, sowie wörtlich und sinngemäße Zitate als solche gekennzeichnet habe.\par
+\bigskip
+
+{\flushleft Heidelberg den \today } {\hfill .....................................\par}
+{\hfill (Unterschrift)}
 
 \newpage
 \section*{Danksagungen}

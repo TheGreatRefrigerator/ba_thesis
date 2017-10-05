@@ -1,0 +1,147 @@
+%Dokumentklasse
+\documentclass[a4paper,12pt, fleqn]{scrreprt}
+\usepackage[left= 2.5cm,right = 2.5cm, bottom = 2.5 cm, top = 2.0cm]{geometry}
+%\usepackage[onehalfspacing]{setspace}
+% ============= Packages =============
+% Dokumentinformationen
+\usepackage[
+	pdftitle={Beurteilung der Qualität von bildbasiertem Croudsourcing hinsichtlich der Detektion von Siedlungen},
+	pdfsubject={Geographie},
+	pdfauthor={Marcel Reinmuth},
+	pdfkeywords={},	
+	%Links nicht einrahmen
+	hidelinks
+]{hyperref}
+
+% Paket für table of contents
+\usepackage{tocloft}
+
+%bibstyle
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+
+% Standard Packages
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx, subfig}
+%\graphicspath{{img/}}
+%\usepackage{fancyhdr}
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{scrhack}
+\usepackage{svg}
+
+% Pakete für Tabellen
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+
+% zusätzliche Schriftzeichen der American Mathematical Society
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+% Pakete für plots - latex
+\usepackage{tikz}
+
+%paket für abkürzungen
+\usepackage[printonlyused]{acronym}
+
+
+%nicht einrücken nach Absatz
+%\setlength{\parindent}{0pt}
+%einrücken von Formeln
+\setlength{\mathindent}{4.5cm}
+
+% ============= Kopf- und Fußzeile =============
+\clearpairofpagestyles
+%\pagestyle{fancy}
+%
+\lehead{}
+\chead{}
+\rohead{\slshape}
+%%
+\lefoot{}
+\cfoot{\thepage}
+\rofoot{}
+
+\pagestyle{scrheadings}
+\setkomafont{pageheadfoot}{\small}
+
+
+%%
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0pt}
+
+% ============= Package Einstellungen & Sonstiges ============= 
+%Besondere Trennungen
+\hyphenation{De-zi-mal-tren-nung}
+\hyphenation{Map-Swipe}
+\hyphenation{un-er-laub-te}
+\hyphenation{Map-Swipe}
+
+
+% ============= Dokumentbeginn =============
+
+\begin{document}
+%Seiten ohne Kopf- und Fußzeile sowie Seitenzahl
+\pagestyle{empty}
+
+%trace overful boxes
+\overfullrule=2cm
+
+
+\include{01_titel}
+
+
+
+\pagenumbering{Roman}
+
+\include{02_erklaerung_danksagungen}
+
+\include{03_zusammenfassung}
+
+% Beendet eine Seite und erzwingt auf den nachfolgenden Seiten die Ausgabe aller Gleitobjekte (z.B. Abbildungen), die bislang definiert, aber noch nicht ausgegeben wurden. Dieser Befehl fügt, falls nötig, eine leere Seite ein, sodaß die nächste Seite nach den Gleitobjekten eine ungerade Seitennummer hat. 
+\cleardoubleoddpage
+
+%Inhaltsverzeichnis
+%\setlength{\cftsubsecnumwidth}{2em}
+\tableofcontents
+
+
+\include{04_verzeichnisse}
+
+
+% pagestyle für gesamtes Dokument aktivieren
+\pagestyle{scrheadings}
+
+\pagenumbering{arabic}
+
+\include{05_einleitung}
+
+
+\include{06_theorie}
+
+\include{07_gebiet_datengrundlage}
+
+\include{08_methodik}
+
+\include{09_ergebnisse_diskussion}
+
+\include{10_fazit}
+
+\newpage
+%Literaturverzeichnis
+\nocite{*}
+\bibliography{Literaturverzeichnis}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\include{11_appendix}
+ 
+
+\end{document}
