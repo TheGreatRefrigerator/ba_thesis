@@ -1,7 +1,7 @@
 % setup
 \documentclass[12pt,a4paper]{article}
 %\documentclass[a4paper,12pt]{scrreprt}
-\usepackage[left= 2.5cm,right = 2.5cm, bottom = 2.5 cm, top = 2.5cm]{geometry}
+\usepackage[left= 2.5cm,right = 2.5cm, bottom = 2.5 cm, top = 2.5cm, head = 14.5pt]{geometry}
 
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
@@ -22,6 +22,7 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{lipsum}
 
 %Java und Javascript Code
 \usepackage{listings}
@@ -40,20 +41,18 @@
 \usepackage[automark,headsepline]{scrlayer-scrpage}
 \clearpairofpagestyles
 %\pagestyle{fancy}
-%
+
 \lehead{}
 \chead{}
 \ihead{\slshape}
-%%
+%
 \lefoot{}
 \cfoot{}
 \rofoot{\thepage}
 \pagestyle{scrheadings}
 
-\setkomafont{pageheadfoot}{\small}
-
 % no indent
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 
 % todo command
 \newcommand\todo[1]{\textcolor{red}{#1}}
@@ -94,12 +93,12 @@
 
 {\centering\section*{Zusammenfassung}}
 \todo{Deutsche Kurzfassung}\par
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\lipsum
 
 \newpage
 {\centering\section*{Abstract}}
 \todo{Abstract in Englisch}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\lipsum
 
 \newpage
 \tableofcontents
@@ -560,10 +559,10 @@ Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwäh
 - Achslast: k.A.\todo{ask Stefan} Tonnen 
 
 \paragraph*{2. Maximale Geschwindigkeiten auf unterschiedlichen Straßentypen:} 
-Für 
+Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit gefahren werden. Deswegen werden für unterschiedliche Straßentypen unterschiedliche Geschwindigkeitsmaxima festgelegt. Hier werden die \textit{Values}(Werte) des \gls{osm} \textit{Keys} (Schlüssel) \lstinline!highway! verwendet. 
 Für genauere Beschreibungen der Typen: https://wiki.openstreetmap.org/wiki/DE:Key:highway
 
-Bisherige Angaben für HGV in km/h
+Bisherige Angaben für Schwerfahrzeuge (HGV-Profil des \gls{ors}) in km/h
 
 // highways (Autobahnen)
 motorway (Autobahn) : 80 bisher 80 (Kommt natürlich auf den Verkehr und dann auf die Rettungsgasse an) (Wenn es nur als Zubringer verwendet wird geht es wenn kein Stau ist schon. Ist der Einsatzort auf der Autobahn (VU oder ähnliches) Kommt es natürlich zu einem Stau, dann langsamer. Hier wäre vielleicht ein Schalter interessant auch auf der Gegenfahrbahn anfahren zu können auf der gleichen Höhe, bzw. auch gegen die Verkehrsrichtung auf der gleichen Bahn.
@@ -581,7 +580,7 @@ secondary\_link  : bisher 50
 tertiary (Kreisstraßen) : 80 bisher 60
 tertiary\_link  : bisher 50
 unclassified (Nebenstraße (oft keine Mittellinie))  : bisher 60
-residential (Straße an und in Wohngebieten) : 50 bisher 60
+residential (Straße an und in Wohngebieten) : bisher 50
 living\_street (''Spielstraße'')  : bisher 10
 service (Erschließungsstraße) : bisher 20
 road (unbekannte Straße) : bisher 20
@@ -654,9 +653,6 @@ calc weight for dijkstra
 calc millis for time add up
 
 
-
-
-
 \subsection{Limitierende Faktoren}
 
 geschwindigkeit limits
@@ -695,7 +691,7 @@ rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fuß
 
 \newpage
 \printbibliography
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 
 \newpage
 \section{Anhang}
