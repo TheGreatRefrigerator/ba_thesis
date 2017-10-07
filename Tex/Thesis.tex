@@ -315,7 +315,7 @@ Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Be
 
 Die \gls{osm} Datenstruktur kann als Graph abgebildet werden. Hier werden Punktobjekte als \textit{Nodes}(Knoten) und Linienobjekte wie Straßen als \textit{Ways}(Wege) bezeichnet. Ein Way ist dabei die Verbindung zwischen zwei Nodes. Zusätzlich gibt es \textit{Relations}(Relationen) die einem Set aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben. Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
-Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant. (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}(\todo{stimmt die reihenfolge max?}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
+Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} (Markierung)auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant. (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}(\todo{stimmt die reihenfolge max?}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
 
 \begin{figure}[h]
 \centering
@@ -415,8 +415,13 @@ Im fünften Durchgang wird $v_{5}$ als letzte Ecke in $W_{s}$ nach $K_{s}$ versc
 \vspace{0.5cm}
 \label{fig:dijkstra5}
 \end{subfigure}
-\begin{subfigure}{1\textwidth}
+\caption{Kompletter Durchlauf eines Dijkstra Algorithmus}
+\label{dijkstraIterations}
+\end{figure}
+
+\begin{table}{1\textwidth}
 \label{tab:dijkstraLists}
+\caption{$W_{s}$ und $K_{s}$ für jede Iteration aus Abb.~\ref{dijkstraIterations}
 \begin{tabular}{r|l|l}
 
 \multicolumn{1}{l}{} & \multicolumn{1}{|c}{$W_{s}$}                                                                        & \multicolumn{1}{|c}{$K_{s}$}                                                                                                                                \\ \hline
@@ -426,11 +431,8 @@ Im fünften Durchgang wird $v_{5}$ als letzte Ecke in $W_{s}$ nach $K_{s}$ versc
 4.                               & $v_{5}:9(v_{4})$                                                             & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$\end{tabular}                    \\ \hline
 5.                               & \multicolumn{1}{c|}{-}                                                       & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$ $v_{5}:9(v_{4})$\end{tabular} \\
 \end{tabular}
-\caption{$W_{s}$ und $K_{s}$ für jede Iteration}
-\end{subfigure}
-\caption{Kompletter Durchlauf eines Dijkstra Algorithmus}
-\label{dijkstraIterations}
-\end{figure}
+\end{table}
+
 
 
 Damit wurde das \gls{ssp} gelöst und einen kürzeste Wege zu jeder Ecke des Graphen vom Startpunkt. Daraus ergibt sich auch die Lösung aller SPP für $s~$ zu jeder anderen Ecke aus $V~$. Es ist jedoch nicht sinnvoll für die Lösung eines \gls{spp} jedes mal das \gls{ssp} für den kompletten Graphen zu berechnen. Das liefert nicht nur viele irrelevante Ergebnisse sondern kostet auch mehr Berechnungsressourcen und Zeit. Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
@@ -547,104 +549,151 @@ Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die V
 
 \newpage
 \section{Generierung des Routing-Profils/Methodik?}
-Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwähnt, auf den Notstandsvollmachten durch §35 Absatz 1 der StVO für Einsatzfahrzeuge des Rettungsdienstes, der Feuerwehr und der Polizei. Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen. Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann. Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt. Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}). Die Fragen wurden mit Hinblick auf die OSM Datenstruktur und das vorhandene ORS Backend gewählt. \todo{Umsetzung Infos auf in OSM Daten / Konformität} Einarbeitung der Funktionen in Backend scripts. Anpassung des Clients.
+Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwähnt, auf den Notstandsvollmachten durch §35 Absatz 1 der StVO für Einsatzfahrzeuge des Rettungsdienstes, der Feuerwehr und der Polizei. Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen. Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann. Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt. Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}). Die Fragen wurden mit Hinblick auf die OSM Datenstruktur und das vorhandene ORS Backend gewählt. Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben. Die wörtlichen Antworten sind dem Google Dokument im Anhang zu entnehmen.
 
 \subsection{Informations Erhebung}
 
-\paragraph*{1. Maße der Fahrzeuge:} Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente. Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe. Hier stützt sich das ORS Backend auf Restriktionen durch die \gls{osm}-Tags: \lstinline!maxlength, maxwidth, maxheight, maxweigth! und \lstinline!maxaxleload! Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
+\paragraph*{1. Maße der Fahrzeuge:}
+\label{frage1}
+Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente. Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe.
+Hier stützt sich das ORS Backend auf Restriktionen durch die \gls{osm}-Tags: \lstinline!maxlength, maxwidth, maxheight, maxweigth! und \lstinline!maxaxleload! Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
 - Länge: 7 Meter
 - Breite: 2,5 Meter
 - Höhe: 3 Meter
 - Gewicht: 7,5 Tonnen
 - Achslast: k.A.\todo{ask Stefan} Tonnen 
 
-\paragraph*{2. Maximale Geschwindigkeiten auf unterschiedlichen Straßentypen:} 
-Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit gefahren werden. Deswegen werden für unterschiedliche Straßentypen unterschiedliche Geschwindigkeitsmaxima festgelegt. Hier werden die \textit{Values}(Werte) des \gls{osm} \textit{Keys} (Schlüssel) \lstinline!highway! verwendet. 
-Für genauere Beschreibungen der Typen: https://wiki.openstreetmap.org/wiki/DE:Key:highway
+\paragraph*{2. Maximale Geschwindigkeiten auf unterschiedlichen Straßentypen:}
+\label{frage2}
+Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit des Fahrzeugs gefahren werden. Deswegen werden für jede Kante des Graphen Geschwindigkeitsmaxima definiert.
+Dabei wird auf einen Standardwert für den Straßentyp, die \textit{Values}(Werte) des \gls{osm} \textit{Keys} (Schlüssel) \lstinline!highway!, zurückgegriffen.
+Tabelle ~\ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Schwerfahrzeug-Profil des \gls{ors} zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
+Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten wenn kein Stau besteht. Im Fall eines Staus wäre laut \gls{ffl} auch die Anfahrt auf der Gegenfahrbahn bzw. entgegen der Verkehrsrichtung auf der gleichen Bahn interessant.
+Auf Wirtschafts-, Wald- und Wiesenwegen mit dem Key-Value-Paar  \lstinline!highway=track! kann zusätzlich der Zustand des Weges mit dem Tag \lstinline!waytype! beschrieben werden. Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
-Bisherige Angaben für Schwerfahrzeuge (HGV-Profil des \gls{ors}) in km/h
+Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\ref{osmwiki}) entnommen werden.
+
+\begin{figure}
+\label{tab:speedinfo}
+\caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!highway! Values}
+\begin{tabular}{|l|c|}
+\multicolumn{1}{1}{\lstinline!highway! Value}  & \multicolumn{1}{|c|}{HGV-Profil} 
+\hline //
+\multicolumn{2}{|l|}{\textit{Autobahnen}} //
+\lstinline!motorway! (Autobahn) & 80 //
+\lstinline!motorway\_link! (Autobahn-Zubringer) & 50 //
+\lstinline!motorroad! () & 80 //
+\lstinline!trunk! (Schnellstraße) & 80 //
+\lstinline!trunk\_link! (Zubringer zu Schnellstraße) & 50 //
+\multicolumn{2}{|l|}{\textit{Siedlungen}} //
+\lstinline!primary! (Bundesstraßen) : 60(80) //
+\lstinline!primary!\_link  : bisher 50 //
+\lstinline!secondary! (Landes-/Staatsstraßen) : 80 bisher 60 //
+\lstinline!secondary\_link!  : bisher 50 //
+\lstinline!tertiary! (Kreisstraßen) : 80 bisher 60 //
+\lstinline!tertiary!\_link  : bisher 50 //
+\lstinline!unclassified! (Nebenstraße (oft keine Mittellinie))  : bisher 60 //
+\lstinline!residential! (Straße an und in Wohngebieten) : bisher 50 //
+\lstinline!living\_street! (''Spielstraße'')  : bisher 10 //
+\lstinline!service! (Erschließungsstraße) : bisher 20 //
+\lstinline!road! (unbekannte Straße) : bisher 20 //
+\lstinline!track! (Wald-/Feldweg) : bisher 15 //
+\end{tabular}
+\end{figure}
+
+\begin{figure}
+\label{tab:speedinfotrack}
+\caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!tracktype! Values}
+\begin{tabular}{|l|c|}
+\multicolumn{1}{1}{\lstinline!tracktype! Value}  & \multicolumn{1}{|c|}{HGV-Profil} 
+\hline
+\lstinline!grade1!(Wasserfester Belag) & 20(25)     //
+\lstinline!grade2!(Wassergebundene Decke) & 15    //
+\lstinline!grade3!(Befestigter oder ausgebesserter Weg) & 10(15)  //
+\lstinline!grade4!(Unbefestigter Weg) & 5(10)     //
+\lstinline!grade5!(Unbefestigter Weg) & 5     //
+\end{tabular}
+\end{figure}
 
 // highways (Autobahnen)
-motorway (Autobahn) : 80 bisher 80 (Kommt natürlich auf den Verkehr und dann auf die Rettungsgasse an) (Wenn es nur als Zubringer verwendet wird geht es wenn kein Stau ist schon. Ist der Einsatzort auf der Autobahn (VU oder ähnliches) Kommt es natürlich zu einem Stau, dann langsamer. Hier wäre vielleicht ein Schalter interessant auch auf der Gegenfahrbahn anfahren zu können auf der gleichen Höhe, bzw. auch gegen die Verkehrsrichtung auf der gleichen Bahn.
+ bisher 80 (Kommt natürlich auf den Verkehr und dann auf die Rettungsgasse an) (Wenn es nur als Zubringer verwendet wird geht es wenn kein Stau ist schon. Ist der Einsatzort auf der Autobahn (VU oder ähnliches) Kommt es natürlich zu einem Stau, dann langsamer. Hier wäre vielleicht ein Schalter interessant auch auf der Gegenfahrbahn anfahren zu können auf der gleichen Höhe, bzw. auch gegen die Verkehrsrichtung auf der gleichen Bahn.
 
-motorway\_link (Autobahn-Zubringer)  : bisher 50
-motorroad () : bisher 80
-trunk (Schnellstraße/Autobahnähnliche Straße/ Kraftfahrtstraße)  : bisher 80
-trunk\_link (Zubringer zu Schnellstraße) : bisher 50
 
-// settlements
-primary (Bundesstraßen) : 80 bisher 60
-primary\_link  : bisher 50
-secondary (Landes-/Staatsstraßen) : 80 bisher 60
-secondary\_link  : bisher 50
-tertiary (Kreisstraßen) : 80 bisher 60
-tertiary\_link  : bisher 50
-unclassified (Nebenstraße (oft keine Mittellinie))  : bisher 60
-residential (Straße an und in Wohngebieten) : bisher 50
-living\_street (''Spielstraße'')  : bisher 10
-service (Erschließungsstraße) : bisher 20
-road (unbekannte Straße) : bisher 20
-track (Wald-/Feldweg) : bisher 15
-
-grade1: 25 bisher 20     // paved
-grade2: 15 bisher 15     // now unpaved - gravel mixed with ...
-grade3: 15 bisher 10     // ... hard and soft materials
-grade4: 10 bisher 5     // ... some hard or compressed materials
-grade5: 5 bisher 5     // ... no hard materials. soil/sand/grass
 \paragraph*{3. Dürfen vorgegebene Geschwindikeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
-
-Es dürfen vorgegebene Geschwindigkeiten überschritten werden, jedoch ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
-
-Maximale Geschwindikeit in 30 Zone: 50
-Maximale Geschwindikeit in Spielstraße: 20
+\label{frage3}
+Manchmal sind besondere Geschwindikeitsrestriktionen, wie zum Beispiel Tempo-30-Zonen vorhanden.  In Tempo-30-Zonen darf 50 km/h und in Spielstraßen darf 20 km/h gefahren werden. Dabei ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
 
 \paragraph*{4. Dürfen Gewicht und/oder Achslast für Straßen mit Vorgabe überschritten werden?}
+\label{frage4}
 
-Allgemein zu Achslasten: Befestigung und Tragfähigkeit Zu- oder Durchfahrten für die Feuerwehr, Aufstellflächen und Bewegungsflächen sind so zu befestigen, dass sie von Feuerwehrfahrzeugen mit einer Achslast bis zu 10 t und einem zulässigen Gesamtgewicht bis zu 16 t befahren werden können.
+Es dürfen Straßen benutzt werden die zum Beispiel wegen einer folgenden Brücke auf 7,5 Tonnen beschränkt sind. Um die Brücke selbst zu nutzen ist allerdings lokales Wissen über die tatsächliche Tragfähigkeit notwendig. 
+Allgemein müssen bei Zu- oder Durchfahrten für die Feuerwehr die Aufstellflächen und die Bewegungsflächen so befestigt sein, dass sie von Feuerwehrfahrzeugen mit einer Achslast bis zu 10 t und einem zulässigen Gesamtgewicht bis zu 16 t befahren werden können.
 
 \paragraph*{5. Dürfen Einbahnstraßen in Entgegengesetzter Richtung durchfahren werden?}
+\label{frage5}
 
 Einbahnstraßen dürfen in entgegengesetzter Richtung durchfahren werden.
 
-\paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. Straße durch Fahrzeug(e) blockiert ist?}
+\paragraph*{6. Ist \ref{frage5} im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?}
+\label{frage6}
 
-Hier muss der Maschinist (Fahrer) abschätzen ob das sinnvoll ist. Kann er noch ausweichen/weiterfahren wenn einer entgegenkommt? Hängt natürlich von der Breite/Parksituation und Länge der Straße ab. Und natürlich wie viel Zeit er dadurch gewinnt..
+Ob eine Einbahnstraße benutzt wird muss der Fahrer während dem Einsatz entscheiden. Es hängt dabei von der verfügbaren Breite und der Länge der Straße ab. Auch die Möglichkeit des Ausweichens bei Gegenverkehr spielt eine Rolle. Anhand dieser Faktoren wird entschieden ob Zeit gewonnen wird und die Einbahnstraße benutzt wird oder nicht.
 
 \paragraph*{7. Zu welchen weiteren Routen bzw. Verkehrsnetz bezogenen Besonderheiten kommt es im Einsatz?}
+\label{frage7}
 
-Es darf natürlich in Straßen eingefahren werden, die an sich zum Beispiel wegen einer Brücke auf nur 7,5 t beschränkt ist aber bis zur Brücke ist es keine Problem darüber zu fahren muss man dann vor Ort wissen wie viel die Brücke wirklich aushält.
-Die POL, FW und Rettungsdienst dürfen auch die Bus-, Taxi- oder Tram-Spuren verwenden.
+Es dürfen Bus-, Taxi- und Tram-Spuren verwendet werden.
 
 \paragraph*{8. Ist es wichtig auf der richtigen Straßenseite anzukommen ?}
 
-An sich nicht.
+Nein.
 
 \paragraph*{9. Wäre eine Suche nach Hydranten, Löschwassertanks etc. am Zielort bzw. im Einzugsgebiet sinnvoll?}
+\label{frage9}
 
-https://wiki.openstreetmap.org/wiki/DE:Key:emergency)
+Vor Ort gibt es nicht immer Löschwasser, weshalb eine Suche nach Hydranten, Seen, Tanks, Flüssen und ähnlichen Quellen auf jeden Fall sinnvoll ist.
 
-Eine Suche nach Hydranten und sonstigen Löschwasser-Quellen ( Seen, Tanks, Flüsse) ist auf jeden Fall sinnvoll. Nicht immer gibt es vor Ort was und dann muss schnell nachgefordert werden, wenn das nicht schon bei der Erst-Alarmierung gemacht worden ist.
+\paragraph*{10. Dürfen folgende Wegtypen befahren werden? Wenn ja mit welcher Geschwindigkeit?}
+\label{frage10}
 
-\paragraph*{10. Dürfen folgende Wegtypen befahren werden? Wenn ja mit welcher Geschwindigkeit}
+Es dürfen die in Tabelle \ref{tab:speedinfospecial} gelisteten, für den normalen Straßenverkehr nicht zugänglichen Wegtypen benutzt werden.
 
-aeroway=runway (Start/Landebahn): ja 80….
-aeroway=taxilane (Rollweg) : ja, 80….
-highway=raceway (Rennstrecke): ja, 80….
-highway=cycleway (Radweg): ja, 10 .
+\begin{figure}
+\label{tab:speedinfospecial}
+\caption{Standardgeschwindigkeiten für spezielle Wegtypen}
+\begin{tabular}{|l|c|}
+\multicolumn{1}{1}{Key-Value-Paar}  & \multicolumn{1}{|c|}{Geschwindigkeit} 
+\hline
+\lstinline!aeroway=runway! (Start/Landebahn) & 80 //
+\lstinline!aeroway=taxilane! (Rollweg) & 80 //
+\lstinline!highway=raceway! (Rennstrecke) & 80 //
+\lstinline!highway=cycleway! (Radweg) & 10 //
+\lstinline!tracktype=pedestrian!(Fußgängerzone) & //
+\lstinline!tracktype=footway!(Fußweg) & //
+\end{tabular}
+\end{figure}
+
 
 
 \subsection{Aufbau graph backend}
-\label{backendGraphBuild}
+ \todo{Umsetzung Infos auf in OSM Daten / Konformität} Einarbeitung der Funktionen in Backend scripts. Anpassung des Clients.
 
+\label{backendGraphBuild}
+Aufbauend auf der 
+Zu Beginn wird der Graph wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben wurde generiert. Die Kanten beinhalten neben den geographischen Koordinaten, den Wegtypen, der maximalen Geschwindigkeit und der Richtung noch viele weitere Flags. 
 to allow different waytypes we have to accept them while creating the graph (kapitel bla)
 
 weightings 
  different weights for different profiles , apply weights to dijkstra?
  
+Zusätzliche restriktionen sind in \gls{osm} durch den Tag \lstinline!maxspeed! gekennzeichnet.
+
  for unusable edge -> weighting + unendlich (quelle ???)
  for emergency 
+
  
 speed maps
+
 
 first tests, feedback from firebrigade
 way too far.
@@ -653,15 +702,21 @@ calc weight for dijkstra
 calc millis for time add up
 
 
-\subsection{Limitierende Faktoren}
+%\subsection{Limitierende Faktoren}
 
 geschwindigkeit limits
 hgv restrictions
 
-\subsection{Erweiternde Faktoren}
+%\subsection{Erweiternde Faktoren}
 
 Einbahnstraßen
 neue Wegtypen
+-> Graph neu generieren.
+
+\subsection{Anpassungen Frontend}
+
+	Auskommentieren ungenutzter Profile
+	Erstellung neuen Profils, zum einen für Löschfahrzeuge mit voreingestellten Werten (Geschwindigkeitlimit / Dimensionen), zum anderen allgemein für Einsatzfahrzeuge. 
 
 \newpage
 \section{Ergebnisse}
