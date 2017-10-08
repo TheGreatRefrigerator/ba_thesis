@@ -11,6 +11,13 @@ I think [these](https://gitlab.gistools.geog.uni-heidelberg.de/giscience/openrou
 - adjusted speed limit for restricted zones (30 / 70) *but not on links*
 - commented the whole hgv stuff out of the collect function (with the new indentation the commit looks larger than it is!) 
 
+### First Isochrones with current speedmap
+
+![5min_big](https://user-images.githubusercontent.com/23240110/31310514-9775a498-ab99-11e7-8c8c-284abd5e3dc9.png)
+
+Way too far for First Test Drive.
+
+Testdrive with minute Markers needed!
 
 ### Duration and Distances 
 
@@ -79,3 +86,234 @@ Here are the Results for each point:
 Here you can see both in one picture with. Yellow waypoints are minutes, blue avgspeed separators.
 
 ![overlay](https://user-images.githubusercontent.com/23240110/30567994-26d4b2b2-9cd3-11e7-846a-563c7ab7734f.png)
+
+
+### Testdrive 1 Repeat
+
+Front
+http://localhost:3005/directions?n1=48.454186&n2=10.825616&n3=18&a=48.454111,10.824569,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.822102,48.45568|10.811641,48.460917|10.799421,48.464054|10.793488,48.46362|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+10.822102,48.45568
+10.811641,48.460917
+10.799421,48.464054
+10.793488,48.46362
+10.789776,48.466555
+
+
+### All in one
+![crop](https://user-images.githubusercontent.com/23240110/31310522-cc49c2a8-ab99-11e7-88a7-75a0731e9315.png)
+
+Calibration on drive 1
+:
+### Weighting 1
+
+Start/End 15 sek
+Turn 20 sek
+
+#### Drive 1 
+
+<!-- Wegpunkt  Sekunden  Differenz
+1min  78,3   +18,3
+2min  138.5  +18,5
+3min  188.5  +8,5
+4min  226.7  -3,3
+5min  298.9  -1,1 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|     1min |     78,3 |     +18,3 |
+|     2min |    138.5 |     +18,5 |
+|     3min |    188.5 |      +8,5 |
+|     4min |    226.7 |      -3,3 |
+|     5min |    298.9 |      -1,1 |
+
+### Testdrive 2
+
+Front
+http://localhost:3005/directions?n1=48.454236&n2=10.826409&n3=18&a=48.454111,10.824569,48.456986,10.827488,48.459512,10.835567,48.46324,10.84622,48.461468,10.852572,48.457434,10.85755&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.827488,48.456986|10.835567,48.459512|10.84622,48.46324|10.852572,48.461468|10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+WPS 1-5
+10.827488,48.456986
+10.835567,48.459512
+10.84622,48.46324
+10.852572,48.461468
+10.85755,48.457434
+
+
+### Testdrive 3
+
+Front
+http://localhost:3005/directions?n1=48.44654&n2=10.826383&n3=15&a=48.454111,10.824569,48.454111,10.821297,48.448041,10.819463,48.438369,10.816973,48.440618,10.806824,48.443849,10.805097&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.821297,48.454111|10.819463,48.448041|10.816973,48.438369|10.806824,48.440618|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+WPS 1-5
+10.821297,48.454111
+10.819463,48.448041
+10.816973,48.438369
+10.806824,48.440618
+10.805097,48.443849
+
+
+#### Drive 2 
+
+<!-- 1min:  86.6  +26.6
+2min:  149.9  +29.9
+3min:  207.5  +27.5
+4min:  253.5  +13.5
+5min:  318.6  +18.6 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     86.6 |     +26.6 |
+|    2min: |    149.9 |     +29.9 |
+|    3min: |    207.5 |     +27.5 |
+|    4min: |    253.5 |     +13.5 |
+|    5min: |    318.6 |     +18.6 |
+
+
+#### Drive 3
+
+<!-- 1min:   89.8  +29.8
+2min:   162.4  +42.4
+3min:   213  +33
+4min:   282.3  +42.3
+5min:   343.9  +43.9 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     89.8 |     +29.8 |
+|    2min: |    162.4 |     +42.4 |
+|    3min: |      213 |       +33 |
+|    4min: |    282.3 |     +42.3 |
+|    5min: |    343.9 |     +43.9 |
+
+
+#### Implement new Features
+
+- Elevation
+- Waytypes
+- Surface
+- Avg Speed
+
+with elevation Height Profile visible
+-> 70 m Incline
+
+### Realization
+
+Start end as well as turn penalty too high
+
+###weighting 2
+
+Start/End: 7.5
+Turn: 16
+
+
+#### Drive 1
+
+<!-- 1min:  59.5  -0.5
+2min:  119.5  -0.5
+3min:  169.5  -10.5
+4min:  207.7  -32.2
+5min:  271.9  -28.1 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     59.5 |      -0.5 |
+|    2min: |    119.5 |      -0.5 |
+|    3min: |    169.5 |     -10.5 |
+|    4min: |    207.7 |     -32.2 |
+|    5min: |    271.9 |     -28.1 |
+
+#### Drive 2
+
+<!-- 1min:  67.6  +7.6
+2min:  126.9  +6.9
+3min:  184.5  +4.5
+4min:  230.5  -10.5
+5min:  291.6  -8.4 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     67.6 |      +7.6 |
+|    2min: |    126.9 |      +6.9 |
+|    3min: |    184.5 |      +4.5 |
+|    4min: |    230.5 |     -10.5 |
+|    5min: |    291.6 |      -8.4 |
+
+
+#### Drive 3
+
+<!-- 1min:   70.8    +10.8
+2min:   139.4  +19.4
+3min:   190  +10
+4min:   255.2  +15.2
+5min:   312.9  +12.9 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     70.8 |     +10.8 |
+|    2min: |    139.4 |     +19.4 |
+|    3min: |      190 |       +10 |
+|    4min: |    255.2 |     +15.2 |
+|    5min: |    312.9 |     +12.9 |
+
+
+<!-- 10.824569,48.454111|10.822102,48.45568
+10.824569,48.454111|10.811641,48.460917
+10.824569,48.454111|10.799421,48.464054
+10.824569,48.454111|10.793488,48.46362
+10.824569,48.454111|10.789776,48.466555
+ -->
+
+### Conclusions
+
+Drive 1:
+no Incline
+52% 1-3% 
+25% 4-5%
+Larger sharp turns not detected
+34% 80km/h segment a bit too fast
+
+Drive 2:
+mostly ok +-10s
+bit of holdup around the railwaytunnel
+(one lane only,)
+
+32 % 80km/h segment a bit too fast
+
+Drive 3:
+
+30km/h Zone not detected and parsed as maxspeed 50
+long 80km/h (56%) segment that speeds u
+Turn after WP 3 increases WP 3 to  WP 4 of 16 sec (too much)
+copyright of clip goes to (c) 2017 Google,Kartendaten (c)2017 GeoBasis-DE/BKG ((c)2009),Google
+no incline 
+for 150 m 7-9 % incline!
+
+Next Steps for Profile
+Bugfixes:
+include weighting for incline
+fix 30km/h Zone
+long 80 segment, should fix nothing, failure should be maxspeed beeing set a bit too high.
+decrease turn time a little bit 
+bzw. calculate Turn time with actual acceleration (given as parameter or factor of vehicleweight)
+grade of the track overwrites given max speed (Drive 3 last step: grade 3 -> 15 km/h although maxspeed=50)
+get acceleration working for isochrones
+
