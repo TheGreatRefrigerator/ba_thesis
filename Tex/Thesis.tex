@@ -23,9 +23,17 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{lipsum}
+\usepackage{array}
+\usepackage{textcomp}
 
 %Java und Javascript Code
 \usepackage{listings}
+\definecolor{codegray}{rgb}{0.9,0.9,0.9}
+%\usepackage{minted}
+%\usepackage{mdframed}
+%
+%%\setmintedinline
+%\surroundwithmdframed{minted}
 
 %Abkürzugen
 \usepackage[acronyms,automake,toc,nopostdot,nomain]{glossaries}
@@ -63,6 +71,18 @@
 \date{\today}
 
 \begin{document}
+%code highlighting
+\lstset{
+  language=Java,
+  basicstyle=\small,
+  keepspaces=true,
+  numbers=none,
+  breaklines=true,
+  literate={ß}{{\ss}}2,
+  backgroundcolor=\color{codegray}
+}
+
+
 \begin{titlepage}
 \begin{center}
 
@@ -315,7 +335,7 @@ Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Be
 
 Die \gls{osm} Datenstruktur kann als Graph abgebildet werden. Hier werden Punktobjekte als \textit{Nodes}(Knoten) und Linienobjekte wie Straßen als \textit{Ways}(Wege) bezeichnet. Ein Way ist dabei die Verbindung zwischen zwei Nodes. Zusätzlich gibt es \textit{Relations}(Relationen) die einem Set aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben. Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
-Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} (Markierung)auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant. (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}(\todo{stimmt die reihenfolge max?}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
+Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren. Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp). Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant. Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt. Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert. Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet. Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt. Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}). Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt. Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}). Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}). Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} (Markierungen) auf der Edge gespeichert. Diese sind für die individuelle Gewichtung bei der Routenfindung interessant. (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}). Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}). 
 
 \begin{figure}[h]
 \centering
@@ -419,9 +439,9 @@ Im fünften Durchgang wird $v_{5}$ als letzte Ecke in $W_{s}$ nach $K_{s}$ versc
 \label{dijkstraIterations}
 \end{figure}
 
-\begin{table}{1\textwidth}
+\begin{table}[h]
 \label{tab:dijkstraLists}
-\caption{$W_{s}$ und $K_{s}$ für jede Iteration aus Abb.~\ref{dijkstraIterations}
+\caption{$W_{s}$ und $K_{s}$ für jede Iteration aus Abb.~\ref{dijkstraIterations}}
 \begin{tabular}{r|l|l}
 
 \multicolumn{1}{l}{} & \multicolumn{1}{|c}{$W_{s}$}                                                                        & \multicolumn{1}{|c}{$K_{s}$}                                                                                                                                \\ \hline
@@ -544,11 +564,11 @@ Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben 
 
 \subsubsection{Formenbasierter Ansatz}
 Die Implementierung des \gls{ors} zur Berechnung von Isochronen verwendet ist einen Form-basierten Ansatz. Zuerst werden mit dem in Kapitel ~\ref{sec:dijkstra} bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert. Anschließend werden die geographischen Punkte (Pillar Nodes) aus der WayGeometry der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}). Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt. Dadurch können nahe beieinanderliegende Punkte übersprungen werden. Mit den verbleibenden Punkten wird eine Punktwolke generiert. Auf diese Punktwolke wird nun der Alpha-Shape Algorithmus(Zitat) angewandt um die Isochrone als Hülle um die erreichbaren Wegsegmente zu zeichnen.
-(Abb. Pictures shape based stuff)
+\todo{(Abb. Pictures shape based stuff)}
 Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten. Die Verwendung der Alpha-Shapes verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
 
 \newpage
-\section{Generierung des Routing-Profils/Methodik?}
+\section{Methodik}
 Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwähnt, auf den Notstandsvollmachten durch §35 Absatz 1 der StVO für Einsatzfahrzeuge des Rettungsdienstes, der Feuerwehr und der Polizei. Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen. Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann. Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt. Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}). Die Fragen wurden mit Hinblick auf die OSM Datenstruktur und das vorhandene ORS Backend gewählt. Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben. Die wörtlichen Antworten sind dem Google Dokument im Anhang zu entnehmen.
 
 \subsection{Informations Erhebung}
@@ -567,57 +587,64 @@ Hier stützt sich das ORS Backend auf Restriktionen durch die \gls{osm}-Tags: \l
 \label{frage2}
 Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit des Fahrzeugs gefahren werden. Deswegen werden für jede Kante des Graphen Geschwindigkeitsmaxima definiert.
 Dabei wird auf einen Standardwert für den Straßentyp, die \textit{Values}(Werte) des \gls{osm} \textit{Keys} (Schlüssel) \lstinline!highway!, zurückgegriffen.
-Tabelle ~\ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Schwerfahrzeug-Profil des \gls{ors} zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
+Tabelle \ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Schwerfahrzeug-Profil des \gls{ors} zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
 Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten wenn kein Stau besteht. Im Fall eines Staus wäre laut \gls{ffl} auch die Anfahrt auf der Gegenfahrbahn bzw. entgegen der Verkehrsrichtung auf der gleichen Bahn interessant.
-Auf Wirtschafts-, Wald- und Wiesenwegen mit dem Key-Value-Paar  \lstinline!highway=track! kann zusätzlich der Zustand des Weges mit dem Tag \lstinline!waytype! beschrieben werden. Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
-Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\ref{osmwiki}) entnommen werden.
+Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{osmwiki}) entnommen werden.
 
-\begin{figure}
+\begin{table}[h]
 \label{tab:speedinfo}
-\caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!highway! Values}
-\begin{tabular}{|l|c|}
-\multicolumn{1}{1}{\lstinline!highway! Value}  & \multicolumn{1}{|c|}{HGV-Profil} 
-\hline //
-\multicolumn{2}{|l|}{\textit{Autobahnen}} //
-\lstinline!motorway! (Autobahn) & 80 //
-\lstinline!motorway\_link! (Autobahn-Zubringer) & 50 //
-\lstinline!motorroad! () & 80 //
-\lstinline!trunk! (Schnellstraße) & 80 //
-\lstinline!trunk\_link! (Zubringer zu Schnellstraße) & 50 //
-\multicolumn{2}{|l|}{\textit{Siedlungen}} //
-\lstinline!primary! (Bundesstraßen) : 60(80) //
-\lstinline!primary!\_link  : bisher 50 //
-\lstinline!secondary! (Landes-/Staatsstraßen) : 80 bisher 60 //
-\lstinline!secondary\_link!  : bisher 50 //
-\lstinline!tertiary! (Kreisstraßen) : 80 bisher 60 //
-\lstinline!tertiary!\_link  : bisher 50 //
-\lstinline!unclassified! (Nebenstraße (oft keine Mittellinie))  : bisher 60 //
-\lstinline!residential! (Straße an und in Wohngebieten) : bisher 50 //
-\lstinline!living\_street! (''Spielstraße'')  : bisher 10 //
-\lstinline!service! (Erschließungsstraße) : bisher 20 //
-\lstinline!road! (unbekannte Straße) : bisher 20 //
-\lstinline!track! (Wald-/Feldweg) : bisher 15 //
+\centering
+\caption{Standardgeschwindigkeiten für unterschiedlichen highway Values}
+\begin{tabular}{|l|r|}
+\hline
+\multicolumn{1}{|l|}{highway Value}  & \multicolumn{1}{|c|}{\textit{km/h}} \\
+\hline
+\multicolumn{2}{|l|}{\textit{Autobahnen}} \\
+\hline
+motorway (Autobahn) & 80 \\
+motorway\_link (Autobahn-Zubringer) & 50 \\
+motorroad (Kraftfahrtstraße) & 80 \\
+trunk (Schnellstraße) & 80 \\
+trunk\_link (Zubringer zu Schnellstraße) & 50 \\
+\hline
+\multicolumn{2}{|l|}{\textit{Siedlungen}} \\
+\hline
+primary (Bundesstraßen) & 60(80) \\
+primary\_link  & bisher 50 \\
+secondary (Landes-/Staatsstraßen) & 60(80) \\
+secondary\_link  & bisher 50 \\
+tertiary (Kreisstraßen) & 60(80) \\
+tertiary\_link  & 50 \\
+unclassified (Nebenstraße (oft keine Mittellinie))  & 60 \\
+residential (Straße an und in Wohngebieten) & 50 \\
+living\_street (''Spielstraße'')  & 10 \\
+service (Erschließungsstraße) & 20 \\
+road (unbekannte Straße) & 20 \\
+track (Wald-/Feldweg) & 15 \\
+\hline
 \end{tabular}
-\end{figure}
+\end{table}
 
-\begin{figure}
+Auf Wirtschafts-, Wald- und Wiesenwegen mit dem Key-Value-Pair  \lstinline!highway=track! kann zusätzlich der Zustand des Weges mit dem Tag \lstinline!waytype! beschrieben werden. Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
+
+\begin{table}[h]
+\centering
 \label{tab:speedinfotrack}
 \caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!tracktype! Values}
-\begin{tabular}{|l|c|}
-\multicolumn{1}{1}{\lstinline!tracktype! Value}  & \multicolumn{1}{|c|}{HGV-Profil} 
+\begin{tabular}{|l|r|}
+% \multicolumn{1}{l}{tracktype! Value}  & \multicolumn{1}{|c|}{HGV-Profil} \\
 \hline
-\lstinline!grade1!(Wasserfester Belag) & 20(25)     //
-\lstinline!grade2!(Wassergebundene Decke) & 15    //
-\lstinline!grade3!(Befestigter oder ausgebesserter Weg) & 10(15)  //
-\lstinline!grade4!(Unbefestigter Weg) & 5(10)     //
-\lstinline!grade5!(Unbefestigter Weg) & 5     //
+tracktype Value & \textit{km/h} \\
+\hline
+grade1 (Wasserfester Belag) & 20(25)     \\
+grade2 (Wassergebundene Decke) & 15    \\
+grade3 (Befestigter oder ausgebesserter Weg) & 10(15)  \\
+grade4 (Unbefestigter Weg) & 5(10)     \\
+grade5 (Unbefestigter Weg) & 5     \\
+\hline
 \end{tabular}
-\end{figure}
-
-// highways (Autobahnen)
- bisher 80 (Kommt natürlich auf den Verkehr und dann auf die Rettungsgasse an) (Wenn es nur als Zubringer verwendet wird geht es wenn kein Stau ist schon. Ist der Einsatzort auf der Autobahn (VU oder ähnliches) Kommt es natürlich zu einem Stau, dann langsamer. Hier wäre vielleicht ein Schalter interessant auch auf der Gegenfahrbahn anfahren zu können auf der gleichen Höhe, bzw. auch gegen die Verkehrsrichtung auf der gleichen Bahn.
-
+\end{table}
 
 \paragraph*{3. Dürfen vorgegebene Geschwindikeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
 \label{frage3}
@@ -634,7 +661,7 @@ Allgemein müssen bei Zu- oder Durchfahrten für die Feuerwehr die Aufstellfläc
 
 Einbahnstraßen dürfen in entgegengesetzter Richtung durchfahren werden.
 
-\paragraph*{6. Ist \ref{frage5} im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?}
+\paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?}
 \label{frage6}
 
 Ob eine Einbahnstraße benutzt wird muss der Fahrer während dem Einsatz entscheiden. Es hängt dabei von der verfügbaren Breite und der Länge der Straße ab. Auch die Möglichkeit des Ausweichens bei Gegenverkehr spielt eine Rolle. Anhand dieser Faktoren wird entschieden ob Zeit gewonnen wird und die Einbahnstraße benutzt wird oder nicht.
@@ -658,48 +685,93 @@ Vor Ort gibt es nicht immer Löschwasser, weshalb eine Suche nach Hydranten, See
 
 Es dürfen die in Tabelle \ref{tab:speedinfospecial} gelisteten, für den normalen Straßenverkehr nicht zugänglichen Wegtypen benutzt werden.
 
-\begin{figure}
+\begin{table}
 \label{tab:speedinfospecial}
 \caption{Standardgeschwindigkeiten für spezielle Wegtypen}
+\centering
 \begin{tabular}{|l|c|}
-\multicolumn{1}{1}{Key-Value-Paar}  & \multicolumn{1}{|c|}{Geschwindigkeit} 
 \hline
-\lstinline!aeroway=runway! (Start/Landebahn) & 80 //
-\lstinline!aeroway=taxilane! (Rollweg) & 80 //
-\lstinline!highway=raceway! (Rennstrecke) & 80 //
-\lstinline!highway=cycleway! (Radweg) & 10 //
-\lstinline!tracktype=pedestrian!(Fußgängerzone) & //
-\lstinline!tracktype=footway!(Fußweg) & //
+\multicolumn{1}{|l|}{Key-Value-Paar}  & \multicolumn{1}{|c|}{Geschwindigkeit} \\
+\hline
+aeroway=runway (Start/Landebahn) & 80 \\
+aeroway=taxilane (Rollweg) & 80 \\
+highway=raceway (Rennstrecke) & 80 \\
+highway=cycleway (Radweg) & 10 \\
+tracktype=pedestrian(Fußgängerzone) & \\
+tracktype=footway(Fußweg) & \\
+\hline
 \end{tabular}
-\end{figure}
+\end{table}
 
 
 
-\subsection{Aufbau graph backend}
+\subsection{Generierung des Routing-Profils}
  \todo{Umsetzung Infos auf in OSM Daten / Konformität} Einarbeitung der Funktionen in Backend scripts. Anpassung des Clients.
 
 \label{backendGraphBuild}
-Aufbauend auf der 
-Zu Beginn wird der Graph wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben wurde generiert. Die Kanten beinhalten neben den geographischen Koordinaten, den Wegtypen, der maximalen Geschwindigkeit und der Richtung noch viele weitere Flags. 
-to allow different waytypes we have to accept them while creating the graph (kapitel bla)
+Aufbauend auf den gewonnen Informationen aus dem Fragenkatalog werden nun Java-Klassen für das Emergency Profil Erstellt. Dazu werden die bereits vorhandenen Klassen eines ORS Profils verwendet.
+Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen wird das HGV-Profil als Schablone benutzt.
+Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den richtigen Stellen im Code des Backends eingebunden werden müssen.
 
-weightings 
- different weights for different profiles , apply weights to dijkstra?
- 
-Zusätzliche restriktionen sind in \gls{osm} durch den Tag \lstinline!maxspeed! gekennzeichnet.
+\begin{figure}[h]
+\label{cod:storage}
+\lstinputlisting[language=Java, firstline=26, lastline=47, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyVehicleAttributesGraphStorage.java}
+\caption{\lstinline!EmergencyVehicleAttributesGraphStorage! \textit\footnotesize{(Speicherobjekt für die Fahrzeugeigenschaften)}}
+\end{figure}
 
- for unusable edge -> weighting + unendlich (quelle ???)
- for emergency 
+Davon sind alleine drei für die Fahrzeugdimensionsen zuständig.
+Die Klasse \lstinline!EmergencyVehicleAttributesGraphStorage! initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Abb.~\ref{cod:storage}).
+Die Klasse \lstinline!EmergencyVehicleGraphStorageBuilder! baut das Speicherobjekt zusammen. Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den OSM-Daten gespeichert . Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen. Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben. Andere Straßen dürfen normalerweise aufgrund des OSM-Tags \lstinline!access=private! oder \lstinline!access=restricted! gar nicht verwendet werden. Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
 
- 
-speed maps
+\begin{figure}[h]
+\label{cod:builder}
+\lstinputlisting[language=Java, firstline=143, lastline=158, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
+\caption{Entnahme der Dimensionsbeschränkungen (\lstinline!EmergencyVehicleGraphStorageBuilder!)}
+\end{figure}
 
+What does the edgefilter do ????? sowas wie restrictions auf für beide Richtungen festlegen ?
 
-first tests, feedback from firebrigade
-way too far.
+Der Hauptteil der Änderungen wird in der \lstinline!EmergencyFlagEncoder! Klasse vorgenommen. Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{cod:flag}). Die Geschwindigkeiten sind bewußt höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen. Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp. Fahradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht. 
 
-calc weight for dijkstra
-calc millis for time add up
+\begin{figure}[h]
+\label{cod:flag}
+\lstinputlisting[language=Java, firstline=149, lastline=179, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
+\caption{Maximalgeschwindigkeiten für unterschiedliche Wegtypen (\lstinline!EmergencyFlagEncoder!)}
+\end{figure}
+
+Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Code Segment aus Abbildung \ref{cod:zone} übergangen werden. Wichtig ist dabei, dass der OSM-Tag \lstinline!highway=living\_street! nicht automatisch eine Spielstraße ist. In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden. Diese Eigenschaft muss beim taggen\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden. Häufig wird solchen Straßen der Tag \lstinline!maxspeed=7! zugewiesen.
+
+\begin{figure}[h]
+\label{cod:zone}
+\lstinputlisting[language=Java, firstline=275, lastline=280, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
+\caption{Limit für 30er Zonen und Spielstraßen(\lstinline!EmergencyFlagEncoder!)}
+\end{figure}
+
+Um Bus- und Taxispuren für das Profil nutzbar zu machen wurde das Code Segment \ref{cod:bus} implementiert. Für mit Fahrzeugen befahrbare Tramspuren gibt es in OpenStreetMap bisher leider keinen geeigneten Tag. Die Segmente der Tramspur die befahren werden können liegen sowieso meistens auf einer vorhandenen Straße.
+
+\begin{figure}[h]
+\label{cod:bus}
+\lstinputlisting[language=Java, firstline=366, lastline=370, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
+\caption{Nutzung von speziellen Wegen(\lstinline!EmergencyFlagEncoder!)}
+\end{figure}
+
+Um Einbahnstraßen in jeder Richtung nutzen zu können wurden Teile des Codes auskommentiert, die einer Kante eine Vorwärts oder Rückwärts Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
+
+\begin{figure}[h]
+\label{cod:weight}
+\lstinputlisting[language=Java, firstline=503, lastline=504, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
+\caption{Nutzung von speziellen Wegen(\lstinline!EmergencyFlagEncoder!)}
+\end{figure}
+
+Der EmergencyFlagEncoder beinhaltet auch die Funktion \lstinline!clollect! mit welcher dem Wegsegment anhand seines Wegtyps eine Priorität zugeschrieben wird. So können Straßen auf denen hohe Geschwindikeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
+
+Durch das den Code in Abbildung \ref{cod:weight} sollen die höchste Priorität Straßen mit dem Tag \lstinline!service=emergency_access! erhalten. Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen. Da Busspuren theoretisch auch vom normalen Verkehr freigehalten werden müssen, werden diesen hier ebenfalls eine höhere Priorität zugewiesen.
+
+Beim ausführen des Codes werden die auf diese Weise generierten Flags beim Bau des Graphen zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch viele weitere Flags auf den Kanten des Graphen gespeichert. Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben aufgebaut.
+
+Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des ORS Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert. Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben. 
+
+Damit ist der prozessierungs  Teil des Profils fertig gestellt. Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden
 
 
 %\subsection{Limitierende Faktoren}
@@ -720,22 +792,26 @@ neue Wegtypen
 
 \newpage
 \section{Ergebnisse}
-\paragraph{
-Vergleiche zwischen Firetruck - Emergency Vehicle - Car - Heavy Vehicle
-+ exemplarische reale beispiele!
-}
-\paragraph{
-\color{red}
-Hier ein paar räumliche Beispiele aussuchen und exemplarisch zeigen (Routing und Isochronen), welche Änderungen das Profil mit sich bringt, einerseits innerstädtisch, andererseits auch außerhalb der Stadt. Denn Änderungen als solches ist bisschen schwierig zu definieren. die Jungs aus Lützelburg fragen, welches Gebiet mit den bereits vorhandenen Profilen wirklich schlechte Ergebnisse bringt und jetzt mit Emergency weitaus realitischere!
-}
+
+first tests, feedback from firebrigade
+way too far.
+
+
+
+calc weight for dijkstra
+calc millis for time add up
+
+
 
 \newpage
 \section{Fazit}
 
-Das Vorhandene Profil ist für diesen Zweck geeignet.
-Much more accurate than previous profile. 
+Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann bereits die Grundlegenden geforderten Eigenschaften erfüllen. Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben.
+Darüber hinaus können Einbahnstraßen in Beide Richtungen Durchfahren werden. Interessant wäre es hier einen Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
+So würden nur bei einer gewissen Zeitersparnis die Falsche Richtung verwendet werden und nicht schon bei einem Gewinn von wenigen Sekunden. Darüber hinaus würde eine Zeitstrafe dem Risiko des Gegenverkehrs gerecht werden.
+Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend festcodiert sondern können als Parameter bei der Abfrage mitgeliefert werden. Damit ist eine Erweiterung für andere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei möglich, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
+
 Für Allgemeingültigkeit weitere Tests nötig. Immer in hinblick auf OSM-Data, keine endgültige Sicherheit gewährleistet.
-Welches für weitere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei erweitert werden kann, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
 
 \newpage
 \section{Future Work or Ausblick}
@@ -751,6 +827,11 @@ rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fuß
 \newpage
 \section{Anhang}
 \label{sec:anhang}
+\subsection{Copyrights}
+Die Rechte für die mit geojson.io generierten Abbildungen(\todo{list}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
+Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\todo{list}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
+Für die Abbildung () liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
+
 
 \subsection*{Links}
 

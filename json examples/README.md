@@ -309,6 +309,7 @@ for 150 m 7-9 % incline!
 
 Next Steps for Profile
 Bugfixes:
+oneway factor for "parallel" streets
 include weighting for incline
 fix 30km/h Zone
 long 80 segment, should fix nothing, failure should be maxspeed beeing set a bit too high.
