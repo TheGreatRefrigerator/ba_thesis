@@ -113,12 +113,12 @@
 
 {\centering\section*{Zusammenfassung}}
 \todo{Deutsche Kurzfassung}\par
-\lipsum
+\lipsum[23-27]
 
 \newpage
 {\centering\section*{Abstract}}
 \todo{Abstract in Englisch}
-\lipsum
+\lipsum[23-27]
 
 \newpage
 \tableofcontents
@@ -444,12 +444,12 @@ Im fünften Durchgang wird $v_{5}$ als letzte Ecke in $W_{s}$ nach $K_{s}$ versc
 \caption{$W_{s}$ und $K_{s}$ für jede Iteration aus Abb.~\ref{dijkstraIterations}}
 \begin{tabular}{r|l|l}
 
-\multicolumn{1}{l}{} & \multicolumn{1}{|c}{$W_{s}$}                                                                        & \multicolumn{1}{|c}{$K_{s}$}                                                                                                                                \\ \hline
+\multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$W_{s}$}                                                                        & \multicolumn{1}{c}{$K_{s}$}                                                                                                                                \\ \hline
 1.                               & \begin{tabular}[c]{@{}l@{}}$v_{2}:5(v_{1})$ $v_{3}:4(v_{1})$\end{tabular}  & $v_{1}: 0(v_{1})$                                                                                                                    \\ \hline
 2.                               & \begin{tabular}[c]{@{}l@{}}$v_{2}:5(v_{1})$ $v_{5}:12(v_{3})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$\end{tabular}                                                          \\ \hline
 3.                               & \begin{tabular}[c]{@{}l@{}}$v_{5}:12(v_{3})$ $v_{4}:8(v_{2})$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$\end{tabular}                                       \\ \hline
-4.                               & $v_{5}:9(v_{4})$                                                             & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$\end{tabular}                    \\ \hline
-5.                               & \multicolumn{1}{c|}{-}                                                       & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$ $v_{5}:9(v_{4})$\end{tabular} \\
+4.                               & $v_{5}:9(v_{4})$                                                           & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$\end{tabular}                    \\ \hline
+5.                               & \multicolumn{1}{c|}{-}                                                     & \begin{tabular}[c]{@{}l@{}}$v_{1}:0(v_{1})$ $v_{3}:4(v_{1})$ $v_{2}:5(v_{1})$ $v_{4}:8(v_{2})$ $v_{5}:9(v_{4})$\end{tabular} \\
 \end{tabular}
 \end{table}
 
@@ -593,12 +593,12 @@ Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten wenn kein
 Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{osmwiki}) entnommen werden.
 
 \begin{table}[h]
-\label{tab:speedinfo}
 \centering
-\caption{Standardgeschwindigkeiten für unterschiedlichen highway Values}
+\caption{Standardgeschwindigkeiten für unterschiedliche highway Values}
+\label{tab:speedinfo}
 \begin{tabular}{|l|r|}
 \hline
-\multicolumn{1}{|l|}{highway Value}  & \multicolumn{1}{|c|}{\textit{km/h}} \\
+\multicolumn{1}{|l|}{\lstinline!highway! Value}  & \multicolumn{1}{c|}{\textit{km/h}} \\
 \hline
 \multicolumn{2}{|l|}{\textit{Autobahnen}} \\
 \hline
@@ -608,17 +608,17 @@ motorroad (Kraftfahrtstraße) & 80 \\
 trunk (Schnellstraße) & 80 \\
 trunk\_link (Zubringer zu Schnellstraße) & 50 \\
 \hline
-\multicolumn{2}{|l|}{\textit{Siedlungen}} \\
+\multicolumn{1}{|l}{\textit{Siedlungen}} & \multicolumn{1}{l|}{ } \\
 \hline
 primary (Bundesstraßen) & 60(80) \\
-primary\_link  & bisher 50 \\
+primary\_link  & 50 \\
 secondary (Landes-/Staatsstraßen) & 60(80) \\
-secondary\_link  & bisher 50 \\
+secondary\_link  & 50 \\
 tertiary (Kreisstraßen) & 60(80) \\
 tertiary\_link  & 50 \\
-unclassified (Nebenstraße (oft keine Mittellinie))  & 60 \\
+unclassified (Nebenstraße (oft ohne Mittellinie))  & 60 \\
 residential (Straße an und in Wohngebieten) & 50 \\
-living\_street (''Spielstraße'')  & 10 \\
+living\_street (Spielstraße)  & 10 \\
 service (Erschließungsstraße) & 20 \\
 road (unbekannte Straße) & 20 \\
 track (Wald-/Feldweg) & 15 \\
@@ -630,8 +630,8 @@ Auf Wirtschafts-, Wald- und Wiesenwegen mit dem Key-Value-Pair  \lstinline!highw
 
 \begin{table}[h]
 \centering
-\label{tab:speedinfotrack}
 \caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!tracktype! Values}
+\label{tab:speedinfotrack}
 \begin{tabular}{|l|r|}
 % \multicolumn{1}{l}{tracktype! Value}  & \multicolumn{1}{|c|}{HGV-Profil} \\
 \hline
@@ -686,12 +686,12 @@ Vor Ort gibt es nicht immer Löschwasser, weshalb eine Suche nach Hydranten, See
 Es dürfen die in Tabelle \ref{tab:speedinfospecial} gelisteten, für den normalen Straßenverkehr nicht zugänglichen Wegtypen benutzt werden.
 
 \begin{table}
-\label{tab:speedinfospecial}
 \caption{Standardgeschwindigkeiten für spezielle Wegtypen}
+\label{tab:speedinfospecial}
 \centering
 \begin{tabular}{|l|c|}
 \hline
-\multicolumn{1}{|l|}{Key-Value-Paar}  & \multicolumn{1}{|c|}{Geschwindigkeit} \\
+\multicolumn{1}{|l|}{Key-Value-Paar}  & \multicolumn{1}{c|}{Geschwindigkeit} \\
 \hline
 aeroway=runway (Start/Landebahn) & 80 \\
 aeroway=taxilane (Rollweg) & 80 \\
@@ -714,9 +714,9 @@ Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen wird das HGV-
 Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den richtigen Stellen im Code des Backends eingebunden werden müssen.
 
 \begin{figure}[h]
-\label{cod:storage}
 \lstinputlisting[language=Java, firstline=26, lastline=47, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyVehicleAttributesGraphStorage.java}
 \caption{\lstinline!EmergencyVehicleAttributesGraphStorage! \textit\footnotesize{(Speicherobjekt für die Fahrzeugeigenschaften)}}
+\label{cod:storage}
 \end{figure}
 
 Davon sind alleine drei für die Fahrzeugdimensionsen zuständig.
@@ -724,9 +724,9 @@ Die Klasse \lstinline!EmergencyVehicleAttributesGraphStorage! initiiert das Spei
 Die Klasse \lstinline!EmergencyVehicleGraphStorageBuilder! baut das Speicherobjekt zusammen. Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den OSM-Daten gespeichert . Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen. Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben. Andere Straßen dürfen normalerweise aufgrund des OSM-Tags \lstinline!access=private! oder \lstinline!access=restricted! gar nicht verwendet werden. Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
 
 \begin{figure}[h]
-\label{cod:builder}
 \lstinputlisting[language=Java, firstline=143, lastline=158, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
 \caption{Entnahme der Dimensionsbeschränkungen (\lstinline!EmergencyVehicleGraphStorageBuilder!)}
+\label{cod:builder}
 \end{figure}
 
 What does the edgefilter do ????? sowas wie restrictions auf für beide Richtungen festlegen ?
@@ -734,33 +734,33 @@ What does the edgefilter do ????? sowas wie restrictions auf für beide Richtung
 Der Hauptteil der Änderungen wird in der \lstinline!EmergencyFlagEncoder! Klasse vorgenommen. Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{cod:flag}). Die Geschwindigkeiten sind bewußt höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen. Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp. Fahradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht. 
 
 \begin{figure}[h]
-\label{cod:flag}
 \lstinputlisting[language=Java, firstline=149, lastline=179, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Maximalgeschwindigkeiten für unterschiedliche Wegtypen (\lstinline!EmergencyFlagEncoder!)}
+\label{cod:flag}
 \end{figure}
 
 Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Code Segment aus Abbildung \ref{cod:zone} übergangen werden. Wichtig ist dabei, dass der OSM-Tag \lstinline!highway=living\_street! nicht automatisch eine Spielstraße ist. In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden. Diese Eigenschaft muss beim taggen\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden. Häufig wird solchen Straßen der Tag \lstinline!maxspeed=7! zugewiesen.
 
 \begin{figure}[h]
-\label{cod:zone}
 \lstinputlisting[language=Java, firstline=275, lastline=280, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Limit für 30er Zonen und Spielstraßen(\lstinline!EmergencyFlagEncoder!)}
+\label{cod:zone}
 \end{figure}
 
 Um Bus- und Taxispuren für das Profil nutzbar zu machen wurde das Code Segment \ref{cod:bus} implementiert. Für mit Fahrzeugen befahrbare Tramspuren gibt es in OpenStreetMap bisher leider keinen geeigneten Tag. Die Segmente der Tramspur die befahren werden können liegen sowieso meistens auf einer vorhandenen Straße.
 
 \begin{figure}[h]
-\label{cod:bus}
 \lstinputlisting[language=Java, firstline=366, lastline=370, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von speziellen Wegen(\lstinline!EmergencyFlagEncoder!)}
+\label{cod:bus}
 \end{figure}
 
 Um Einbahnstraßen in jeder Richtung nutzen zu können wurden Teile des Codes auskommentiert, die einer Kante eine Vorwärts oder Rückwärts Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
 
 \begin{figure}[h]
-\label{cod:weight}
 \lstinputlisting[language=Java, firstline=503, lastline=504, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von speziellen Wegen(\lstinline!EmergencyFlagEncoder!)}
+\label{cod:weight}
 \end{figure}
 
 Der EmergencyFlagEncoder beinhaltet auch die Funktion \lstinline!clollect! mit welcher dem Wegsegment anhand seines Wegtyps eine Priorität zugeschrieben wird. So können Straßen auf denen hohe Geschwindikeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
@@ -771,31 +771,319 @@ Beim ausführen des Codes werden die auf diese Weise generierten Flags beim Bau 
 
 Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des ORS Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert. Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben. 
 
-Damit ist der prozessierungs  Teil des Profils fertig gestellt. Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden
+Damit ist der prozessierungs  Teil des Profils fertig gestellt. Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
 
-
-%\subsection{Limitierende Faktoren}
-
-geschwindigkeit limits
-hgv restrictions
-
-%\subsection{Erweiternde Faktoren}
-
-Einbahnstraßen
-neue Wegtypen
--> Graph neu generieren.
+%
+%%\subsection{Limitierende Faktoren}
+%
+%geschwindigkeit limits
+%hgv restrictions
+%
+%%\subsection{Erweiternde Faktoren}
+%
+%Einbahnstraßen
+%neue Wegtypen
+%-> Graph neu generieren.
 
 \subsection{Anpassungen Frontend}
 
-	Auskommentieren ungenutzter Profile
-	Erstellung neuen Profils, zum einen für Löschfahrzeuge mit voreingestellten Werten (Geschwindigkeitlimit / Dimensionen), zum anderen allgemein für Einsatzfahrzeuge. 
+Das ORS Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht. Gleichzeitig kann das Ergebnis quasi sofort auf der gleichen Oberfläche  dargestellt werden. Das Frontend für das Emergency-Profil kann unter \href{www.emergency.openrouteservice.org} erreicht werden.
+Allgemein kann über einen Rechtsklick auf die Karte ein Start-, Weg- oder Endpunkt platziert werden. Sobald zwei Punkte vorhanden sind wird ein Routing Request für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt. Genauere Informationen zu der Routewie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
+Um eine Erreichbarkeits Analyse durchzuführen kann am linken Rand der Website von Routing auf Isochronen umgestellt werden. Hier kann mit einem Rechtsklick auf die Karte ein Zentrum gesetzt werden. Nach einem Klick auf den Isochronen Generieren Button wird die Antwort für den aus den Einstellungen generierten Request angezeigt.
+
+Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob umrissen. Alle Änderungen können aber im Detail nachvollzogen werden, da auch hier der Quellcode Opensource ist (\ref{sec:anhang}).
+
+Da die Fußgänger-, das Rollstuhl- und die Fahrrad-Profile für Einsatzfahrten irrelevant sind wurden diese aus der Darstellung auskommentiert. Das Auto- und HGV-Profil wurde für direkte Vergleiche zum Emergency-Profil beibehalten.
+Gleichzeitig wurde das neue Emergency-Profil eingefügt für welches 2 Fahrzeugklassen vorhanden sind.
+
+1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt. Damit müssen diese Daten bei einem neuen Aufruf der Seite nicht jedesmal neu eingegeben werden. 
+2. Profil allgemein für Einsatzfahrzeuge: Hier werden keine Fahrzeugdimensionen eingestellt. Die Höchstgeschwindigkeit für dieses Profil ist standardmäßig auf 130km/h gesetzt. Diese kann in den weiteren Einstellungen deaktiviert werden.
+
+Aufgrund der Berechnungszeit für Graphen wurde der Datenbereich auf den politischen Raum Schwaben begrenzt. Abfragen können nur in diesem Bereich getätigt werden weshalb dieser als durchsichtiges Polygon über der Karte automatisch angezeigt wird. Der Datenbereich kann über eine Checkbox in der rechten unteren Ecke ausgeschalten werden.
 
 \newpage
 \section{Ergebnisse}
 
-first tests, feedback from firebrigade
-way too far.
+Im Folgenden wurden Isochronen mit der Freiwilligen Feuerwehr Gablingen als Zentrum berechnet (48.454063,10.824415 [Latitude, Longitude]). Folgende Einstellungen wurden dabei vorgenommen:
 
+- Distanz: 5 min
+- Intervall: 1 min
+- Maximale Geschwindigkeit: 80 km/h für Löschfahrzeug und HGV; 130 km/h für PKW und Einsatzfahrzeug
+- HGV Einstellungen für Löschfahrzeug und HGV: Länge=7m ; Breite= 2.5m; Höhe= 3m; Gewicht= 7.5t
+
+Die Ersten Ergebnisse lieferten zu erwartende Resultate. Die Emergency Profile konnten in der gleichen Zeit einen größeren Bereich abdecken.
+mehr blabla
++ bilder isos 
+erreichbarkeits gebiet tabelle ?
+eingehen auf eingeschlossene gebiete (keine löcher durch alpha shapes!)?
+
+Nach einer Testfahrt der FFL wurde allerdings schnell klar, dass die Ergebnisse nicht im realistischen Bereich liegen. In fünf Minuten konnte das Löschfahrzeug auf der Einsatzfahrt vom Startpunkt in Gablingen Richtung Muttershofen nur den nordwestlichen Rand von Lützelburg erreichen. Das Profil kam für das Löschfahrzeug sogar über Muttershofen hinaus.
+
+Um genaue Anpassungen am Backend vorzunehmen wurde eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb. \ref{}).
+Diese Angaben wurden mit 
+
+
+
+#### waypoints as minutes
+
+[This](http://emergency.openrouteservice.org/directions?n1=48.460358&n2=10.807242&n3=15&a=48.45414,10.824698,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km 
+) is the test drive with the Fire truck where each waypoint is 1 minute:
+
+![time](https://user-images.githubusercontent.com/23240110/30568811-8d74bd56-9cd7-11e7-86e9-930772f2151d.png)
+
+[The response](https://github.com/TheGreatRefrigerator/ba_thesis/blob/master/json\%20examples/time.json)
+
+Here are the Results for each point:
+
+|                                     |   A   |   1   |    2   |    3   |    4   |    B   |
+|:------------------------------------|:-----:|:-----:|:------:|:------:|:------:|:------:|
+| Distance total (m)                  |   0,0 | 363,2 | 1352,8 | 2331,9 | 2862,3 | 3387,3 |
+| Duration total (s)                  |   0,0 |  28,6 |  88,7  | 139,4  | 177,6  | 209,8  |
+| Durat total (test drive)            |   0,0 |  60,0 | 120,0  | 180,0  | 240,0  | 300,0  |
+|                                     |       |       |        |        |        |        |
+| Distance from last point (m)        |   0,0 | 363,2 |  989,6 |  979,1 | 530,4  | 525,0  |
+| Duration from last point            |   0,0 |  28,6 |   60,1 |   50,7 |  38,2  |  32,2  |
+| Actual duration (test drive)        |   0,0 |  60,0 |  60,0  |  60,0  |  60,0  |  60,0  |
+|                                     |       |       |        |        |        |        |
+| avg speed (km/h)                    |   0,0 |  45,7 |  59,3  |  69,5  |  50,0  |  58,7  |
+| avg speed (test drive) (km/h)       |   0,0 |  21,8 |  59,4  |  58,7  |  31,8  |  31,5  |
+|                                     |       |       |        |        |        |        |
+| avg speed total (km/h)              |   0,0 |  45,7 |  52,5  |  58,2  |  56,1  |  56,6  |
+| avg speed total (test drive) (km/h) |   0,0 |  21,8 |  40,6  |  46,6  |  42,9  |  40,6  |
+
+(table as .xls in this folder)
+
+
+
+### Testdrive 1 Repeat
+
+Front
+http://localhost:3005/directions?n1=48.454186&n2=10.825616&n3=18&a=48.454111,10.824569,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.822102,48.45568|10.811641,48.460917|10.799421,48.464054|10.793488,48.46362|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+10.822102,48.45568
+10.811641,48.460917
+10.799421,48.464054
+10.793488,48.46362
+10.789776,48.466555
+
+
+### All in one
+![crop](https://user-images.githubusercontent.com/23240110/31310522-cc49c2a8-ab99-11e7-88a7-75a0731e9315.png)
+
+Calibration on drive 1
+:
+### Weighting 1
+
+Start/End 15 sek
+Turn 20 sek
+
+#### Drive 1 
+
+<!-- Wegpunkt  Sekunden  Differenz
+1min  78,3   +18,3
+2min  138.5  +18,5
+3min  188.5  +8,5
+4min  226.7  -3,3
+5min  298.9  -1,1 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|     1min |     78,3 |     +18,3 |
+|     2min |    138.5 |     +18,5 |
+|     3min |    188.5 |      +8,5 |
+|     4min |    226.7 |      -3,3 |
+|     5min |    298.9 |      -1,1 |
+
+### Testdrive 2
+
+Front
+http://localhost:3005/directions?n1=48.454236&n2=10.826409&n3=18&a=48.454111,10.824569,48.456986,10.827488,48.459512,10.835567,48.46324,10.84622,48.461468,10.852572,48.457434,10.85755&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.827488,48.456986|10.835567,48.459512|10.84622,48.46324|10.852572,48.461468|10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+WPS 1-5
+10.827488,48.456986
+10.835567,48.459512
+10.84622,48.46324
+10.852572,48.461468
+10.85755,48.457434
+
+
+### Testdrive 3
+
+Front
+http://localhost:3005/directions?n1=48.44654&n2=10.826383&n3=15&a=48.454111,10.824569,48.454111,10.821297,48.448041,10.819463,48.438369,10.816973,48.440618,10.806824,48.443849,10.805097&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+
+Back
+http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.821297,48.454111|10.819463,48.448041|10.816973,48.438369|10.806824,48.440618|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+
+Start
+10.824569,48.454111
+
+WPS 1-5
+10.821297,48.454111
+10.819463,48.448041
+10.816973,48.438369
+10.806824,48.440618
+10.805097,48.443849
+
+
+#### Drive 2 
+
+<!-- 1min:  86.6  +26.6
+2min:  149.9  +29.9
+3min:  207.5  +27.5
+4min:  253.5  +13.5
+5min:  318.6  +18.6 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     86.6 |     +26.6 |
+|    2min: |    149.9 |     +29.9 |
+|    3min: |    207.5 |     +27.5 |
+|    4min: |    253.5 |     +13.5 |
+|    5min: |    318.6 |     +18.6 |
+
+
+#### Drive 3
+
+<!-- 1min:   89.8  +29.8
+2min:   162.4  +42.4
+3min:   213  +33
+4min:   282.3  +42.3
+5min:   343.9  +43.9 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     89.8 |     +29.8 |
+|    2min: |    162.4 |     +42.4 |
+|    3min: |      213 |       +33 |
+|    4min: |    282.3 |     +42.3 |
+|    5min: |    343.9 |     +43.9 |
+
+
+#### Implement new Features
+
+- Elevation
+- Waytypes
+- Surface
+- Avg Speed
+
+with elevation Height Profile visible
+-> 70 m Incline
+
+### Realization
+
+Start end as well as turn penalty too high
+
+###weighting 2
+
+Start/End: 7.5
+Turn: 16
+
+
+#### Drive 1
+
+<!-- 1min:  59.5  -0.5
+2min:  119.5  -0.5
+3min:  169.5  -10.5
+4min:  207.7  -32.2
+5min:  271.9  -28.1 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     59.5 |      -0.5 |
+|    2min: |    119.5 |      -0.5 |
+|    3min: |    169.5 |     -10.5 |
+|    4min: |    207.7 |     -32.2 |
+|    5min: |    271.9 |     -28.1 |
+
+#### Drive 2
+
+<!-- 1min:  67.6  +7.6
+2min:  126.9  +6.9
+3min:  184.5  +4.5
+4min:  230.5  -10.5
+5min:  291.6  -8.4 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     67.6 |      +7.6 |
+|    2min: |    126.9 |      +6.9 |
+|    3min: |    184.5 |      +4.5 |
+|    4min: |    230.5 |     -10.5 |
+|    5min: |    291.6 |      -8.4 |
+
+
+#### Drive 3
+
+<!-- 1min:   70.8    +10.8
+2min:   139.4  +19.4
+3min:   190  +10
+4min:   255.2  +15.2
+5min:   312.9  +12.9 -->
+
+| Wegpunkt | Sekunden | Differenz |
+|----------|----------|-----------|
+|    1min: |     70.8 |     +10.8 |
+|    2min: |    139.4 |     +19.4 |
+|    3min: |      190 |       +10 |
+|    4min: |    255.2 |     +15.2 |
+|    5min: |    312.9 |     +12.9 |
+
+
+<!-- 10.824569,48.454111|10.822102,48.45568
+10.824569,48.454111|10.811641,48.460917
+10.824569,48.454111|10.799421,48.464054
+10.824569,48.454111|10.793488,48.46362
+10.824569,48.454111|10.789776,48.466555
+ -->
+
+### Conclusions
+
+Drive 1:
+no Incline
+52% 1-3% 
+25% 4-5%
+Larger sharp turns not detected
+34% 80km/h segment a bit too fast
+
+Drive 2:
+mostly ok +-10s
+bit of holdup around the railwaytunnel
+(one lane only,)
+
+32 % 80km/h segment a bit too fast
+
+Drive 3:
+
+30km/h Zone not detected and parsed as maxspeed 50
+long 80km/h (56%) segment that speeds u
+Turn after WP 3 increases WP 3 to  WP 4 of 16 sec (too much)
+copyright of clip goes to (c) 2017 Google,Kartendaten (c)2017 GeoBasis-DE/BKG ((c)2009),Google
+no incline 
+for 150 m 7-9 % incline!
+
+Next Steps for Profile
+Bugfixes:
+oneway factor for "parallel" streets
+include weighting for incline
+fix 30km/h Zone
+long 80 segment, should fix nothing, failure should be maxspeed beeing set a bit too high.
+decrease turn time a little bit 
+bzw. calculate Turn time with actual acceleration (given as parameter or factor of vehicleweight)
+grade of the track overwrites given max speed (Drive 3 last step: grade 3 -> 15 km/h although maxspeed=50)
+get acceleration working for isochrones
 
 
 calc weight for dijkstra

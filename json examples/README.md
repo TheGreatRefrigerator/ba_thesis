@@ -13,6 +13,19 @@ I think [these](https://gitlab.gistools.geog.uni-heidelberg.de/giscience/openrou
 
 ### First Isochrones with current speedmap
 
+First requests:
+Fireengine:
+https://disaster-api.openrouteservice.org/emergency/isochrones?attributes=area|reachfactor&format=json&interval=60&location_type=start&locations=10.824415,48.454063&options={"profile_params":{"weightings":{},"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&profile=driving-emergency&range=300&range_type=time
+
+basic emergency:
+https://disaster-api.openrouteservice.org/emergency/isochrones?attributes=area|reachfactor&format=json&interval=60&location_type=start&locations=10.824415,48.454063&options={"maximum_speed":"130"}&profile=driving-emergency&range=300&range_type=time
+
+hgv:
+https://disaster-api.openrouteservice.org/emergency/isochrones?attributes=area|reachfactor&format=json&interval=60&location_type=start&locations=10.824415,48.454063&options={"profile_params":{"weightings":{},"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"vehicle_type":"hgv","maximum_speed":"80"}&profile=driving-hgv&range=300&range_type=time
+
+car:
+https://disaster-api.openrouteservice.org/emergency/isochrones?attributes=area|reachfactor&format=json&interval=60&location_type=start&locations=10.824415,48.454063&options={"maximum_speed":"130"}&profile=driving-car&range=300&range_type=time
+
 ![5min_big](https://user-images.githubusercontent.com/23240110/31310514-9775a498-ab99-11e7-8c8c-284abd5e3dc9.png)
 
 Way too far for First Test Drive.
