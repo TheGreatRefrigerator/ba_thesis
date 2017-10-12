@@ -115,13 +115,25 @@
 {\centering\section*{Zusammenfassung}}
 \todo{Deutsche Kurzfassung}\par
 
-Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg zu entwickeln. Bisher gibt es keinen Routing-Service der die Tatsache berücksichtigt, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
-Auf Basis des Openrouteservice wurde ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet, Einbahnstraßen, Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Penalties für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
-Das Profil wurde durch Analytische Vergleichen zwischen den Fahrtzeiten von drei durchgeführten Testfahrten kalibriert. Die Ergebnisse zeigen, dass eine Funktion für die Steigung eingebaut werden muss. Die Fahrzeiten für die Minuten Marker der weitgehend ebenen Teststrecken liegen nahezu komplett im +-10-Sekunden-Bereich. Eine Interessante weiterführende Forschungsarbeit ist die Suche von Hydranten im Zielgebiet, welche durch den Locations-Service des Openrouteservice verwirklicht werden kann. Der Autor erhofft sich mit dieser Arbeit eine Grundlage für exaktere Routenfindung für Notfallfahrzeuge so wie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
+Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg (in Schwaben) zu entwickeln.
+Bisher gibt es keinen Routing-Service der die Tatsache berücksichtigt, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
+Auf Basis des Openrouteservice wurde mit OpenStreetMap als Datengrundlage ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet sowie Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Weiterhin dürfen Einbahnstraßen in Gegenrichtung durchfahren werden.
+Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Penalties für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
+Das Profil wurde durch Analytische Vergleichen zwischen den Fahrtzeiten von drei durchgeführten Testfahrten kalibriert. Die Ergebnisse zeigen, dass eine Funktion für die Steigung eingebaut werden muss.
+Die Differenzen der Fahrzeiten für die Minuten Marker der zwei weitgehend ebenen Teststrecken liegen nahezu komplett im 10-Sekunden-Bereich.
+Der Autor möchte mit dieser Arbeit eine Grundlage für exaktere Routenfindung und Fahrzeitberechnung für Notfallfahrzeuge sowie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
 
 
 \newpage
 {\centering\section*{Abstract}}
+The goal of the present bachelor thesis was to develop a prototypical Routing-Profile for Fireengines in a research cooperation with the voluntary fire department in Lützelburg (in swabia).
+So far there is no routing-service considering that emergency vehicles are allowed to ignore the StVO\footnote(german road traffic regulation).
+Based on the Openrouteservice using OpenStreetMap as data pool, an Emergency Profile was developed, which uses reasonable speeds for emergency vehicles and is allowed to drive on cycling-ways, pedestrian zones and additional waytypes.Furthermore oneways can be passed through from the opposite direction.
+The delay for acceleration and break processes were taken into account with time penalties for starting, turns and arrival.
+The Profile was calibrated through analytical comparison of three Test runs.
+The results show, that a function for the steepness has yet to be added.
+Differences in Travel times for the minute markers of the two mostly level test routes were mostly in 10 second range.
+The Author wants to provide a basis for more accurate routing and travel time calculation for emergency vehicles as well as assistance in the development for demand plans.
 
 
 \newpage
@@ -141,7 +153,9 @@ Das Profil wurde durch Analytische Vergleichen zwischen den Fahrtzeiten von drei
 \section{Einleitung}
 
 \subsection{Motivation}
-Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft im Projekt \gls{ors} tätig. Dieser bietet neben einer Fülle von Webdiensten, wie Geocoding und Routing, auch einen Isochronen-Service an. Mit Isochronen werden Orte bestimmt, die von einem Standort aus in einer bestimmten Zeit erreicht werden können. Für Unternehmen ist so eine Analyse zum Beispiel bei der Standortwahl zur Berechnung von Umsatzpotentialen interessant. Arbeitnehmer können über Isochronen geeignete Wohnorte für eine zukünftige Arbeitsstelle ermitteln. Bus und Bahn richten an Isochronen ihre Verkehrsnetze aus oder legen Tarifzonen damit fest.
+Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft im Projekt \gls{ors} tätig. Dieser bietet neben einer Fülle von Webdiensten, wie Geocoding und Routing, auch einen Isochronen-Service an.
+Mit Isochronen werden Orte bestimmt, die von einem Standort aus in einer bestimmten Zeit erreicht werden können. Für Unternehmen ist so eine Analyse zum Beispiel bei der Standortwahl zur Berechnung von Umsatzpotentialen interessant.
+Arbeitnehmer können über Isochronen geeignete Wohnorte für eine zukünftige Arbeitsstelle ermitteln. Bus und Bahn richten an Isochronen ihre Verkehrsnetze aus oder legen Tarifzonen damit fest.
 Für Polizei, Rettungsdienst sowie Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener zeitlicher Hilfsfristen. Diese stellen eine bedeutende Eigenschaft für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
 Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (\cite{bedarfsplan}). Daher bedienen sich diese Organisationen unterschiedlicher Hilfsmittel um Bedarfspläne für ihren Standort zu erstellen.
 \medskip
@@ -1315,8 +1329,17 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 
 \newpage
 \section*{Danksagungen}
-\todo{An dieser Stelle möchte ich allen danken.. }
 
+An dieser Stelle möchte ich allen Leuten danken, die dazu beigetragen haben diese Arbeit zu verwirklichen.
+\vspace{1.5cm}
+Das sind vor Allem meine Kollegen Tim, Max und Lu vom Openrouteservice, die mir mit motivierenden Gesprächen und hilfreichen Erklärungen zur Seite gestanden sind und mich in jeder Hinsicht unterstützt haben.
+\vspace{1.5cm}
+Meinem Betreuer Dr. Alexander Zipf möchte ich für das Korrigieren der Arbeit und der Möglichkeit Danken beim Openrouteservice zu arbeiten.
+\vspace{1.5cm}
+Ein großes Dankeschön geht natürlich an die Freiwillige Feuerwehr Lützelburg für die Bereitstellung des Fahrzeuges.
+Insbesondere möchte ich Stefan Witossek für die detailierten Informationen sowie die Organisation und Durchführung aller Testfahrten danken. Ohne ihn wäre diese Arbeit nicht möglich gewesen.
+\vspace{1.5cm}
+Außerdem möchte ich meinen Kommilitonen Angi und Marcel Danken für unterhaltsame Mittagspausen, Motivation und Korrekturlesen.
 \newpage
 \todo{empty last page}
 %last page
