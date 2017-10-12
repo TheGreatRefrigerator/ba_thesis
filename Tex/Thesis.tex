@@ -11,8 +11,9 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
-%matrices
+%matrices and tables
 \usepackage{blkarray}
+\usepackage{floatrow}
 
 %figures & images
 \usepackage{graphicx}
@@ -125,6 +126,9 @@
 
 \newpage
 \listoffigures
+
+\newpage
+\listoftables
 
 %Abkürzungsverzeichnis
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
@@ -808,7 +812,28 @@ Gleichzeitig wurde das neue Emergency-Profil eingefügt für welches 2 Fahrzeugk
 Aufgrund der Berechnungszeit für Graphen wurde der Datenbereich auf den politischen Raum Schwaben begrenzt. Abfragen können nur in diesem Bereich getätigt werden weshalb dieser als durchsichtiges Polygon über der Karte automatisch angezeigt wird. Der Datenbereich kann über eine Checkbox in der rechten unteren Ecke ausgeschalten werden.
 
 \newpage
+\newpage
 \section{Ergebnisse}
+
+Die Verwendung neuer Wegtypen konnte erfolgreich eingebunden werden wie in Abbildung \ref{fig:footway} zu erkennen ist. Hier wurden als Zielpunkte verschieden Stellen auf der Fußgängerzone(v.a. Hauptstraße) in der Heidelberger Altstadt\footnote{Heidelberg liegt natürlich nicht in Schwaben! Für diesen Test wurde ein Gebiet um Heidelerg als Datengrundlage verwendet.} gewählt. Da der ORS zur Darstellung mehrerer Routen bisher noch nicht geeignet ist, wurden die Antworten im GeoJson Format mit der Website \textit{http://geojson.io} visualisiert. Im gegensatz zum Auto Profil des ORS findet das Emergency-Profil seinen Weg bis zum gewünschten Zielpunkt. Durch die niedrige Geschwindigkeitsangabe des Backends wird auch nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller gehen würde. Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
+
+\begin{figure}[h]
+\centering
+\caption{Routing in die Fußgängerzone der Heidelberger Altstadt}
+\label{fig:footway}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.80\textwidth]{../media/Altstadt_emergency.png} \\
+\caption{Emergency Routing}
+\label{fig:alteme}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.80\textwidth]{../media/Altstadt_car.png} \\
+\caption{ORS-Car Routing}
+\label{fig:altcar}
+\end{subfigure}
+\end{figure}
 
 Im Folgenden wurden Isochronen mit der Freiwilligen Feuerwehr Gablingen als Zentrum berechnet (48.454063,10.824415 [Latitude, Longitude]). Folgende Einstellungen wurden dabei vorgenommen:
 
@@ -817,17 +842,50 @@ Im Folgenden wurden Isochronen mit der Freiwilligen Feuerwehr Gablingen als Zent
 - Maximale Geschwindigkeit: 80 km/h für Löschfahrzeug und HGV; 130 km/h für PKW und Einsatzfahrzeug
 - HGV Einstellungen für Löschfahrzeug und HGV: Länge=7m ; Breite= 2.5m; Höhe= 3m; Gewicht= 7.5t
 
-Die Ersten Ergebnisse lieferten zu erwartende Resultate. Die Emergency Profile konnten in der gleichen Zeit einen größeren Bereich abdecken.
+Die Ersten Ergebnisse lieferten zu erwartende Resultate \ref{fig:isochrones}. Die Emergency Profile konnten in der gleichen Zeit einen größeren Bereich abdecken.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.75\textwidth]{../media/isohgv.png} \\
+\caption{HGV-Profil}
+\label{fig:isohgv}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.75\textwidth]{../media/isocar.png} \\
+\caption{Car-Profil}
+\label{fig:isocar}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.75\textwidth]{../media/isofire.png} \\
+\caption{Emergency-Profil -- Löschfahrzeug}
+\label{fig:isofire}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.75\textwidth]{../media/isoeme.png} \\
+\caption{Emergency-Profil -- Einsatzfahrzeug}
+\label{fig:isoeme}
+\end{subfigure}
+\caption{Ergebnis Isochronen}
+\label{fig:isochrones}
+\end{figure}
+
+\todo{
 mehr blabla
 + bilder isos 
 erreichbarkeits gebiet tabelle ?
 eingehen auf eingeschlossene gebiete (keine löcher durch alpha shapes!)?
+}
 
 Nach einer Testfahrt der FFL wurde allerdings schnell klar, dass die Ergebnisse nicht im realistischen Bereich liegen. In fünf Minuten konnte das Löschfahrzeug auf der Einsatzfahrt vom Startpunkt in Gablingen Richtung Muttershofen nur den nordwestlichen Rand von Lützelburg erreichen. Das Profil kam für das Löschfahrzeug sogar über Muttershofen hinaus.
 
 
 
-Um genaue Anpassungen am Backend vorzunehmen wurde eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb. \ref{}).
+Um genaue Anpassungen am Backend vorzunehmen wurde eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb. \ref{fig:drive1}).
 Diese Angaben wurden mit den bisherigen Rückgabewerten des Profils verglichen.
 Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtlich, ist das Emergency Profil ungefähr 90 Sekunden zu schnell.
 
@@ -838,7 +896,7 @@ Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtl
 \label{fig:drive1}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[]
 \centering
 \caption{Fahrt 1 -- 1. Auswertung}
 \label{tab:driveinit}
@@ -875,52 +933,296 @@ In Tabelle \ref{tab:drive1} ist die Differenz zu den einzelnen Minutenmarkern de
 
 \begin{table}[h]
 \centering
-\caption{Fahrt 1 -- 2. Auswertung}
-\label{tab:drive1}
+\caption{Fahrt 1 -- Fahrzeit}
+\label{tab:drive11}
 \begin{tabular}{|l|r|r|}
 \hline
-Wegpunkt & Sekunden & Differenz \\ \hline 
-1min & 78,3 & +18,3 \\
-2min & 138.5 & +18,5 \\
-3min & 188.5 & +8,5 \\
-4min & 226.7 & -3,3 \\
-5min & 298.9 & -1,1 \\
+Wegpunkt & Sekunden & Abweichung \\ \hline 
+1min & 78,3 & $+18,3$ \\
+2min & 138.5 & $+18,5$ \\
+3min & 188.5 & $+8,5$ \\
+4min & 226.7 & $-3,3$ \\
+5min & 298.9 & $-1,1$ \\
 \hline
 \end{tabular}
 \end{table}
 
-Diese Kalibrierung wurde an zwei weiteren Testfahrten (Abb. \ref{} und \ref{}) vom selben Ausgangspunkt überprüft.
+Diese Kalibrierung wurde an zwei weiteren Testfahrten (Abb. \ref{fig:drive2} und \ref{fig:drive3}) vom selben Ausgangspunkt überprüft.
 
-In den Tabellen \ref{tab:} und \ref{tab:} ist zu sehen, das 8 von 10 Wegpunkten um mehr als 20 Sekunden, in 3 Fällen sogar 40 Sekunden zu spät erreicht werden.
-Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich zu langsam und die Penalties zu Hoch.
+In den Tabellen \ref{tab:drive2} und \ref{tab:drive3} ist zu sehen, das 8 von 10 Wegpunkten um mehr als 20 Sekunden, in 3 Fällen sogar 40 Sekunden zu spät erreicht werden.
+Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich zu langsam und die Penalties zu hoch.
 
-Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen. Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punte zurückgegeben. Im Frontend konnten dadurch nun die Wegtypen und Wegoberfächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden. Außerdem wurde ein Feature zur Darstellung der Höchstgeschwindigkeit der einzelnen Streckensegmente eingebaut. 
+\begin{figure}[h]
+\centering
+\caption{Testfahrt 2}
+\label{drive2}
+\includegraphics[width = 0.70 \textwidth]{../media/Fahrt2crop.png} \\
+\end{figure}
 
-Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor vergessen wurde \ref{steig}.
+\begin{table}[]
+\centering
+\caption{Fahrt 2 -- Fahrzeit}
+\label{tab:drive2}
+\begin{tabular}{|l|r|r|}
+\hline
+Wegpunkt & Sekunden & Abweichung \\ \hline 
+1min & 86.6 & $+26.6$ \\
+2min & 149.9 & $+29.9$ \\
+3min & 207.5 & $+27.5$ \\
+4min & 253.5 & $+13.5$ \\
+5min & 318.6 & $+18.6$ \\
+\hline
+\end{tabular}
+\end{table}
 
 
 \begin{figure}[h]
 \centering
-\begin{subfigure}{0.49\textwidth}
+\caption{Testfahrt 3}
+\label{drive3}
+\includegraphics[width = 0.40 \textwidth]{../media/Fahrt3crop.png} \\
+\end{figure}
+
+\begin{table}[]
+\centering
+\caption{Fahrt 3 -- Fahrzeit}
+\label{tab:drive3}
+\begin{tabular}{|l|r|r|}
+\hline
+Wegpunkt & Sekunden & Abweichung \\ \hline 
+1min: &  89.8 & $+29.8$ \\
+2min: &  162.4 & $+42.4$ \\
+3min: &  213 & $+33$ \\
+4min: &  282.3 & $+42.3$ \\
+5min: &  343.9 & $+43.9$ \\
+\hline
+\end{tabular}
+\end{table}
+
+Die Penalties für Start und Ankunft wurden für die folgenden Analysen um die Hälfte reduziert und lagen somit bei 7,5 Sekunden. Turnpenalties wurden auf 16 Sekunden reduziert. 
+
+Mit der neuen Gewichtung wurden die Requests für die drei Testfahrten erneut gesendet und mit den Minuten-Markierungen der wirklich benötigten Zeiten verglichen.
+Die Ergebnisse sind der Tabelle \ref{tab:newweight} zu entnehmen.
+
+\begin{table}[]
+\centering
+\caption{Fahrt 1,2,3 -- 2. Auswertung}
+\label{tab:all}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\multicolumn{1}{l}{} & \multicolumn{2}{c}{Fahrt 1} & \multicolumn{2}{c}{Fahrt 2} & \multicolumn{2}{c}{Fahrt 3} \\ \hline
+Wegpunkt & Sekunden & Abweichung & Sekunden & Abweichung & Sekunden & Abweichung \\ \hline 
+1min & 59.5 & -0.5 & 67.6 & +7.6 & 70.8 & +10.8  \\
+2min & 119.5 & -0.5 & 126.9 & +6.9 & 139.4 & +19.4  \\
+3min & 169.5 & -10.5 & 184.5 & +4.5 & 190 & +10  \\
+4min & 207.7 & -32.2 & 230.5 & -10.5 & 255.2 & +15.2  \\
+5min & 271.9 & -28.1 &  291.6 & -8.4 & 312.9 & +12.9   \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen. Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punte zurückgegeben. Im Frontend konnten dadurch nun die Wegtypen und Wegoberfächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden. Außerdem wurde ein Feature zur Darstellung der Höchstgeschwindigkeit der einzelnen Streckensegmente eingebaut. 
+
+\newpage
+\section{Diskussion -- Interpretation}
+
+\subsection{1. Strecke}
+
+Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde. Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}). Über die hälfte der Distanz hat dabei eine Steigung von 1-3\% und auf einem Viertel der Strecke sogar eine Steigung von 4-6\%  Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
+
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.80\textwidth}
 \centering
 \includegraphics[width = \textwidth]{../media/Fahrt1_Steep.png} \\
-\caption{Fahrt 1 mit Steigung}
+\caption{Strecke 1 mit Steigung}
 \label{fig:steig}
 \end{subfigure}
-\begin{subfigure}{0.49\textwidth}
+\begin{subfigure}{0.18\textwidth}
+\centering
+\includegraphics[width =0.60 \textwidth]{../media/legend2.png} \\
+\caption{Legende}
+\label{fig:legend2}
+\end{subfigure}
+\begin{subfigure}{ \textwidth}
 \centering
 \includegraphics[width = \textwidth]{../media/Fahrt1_Profile.png} \\
 \vspace{0.1cm}
-\caption{Höhenprofil Fahrt 1}
+\caption{Höhenprofil der ersten Strecke}
 \label{profile}
 \end{subfigure}
-\caption{Ein simpler Graph G}
+\caption{Steigung und Höhenprofil der ersten Teststrecke}
 \label{steig}
 \end{figure}
 
-\todo{add legend}
+Darüber hinaus liegen auf der Strecke im inneren Lützelburgs ein paar langezogene aber dennoch scharfe Kurven (\ref{fig:turn}). Auch hier kann das Löschfahrzeug nicht die gegebene Geschwindigkeit beibehalten und muss abbremsen. Diese Kurven werden allerdings vom Emergency Profil nicht als Turn erkannt, da der Winkel zwischen den Segmenten zu groß ist. Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das echte Fahrzeug.
+
+Weiterhin wurde bei allen 3 Fahrten beobachtet, dass auf den Segmenten mit Maximalgeschwindigkeit (80 km/h) das Profil ebenfalls konstant ein paar Sekunden gegenüber der Testfahrt gutmachen kann.
+Die Vermutung liegt nahe, dass das Löschfahrzeug die angegebene Maximalgeschwindigkeit nicht komplett erreichen kann. Möglicherweise stimmt die Angabe sogar mit der Tachoanzeige überein aber die effektive Geschwindigkeit ist geringer.
+
+Die Zeitdifferenzen aus Tabelle \ref{tab:all} zeigen: das Emergency-Profil fährt dem echten Fahrzeug mit der derzeitigen Gewichtung über die ganze Strecke hinweg davon. Wenn die genannten Faktoren der Steigung, der nicht miteinberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis im 5 Minuten Bereich zu erwarten.
 
 
+\subsection{2. Strecke}
+
+Da die 2. Strecke nur in der Ebene verläuft sind keine Abweichungen durch die Steigung zu erwarten. Die Differenzzeiten sind auch für alle fünf Wegpunkte ungefähr im +-10ß-Sekunden-Bereich. Auffallend ist der Sprung vom 3. zum 4. Wegpunkt, bei welchem das Profil 14 Sekunden aufholt. Nach einer genaueren Betrachtung dieses Segments stellte sich heraus, dass hier eine einspurige Unterführung durchfahren werden musste auf die eine durch die Topologie unübersichtliche Kurve folgt (Abb. \ref{fig:traintunnel}). Vermutlich kam es daher auf der Fahrt zu Verzögerungen, was das Aufholen erklären könnte.
+
+\begin{figure}[h]
+\centering
+\caption{Fahrt 2 -- Unterführung}
+\label{fig:traintunnel}
+\includegraphics[width = 0.40 \textwidth]{../media/traintunnel.png} \\
+\end{figure}
+
+
+\subsection{3. Strecke}
+
+Bei den Ergebnissen der 3. Strecke (Tab. \ref{tab:all}) ist das Profil bereits nach dem ersten Wegpunkt um mehr als 10 Sekunden zu langsam. Bis zum Zwei-Minuten-Wegpunkt wird dieser Rückstand fast verdoppelt. Nach genauerer Überprüfung der Durchschnittsgeschwindigkeiten stellte sich heraus, dass der Weg hier durch eine 30er-Zone führt. Allerdings wird diese nicht mit den erwarteten 50 km/h sondern nur mit den durch den \lstinline!maxspeed! Tag festgelegten 30 km/h durchfahren. Offensichtlich ein Bug im Backend der noch behoben werden muss.
+
+\begin{figure}[h]
+\centering
+\caption{Fahrt 3 -- Tempo-30-Zone}
+\label{fig:temp30}
+\includegraphics[width = 0.60 \textwidth]{../media/Fahrt3_temp30.png} \\
+\end{figure}
+
+Die anfängliche 30er-Zone ist fast 350m lang. Diese Strecke kann in 25,2 Sekunden mit 50 km/h und in 42 Sekunden mit 30 km/h durchfahren werden. Wird die Differenz von 16.8 Sekunden von den bisherigen Abweichungen für die 3. Fahrt abgezogen, werden die neuen Werte aus Tabelle \ref{tab:new3}\footnote{Zum ersten Wegpunkt beträgt die Strecke nur 260m weshalb hier nur 12.6 Sekunden abgezogen werden} erhalten.
+
+\begin{table}[h]
+\centering
+\caption{Fahrt 3 -- neue Fahrzeit}
+\label{tab:new3}
+\begin{tabular}{|l|r|r|}
+\hline
+Wegpunkt & Sekunden & Abweichung \\ \hline 
+1min & 70.8 & -1.8  \\
+2min & 139.4 & +2.6  \\
+3min & 190 & -6.8  \\
+4min & 255.2 & -1.6  \\
+5min & 12.9 & -3.9  \\
+\hline
+\end{tabular}
+\end{table}
+
+Vor der 2 Minuten Marke beginnt eine Überlandstraße, die bis kurz vor Holzhausen (zwischen Marker 3 und 4) reicht. Das sind 56\% der Gesamtstrecke. Wie bei der Diskussion der 1. Fahrt bereits erwähnt ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h ein bisschen zu hoch gegriffen ist, was den leichten Vorsprung zur 3-Minuten-Marke erklären könnte.
+
+\begin{figure}[h]
+\centering
+\caption{Fahrt 3 -- Vergleich eines Turns}
+\label{fig:turn}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.80\textwidth]{../media/Fahrt3_Turn.png} \\
+\caption{Turn in den OSM Daten}
+\label{fig:turnosm}
+\end{subfigure}
+\begin{subfigure}{0.49\textwidth}
+\centering
+\includegraphics[width = 0.80\textwidth]{../media/Fahrt3_actualturn.png} \\
+\caption{Turn in der Wirklichkeit}
+\label{fig:turnworld}
+\end{subfigure}
+\end{figure}
+
+Zwischen Punkt 3 und 4 fällt das Emergency Profil wieder um 5 Sekunden zurück. Zwischen diesen Punkten befindet sich ein Turn, der deutlich schneller als andere Abbiegungen gefahren werden kann. Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Turns zwischen den OSM Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}). Es ist zu erkennen, dass der Turn um einiges "weicher" ist als die Daten beschreiben. Daher konnte das Löschfahrzeug gegenüber dem Profil Zeit gewinnen.
+
+Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9\%(Abb. \ref{profile2}) der noch nicht mit einberechnet wird und dem Emergency Profil wieder einen kleinen Vorsprung gibt.
+
+\begin{figure}[h]
+\centering
+\caption{Fahrt 3 -- Höhenprofil}
+\label{fig:profile2}
+\includegraphics[width = 0.60 \textwidth]{../media/Fahrt3_Profile.png} \\
+\end{figure}
+
+
+\subsection{Benötigte Änderungen}
+
+Wie durch die Vorliegende Analyse zu sehen ist, müssen noch einige Änderungen vollzogen werden, damit das Profil realistischere Ergebnisse zurückgibt.\par
+\todo{liststyle}
+Dass 30er Zonen noch nicht richtig erkannt werden muss repariert werden.
+Für die Steigung muss auf jeden Fall noch eine Funktion implementiert werden, welche diese berücksichtigt.
+Turns innerhalb von Routensegmenten, an Pillar Nodes, werden bisher nicht berücksichtigt.
+Die Zeit für einen Turn sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden. Ansätze hierfür wurden bereits entwickelt(siehe Source Code) konnten aber noch nicht implementiert werden.
+Für die Penalties sollte die Zeit, sofern vorhanden, aus der eigentlichen Beschleunigung und ansonsten möglicherweise aus dem Gewicht des Fahrzeugs berechnet werden. Dadurch können einfacher spezifische Fahrzeugprofile erstellt und getestet werden.
+Weiterhin sollte für Einbahnstraßen die in Gegenrichtung durchfahren werden ein Penalty(ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist). Das sollte ein Routing auf der Gegenfahrbahn wegen dem Gewinn von ein paar Sekunden verhindern. Ebenfalls sollten dadurch eher vorhandene Parallelstraßen benutzt werden.
+
+Leider ist es bisher nicht gelungen das AccelerationWeighting für die Generation von Isochronen verfügbar zu machen.
+Für eine optimale Nutzung für Hilfsorganisationen sollte an der Implementierung hierfür noch weiter gearbeitet werden.
+
+
+\newpage
+\section{Fazit}
+
+Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann bereits die Grundlegenden geforderten Eigenschaften erfüllen. Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben.
+Darüber hinaus können Einbahnstraßen in Beide Richtungen Durchfahren werden. Interessant wäre es hier einen Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
+So würden nur bei einer gewissen Zeitersparnis die Falsche Richtung verwendet werden und nicht schon bei einem Gewinn von wenigen Sekunden. Darüber hinaus würde eine Zeitstrafe dem Risiko des Gegenverkehrs gerecht werden.
+Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend festcodiert sondern können als Parameter bei der Abfrage mitgeliefert werden. Damit ist eine Erweiterung für andere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei möglich, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
+
+Für realistische Ergebnisse werden weitere Tests benötigt. Im Hinblick auf OSM-Daten kann keine endgültige Sicherheit gewährleistet werden, da die Ergebnisse höchstens so gut wie die Daten sein können.
+
+\newpage
+\section{Future Work or Ausblick}
+
+Die im Fragebogen erwähnte Suche nach Löschwasser Quellen am Zielort kann und sollte verwirklicht werden. Von der Datengrundlage her existieren diverse Tags für Objekte die von Einsatzkräften genutzt werden können. Für die Feuerwehr besonders interessant ist zum Beispiel der \lstinline{emergency=fire_hydrant} Tag für Hydranten. In vielen Städten sind diese durch das OpenFireMap-Projekt\footnote{https://wiki.openstreetmap.org/wiki/DE:OpenFireMap} flächendeckend abdigitalisiert und der OSM Datenbank zugefügt worden.
+
+Das Analysieren der Teststrecken ist durch das einzelne Senden der Requests und das anschließende Extrahieren der benötigten Werte relativ zeitaufwändig. Es wäre hilfreich ein Werkzeug zum gleichzeitigen senden von allen Testrequests zu entwickeln mit welchem danach ebenso die Antworten adäquat dargestellt werden können. Dabei sollten zum Beispiel die Distanzen zwischen wichtigen Änderungspunkten auf einer Route berechnet werden können und direkt Tabellarisch aufgelistet werden.
+
+Ein weiterer interessanter Aspekt den es zu beleuchten gilt ist das unterschiedliche Verkehrsaufkommen auf einer Straße oder Fußgängerzone. So könnten Geschwindigkeiten für bestimmte Wegsegmente je nach Zeit anhand von Berufsverkehr oder Tageszeit angepasst werden. Nachts sollten zum Beispiel generell weniger Autos unterwegs sein, wodurch Zeit gespaart wird, Umgekehrt zur Rush-Hour.
+
+\newpage
+\printbibliography
+%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\newpage
+\section{Anhang}
+\label{sec:anhang}
+\subsection{Copyrights}
+Die Rechte für die mit geojson.io generierten Abbildungen(\todo{list}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
+Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\todo{list}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
+Für Abbildung \ref{} liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
+Für Abbildung \ref{fig:traintunnel} liegt das Copyright bei \copyright DigitalGlobe.
+
+%### Testdrive 2
+%
+%Front
+%http://localhost:3005/directions?n1=48.454236&n2=10.826409&n3=18&a=48.454111,10.824569,48.457434,10.85755&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+%
+%Back
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111||10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%
+%Start
+%10.824569,48.454111
+%
+%WPS 1-5
+%10.827488,48.456986
+%10.835567,48.459512
+%10.84622,48.46324
+%10.852572,48.461468
+%10.85755,48.457434
+%
+%
+%### Testdrive 3
+%
+%Front
+%http://localhost:3005/directions?n1=48.44654&n2=10.826383&n3=15&a=48.454111,10.824569,48.443849,10.805097&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+%
+%Back
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%
+%Start
+%10.824569,48.454111
+%
+%WPS 1-5
+%10.821297,48.454111
+%10.819463,48.448041
+%10.816973,48.438369
+%10.806824,48.440618
+%10.805097,48.443849
+%
+%
 
 
 %#### waypoints as minutes
@@ -942,10 +1244,10 @@ Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der 
 %### Testdrive 1 Repeat
 %
 %Front
-%http://localhost:3005/directions?n1=48.454186&n2=10.825616&n3=18&a=48.454111,10.824569,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
+%http://localhost:3005/directions?n1=48.454186&n2=10.825616&n3=18&a=48.454111,10.824569,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
 %
 %Back
-%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.822102,48.45568|10.811641,48.460917|10.799421,48.464054|10.793488,48.46362|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
 %
 %Start
 %10.824569,48.454111
@@ -979,229 +1281,6 @@ Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der 
 %|     4min |    226.7 |      -3,3 |
 %|     5min |    298.9 |      -1,1 |
 %
-%### Testdrive 2
-%
-%Front
-%http://localhost:3005/directions?n1=48.454236&n2=10.826409&n3=18&a=48.454111,10.824569,48.456986,10.827488,48.459512,10.835567,48.46324,10.84622,48.461468,10.852572,48.457434,10.85755&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
-%
-%Back
-%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.827488,48.456986|10.835567,48.459512|10.84622,48.46324|10.852572,48.461468|10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
-%
-%Start
-%10.824569,48.454111
-%
-%WPS 1-5
-%10.827488,48.456986
-%10.835567,48.459512
-%10.84622,48.46324
-%10.852572,48.461468
-%10.85755,48.457434
-%
-%
-%### Testdrive 3
-%
-%Front
-%http://localhost:3005/directions?n1=48.44654&n2=10.826383&n3=15&a=48.454111,10.824569,48.454111,10.821297,48.448041,10.819463,48.438369,10.816973,48.440618,10.806824,48.443849,10.805097&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
-%
-%Back
-%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.821297,48.454111|10.819463,48.448041|10.816973,48.438369|10.806824,48.440618|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
-%
-%Start
-%10.824569,48.454111
-%
-%WPS 1-5
-%10.821297,48.454111
-%10.819463,48.448041
-%10.816973,48.438369
-%10.806824,48.440618
-%10.805097,48.443849
-%
-%
-%#### Drive 2 
-%
-%<!-- 1min:  86.6  +26.6
-%2min:  149.9  +29.9
-%3min:  207.5  +27.5
-%4min:  253.5  +13.5
-%5min:  318.6  +18.6 -->
-%
-%| Wegpunkt | Sekunden | Differenz |
-%|----------|----------|-----------|
-%|    1min: |     86.6 |     +26.6 |
-%|    2min: |    149.9 |     +29.9 |
-%|    3min: |    207.5 |     +27.5 |
-%|    4min: |    253.5 |     +13.5 |
-%|    5min: |    318.6 |     +18.6 |
-%
-%
-%#### Drive 3
-%
-%<!-- 1min:   89.8  +29.8
-%2min:   162.4  +42.4
-%3min:   213  +33
-%4min:   282.3  +42.3
-%5min:   343.9  +43.9 -->
-%
-%| Wegpunkt | Sekunden | Differenz |
-%|----------|----------|-----------|
-%|    1min: |     89.8 |     +29.8 |
-%|    2min: |    162.4 |     +42.4 |
-%|    3min: |      213 |       +33 |
-%|    4min: |    282.3 |     +42.3 |
-%|    5min: |    343.9 |     +43.9 |
-%
-%
-
-
-
-%#### Implement new Features
-%
-%- Elevation
-%- Waytypes
-%- Surface
-%- Avg Speed
-%
-%with elevation Height Profile visible
-%-> 70 m Incline
-%
-%### Realization
-%
-%Start end as well as turn penalty too high
-%
-%###weighting 2
-%
-%Start/End: 7.5
-%Turn: 16
-%
-%
-%#### Drive 1
-%
-%<!-- 1min:  59.5  -0.5
-%2min:  119.5  -0.5
-%3min:  169.5  -10.5
-%4min:  207.7  -32.2
-%5min:  271.9  -28.1 -->
-%
-%| Wegpunkt | Sekunden | Differenz |
-%|----------|----------|-----------|
-%|    1min: |     59.5 |      -0.5 |
-%|    2min: |    119.5 |      -0.5 |
-%|    3min: |    169.5 |     -10.5 |
-%|    4min: |    207.7 |     -32.2 |
-%|    5min: |    271.9 |     -28.1 |
-%
-%#### Drive 2
-%
-%<!-- 1min:  67.6  +7.6
-%2min:  126.9  +6.9
-%3min:  184.5  +4.5
-%4min:  230.5  -10.5
-%5min:  291.6  -8.4 -->
-%
-%| Wegpunkt | Sekunden | Differenz |
-%|----------|----------|-----------|
-%|    1min: |     67.6 |      +7.6 |
-%|    2min: |    126.9 |      +6.9 |
-%|    3min: |    184.5 |      +4.5 |
-%|    4min: |    230.5 |     -10.5 |
-%|    5min: |    291.6 |      -8.4 |
-%
-%
-%#### Drive 3
-%
-%<!-- 1min:   70.8    +10.8
-%2min:   139.4  +19.4
-%3min:   190  +10
-%4min:   255.2  +15.2
-%5min:   312.9  +12.9 -->
-%
-%| Wegpunkt | Sekunden | Differenz |
-%|----------|----------|-----------|
-%|    1min: |     70.8 |     +10.8 |
-%|    2min: |    139.4 |     +19.4 |
-%|    3min: |      190 |       +10 |
-%|    4min: |    255.2 |     +15.2 |
-%|    5min: |    312.9 |     +12.9 |
-%
-%
-%<!-- 10.824569,48.454111|10.822102,48.45568
-%10.824569,48.454111|10.811641,48.460917
-%10.824569,48.454111|10.799421,48.464054
-%10.824569,48.454111|10.793488,48.46362
-%10.824569,48.454111|10.789776,48.466555
-% -->
-%
-%### Conclusions
-%
-%Drive 1:
-%no Incline
-%52% 1-3% 
-%25% 4-5%
-%Larger sharp turns not detected
-%34% 80km/h segment a bit too fast
-%
-%Drive 2:
-%mostly ok +-10s
-%bit of holdup around the railwaytunnel
-%(one lane only,)
-%
-%32 % 80km/h segment a bit too fast
-%
-%Drive 3:
-%
-%30km/h Zone not detected and parsed as maxspeed 50
-%long 80km/h (56%) segment that speeds u
-%Turn after WP 3 increases WP 3 to  WP 4 of 16 sec (too much)
-%copyright of clip goes to (c) 2017 Google,Kartendaten (c)2017 GeoBasis-DE/BKG ((c)2009),Google
-%no incline 
-%for 150 m 7-9 % incline!
-%
-%Next Steps for Profile
-%Bugfixes:
-%oneway factor for "parallel" streets
-%include weighting for incline
-%fix 30km/h Zone
-%long 80 segment, should fix nothing, failure should be maxspeed beeing set a bit too high.
-%decrease turn time a little bit 
-%bzw. calculate Turn time with actual acceleration (given as parameter or factor of vehicleweight)
-%grade of the track overwrites given max speed (Drive 3 last step: grade 3 -> 15 km/h although maxspeed=50)
-%get acceleration working for isochrones
-%
-%
-%calc weight for dijkstra
-%calc millis for time add up
-
-
-
-\newpage
-\section{Fazit}
-
-Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann bereits die Grundlegenden geforderten Eigenschaften erfüllen. Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben.
-Darüber hinaus können Einbahnstraßen in Beide Richtungen Durchfahren werden. Interessant wäre es hier einen Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
-So würden nur bei einer gewissen Zeitersparnis die Falsche Richtung verwendet werden und nicht schon bei einem Gewinn von wenigen Sekunden. Darüber hinaus würde eine Zeitstrafe dem Risiko des Gegenverkehrs gerecht werden.
-Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend festcodiert sondern können als Parameter bei der Abfrage mitgeliefert werden. Damit ist eine Erweiterung für andere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei möglich, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
-
-Für Allgemeingültigkeit weitere Tests nötig. Immer in hinblick auf OSM-Data, keine endgültige Sicherheit gewährleistet.
-
-\newpage
-\section{Future Work or Ausblick}
-
-Suche nach Löschwasser quellen um den Zielpunkt ( osm tag emergency=fire\_hydrant )
-Beschleunigung, bisher nur Faktor, für genauere Berechnungen exakte Beschleunigungsdaten der Jeweiligen Fahrzeugklasse benötigt. Bremsweg, Kurvengeschwindigkeit, Beschleunigungsweg.
-rush hour , Tag und Nacht Unterscheidung (nachts weniger los auf Straßen\/ Fußgängerzonen ...)
-
-\newpage
-\printbibliography
-%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-
-\newpage
-\section{Anhang}
-\label{sec:anhang}
-\subsection{Copyrights}
-Die Rechte für die mit geojson.io generierten Abbildungen(\todo{list}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
-Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\todo{list}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
-Für die Abbildung () liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
-
 
 \subsection*{Links}
 
