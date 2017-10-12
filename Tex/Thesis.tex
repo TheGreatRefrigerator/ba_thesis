@@ -114,12 +114,15 @@
 
 {\centering\section*{Zusammenfassung}}
 \todo{Deutsche Kurzfassung}\par
-\lipsum[23-27]
+
+Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg zu entwickeln. Bisher gibt es keinen Routing-Service der die Tatsache berücksichtigt, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
+Auf Basis des Openrouteservice wurde ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet, Einbahnstraßen, Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Penalties für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
+Das Profil wurde durch Analytische Vergleichen zwischen den Fahrtzeiten von drei durchgeführten Testfahrten kalibriert. Die Ergebnisse zeigen, dass eine Funktion für die Steigung eingebaut werden muss. Die Fahrzeiten für die Minuten Marker der weitgehend ebenen Teststrecken liegen nahezu komplett im +-10-Sekunden-Bereich. Eine Interessante weiterführende Forschungsarbeit ist die Suche von Hydranten im Zielgebiet, welche durch den Locations-Service des Openrouteservice verwirklicht werden kann. Der Autor erhofft sich mit dieser Arbeit eine Grundlage für exaktere Routenfindung für Notfallfahrzeuge so wie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
+
 
 \newpage
 {\centering\section*{Abstract}}
-\todo{Abstract in Englisch}
-\lipsum[23-27]
+
 
 \newpage
 \tableofcontents
@@ -739,7 +742,7 @@ Die Klasse \lstinline!EmergencyVehicleGraphStorageBuilder! baut das Speicherobje
 \label{cod:builder}
 \end{figure}
 
-What does the edgefilter do ????? sowas wie restrictions auf für beide Richtungen festlegen ?
+Die Klasse \lstinline!EmergencyVehicleEdgeFilter! vergleicht bei der Ausführung des Routing Requests für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \lstinline!EmergencyVehicleGraphStorageBuilder! produzierten Speicherobjekt. Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden. Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen.
 
 Der Hauptteil der Änderungen wird in der \lstinline!EmergencyFlagEncoder! Klasse vorgenommen. Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{cod:flag}). Die Geschwindigkeiten sind bewußt höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen. Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp. Fahradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht. 
 
@@ -1147,30 +1150,41 @@ Für die Steigung muss auf jeden Fall noch eine Funktion implementiert werden, w
 Turns innerhalb von Routensegmenten, an Pillar Nodes, werden bisher nicht berücksichtigt.
 Die Zeit für einen Turn sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden. Ansätze hierfür wurden bereits entwickelt(siehe Source Code) konnten aber noch nicht implementiert werden.
 Für die Penalties sollte die Zeit, sofern vorhanden, aus der eigentlichen Beschleunigung und ansonsten möglicherweise aus dem Gewicht des Fahrzeugs berechnet werden. Dadurch können einfacher spezifische Fahrzeugprofile erstellt und getestet werden.
+Da das AccelerationWeighting sowohl für das Löschfahrzeug als auch für allgemeine Einsatzfahrzeuge benutzt wird, erhalten diese bisher die gleichen Penalties. Das kann ebenfalls durch den zuletzt genannten Punkt behoben werden.
 Weiterhin sollte für Einbahnstraßen die in Gegenrichtung durchfahren werden ein Penalty(ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist). Das sollte ein Routing auf der Gegenfahrbahn wegen dem Gewinn von ein paar Sekunden verhindern. Ebenfalls sollten dadurch eher vorhandene Parallelstraßen benutzt werden.
-
-Leider ist es bisher nicht gelungen das AccelerationWeighting für die Generation von Isochronen verfügbar zu machen.
-Für eine optimale Nutzung für Hilfsorganisationen sollte an der Implementierung hierfür noch weiter gearbeitet werden.
-
 
 \newpage
 \section{Fazit}
 
-Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann bereits die Grundlegenden geforderten Eigenschaften erfüllen. Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben.
-Darüber hinaus können Einbahnstraßen in Beide Richtungen Durchfahren werden. Interessant wäre es hier einen Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
-So würden nur bei einer gewissen Zeitersparnis die Falsche Richtung verwendet werden und nicht schon bei einem Gewinn von wenigen Sekunden. Darüber hinaus würde eine Zeitstrafe dem Risiko des Gegenverkehrs gerecht werden.
+Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann bereits die Grundlegenden geforderten Eigenschaften erfüllen. Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben. 
+Es ist für das Profil möglich Einbahnstraßen in Beide Richtungen zu durchfahren. Bisher wird deswegen allerdings ab und zu die Gegenfahrbahn über längere Distanzen wegen einem Gewinn von nur wenigen Sekunden verwendet. Darüber hinaus würde ein Penalty dem Risiko des Gegenverkehrs gerecht werden. Interessant wäre es daher einen Penalty-Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet. Dadurch würden auch in der Nähe liegende Parallelstraßen vorgezogen werden.
+Darüber hinaus werden bisher nicht befahrbare Straßentypen wie Fußgängerzonen und Radwege für das Profil verfügbar gemacht. Eine Routenführung bis zum Zielpunkt wird so gegenüber den normalen Fahrzeug Profilen in den meisten Fällen erreicht.
+
+Derzeit wird die Schwerfälligkeit des Löschfahrzeuges durch positive Faktorisierung\footnote{Die Gewichtung wird mit Werten größer 1.0 multipliziert} der Gewichtung für Start, Ankunft und Turns bei der Suche nach dem schnellsten Weg berücksichtigt. Für die durchgeführten Teststrecken wurde beim routen von Start bis Endpunkt jeweils genau die richtige Route zurückgegeben. Ob diese Faktorisierung allgemein gültig ist, muss noch durch weitere Analysen überprüft werden.
+Für die Berechnung der Zeit werden zur Berücksichtigung der Schwerfälligkeit einfache Penalties für Start, Ankunft und Turns verwendet. Hierbei wird ein Turn durch den Winkel zwischen zwei Straßensegmenten an einer Kreuzung ermittelt. Bisher erhält jeder Turn den gleichen Penalty obwohl manche Kurven schneller gefahren werden können. Kurven innerhalb eines Segmentes werden bisher noch nicht registriert.
+
+Für realistischere Ergebnisse müssen diese Kurven ebenfalls als Turn registriert werden. Darüber hinaus muss der Öffnungswinkel einer Kurve mit in die Berechnung der zusätzlichen Zeit einfließen, da Turns mit größerem Winkel auch schneller gefahren werden können. Gleichzeitig muss auch die Geschwindigkeit des vorherigen und folgenden Straßensegments beachtet werden, da diese die Brems- bzw. Beschleunigungsstrecke alterieren.
+Die Steigung eines Straßensegments hat einen signifikannten Einfluss auf die benötigte Zeit und muss daher ebenfalls einkalkuliert werden.
+Es werden für die Implementierung dieser Funktionen noch weitere Analysen zu speziellen Testfahren für das jeweilige Szenario (Steigung, Turn) benötigt.
+
 Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend festcodiert sondern können als Parameter bei der Abfrage mitgeliefert werden. Damit ist eine Erweiterung für andere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei möglich, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
 
-Für realistische Ergebnisse werden weitere Tests benötigt. Im Hinblick auf OSM-Daten kann keine endgültige Sicherheit gewährleistet werden, da die Ergebnisse höchstens so gut wie die Daten sein können.
+Im Hinblick auf OSM-Daten kann keine endgültige Sicherheit gewährleistet werden, da die Ergebnisse höchstens so gut wie die Daten sein können
+
+Für die Erstellung von Einzugsgebieten für das Emergency Profil, muss letztlich die Gewichtung für den Isochrones Service verfügbar gemacht werden.
+Das ist in der bisherigen Implementierung noch nicht gelungen.
 
 \newpage
-\section{Future Work or Ausblick}
+\section{Ausblick}
 
-Die im Fragebogen erwähnte Suche nach Löschwasser Quellen am Zielort kann und sollte verwirklicht werden. Von der Datengrundlage her existieren diverse Tags für Objekte die von Einsatzkräften genutzt werden können. Für die Feuerwehr besonders interessant ist zum Beispiel der \lstinline{emergency=fire_hydrant} Tag für Hydranten. In vielen Städten sind diese durch das OpenFireMap-Projekt\footnote{https://wiki.openstreetmap.org/wiki/DE:OpenFireMap} flächendeckend abdigitalisiert und der OSM Datenbank zugefügt worden.
+\todo{Add Ausblick to Fazit?}
 
 Das Analysieren der Teststrecken ist durch das einzelne Senden der Requests und das anschließende Extrahieren der benötigten Werte relativ zeitaufwändig. Es wäre hilfreich ein Werkzeug zum gleichzeitigen senden von allen Testrequests zu entwickeln mit welchem danach ebenso die Antworten adäquat dargestellt werden können. Dabei sollten zum Beispiel die Distanzen zwischen wichtigen Änderungspunkten auf einer Route berechnet werden können und direkt Tabellarisch aufgelistet werden.
 
-Ein weiterer interessanter Aspekt den es zu beleuchten gilt ist das unterschiedliche Verkehrsaufkommen auf einer Straße oder Fußgängerzone. So könnten Geschwindigkeiten für bestimmte Wegsegmente je nach Zeit anhand von Berufsverkehr oder Tageszeit angepasst werden. Nachts sollten zum Beispiel generell weniger Autos unterwegs sein, wodurch Zeit gespaart wird, Umgekehrt zur Rush-Hour.
+Ein weiterer interessanter Aspekt den es zu beleuchten gilt, ist das unterschiedliche Verkehrsaufkommen auf einer Straße oder Fußgängerzone. So könnten Geschwindigkeiten für bestimmte Wegsegmente je nach Zeit anhand von Berufsverkehr oder Tageszeit angepasst werden. Nachts sollten zum Beispiel generell weniger Autos unterwegs sein, wodurch Zeit gespaart wird, Umgekehrt zur Rush-Hour.
+
+Die im Fragebogen erwähnte Suche nach Löschwasser Quellen am Zielort kann und sollte verwirklicht werden. Von der Datengrundlage her existieren diverse Tags für Objekte die von Einsatzkräften genutzt werden können. Für die Feuerwehr besonders interessant ist zum Beispiel der \lstinline{emergency=fire_hydrant} Tag für Hydranten. In vielen Städten sind diese durch das OpenFireMap-Projekt\footnote{https://wiki.openstreetmap.org/wiki/DE:OpenFireMap} flächendeckend abdigitalisiert und der OSM Datenbank zugefügt worden.
+
 
 \newpage
 \printbibliography
