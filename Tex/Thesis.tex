@@ -14,6 +14,7 @@
 %matrices and tables
 \usepackage{blkarray}
 \usepackage{floatrow}
+\usepackage{hhline}
 
 %figures & images
 \usepackage{graphicx}
@@ -22,7 +23,7 @@
 %utils
 \usepackage{color}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{lipsum}
 \usepackage{array}
 \usepackage{textcomp}
@@ -82,7 +83,8 @@
   literate={ß}{{\ss}}2,
   backgroundcolor=\color{codegray}
 }
-
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{\medskipamount}
 
 \begin{titlepage}
 \begin{center}
@@ -113,26 +115,38 @@
 \pagenumbering{Roman}
 
 {\centering\section*{Zusammenfassung}}
-\todo{Deutsche Kurzfassung}\par
+
+\vspace{1cm}
 
 Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg (in Schwaben) zu entwickeln.
+\medskip
+
 Bisher gibt es keinen Routing-Service der die Tatsache berücksichtigt, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
-Auf Basis des Openrouteservice wurde mit OpenStreetMap als Datengrundlage ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet sowie Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Weiterhin dürfen Einbahnstraßen in Gegenrichtung durchfahren werden.
+Auf Basis des Openrouteservice wurde mit OpenStreetMap als Datengrundlage ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet sowie Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Weiterhin dürfen Einbahnstraßen in Gegenrichtung durchfahren werden.\par
 Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Penalties für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
 Das Profil wurde durch Analytische Vergleichen zwischen den Fahrtzeiten von drei durchgeführten Testfahrten kalibriert. Die Ergebnisse zeigen, dass eine Funktion für die Steigung eingebaut werden muss.
 Die Differenzen der Fahrzeiten für die Minuten Marker der zwei weitgehend ebenen Teststrecken liegen nahezu komplett im 10-Sekunden-Bereich.
-Der Autor möchte mit dieser Arbeit eine Grundlage für exaktere Routenfindung und Fahrzeitberechnung für Notfallfahrzeuge sowie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
+\bigskip
 
+Der Autor möchte mit dieser Arbeit eine Grundlage für exaktere Routenfindung und Fahrzeitberechnung für Notfallfahrzeuge sowie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
 
 \newpage
 {\centering\section*{Abstract}}
+
+\vspace{1cm}
+
+
 The goal of the present bachelor thesis was to develop a prototypical Routing-Profile for Fireengines in a research cooperation with the voluntary fire department in Lützelburg (in swabia).
-So far there is no routing-service considering that emergency vehicles are allowed to ignore the StVO\footnote(german road traffic regulation).
+\medskip
+
+So far there is no routing-service considering that emergency vehicles are allowed to ignore the StVO\footnote{german road traffic regulation}.
 Based on the Openrouteservice using OpenStreetMap as data pool, an Emergency Profile was developed, which uses reasonable speeds for emergency vehicles and is allowed to drive on cycling-ways, pedestrian zones and additional waytypes.Furthermore oneways can be passed through from the opposite direction.
 The delay for acceleration and break processes were taken into account with time penalties for starting, turns and arrival.
 The Profile was calibrated through analytical comparison of three Test runs.
 The results show, that a function for the steepness has yet to be added.
 Differences in Travel times for the minute markers of the two mostly level test routes were mostly in 10 second range.
+\bigskip
+
 The Author wants to provide a basis for more accurate routing and travel time calculation for emergency vehicles as well as assistance in the development for demand plans.
 
 
@@ -315,7 +329,11 @@ Demnach muss in Abbildung~\ref{fig:directed} um von $v_{5}$ nach $v_{4}$ zu gela
 \subsubsection{Gewichtete Graphen}
 In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert ~$c$ zugewiesen wird.
 
-$$G = (V,E)$$ mit $$c: E \rightarrow \mathbb{R}$$
+$$G = (V,E)$$ 
+\begin{center}
+mit
+\end{center}
+$$c: E \rightarrow \mathbb{R}$$
 
 Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden. Diese werden aber nur für wenige Problemstellungen benötigt und sind hier nicht von Belang. Gewichtete Graphen können gerichtet und ungerichtet sein. Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
@@ -373,7 +391,7 @@ Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewi
 Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Knoten. Jedes Navigationssystem muss diese Aufgabe erfüllen können. Ein kürzester Weg hat demnach die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen im Graphen ist.
 
 \subsubsection{Shortest Path Problem}
-Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{\gls{tsp}} verwechselt werden sollte. Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G  = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jeden Knoten des Graphen besucht(\cite[135]{algorithms}).
+Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{\gls{tsp}} verwechselt werden sollte. Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jeden Knoten des Graphen besucht(\cite[135]{algorithms}).
 Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,E)$ mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}$ zugrunde liegt. Beim \textit{\gls{spp}} wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht. Das \textit{\gls{ssp}} möchte den kürzesten Weg einer Ecke $a~$ zu jeder anderen Ecke ermitteln (Formel ?). Das \textit{\gls{apsp}} sucht den kürzesten Weg von jeder Ecke zu jeder anderen Ecke in $V~$ (\cite[169\psq]{algorithms}).
 
 Für eine Route von Startecke $s~$ zur Zielecke $z~$ ist das \gls{spp} demnach die richtige Wahl. Allerdings wird dazu das \gls{ssp} herangezogen, welches mit dem Algorithmus von Dijkstra gelöst werden kann.
@@ -381,7 +399,7 @@ Für eine Route von Startecke $s~$ zur Zielecke $z~$ ist das \gls{spp} demnach d
 
 \subsubsection{Dijkstra-Algorithmus}
 \label{sec:dijkstra}
-Der in 1959 von Edsger W. Dijkstra entwickelte Algorithmus (\cite{dijkstra}) benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$. Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken. Dort sind für alle $v~$ die Kosten für den bisher kürzesten Weg von $s~$ und die jeweilige vorangehende Ecke auf diesem Weg gepeichert. Die Kosten können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt $s~$ mit den trivialen Kosten $0~$. Es gibt eine weitere Liste der endgültig kürzesten Wege $K_{s}$ in der alle markierten Ecken gespeichert werden.
+Der in 1959 von Edsger W. Dijkstra entwickelte Algorithmus (\cite{dijkstra}) benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen. Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer. Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer endlos Schleife läuft. Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$. Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken. Dort sind für alle $v~$ die Kosten für den bisher kürzesten Weg von $s~$ und die jeweilige vorangehende Ecke auf diesem Weg gespeichert. Die Kosten können sich noch ändern wenn ein noch kürzerer Weg gefunden wird. Diese Liste enthält zu Beginn nur den Startpunkt $s~$ mit den trivialen Kosten $0~$. Es gibt eine weitere Liste der endgültig kürzesten Wege $K_{s}$ in der alle markierten Ecken gespeichert werden.
 
 Dijkstra's Algorithmus markiert die Ecke mit den geringsten Kosten aus $W_{s}$ und verschiebt diese nach $K_{s}$. Nun werden alle benachbarten Ecken gesichtet und die Kosten berechnet. Die Kosten und der Vorgänger werden in $W_{s}$ gespeichert. Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorthin auf jeden Fall ein kürzester ist. Dieser Vorgang wird wiederholt bis alle Ecken aus $W_{s}$ markiert wurden und $W_{s}$ somit leer ist.
 
@@ -486,7 +504,7 @@ Der Algorithmus wird bisher jedes mal für den ganzen Graphen ausgeführt, obwoh
 
 
 \paragraph*{Bidirectional Dijkstra:}
-Beim bidirectional Dijkstra werden zeitgleich zwei Algorithmen nebeneinander ausgeführt. Einer auf $s~$ und einer auf $z~$ (auf einem umgekehrt gerichteten Graphen). Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$. Zu Beginn wird für jeden Startpunkt die initiale der umliegenden Ecken durchgeführt. Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt. Wird eine Ecke aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Ecken geprüft. Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet. Die Ecke ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.\par
+Beim \textit{Bidirectional Dijkstra} werden zeitgleich zwei Algorithmen nebeneinander ausgeführt. Einer auf $s~$ und einer auf $z~$ (auf einem umgekehrt gerichteten Graphen). Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$. Zu Beginn wird für jeden Startpunkt die initiale der umliegenden Ecken durchgeführt. Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt. Wird eine Ecke aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Ecken geprüft. Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet. Die Ecke ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.\par
 In der schematischen Abbildung ~\ref{fig:biD} wird die Einsparung gegenüber dem Early Stopping deutlich. Der graue Bereich muss nicht berechnet werden. Die Bearbeitungszeit lässt sich also theoretisch um die Hälfte reduzieren\footnote{In der Realität wir dieser Wert selten erreicht. Bei Graphen mit einer höheren Eckendichte in Nähe von $z~$ könnte die Bearbeitungszeit sogar größer werden. Allgemein wird aber ein signifikanter Vorteil erzielt.}.
 
 \begin{figure}[h]
@@ -626,7 +644,7 @@ Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{os
 \label{tab:speedinfo}
 \begin{tabular}{|l|r|}
 \hline
-\multicolumn{1}{|l|}{\lstinline!highway! Value}  & \multicolumn{1}{c|}{\textit{km/h}} \\
+\multicolumn{1}{|l|}{\lstinline!highway! Value} & \multicolumn{1}{c|}{\textit{km/h}} \\
 \hline
 \multicolumn{2}{|l|}{\textit{Autobahnen}} \\
 \hline
@@ -654,29 +672,28 @@ track (Wald-/Feldweg) & 15 \\
 \end{tabular}
 \end{table}
 
-Auf Wirtschafts-, Wald- und Wiesenwegen mit dem Key-Value-Pair  \lstinline!highway=track! kann zusätzlich der Zustand des Weges mit dem Tag \lstinline!waytype! beschrieben werden. Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
+Auf Wirtschafts-, Wald- und Feldwegen mit dem Key-Value-Pair \lstinline!highway=track! kann zusätzlich der Zustand des Weges mit dem Tag \lstinline!waytype! beschrieben werden. Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
 \begin{table}[h]
 \centering
 \caption{Standardgeschwindigkeiten für unterschiedlichen \lstinline!tracktype! Values}
 \label{tab:speedinfotrack}
 \begin{tabular}{|l|r|}
-% \multicolumn{1}{l}{tracktype! Value}  & \multicolumn{1}{|c|}{HGV-Profil} \\
 \hline
 tracktype Value & \textit{km/h} \\
 \hline
-grade1 (Wasserfester Belag) & 20(25)     \\
-grade2 (Wassergebundene Decke) & 15    \\
+grade1 (Wasserfester Belag) & 20(25)   \\
+grade2 (Wassergebundene Decke) & 15  \\
 grade3 (Befestigter oder ausgebesserter Weg) & 10(15)  \\
-grade4 (Unbefestigter Weg) & 5(10)     \\
-grade5 (Unbefestigter Weg) & 5     \\
+grade4 (Unbefestigter Weg) & 5(10)   \\
+grade5 (Unbefestigter Weg) & 5   \\
 \hline
 \end{tabular}
 \end{table}
 
-\paragraph*{3. Dürfen vorgegebene Geschwindikeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
+\paragraph*{3. Dürfen vorgegebene Geschwindigkeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
 \label{frage3}
-Manchmal sind besondere Geschwindikeitsrestriktionen, wie zum Beispiel Tempo-30-Zonen vorhanden.  In Tempo-30-Zonen darf 50 km/h und in Spielstraßen darf 20 km/h gefahren werden. Dabei ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
+Manchmal sind besondere Geschwindigkeitsrestriktionen, wie zum Beispiel Tempo-30-Zonen vorhanden. In Tempo-30-Zonen darf 50 km/h und in Spielstraßen darf 20 km/h gefahren werden. Dabei ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
 
 \paragraph*{4. Dürfen Gewicht und/oder Achslast für Straßen mit Vorgabe überschritten werden?}
 \label{frage4}
@@ -719,7 +736,7 @@ Es dürfen die in Tabelle \ref{tab:speedinfospecial} gelisteten, für den normal
 \centering
 \begin{tabular}{|l|c|}
 \hline
-\multicolumn{1}{|l|}{Key-Value-Paar}  & \multicolumn{1}{c|}{Geschwindigkeit} \\
+\multicolumn{1}{|l|}{Key-Value-Paar} & \multicolumn{1}{c|}{Geschwindigkeit} \\
 \hline
 aeroway=runway (Start/Landebahn) & 80 \\
 aeroway=taxilane (Rollweg) & 80 \\
@@ -746,7 +763,7 @@ Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den ric
 \label{cod:storage}
 \end{figure}
 
-Davon sind alleine drei für die Fahrzeugdimensionsen zuständig.
+Davon sind alleine drei für die Fahrzeugdimensionen zuständig.
 Die Klasse \lstinline!EmergencyVehicleAttributesGraphStorage! initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Abb.~\ref{cod:storage}).
 Die Klasse \lstinline!EmergencyVehicleGraphStorageBuilder! baut das Speicherobjekt zusammen. Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den OSM-Daten gespeichert . Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen. Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben. Andere Straßen dürfen normalerweise aufgrund des OSM-Tags \lstinline!access=private! oder \lstinline!access=restricted! gar nicht verwendet werden. Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
 
@@ -756,9 +773,15 @@ Die Klasse \lstinline!EmergencyVehicleGraphStorageBuilder! baut das Speicherobje
 \label{cod:builder}
 \end{figure}
 
-Die Klasse \lstinline!EmergencyVehicleEdgeFilter! vergleicht bei der Ausführung des Routing Requests für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \lstinline!EmergencyVehicleGraphStorageBuilder! produzierten Speicherobjekt. Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden. Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen.
+Die Klasse \lstinline!EmergencyVehicleEdgeFilter! vergleicht bei der Ausführung des Routing Requests für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \lstinline!EmergencyVehicleGraphStorageBuilder! produzierten Speicherobjekt. Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden. Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen (Abb. ~\ref{cod:filter}).
 
-Der Hauptteil der Änderungen wird in der \lstinline!EmergencyFlagEncoder! Klasse vorgenommen. Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{cod:flag}). Die Geschwindigkeiten sind bewußt höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen. Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp. Fahradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht. 
+\begin{figure}[h]
+\lstinputlisting[language=Java, firstline=503, lastline=504, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyVehicleEdgeFilter.java}
+\caption{Vergleich der übergebenen Dimensionen mit den Restriktionen des Graphen(\lstinline!EmergencyVehicleEdgeFilter!)}
+\label{cod:filter}
+\end{figure}
+
+Der Hauptteil der Änderungen wird in der \lstinline!EmergencyFlagEncoder! Klasse vorgenommen. Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{cod:flag}). Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen. Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp. Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht. 
 
 \begin{figure}[h]
 \lstinputlisting[language=Java, firstline=149, lastline=179, basicstyle=\footnotesize]{../data/JavaFiles/EmergencyFlagEncoder.java}
@@ -790,7 +813,8 @@ Um Einbahnstraßen in jeder Richtung nutzen zu können wurden Teile des Codes au
 \label{cod:weight}
 \end{figure}
 
-Der EmergencyFlagEncoder beinhaltet auch die Funktion \lstinline!clollect! mit welcher dem Wegsegment anhand seines Wegtyps eine Priorität zugeschrieben wird. So können Straßen auf denen hohe Geschwindikeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
+Der EmergencyFlagEncoder beinhaltet auch die Funktion \lstinline!clollect! mit welcher dem Wegsegment anhand seines Wegtyps eine Priorität zugeschrieben wird. So können Straßen auf denen hohe Geschwindigkeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
+
 
 Durch das den Code in Abbildung \ref{cod:weight} sollen die höchste Priorität Straßen mit dem Tag \lstinline!service=emergency_access! erhalten. Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen. Da Busspuren theoretisch auch vom normalen Verkehr freigehalten werden müssen, werden diesen hier ebenfalls eine höhere Priorität zugewiesen.
 
@@ -798,7 +822,7 @@ Beim ausführen des Codes werden die auf diese Weise generierten Flags beim Bau 
 
 Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des ORS Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert. Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben. 
 
-Damit ist der prozessierungs  Teil des Profils fertig gestellt. Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
+Damit ist der prozessierungs Teil des Profils fertig gestellt. Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
 
 %
 %%\subsection{Limitierende Faktoren}
@@ -814,25 +838,36 @@ Damit ist der prozessierungs  Teil des Profils fertig gestellt. Es können an di
 
 \subsection{Anpassungen Frontend}
 
-Das ORS Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht. Gleichzeitig kann das Ergebnis quasi sofort auf der gleichen Oberfläche  dargestellt werden. Das Frontend für das Emergency-Profil kann unter \href{www.emergency.openrouteservice.org} erreicht werden.
-Allgemein kann über einen Rechtsklick auf die Karte ein Start-, Weg- oder Endpunkt platziert werden. Sobald zwei Punkte vorhanden sind wird ein Routing Request für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt. Genauere Informationen zu der Routewie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
-Um eine Erreichbarkeits Analyse durchzuführen kann am linken Rand der Website von Routing auf Isochronen umgestellt werden. Hier kann mit einem Rechtsklick auf die Karte ein Zentrum gesetzt werden. Nach einem Klick auf den Isochronen Generieren Button wird die Antwort für den aus den Einstellungen generierten Request angezeigt.
+Das ORS Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht. Gleichzeitig kann das Ergebnis quasi sofort auf der gleichen Oberfläche dargestellt werden. Das Frontend für das Emergency-Profil kann unter \href{www.emergency.openrouteservice.org} erreicht werden.
 
-Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob umrissen. Alle Änderungen können aber im Detail nachvollzogen werden, da auch hier der Quellcode Opensource ist (\ref{sec:anhang}).
+\bigskip
+
+Allgemein kann über einen Rechtsklick auf die Karte ein Start-, Weg- oder Endpunkt platziert werden. Sobald zwei Punkte vorhanden sind wird ein Routing Request für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt. Genauere Informationen zu der Route, wie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
+Um eine Erreichbarkeitsanalyse durchzuführen kann am linken Rand der Website von Routing auf Isochronen umgestellt werden. Hier kann mit einem Rechtsklick auf die Karte ein Zentrum gesetzt werden. Nach einem Klick auf den Isochronen Generieren Button wird die Antwort für den aus den Einstellungen generierten Request angezeigt.
+
+\bigskip
+
+Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob umrissen. Alle Änderungen können aber im Detail nachvollzogen werden, da auch hier der Quellcode Opensource ist (Siehe Anhang S.~\pageref{sec:anhang}).
+
+\bigskip
 
 Da die Fußgänger-, das Rollstuhl- und die Fahrrad-Profile für Einsatzfahrten irrelevant sind wurden diese aus der Darstellung auskommentiert. Das Auto- und HGV-Profil wurde für direkte Vergleiche zum Emergency-Profil beibehalten.
 Gleichzeitig wurde das neue Emergency-Profil eingefügt für welches 2 Fahrzeugklassen vorhanden sind.
 
-1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt. Damit müssen diese Daten bei einem neuen Aufruf der Seite nicht jedesmal neu eingegeben werden. 
+\bigskip
+
+1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt. Damit müssen diese Daten bei einem neuen Aufruf der Seite nicht jedes mal neu eingegeben werden. 
 2. Profil allgemein für Einsatzfahrzeuge: Hier werden keine Fahrzeugdimensionen eingestellt. Die Höchstgeschwindigkeit für dieses Profil ist standardmäßig auf 130km/h gesetzt. Diese kann in den weiteren Einstellungen deaktiviert werden.
 
-Aufgrund der Berechnungszeit für Graphen wurde der Datenbereich auf den politischen Raum Schwaben begrenzt. Abfragen können nur in diesem Bereich getätigt werden weshalb dieser als durchsichtiges Polygon über der Karte automatisch angezeigt wird. Der Datenbereich kann über eine Checkbox in der rechten unteren Ecke ausgeschalten werden.
+\bigskip
+
+Aufgrund der Berechnungszeit für Graphen wurde der Datenbereich auf den politischen Raum Schwaben begrenzt. Abfragen können nur in diesem Bereich getätigt werden weshalb dieser als durchsichtiges Polygon über der Karte automatisch angezeigt wird. Der Datenbereich kann über eine Checkbox in der rechten unteren Ecke ausgeschaltet werden.
 
 \newpage
 \newpage
 \section{Ergebnisse}
 
-Die Verwendung neuer Wegtypen konnte erfolgreich eingebunden werden wie in Abbildung \ref{fig:footway} zu erkennen ist. Hier wurden als Zielpunkte verschieden Stellen auf der Fußgängerzone(v.a. Hauptstraße) in der Heidelberger Altstadt\footnote{Heidelberg liegt natürlich nicht in Schwaben! Für diesen Test wurde ein Gebiet um Heidelerg als Datengrundlage verwendet.} gewählt. Da der ORS zur Darstellung mehrerer Routen bisher noch nicht geeignet ist, wurden die Antworten im GeoJson Format mit der Website \textit{http://geojson.io} visualisiert. Im gegensatz zum Auto Profil des ORS findet das Emergency-Profil seinen Weg bis zum gewünschten Zielpunkt. Durch die niedrige Geschwindigkeitsangabe des Backends wird auch nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller gehen würde. Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
+Die Verwendung neuer Wegtypen konnte erfolgreich eingebunden werden wie in Abbildung \ref{fig:footway} zu erkennen ist. Hier wurden als Zielpunkte verschieden Stellen auf der Fußgängerzone(v.a. Hauptstraße) in der Heidelberger Altstadt\footnote{Heidelberg liegt natürlich nicht in Schwaben! Für diesen Test wurde ein Gebiet um Heidelberg als Datengrundlage verwendet.} gewählt. Da der ORS zur Darstellung mehrerer Routen bisher noch nicht geeignet ist, wurden die Antworten im GeoJson Format mit der Website \textit{http://geojson.io} visualisiert. Im Gegensatz zum Auto Profil des ORS findet das Emergency-Profil seinen Weg bis zum gewünschten Zielpunkt. Durch die niedrige Geschwindigkeitsangabe des Backends wird auch nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller gehen würde. Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
 
 \begin{figure}[h]
 \centering
@@ -840,13 +875,13 @@ Die Verwendung neuer Wegtypen konnte erfolgreich eingebunden werden wie in Abbil
 \label{fig:footway}
 \begin{subfigure}{0.49\textwidth}
 \centering
-\includegraphics[width = 0.80\textwidth]{../media/Altstadt_emergency.png} \\
+\includegraphics[width = 0.95\textwidth]{../media/Altstadt_emergency.png} \\
 \caption{Emergency Routing}
 \label{fig:alteme}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \centering
-\includegraphics[width = 0.80\textwidth]{../media/Altstadt_car.png} \\
+\includegraphics[width = 0.95\textwidth]{../media/Altstadt_car.png} \\
 \caption{ORS-Car Routing}
 \label{fig:altcar}
 \end{subfigure}
@@ -886,6 +921,10 @@ Die Ersten Ergebnisse lieferten zu erwartende Resultate \ref{fig:isochrones}. Di
 \includegraphics[width = 0.75\textwidth]{../media/isoeme.png} \\
 \caption{Emergency-Profil -- Einsatzfahrzeug}
 \label{fig:isoeme}
+\end{subfigure}
+\begin{subfigure}{0.90\textwidth}
+\centering
+\includegraphics[width = 0.75\textwidth]{../media/legendiso.png} \\
 \end{subfigure}
 \caption{Ergebnis Isochronen}
 \label{fig:isochrones}
@@ -930,7 +969,7 @@ Geschwindigkeit (Testfahrt) {[}km/h{]} & 21,8                   & 59,4          
 \end{tabular}
 \end{table}
 
-Die Vermutung liegt nahe, dass die große Differenz aufgrund der fehlenden Beschleunigungs- und Bremszeiten auftritt. Bisher wird von graphhopper bei der Berechnung der Fahrzeit lediglich 90\% des für ein Segment vorgegebenen Geschwindigkeitlimits verwendet. Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung auf jedenfall eingehalten wird. Dieser Faktor wurde für das Emergency Profil entfernt.
+Die Vermutung liegt nahe, dass die große Differenz aufgrund der fehlenden Beschleunigungs- und Bremszeiten auftritt. Bisher wird von graphhopper bei der Berechnung der Fahrzeit lediglich 90$\%$ des für ein Segment vorgegebenen Geschwindigkeitslimits verwendet. Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung auf jedenfall eingehalten wird. Dieser Faktor wurde für das Emergency Profil entfernt.
 Es wird also ein Straßensegment auf dem 50 km/h gefahren werden darf über die komplette Distanz bisher auch mit 50 km/h gefahren.
 In der Realität braucht ein Fahrzeug dieser Größenordnung aber einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen. Die selbe Situation besteht für Bremsvorgänge.
 Es bestehen also drei Szenarien auf einer Fahrt, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben. Das sind der Start, ein Abbiegevorgang (engl.: Turn) und die Ankunft. Es gibt selbstverständlich noch mehr Faktoren die zum Beispiel andere Verkehrsteilnehmer betreffen, aber die drei genannten Szenarien sind bereits aus der Routenführung ersichtlich und werden definitiv bei jeder Fahrt auftreten\footnote{Wenn die Fahrt nur geradeaus geht ist auch kein Abbiegevorgang dabei}.
@@ -943,10 +982,10 @@ Eine Abbiegung bzw. scharfe Kurve wird durch einen Winkel zwischen 50 und 140 Gr
 Bei einer Routing Abfrage wird in einem solchen Fall das Gewicht der auf die Kurve folgenden Kante erhöht. Ebenso wird sobald der schnellste Weg ermittelt ist an diesen Stellen die Bremszeit vor der Abbiegung und die Beschleunigungszeit nach der Abbiegung zur Gesamtzeit des folgenden Wegsegmentes addiert. Der gleiche Vorgang wird für Start und Ziel durchgeführt. Die addierte Zeit wird als \textit{Penalty} (dt.: Strafe) bezeichnet.
 
 Anhand der vorliegenden Testfahrt wurde das Profil derart kalibriert, dass durch die Penalties für Abbiegungen, Start und Ziel genau die fehlenden 90 Sekunden gebraucht wurden.
-Für Start sowie Ankunft wurden 15 und für Abbiegungen 20 Sekunden beanschlagt.
+Für Start sowie Ankunft wurden 15 und für Abbiegungen 20 Sekunden veranschlagt.
 
 Mit dem neu eingestellten Profil wurde nun erneut ein Request für die erste Testfahrt gesendet. Wie erwarte brauchte das Profil nun für diesen Weg ebenfalls fast genau fünf Minuten.
-In Tabelle \ref{tab:drive1} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diesen Request zu sehen. Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und den zweiten Teil zu schnell absolviert.
+In Tabelle \ref{tab:drive11} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diesen Request zu sehen. Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und den zweiten Teil zu schnell absolviert.
 
 \begin{table}[h]
 \centering
@@ -972,7 +1011,7 @@ Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich
 \begin{figure}[h]
 \centering
 \caption{Testfahrt 2}
-\label{drive2}
+\label{fig:drive2}
 \includegraphics[width = 0.70 \textwidth]{../media/Fahrt2crop.png} \\
 \end{figure}
 
@@ -996,7 +1035,7 @@ Wegpunkt & Sekunden & Abweichung \\ \hline
 \begin{figure}[h]
 \centering
 \caption{Testfahrt 3}
-\label{drive3}
+\label{fig:drive3}
 \includegraphics[width = 0.40 \textwidth]{../media/Fahrt3crop.png} \\
 \end{figure}
 
@@ -1019,21 +1058,21 @@ Wegpunkt & Sekunden & Abweichung \\ \hline
 Die Penalties für Start und Ankunft wurden für die folgenden Analysen um die Hälfte reduziert und lagen somit bei 7,5 Sekunden. Turnpenalties wurden auf 16 Sekunden reduziert. 
 
 Mit der neuen Gewichtung wurden die Requests für die drei Testfahrten erneut gesendet und mit den Minuten-Markierungen der wirklich benötigten Zeiten verglichen.
-Die Ergebnisse sind der Tabelle \ref{tab:newweight} zu entnehmen.
+Die Ergebnisse sind der Tabelle \ref{tab:all} zu entnehmen.
 
 \begin{table}[]
 \centering
 \caption{Fahrt 1,2,3 -- 2. Auswertung}
 \label{tab:all}
 \begin{tabular}{|l|r|r|r|r|r|r|}
-\hline
-\multicolumn{1}{l}{} & \multicolumn{2}{c}{Fahrt 1} & \multicolumn{2}{c}{Fahrt 2} & \multicolumn{2}{c}{Fahrt 3} \\ \hline
+\hhline{~|-|-|-|-|-|-}
+\multicolumn{1}{l|}{} & \multicolumn{2}{c|}{Fahrt 1} & \multicolumn{2}{c|}{Fahrt 2} & \multicolumn{2}{c|}{Fahrt 3} \\ \hline
 Wegpunkt & Sekunden & Abweichung & Sekunden & Abweichung & Sekunden & Abweichung \\ \hline 
 1min & 59.5 & -0.5 & 67.6 & +7.6 & 70.8 & +10.8  \\
 2min & 119.5 & -0.5 & 126.9 & +6.9 & 139.4 & +19.4  \\
 3min & 169.5 & -10.5 & 184.5 & +4.5 & 190 & +10  \\
 4min & 207.7 & -32.2 & 230.5 & -10.5 & 255.2 & +15.2  \\
-5min & 271.9 & -28.1 &  291.6 & -8.4 & 312.9 & +12.9   \\
+5min & 271.9 & -28.1 & 291.6 & -8.4 & 312.9 & +12.9   \\
 \hline
 \end{tabular}
 \end{table}
@@ -1044,9 +1083,9 @@ Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher f
 \newpage
 \section{Diskussion -- Interpretation}
 
-\subsection{1. Strecke}
+\subsection{Teststrecke 1}
 
-Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde. Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}). Über die hälfte der Distanz hat dabei eine Steigung von 1-3\% und auf einem Viertel der Strecke sogar eine Steigung von 4-6\%  Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
+Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde. Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}). Über die hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$ Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
 
 
 \begin{figure}[h]
@@ -1076,13 +1115,13 @@ Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der 
 
 Darüber hinaus liegen auf der Strecke im inneren Lützelburgs ein paar langezogene aber dennoch scharfe Kurven (\ref{fig:turn}). Auch hier kann das Löschfahrzeug nicht die gegebene Geschwindigkeit beibehalten und muss abbremsen. Diese Kurven werden allerdings vom Emergency Profil nicht als Turn erkannt, da der Winkel zwischen den Segmenten zu groß ist. Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das echte Fahrzeug.
 
-Weiterhin wurde bei allen 3 Fahrten beobachtet, dass auf den Segmenten mit Maximalgeschwindigkeit (80 km/h) das Profil ebenfalls konstant ein paar Sekunden gegenüber der Testfahrt gutmachen kann.
+Weiterhin wurde bei allen drei Fahrten beobachtet, dass auf den Segmenten mit Maximalgeschwindigkeit (80 km/h) das Profil ebenfalls konstant ein paar Sekunden gegenüber der Testfahrt gutmachen kann.
 Die Vermutung liegt nahe, dass das Löschfahrzeug die angegebene Maximalgeschwindigkeit nicht komplett erreichen kann. Möglicherweise stimmt die Angabe sogar mit der Tachoanzeige überein aber die effektive Geschwindigkeit ist geringer.
 
 Die Zeitdifferenzen aus Tabelle \ref{tab:all} zeigen: das Emergency-Profil fährt dem echten Fahrzeug mit der derzeitigen Gewichtung über die ganze Strecke hinweg davon. Wenn die genannten Faktoren der Steigung, der nicht miteinberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis im 5 Minuten Bereich zu erwarten.
 
 
-\subsection{2. Strecke}
+\subsection{Teststrecke 2}
 
 Da die 2. Strecke nur in der Ebene verläuft sind keine Abweichungen durch die Steigung zu erwarten. Die Differenzzeiten sind auch für alle fünf Wegpunkte ungefähr im +-10ß-Sekunden-Bereich. Auffallend ist der Sprung vom 3. zum 4. Wegpunkt, bei welchem das Profil 14 Sekunden aufholt. Nach einer genaueren Betrachtung dieses Segments stellte sich heraus, dass hier eine einspurige Unterführung durchfahren werden musste auf die eine durch die Topologie unübersichtliche Kurve folgt (Abb. \ref{fig:traintunnel}). Vermutlich kam es daher auf der Fahrt zu Verzögerungen, was das Aufholen erklären könnte.
 
@@ -1090,11 +1129,11 @@ Da die 2. Strecke nur in der Ebene verläuft sind keine Abweichungen durch die S
 \centering
 \caption{Fahrt 2 -- Unterführung}
 \label{fig:traintunnel}
-\includegraphics[width = 0.40 \textwidth]{../media/traintunnel.png} \\
+\includegraphics[width = 0.70 \textwidth]{../media/traintunnel.png} \\
 \end{figure}
 
 
-\subsection{3. Strecke}
+\subsection{Teststrecke 3}
 
 Bei den Ergebnissen der 3. Strecke (Tab. \ref{tab:all}) ist das Profil bereits nach dem ersten Wegpunkt um mehr als 10 Sekunden zu langsam. Bis zum Zwei-Minuten-Wegpunkt wird dieser Rückstand fast verdoppelt. Nach genauerer Überprüfung der Durchschnittsgeschwindigkeiten stellte sich heraus, dass der Weg hier durch eine 30er-Zone führt. Allerdings wird diese nicht mit den erwarteten 50 km/h sondern nur mit den durch den \lstinline!maxspeed! Tag festgelegten 30 km/h durchfahren. Offensichtlich ein Bug im Backend der noch behoben werden muss.
 
@@ -1105,7 +1144,7 @@ Bei den Ergebnissen der 3. Strecke (Tab. \ref{tab:all}) ist das Profil bereits n
 \includegraphics[width = 0.60 \textwidth]{../media/Fahrt3_temp30.png} \\
 \end{figure}
 
-Die anfängliche 30er-Zone ist fast 350m lang. Diese Strecke kann in 25,2 Sekunden mit 50 km/h und in 42 Sekunden mit 30 km/h durchfahren werden. Wird die Differenz von 16.8 Sekunden von den bisherigen Abweichungen für die 3. Fahrt abgezogen, werden die neuen Werte aus Tabelle \ref{tab:new3}\footnote{Zum ersten Wegpunkt beträgt die Strecke nur 260m weshalb hier nur 12.6 Sekunden abgezogen werden} erhalten.
+Die anfängliche 30er-Zone ist fast 350m lang. Diese Strecke kann in 25,2 Sekunden mit 50 km/h und in 42 Sekunden mit 30 km/h durchfahren werden. Wird die Differenz von 16.8 Sekunden von den bisherigen Abweichungen für die 3. Fahrt abgezogen, werden die neuen Werte aus Tabelle \ref{tab:new3} erhalten.
 
 \begin{table}[h]
 \centering
@@ -1114,7 +1153,7 @@ Die anfängliche 30er-Zone ist fast 350m lang. Diese Strecke kann in 25,2 Sekund
 \begin{tabular}{|l|r|r|}
 \hline
 Wegpunkt & Sekunden & Abweichung \\ \hline 
-1min & 70.8 & -1.8  \\
+1min & 70.8\footnote{Zum ersten Wegpunkt beträgt die Strecke nur 260m weshalb hier nur 12.6 Sekunden abgezogen werden} & -1.8  \\
 2min & 139.4 & +2.6  \\
 3min & 190 & -6.8  \\
 4min & 255.2 & -1.6  \\
@@ -1123,7 +1162,7 @@ Wegpunkt & Sekunden & Abweichung \\ \hline
 \end{tabular}
 \end{table}
 
-Vor der 2 Minuten Marke beginnt eine Überlandstraße, die bis kurz vor Holzhausen (zwischen Marker 3 und 4) reicht. Das sind 56\% der Gesamtstrecke. Wie bei der Diskussion der 1. Fahrt bereits erwähnt ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h ein bisschen zu hoch gegriffen ist, was den leichten Vorsprung zur 3-Minuten-Marke erklären könnte.
+Vor der 2 Minuten Marke beginnt eine Überlandstraße, die bis kurz vor Holzhausen (zwischen Marker 3 und 4) reicht. Das sind 56$\%$ der Gesamtstrecke. Wie bei der Diskussion der 1. Fahrt bereits erwähnt ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h ein bisschen zu hoch gegriffen ist, was den leichten Vorsprung zur 3-Minuten-Marke erklären könnte.
 
 \begin{figure}[h]
 \centering
@@ -1143,15 +1182,15 @@ Vor der 2 Minuten Marke beginnt eine Überlandstraße, die bis kurz vor Holzhaus
 \end{subfigure}
 \end{figure}
 
-Zwischen Punkt 3 und 4 fällt das Emergency Profil wieder um 5 Sekunden zurück. Zwischen diesen Punkten befindet sich ein Turn, der deutlich schneller als andere Abbiegungen gefahren werden kann. Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Turns zwischen den OSM Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}). Es ist zu erkennen, dass der Turn um einiges "weicher" ist als die Daten beschreiben. Daher konnte das Löschfahrzeug gegenüber dem Profil Zeit gewinnen.
+Zwischen Punkt 3 und 4 fällt das Emergency Profil wieder um 5 Sekunden zurück. Zwischen diesen Punkten befindet sich ein Turn, der deutlich schneller als andere Abbiegungen gefahren werden kann. Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Turns zwischen den OSM Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}). Es ist zu erkennen, dass der Turn um einiges ''weicher'' ist als die Daten beschreiben. Daher konnte das Löschfahrzeug gegenüber dem Profil Zeit gewinnen.
 
-Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9\%(Abb. \ref{profile2}) der noch nicht mit einberechnet wird und dem Emergency Profil wieder einen kleinen Vorsprung gibt.
+Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb. \ref{fig:profile2}) der noch nicht mit einberechnet wird und dem Emergency Profil wieder einen kleinen Vorsprung gibt.
 
 \begin{figure}[h]
 \centering
 \caption{Fahrt 3 -- Höhenprofil}
 \label{fig:profile2}
-\includegraphics[width = 0.60 \textwidth]{../media/Fahrt3_Profile.png} \\
+\includegraphics[width = 0.90 \textwidth]{../media/Fahrt3_Profile.png} \\
 \end{figure}
 
 
@@ -1208,9 +1247,9 @@ Die im Fragebogen erwähnte Suche nach Löschwasser Quellen am Zielort kann und 
 \section{Anhang}
 \label{sec:anhang}
 \subsection{Copyrights}
-Die Rechte für die mit geojson.io generierten Abbildungen(\todo{list}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
-Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\todo{list}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
-Für Abbildung \ref{} liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
+Die Rechte für die mit geojson.io generierten Abbildungen(\ref{fig:footway}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
+Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\ref{fig:}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
+Für Abbildung \ref{fig:turnactual} liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
 Für Abbildung \ref{fig:traintunnel} liegt das Copyright bei \copyright DigitalGlobe.
 
 %### Testdrive 2
@@ -1330,16 +1369,17 @@ Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig v
 \newpage
 \section*{Danksagungen}
 
-An dieser Stelle möchte ich allen Leuten danken, die dazu beigetragen haben diese Arbeit zu verwirklichen.
-\vspace{1.5cm}
-Das sind vor Allem meine Kollegen Tim, Max und Lu vom Openrouteservice, die mir mit motivierenden Gesprächen und hilfreichen Erklärungen zur Seite gestanden sind und mich in jeder Hinsicht unterstützt haben.
-\vspace{1.5cm}
-Meinem Betreuer Dr. Alexander Zipf möchte ich für das Korrigieren der Arbeit und der Möglichkeit Danken beim Openrouteservice zu arbeiten.
-\vspace{1.5cm}
+An dieser Stelle möchte ich allen Leuten danken, die dazu beigetragen haben diese Arbeit zu verwirklichen.\par
+\vspace{0.5cm}
 Ein großes Dankeschön geht natürlich an die Freiwillige Feuerwehr Lützelburg für die Bereitstellung des Fahrzeuges.
-Insbesondere möchte ich Stefan Witossek für die detailierten Informationen sowie die Organisation und Durchführung aller Testfahrten danken. Ohne ihn wäre diese Arbeit nicht möglich gewesen.
-\vspace{1.5cm}
+Insbesondere möchte ich Stefan Witossek für die detaillierten Informationen sowie die Organisation und Durchführung aller Testfahrten danken. Ohne ihn wäre diese Arbeit nicht möglich gewesen.\par
+\vspace{0.5cm}
+Danke an meine Kollegen Tim, Max und Lu vom Openrouteservice, die mir mit motivierenden Gesprächen und hilfreichen Erklärungen zur Seite gestanden sind und mich in jeder Hinsicht unterstützt haben.\par
+\vspace{0.5cm}
+Meinem Betreuer Dr. Alexander Zipf möchte ich für das Korrigieren der Arbeit und der Möglichkeit Danken beim Openrouteservice zu arbeiten.\par
+\vspace{0.5cm}
 Außerdem möchte ich meinen Kommilitonen Angi und Marcel Danken für unterhaltsame Mittagspausen, Motivation und Korrekturlesen.
+
 \newpage
 \todo{empty last page}
 %last page
