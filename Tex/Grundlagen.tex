@@ -232,7 +232,7 @@ Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite
 Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können.
 Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet.
 Im Fachbereich der \gls{gis} werden hauptsächlich Straßennetze für Routing-Analysen verwendet (\cite[165]{handbook}).
-Ein Weg \textit{P} (\textit{engl: path}) von einem Startecke ~$s$ zu einem Zielecke ~$z$ ist eine Folge von benachbarten Ecken mit $s~$ als erster Ecke und $z~$ als letzter Ecke der Folge (\todo{Abb}).
+Ein Weg \textit{P} (\textit{engl: path}) von einem Startecke ~$s$ zu einem Zielecke ~$z$ ist eine Folge von benachbarten Ecken mit $s~$ als erster Ecke und $z~$ als letzter Ecke der Folge.
 Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewichte.
 
 Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Knoten.
@@ -515,6 +515,6 @@ Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt.
 Dadurch können nahe beieinanderliegende Punkte übersprungen werden.
 Mit den verbleibenden Punkten wird eine Punktwolke generiert.
 Auf diese Punktwolke wird nun der Alpha-Shape Algorithmus(Zitat) angewandt um die Isochrone als Hülle um die erreichbaren Wegsegmente zu zeichnen.
-\todo{(Abb. Pictures shape based stuff)}
+%\todo{(Abb. Pictures shape based stuff)}
 Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten.
 Die Verwendung der Alpha-Shapes verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.

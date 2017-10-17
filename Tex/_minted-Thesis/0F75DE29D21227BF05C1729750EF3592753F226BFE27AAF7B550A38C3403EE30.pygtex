@@ -1,0 +1,146 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ *  Licensed to GIScience Research Group, Heidelberg University (GIScience)}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *   http://www.giscience.uni\PYGZhy{}hd.de}
+\PYG{c+cm}{ *   http://www.heigit.org}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *  under one or more contributor license agreements. See the NOTICE file }
+\PYG{c+cm}{ *  distributed with this work for additional information regarding copyright }
+\PYG{c+cm}{ *  ownership. The GIScience licenses this file to you under the Apache License, }
+\PYG{c+cm}{ *  Version 2.0 (the \PYGZdq{}License\PYGZdq{}); you may not use this file except in compliance }
+\PYG{c+cm}{ *  with the License. You may obtain a copy of the License at}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *       http://www.apache.org/licenses/LICENSE\PYGZhy{}2.0}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *  Unless required by applicable law or agreed to in writing, software}
+\PYG{c+cm}{ *  distributed under the License is distributed on an \PYGZdq{}AS IS\PYGZdq{} BASIS,}
+\PYG{c+cm}{ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}
+\PYG{c+cm}{ *  See the License for the specific language governing permissions and}
+\PYG{c+cm}{ *  limitations under the License.}
+\PYG{c+cm}{ */}
+\PYG{k+kn}{package} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.edgefilters}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.ArrayList}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{heigit.ors.routing.parameters.VehicleParameters}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.VehicleDimensionRestrictions}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.storages.EmergencyVehicleAttributesGraphStorage}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.storages.GraphStorageUtils}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.routing.util.EdgeFilter}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.routing.util.FlagEncoder}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.storage.GraphStorage}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.util.EdgeIteratorState}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{EmergencyVehicleEdgeFilter} \PYG{k+kd}{implements} \PYG{n}{EdgeFilter} \PYG{o}{\PYGZob{}}
+
+	\PYG{k+kd}{private} \PYG{n}{EmergencyVehicleAttributesGraphStorage} \PYG{n}{gsAttributes}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kd}{final} \PYG{k+kt}{boolean} \PYG{n}{in}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kd}{final} \PYG{k+kt}{boolean} \PYG{n}{out}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{n}{FlagEncoder} \PYG{n}{encoder}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kt}{float}\PYG{o}{[]} \PYG{n}{restrictionValues}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kt}{double}\PYG{o}{[]} \PYG{n}{retValues}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{n}{Integer}\PYG{o}{[]} \PYG{n}{indexValues}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kt}{int} \PYG{n}{restCount}\PYG{o}{;}
+	\PYG{k+kd}{private} \PYG{k+kt}{byte}\PYG{o}{[]} \PYG{n}{buffer}\PYG{o}{;}
+
+	\PYG{k+kd}{public} \PYG{n+nf}{EmergencyVehicleEdgeFilter}\PYG{o}{(}\PYG{n}{FlagEncoder} \PYG{n}{encoder}\PYG{o}{,} \PYG{n}{VehicleParameters} \PYG{n}{vehicleParams}\PYG{o}{,} \PYG{n}{GraphStorage} \PYG{n}{graphStorage}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{(}\PYG{n}{encoder}\PYG{o}{,} \PYG{k+kc}{true}\PYG{o}{,} \PYG{k+kc}{true}\PYG{o}{,} \PYG{n}{vehicleParams}\PYG{o}{,} \PYG{n}{graphStorage}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{c+cm}{/**}
+\PYG{c+cm}{	 * Creates an edges filter which accepts both direction of the specified}
+\PYG{c+cm}{	 * vehicle.}
+\PYG{c+cm}{	 */}
+	\PYG{k+kd}{public} \PYG{n+nf}{EmergencyVehicleEdgeFilter}\PYG{o}{(}\PYG{n}{FlagEncoder} \PYG{n}{encoder}\PYG{o}{,} \PYG{k+kt}{boolean} \PYG{n}{in}\PYG{o}{,} \PYG{k+kt}{boolean} \PYG{n}{out}\PYG{o}{,} \PYG{n}{VehicleParameters} \PYG{n}{vehicleParams}\PYG{o}{,} \PYG{n}{GraphStorage} \PYG{n}{graphStorage}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{encoder} \PYG{o}{=} \PYG{n}{encoder}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{in} \PYG{o}{=} \PYG{n}{in}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{out} \PYG{o}{=} \PYG{n}{out}\PYG{o}{;}
+
+		\PYG{k+kt}{float}\PYG{o}{[]} \PYG{n}{vehicleAttrs} \PYG{o}{=} \PYG{k}{new} \PYG{k+kt}{float}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{Count}\PYG{o}{];}
+
+		\PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{MaxHeight}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{k+kt}{float}\PYG{o}{)}\PYG{n}{vehicleParams}\PYG{o}{.}\PYG{n+na}{getHeight}\PYG{o}{();}
+		\PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{MaxWidth}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{k+kt}{float}\PYG{o}{)}\PYG{n}{vehicleParams}\PYG{o}{.}\PYG{n+na}{getWidth}\PYG{o}{();}
+		\PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{MaxWeight}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{k+kt}{float}\PYG{o}{)}\PYG{n}{vehicleParams}\PYG{o}{.}\PYG{n+na}{getWeight}\PYG{o}{();}
+		\PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{MaxLength}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{k+kt}{float}\PYG{o}{)}\PYG{n}{vehicleParams}\PYG{o}{.}\PYG{n+na}{getLength}\PYG{o}{();}
+		\PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{MaxAxleLoad}\PYG{o}{]} \PYG{o}{=} \PYG{o}{(}\PYG{k+kt}{float}\PYG{o}{)}\PYG{n}{vehicleParams}\PYG{o}{.}\PYG{n+na}{getAxleload}\PYG{o}{();}
+
+		\PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{idx} \PYG{o}{=} \PYG{k}{new} \PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}}\PYG{n}{Integer}\PYG{o}{\PYGZgt{}();}
+
+		\PYG{k}{for} \PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{VehicleDimensionRestrictions}\PYG{o}{.}\PYG{n+na}{Count}\PYG{o}{;} \PYG{n}{i}\PYG{o}{++)} \PYG{o}{\PYGZob{}}
+			\PYG{k+kt}{float} \PYG{n}{value} \PYG{o}{=} \PYG{n}{vehicleAttrs}\PYG{o}{[}\PYG{n}{i}\PYG{o}{];}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{n}{idx}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{n}{i}\PYG{o}{);}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+
+		\PYG{n}{retValues} \PYG{o}{=} \PYG{k}{new} \PYG{k+kt}{double}\PYG{o}{[}\PYG{l+m+mi}{5}\PYG{o}{];}
+		\PYG{n}{Integer}\PYG{o}{[]} \PYG{n}{indexValues} \PYG{o}{=} \PYG{n}{idx}\PYG{o}{.}\PYG{n+na}{toArray}\PYG{o}{(}\PYG{k}{new} \PYG{n}{Integer}\PYG{o}{[}\PYG{n}{idx}\PYG{o}{.}\PYG{n+na}{size}\PYG{o}{()]);}
+
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{restrictionValues} \PYG{o}{=} \PYG{n}{vehicleAttrs}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{restCount} \PYG{o}{=} \PYG{n}{indexValues} \PYG{o}{==} \PYG{k+kc}{null} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{indexValues}\PYG{o}{.}\PYG{n+na}{length}\PYG{o}{;}
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{indexValues} \PYG{o}{=} \PYG{n}{indexValues}\PYG{o}{;}
+
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{buffer} \PYG{o}{=} \PYG{k}{new} \PYG{k+kt}{byte}\PYG{o}{[}\PYG{l+m+mi}{10}\PYG{o}{];}
+
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{gsAttributes} \PYG{o}{=} \PYG{n}{GraphStorageUtils}\PYG{o}{.}\PYG{n+na}{getGraphExtension}\PYG{o}{(}\PYG{n}{graphStorage}\PYG{o}{,} \PYG{n}{EmergencyVehicleAttributesGraphStorage}\PYG{o}{.}\PYG{n+na}{class}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{k+kt}{boolean} \PYG{n+nf}{accept}\PYG{o}{(}\PYG{n}{EdgeIteratorState} \PYG{n}{iter}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{out} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{iter}\PYG{o}{.}\PYG{n+na}{isForward}\PYG{o}{(}\PYG{n}{encoder}\PYG{o}{)} \PYG{o}{||} \PYG{n}{in} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{iter}\PYG{o}{.}\PYG{n+na}{isBackward}\PYG{o}{(}\PYG{n}{encoder}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{edgeId} \PYG{o}{=} \PYG{n}{iter}\PYG{o}{.}\PYG{n+na}{getOriginalEdge}\PYG{o}{();}
+
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{restCount} \PYG{o}{!=} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{gsAttributes} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+				\PYG{k}{if} \PYG{o}{(}\PYG{n}{restCount} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+					\PYG{k+kt}{double} \PYG{n}{value} \PYG{o}{=} \PYG{n}{gsAttributes}\PYG{o}{.}\PYG{n+na}{getEdgeRestrictionValue}\PYG{o}{(}\PYG{n}{edgeId}\PYG{o}{,} \PYG{n}{indexValues}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{],} \PYG{n}{buffer}\PYG{o}{);}
+					\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{])}
+						\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+					\PYG{k}{else}
+						\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+				\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{o}{\PYGZob{}}
+					\PYG{c+c1}{// the restriction on the edge is smaller than the given = evade edge}
+					\PYG{k}{if} \PYG{o}{(}\PYG{n}{gsAttributes}\PYG{o}{.}\PYG{n+na}{getEdgeRestrictionValues}\PYG{o}{(}\PYG{n}{edgeId}\PYG{o}{,} \PYG{n}{buffer}\PYG{o}{,} \PYG{n}{retValues}\PYG{o}{))}
+					\PYG{o}{\PYGZob{}}
+						\PYG{k+kt}{double} \PYG{n}{value} \PYG{o}{=} \PYG{n}{retValues}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{];}
+						\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{0}\PYG{o}{])}
+							\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+
+						\PYG{n}{value} \PYG{o}{=} \PYG{n}{retValues}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{];}
+						\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{1}\PYG{o}{])}
+							\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+
+						\PYG{k}{if} \PYG{o}{(}\PYG{n}{restCount} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{3}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+							\PYG{n}{value} \PYG{o}{=} \PYG{n}{retValues}\PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{];}
+							\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{2}\PYG{o}{])}
+								\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+						\PYG{o}{\PYGZcb{}}
+
+						\PYG{k}{if} \PYG{o}{(}\PYG{n}{restCount} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{4}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+							\PYG{n}{value} \PYG{o}{=} \PYG{n}{retValues}\PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{];}
+							\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{3}\PYG{o}{])}
+								\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+						\PYG{o}{\PYGZcb{}}
+
+						\PYG{k}{if} \PYG{o}{(}\PYG{n}{restCount} \PYG{o}{==} \PYG{l+m+mi}{5}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+							\PYG{n}{value} \PYG{o}{=} \PYG{n}{retValues}\PYG{o}{[}\PYG{l+m+mi}{4}\PYG{o}{];}
+							\PYG{k}{if} \PYG{o}{(}\PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{value} \PYG{o}{\PYGZlt{}} \PYG{n}{restrictionValues}\PYG{o}{[}\PYG{l+m+mi}{4}\PYG{o}{])}
+								\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+						\PYG{o}{\PYGZcb{}}
+					\PYG{o}{\PYGZcb{}}
+				\PYG{o}{\PYGZcb{}}
+			\PYG{o}{\PYGZcb{}}
+
+			\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+
+		\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{toString}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{encoder}\PYG{o}{.}\PYG{n+na}{toString}\PYG{o}{()} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, in:\PYGZdq{}} \PYG{o}{+} \PYG{n}{in} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, out:\PYGZdq{}} \PYG{o}{+} \PYG{n}{out}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

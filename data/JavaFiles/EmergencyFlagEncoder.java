@@ -152,16 +152,16 @@ public class EmergencyFlagEncoder extends ORSAbstractFlagEncoder
         defaultSpeedMap.put("motorway_link", 50);
         defaultSpeedMap.put("motorroad", 130);
         // bundesstraße
-        defaultSpeedMap.put("trunk", 120);
+        defaultSpeedMap.put("trunk", 110);
         defaultSpeedMap.put("trunk_link", 50);
         // linking bigger town
-        defaultSpeedMap.put("primary", 120);  
+        defaultSpeedMap.put("primary", 100);  
         defaultSpeedMap.put("primary_link", 50);
         // linking towns + villages
-        defaultSpeedMap.put("secondary", 120);
+        defaultSpeedMap.put("secondary", 100);
         defaultSpeedMap.put("secondary_link", 50);
         // streets without middle line separation
-        defaultSpeedMap.put("tertiary", 110);
+        defaultSpeedMap.put("tertiary", 90);
         defaultSpeedMap.put("tertiary_link", 50);
         defaultSpeedMap.put("unclassified", 60);
         defaultSpeedMap.put("residential", 50);
@@ -272,7 +272,7 @@ public class EmergencyFlagEncoder extends ORSAbstractFlagEncoder
 				maxSpeed = defaultSpeed;
 		}
 		// Amandus
-		// 30er Zone TODO restrict to waytype
+		// 30er Zone
 		if(maxSpeed == 30.0)
 			maxSpeed = 50.0;
 		//Spielstraße
@@ -368,6 +368,10 @@ public class EmergencyFlagEncoder extends ORSAbstractFlagEncoder
         // allow railway=tram where paved? no suitable exclusion criteria found yet
         if (way.hasTag("aeroway", "runway") || way.hasTag("aeroway", "taxilane"))
         	return acceptBit;
+        //allow highway=footway, pedestrian
+        if (highwayValue == "pedestrian" || highwayValue == "footway")
+        	return acceptBit;
+        
         // do not drive cars over railways (sometimes incorrectly mapped!)
     /*    if (way.hasTag("railway") && !way.hasTag("railway", acceptedRailways))
         {
@@ -497,9 +501,6 @@ public class EmergencyFlagEncoder extends ORSAbstractFlagEncoder
 	 *            overwrite determined priorities.
 	 */
 	protected void collect(ReaderWay way, TreeMap<Double, Integer> weightToPrioMap) { // Runge
-//		if (way.hasTag("hgv", "designated") || (way.hasTag("access", "designated") && (way.hasTag("goods", "yes") || way.hasTag("hgv", "yes") || way.hasTag("bus", "yes") || way.hasTag("agricultural", "yes") || way.hasTag("forestry", "yes") )))
-//			weightToPrioMap.put(100d, PriorityCode.BEST.getValue());
-		// Amandus
         if (way.hasTag("highway", "service") && way.hasTag("service", "emergency_access"))
             weightToPrioMap.put(100d, PriorityCode.BEST.getValue());
         else

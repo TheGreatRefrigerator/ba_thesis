@@ -153,16 +153,16 @@
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorway\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorroad\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{130}\PYG{o}{);}
         \PYG{c+c1}{// bundesstraße}
-        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}trunk\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{120}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}trunk\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{110}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}trunk\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
         \PYG{c+c1}{// linking bigger town}
-        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{120}\PYG{o}{);}  
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{100}\PYG{o}{);}  
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
         \PYG{c+c1}{// linking towns + villages}
-        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{120}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{100}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
         \PYG{c+c1}{// streets without middle line separation}
-        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{110}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{90}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}unclassified\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{60}\PYG{o}{);}
         \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}residential\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
@@ -273,7 +273,7 @@
 				\PYG{n}{maxSpeed} \PYG{o}{=} \PYG{n}{defaultSpeed}\PYG{o}{;}
 		\PYG{o}{\PYGZcb{}}
 		\PYG{c+c1}{// Amandus}
-		\PYG{c+c1}{// 30er Zone TODO restrict to waytype}
+		\PYG{c+c1}{// 30er Zone}
 		\PYG{k}{if}\PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{==} \PYG{l+m+mf}{30.0}\PYG{o}{)}
 			\PYG{n}{maxSpeed} \PYG{o}{=} \PYG{l+m+mf}{50.0}\PYG{o}{;}
 		\PYG{c+c1}{//Spielstraße}
@@ -369,6 +369,10 @@
         \PYG{c+c1}{// allow railway=tram where paved? no suitable exclusion criteria found yet}
         \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}aeroway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}runway\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}aeroway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}taxilane\PYGZdq{}}\PYG{o}{))}
         	\PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+        \PYG{c+c1}{//allow highway=footway, pedestrian}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{highwayValue} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}pedestrian\PYGZdq{}} \PYG{o}{||} \PYG{n}{highwayValue} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}footway\PYGZdq{}}\PYG{o}{)}
+        	\PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+        
         \PYG{c+c1}{// do not drive cars over railways (sometimes incorrectly mapped!)}
     \PYG{c+cm}{/*    if (way.hasTag(\PYGZdq{}railway\PYGZdq{}) \PYGZam{}\PYGZam{} !way.hasTag(\PYGZdq{}railway\PYGZdq{}, acceptedRailways))}
 \PYG{c+cm}{        \PYGZob{}}

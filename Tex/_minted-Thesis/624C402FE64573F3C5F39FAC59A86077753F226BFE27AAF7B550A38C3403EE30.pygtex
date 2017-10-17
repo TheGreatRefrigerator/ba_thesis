@@ -1,0 +1,573 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ *  Licensed to GIScience Research Group, Heidelberg University (GIScience)}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *   http://www.giscience.uni\PYGZhy{}hd.de}
+\PYG{c+cm}{ *   http://www.heigit.org}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *  under one or more contributor license agreements. See the NOTICE file }
+\PYG{c+cm}{ *  distributed with this work for additional information regarding copyright }
+\PYG{c+cm}{ *  ownership. The GIScience licenses this file to you under the Apache License, }
+\PYG{c+cm}{ *  Version 2.0 (the \PYGZdq{}License\PYGZdq{}); you may not use this file except in compliance }
+\PYG{c+cm}{ *  with the License. You may obtain a copy of the License at}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *       http://www.apache.org/licenses/LICENSE\PYGZhy{}2.0}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *  Unless required by applicable law or agreed to in writing, software}
+\PYG{c+cm}{ *  distributed under the License is distributed on an \PYGZdq{}AS IS\PYGZdq{} BASIS,}
+\PYG{c+cm}{ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}
+\PYG{c+cm}{ *  See the License for the specific language governing permissions and}
+\PYG{c+cm}{ *  limitations under the License.}
+\PYG{c+cm}{ */}
+\PYG{k+kn}{package} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.flagencoders}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.ArrayList}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.HashMap}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.HashSet}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.List}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.Map}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.TreeMap}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.reader.ReaderRelation}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.reader.ReaderWay}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.routing.util.EncodedDoubleValue}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.routing.util.PriorityCode}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.util.Helper}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.util.PMap}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{java.util.*}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{EmergencyFlagEncoder} \PYG{k+kd}{extends} \PYG{n}{ORSAbstractFlagEncoder}
+\PYG{o}{\PYGZob{}}
+    \PYG{k+kd}{protected} \PYG{k+kd}{final} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{forwardKeys} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}(}\PYG{l+m+mi}{5}\PYG{o}{);}
+    \PYG{k+kd}{protected} \PYG{k+kd}{final} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{backwardKeys} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}(}\PYG{l+m+mi}{5}\PYG{o}{);}
+    \PYG{k+kd}{protected} \PYG{k+kd}{final} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{noValues} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}(}\PYG{l+m+mi}{5}\PYG{o}{);}
+    \PYG{k+kd}{protected} \PYG{k+kd}{final} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{yesValues} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashSet}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}(}\PYG{l+m+mi}{5}\PYG{o}{);}
+    \PYG{k+kd}{protected} \PYG{k+kd}{final} \PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}} \PYG{n}{hgvAccess} \PYG{o}{=} \PYG{k}{new} \PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}(}\PYG{l+m+mi}{5}\PYG{o}{);}
+
+    \PYG{c+c1}{// This value determines the maximal possible on roads with bad surfaces}
+    \PYG{k+kd}{protected} \PYG{k+kt}{int} \PYG{n}{badSurfaceSpeed}\PYG{o}{;}
+
+    \PYG{c+c1}{// This value determines the speed for roads with access=destination}
+    \PYG{k+kd}{protected} \PYG{k+kt}{int} \PYG{n}{destinationSpeed}\PYG{o}{;}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * A map which associates string to speed. Get some impression:}
+\PYG{c+cm}{     * http://www.itoworld.com/map/124\PYGZsh{}fullscreen}
+\PYG{c+cm}{     * http://wiki.openstreetmap.org/wiki/OSM\PYGZus{}tags\PYGZus{}for\PYGZus{}routing/Maxspeed}
+\PYG{c+cm}{     */}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * Should be only instantied via EncodingManager}
+\PYG{c+cm}{     */}
+    \PYG{k+kd}{public} \PYG{n+nf}{EmergencyFlagEncoder}\PYG{o}{()}
+    \PYG{o}{\PYGZob{}}
+        \PYG{k}{this}\PYG{o}{(}\PYG{l+m+mi}{5}\PYG{o}{,} \PYG{l+m+mi}{5}\PYG{o}{,} \PYG{l+m+mi}{0}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{public} \PYG{n+nf}{EmergencyFlagEncoder}\PYG{o}{(}\PYG{n}{PMap} \PYG{n}{properties}\PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+        \PYG{k}{this}\PYG{o}{(}\PYG{n}{properties}\PYG{o}{.}\PYG{n+na}{getInt}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}speed\PYGZus{}bits\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{5}\PYG{o}{),}
+        		\PYG{n}{properties}\PYG{o}{.}\PYG{n+na}{getDouble}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}speed\PYGZus{}factor\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{5}\PYG{o}{),}
+        		\PYG{n}{properties}\PYG{o}{.}\PYG{n+na}{getBool}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}turn\PYGZus{}costs\PYGZdq{}}\PYG{o}{,} \PYG{k+kc}{false}\PYG{o}{)} \PYG{o}{?} \PYG{l+m+mi}{3} \PYG{o}{:} \PYG{l+m+mi}{0}\PYG{o}{);}
+
+        \PYG{n}{setBlockFords}\PYG{o}{(}\PYG{k+kc}{false}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{public} \PYG{n+nf}{EmergencyFlagEncoder}\PYG{o}{(}\PYG{k+kt}{int} \PYG{n}{speedBits}\PYG{o}{,} \PYG{k+kt}{double} \PYG{n}{speedFactor}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{maxTurnCosts} \PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+        \PYG{k+kd}{super}\PYG{o}{(}\PYG{n}{speedBits}\PYG{o}{,} \PYG{n}{speedFactor}\PYG{o}{,} \PYG{n}{maxTurnCosts}\PYG{o}{);}
+        \PYG{n}{restrictions}\PYG{o}{.}\PYG{n+na}{addAll}\PYG{o}{(}\PYG{n}{Arrays}\PYG{o}{.}\PYG{n+na}{asList}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorcar\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}vehicle\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}access\PYGZdq{}}\PYG{o}{));}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}private\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}agricultural\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}forestry\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}restricted\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{restrictedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}delivery\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{intendedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}yes\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{intendedValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}permissive\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{hgvAccess}\PYG{o}{.}\PYG{n+na}{addAll}\PYG{o}{(}\PYG{n}{Arrays}\PYG{o}{.}\PYG{n+na}{asList}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}hgv\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}goods\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}bus\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}agricultural\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}forestry\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}delivery\PYGZdq{}}\PYG{o}{));}
+
+        \PYG{n}{potentialBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}gate\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{potentialBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}lift\PYGZus{}gate\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{potentialBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}kissing\PYGZus{}gate\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{potentialBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}swing\PYGZus{}gate\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}bollard\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}stile\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}turnstile\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}cycle\PYGZus{}barrier\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorcycle\PYGZus{}barrier\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{absoluteBarriers}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}block\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{trackTypeSpeedMap} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}();}
+        \PYG{n}{trackTypeSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grade1\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{25}\PYG{o}{);} \PYG{c+c1}{// paved}
+        \PYG{n}{trackTypeSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grade2\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);} \PYG{c+c1}{// now unpaved \PYGZhy{} gravel mixed with ...}
+        \PYG{n}{trackTypeSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grade3\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);} \PYG{c+c1}{// ... hard and soft materials}
+        \PYG{n}{trackTypeSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grade4\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{10}\PYG{o}{);} \PYG{c+c1}{// ... some hard or compressed materials}
+        \PYG{n}{trackTypeSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grade5\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{5}\PYG{o}{);} \PYG{c+c1}{// ... no hard materials. soil/sand/grass}
+
+        \PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{badSurfaceSpeedMap} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}();}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}asphalt\PYGZdq{}}\PYG{o}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{);} 
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}concrete\PYGZdq{}}\PYG{o}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}concrete:plates\PYGZdq{}}\PYG{o}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}concrete:lanes\PYGZdq{}}\PYG{o}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}paved\PYGZdq{}}\PYG{o}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}cement\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{80}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}compacted\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{80}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}fine\PYGZus{}gravel\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{60}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}paving\PYGZus{}stones\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{40}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}metal\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{40}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}bricks\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{40}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grass\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}wood\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}sett\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}grass\PYGZus{}paver\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}gravel\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}unpaved\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ground\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}dirt\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}pebblestone\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tartan\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}cobblestone\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{20}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}clay\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{20}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}earth\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}stone\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}rocky\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}sand\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}mud\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{10}\PYG{o}{);}
+        \PYG{n}{badSurfaceSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}unknown\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{30}\PYG{o}{);}
+
+     \PYG{c+c1}{// limit speed on bad surfaces to 30 km/h}
+        \PYG{n}{badSurfaceSpeed} \PYG{o}{=} \PYG{l+m+mi}{30}\PYG{o}{;}
+
+        \PYG{n}{destinationSpeed} \PYG{o}{=} \PYG{l+m+mi}{5}\PYG{o}{;}
+
+        \PYG{n}{maxPossibleSpeed} \PYG{o}{=} \PYG{l+m+mi}{140}\PYG{o}{;}
+
+        \PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{defaultSpeedMap} \PYG{o}{=} \PYG{k}{new} \PYG{n}{HashMap}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}();}
+        \PYG{c+c1}{// autobahn}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorway\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{130}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorway\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorroad\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{130}\PYG{o}{);}
+        \PYG{c+c1}{// bundesstraße}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}trunk\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{110}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}trunk\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{c+c1}{// linking bigger town}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{100}\PYG{o}{);}  
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{c+c1}{// linking towns + villages}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{100}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{c+c1}{// streets without middle line separation}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{90}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZus{}link\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}unclassified\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{60}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}residential\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{50}\PYG{o}{);}
+        \PYG{c+c1}{// spielstraße}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}living\PYGZus{}street\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{20}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}service\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{20}\PYG{o}{);}
+        \PYG{c+c1}{// unknown road}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}road\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{20}\PYG{o}{);}
+        \PYG{c+c1}{// forestry stuff}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}track\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{15}\PYG{o}{);}
+        \PYG{c+c1}{// additional available for emergency}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}raceway\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{100}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}cycleway\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{10}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}pedestrian\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{10}\PYG{o}{);}
+        \PYG{n}{defaultSpeedMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}footway\PYGZdq{}}\PYG{o}{,} \PYG{l+m+mi}{5}\PYG{o}{);}
+        \PYG{c+c1}{// how to declare this ?}
+        \PYG{c+c1}{//defaultSpeedMap.put(\PYGZdq{}aeroway=runway\PYGZdq{}, 100);}
+        \PYG{c+c1}{//defaultSpeedMap.put(\PYGZdq{}aeroway=taxilane\PYGZdq{}, 100);}
+
+        \PYG{n}{\PYGZus{}speedLimitHandler} \PYG{o}{=} \PYG{k}{new} \PYG{n}{SpeedLimitHandler}\PYG{o}{(}\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{toString}\PYG{o}{(),} \PYG{n}{defaultSpeedMap}\PYG{o}{,} \PYG{n}{badSurfaceSpeedMap}\PYG{o}{,} \PYG{n}{trackTypeSpeedMap}\PYG{o}{);}
+
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}goods:forward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}hgv:forward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}bus:forward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}agricultural:forward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}forestry:forward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{forwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}delivery:forward\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}goods:backward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}hgv:backward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}bus:backward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}agricultural:backward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}forestry:backward\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{backwardKeys}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}delivery:backward\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{noValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{noValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{yesValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}yes\PYGZdq{}}\PYG{o}{);}
+        \PYG{n}{yesValues}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{n}{init}\PYG{o}{();}
+    \PYG{o}{\PYGZcb{}}
+
+	\PYG{k+kd}{public} \PYG{k+kt}{double} \PYG{n+nf}{getDefaultMaxSpeed}\PYG{o}{()}
+	\PYG{o}{\PYGZob{}}
+		\PYG{k}{return} \PYG{l+m+mi}{80}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * Define the place of the speedBits in the edge flags for car.}
+\PYG{c+cm}{     */}
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{defineWayBits}\PYG{o}{(} \PYG{k+kt}{int} \PYG{n}{index}\PYG{o}{,} \PYG{k+kt}{int} \PYG{n}{shift} \PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+        \PYG{c+c1}{// first two bits are reserved for route handling in superclass}
+        \PYG{n}{shift} \PYG{o}{=} \PYG{k+kd}{super}\PYG{o}{.}\PYG{n+na}{defineWayBits}\PYG{o}{(}\PYG{n}{index}\PYG{o}{,} \PYG{n}{shift}\PYG{o}{);}
+        \PYG{n}{speedEncoder} \PYG{o}{=} \PYG{k}{new} \PYG{n}{EncodedDoubleValue}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Speed\PYGZdq{}}\PYG{o}{,} \PYG{n}{shift}\PYG{o}{,} \PYG{n}{speedBits}\PYG{o}{,} \PYG{n}{speedFactor}\PYG{o}{,} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZdq{}}\PYG{o}{),} \PYG{n}{maxPossibleSpeed}\PYG{o}{);}
+        \PYG{n}{shift} \PYG{o}{+=} \PYG{n}{speedEncoder}\PYG{o}{.}\PYG{n+na}{getBits}\PYG{o}{();}
+
+		\PYG{k}{return} \PYG{n}{shift}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{protected} \PYG{k+kt}{double} \PYG{n+nf}{applyMaxSpeed}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{,} \PYG{k+kt}{double} \PYG{n}{speed}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{k+kt}{double} \PYG{n}{maxSpeed} \PYG{o}{=} \PYG{n}{getMaxSpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{);}
+        \PYG{c+c1}{// We obay speed limits}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+            \PYG{k}{return} \PYG{n}{maxSpeed}\PYG{o}{;}
+        \PYG{o}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{speed}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{k+kt}{double} \PYG{n+nf}{getMaxSpeed}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way} \PYG{o}{)} \PYG{c+c1}{// runge}
+	\PYG{o}{\PYGZob{}}
+		\PYG{k+kt}{boolean} \PYG{n}{bCheckMaxSpeed} \PYG{o}{=} \PYG{k+kc}{true}\PYG{o}{;}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{		String maxspeedTag = way.getTag(\PYGZdq{}maxspeed:hgv\PYGZdq{});}
+\PYG{c+cm}{		if (maxspeedTag == null)}
+\PYG{c+cm}{		\PYGZob{}}
+\PYG{c+cm}{			maxspeedTag = way.getTag(\PYGZdq{}maxspeed\PYGZdq{});}
+\PYG{c+cm}{			bCheckMaxSpeed = true;}
+\PYG{c+cm}{		\PYGZcb{}}
+
+\PYG{c+cm}{		double maxSpeed = parseSpeed(maxspeedTag);}
+
+\PYG{c+cm}{		double fwdSpeed = parseSpeed(way.getTag(\PYGZdq{}maxspeed:forward\PYGZdq{}));}
+\PYG{c+cm}{		if (fwdSpeed \PYGZgt{}= 0 \PYGZam{}\PYGZam{} (maxSpeed \PYGZlt{} 0 || fwdSpeed \PYGZlt{} maxSpeed))}
+\PYG{c+cm}{			maxSpeed = fwdSpeed;}
+
+\PYG{c+cm}{		double backSpeed = parseSpeed(way.getTag(\PYGZdq{}maxspeed:backward\PYGZdq{}));}
+\PYG{c+cm}{		if (backSpeed \PYGZgt{}= 0 \PYGZam{}\PYGZam{} (maxSpeed \PYGZlt{} 0 || backSpeed \PYGZlt{} maxSpeed))}
+\PYG{c+cm}{			maxSpeed = backSpeed;}
+\PYG{c+cm}{*/}
+		\PYG{n}{String} \PYG{n}{maxspeedTag} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}maxspeed:hgv\PYGZdq{}}\PYG{o}{);}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{Helper}\PYG{o}{.}\PYG{n+na}{isEmpty}\PYG{o}{(}\PYG{n}{maxspeedTag}\PYG{o}{))}
+			\PYG{n}{maxspeedTag} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}maxspeed\PYGZdq{}}\PYG{o}{);}
+		\PYG{k+kt}{double} \PYG{n}{maxSpeed} \PYG{o}{=} \PYG{n}{parseSpeed}\PYG{o}{(}\PYG{n}{maxspeedTag}\PYG{o}{);}
+
+
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{bCheckMaxSpeed}\PYG{o}{)}
+		\PYG{o}{\PYGZob{}}
+			\PYG{n}{String} \PYG{n}{highway} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}highway\PYGZdq{}}\PYG{o}{);}
+			\PYG{k+kt}{double} \PYG{n}{defaultSpeed} \PYG{o}{=} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{);}
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{defaultSpeed} \PYG{o}{\PYGZlt{}} \PYG{n}{maxSpeed}\PYG{o}{)} \PYG{c+c1}{// TODO}
+				\PYG{n}{maxSpeed} \PYG{o}{=} \PYG{n}{defaultSpeed}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{c+c1}{// Amandus}
+		\PYG{c+c1}{// 30er Zone}
+		\PYG{k}{if}\PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{==} \PYG{l+m+mf}{30.0}\PYG{o}{)}
+			\PYG{n}{maxSpeed} \PYG{o}{=} \PYG{l+m+mf}{50.0}\PYG{o}{;}
+		\PYG{c+c1}{//Spielstraße}
+		\PYG{k}{if}\PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{==} \PYG{l+m+mf}{7.0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{highway} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}living\PYGZus{}street\PYGZdq{}}\PYG{o}{)}
+			\PYG{n}{maxSpeed} \PYG{o}{=} \PYG{l+m+mf}{20.0}\PYG{o}{;}
+
+		\PYG{k}{return} \PYG{n}{maxSpeed}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{protected} \PYG{k+kt}{double} \PYG{n+nf}{getSpeed}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way} \PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+    	 \PYG{n}{String} \PYG{n}{highwayValue} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}highway\PYGZdq{}}\PYG{o}{);}
+         \PYG{k}{if} \PYG{o}{(!}\PYG{n}{Helper}\PYG{o}{.}\PYG{n+na}{isEmpty}\PYG{o}{(}\PYG{n}{highwayValue}\PYG{o}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorroad\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}yes\PYGZdq{}}\PYG{o}{)}
+                 \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{highwayValue} \PYG{o}{!=} \PYG{l+s}{\PYGZdq{}motorway\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{highwayValue} \PYG{o}{!=} \PYG{l+s}{\PYGZdq{}motorway\PYGZus{}link\PYGZdq{}}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+             \PYG{n}{highwayValue} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}motorroad\PYGZdq{}}\PYG{o}{;}
+         \PYG{o}{\PYGZcb{}}
+         \PYG{n}{Integer} \PYG{n}{speed} \PYG{o}{=} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{n}{highwayValue}\PYG{o}{);}
+         \PYG{k}{if} \PYG{o}{(}\PYG{n}{speed} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)}
+             \PYG{k}{throw} \PYG{k}{new} \PYG{n}{IllegalStateException}\PYG{o}{(}\PYG{n}{toString}\PYG{o}{()} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, no speed found for: \PYGZdq{}} \PYG{o}{+} \PYG{n}{highwayValue} \PYG{o}{+} \PYG{l+s}{\PYGZdq{}, tags: \PYGZdq{}} \PYG{o}{+} \PYG{n}{way}\PYG{o}{);}
+
+         \PYG{k}{if} \PYG{o}{(}\PYG{n}{highwayValue}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}track\PYGZdq{}}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+             \PYG{n}{String} \PYG{n}{tt} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}tracktype\PYGZdq{}}\PYG{o}{);}
+             \PYG{k}{if} \PYG{o}{(!}\PYG{n}{Helper}\PYG{o}{.}\PYG{n+na}{isEmpty}\PYG{o}{(}\PYG{n}{tt}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+                 \PYG{n}{Integer} \PYG{n}{tInt} \PYG{o}{=} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getTrackTypeSpeed}\PYG{o}{(}\PYG{n}{tt}\PYG{o}{);} \PYG{c+c1}{// FIXME}
+                 \PYG{k}{if} \PYG{o}{(}\PYG{n}{tInt} \PYG{o}{!=} \PYG{k+kc}{null} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{tInt} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{)}
+                     \PYG{n}{speed} \PYG{o}{=} \PYG{n}{tInt}\PYG{o}{;}
+             \PYG{o}{\PYGZcb{}}
+         \PYG{o}{\PYGZcb{}}
+
+     \PYG{c+cm}{/*   if (way.hasTag(\PYGZdq{}access\PYGZdq{})) // Runge  //https://www.openstreetmap.org/way/132312559}
+\PYG{c+cm}{        \PYGZob{}}
+\PYG{c+cm}{        	String accessTag = way.getTag(\PYGZdq{}access\PYGZdq{});}
+\PYG{c+cm}{        	if (\PYGZdq{}destination\PYGZdq{}.equals(accessTag))}
+\PYG{c+cm}{        		return 1; }
+\PYG{c+cm}{        \PYGZcb{}*/}
+
+        \PYG{k}{return} \PYG{n}{speed}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{public} \PYG{k+kt}{long} \PYG{n+nf}{acceptWay}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+        \PYG{n}{String} \PYG{n}{highwayValue} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}highway\PYGZdq{}}\PYG{o}{);}
+
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{highwayValue} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)}
+        \PYG{o}{\PYGZob{}}
+            \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}route\PYGZdq{}}\PYG{o}{,} \PYG{n}{ferries}\PYG{o}{))}
+            \PYG{o}{\PYGZob{}}
+                \PYG{n}{String} \PYG{n}{motorcarTag} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorcar\PYGZdq{}}\PYG{o}{);}
+                \PYG{k}{if} \PYG{o}{(}\PYG{n}{motorcarTag} \PYG{o}{==} \PYG{k+kc}{null}\PYG{o}{)}
+                    \PYG{n}{motorcarTag} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle\PYGZdq{}}\PYG{o}{);}
+
+                \PYG{k}{if} \PYG{o}{(}\PYG{n}{motorcarTag} \PYG{o}{==} \PYG{k+kc}{null} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}foot\PYGZdq{}}\PYG{o}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}bicycle\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}yes\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{motorcarTag}\PYG{o}{))}
+                    \PYG{k}{return} \PYG{n}{acceptBit} \PYG{o}{|} \PYG{n}{ferryBit}\PYG{o}{;}
+            \PYG{o}{\PYGZcb{}}
+            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+        \PYG{o}{\PYGZcb{}}
+
+        \PYG{c+c1}{// if (\PYGZdq{}track\PYGZdq{}.equals(highwayValue))}
+        \PYG{c+c1}{// \PYGZob{}}
+        \PYG{c+c1}{//     String tt = way.getTag(\PYGZdq{}tracktype\PYGZdq{});}
+        \PYG{c+c1}{//     if (tt != null \PYGZam{}\PYGZam{} !tt.equals(\PYGZdq{}grade1\PYGZdq{})) // TODO allow higher grade values for forestry and agriculture}
+        \PYG{c+c1}{//     	return 0;}
+
+        \PYG{c+c1}{//     if (tt != null \PYGZam{}\PYGZam{} !trackTypeSpeedMap.containsKey(tt))}
+        \PYG{c+c1}{//         return 0;}
+        \PYG{c+c1}{// \PYGZcb{}}
+
+        \PYG{k}{if} \PYG{o}{(!}\PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{hasSpeedValue}\PYG{o}{(}\PYG{n}{highwayValue}\PYG{o}{))}
+            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}impassable\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}yes\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}status\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}impassable\PYGZdq{}}\PYG{o}{))}
+            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+
+        \PYG{c+c1}{// do not drive street cars into fords}
+        \PYG{c+c1}{// boolean carsAllowed = way.hasTag(restrictions, intendedValues);}
+        \PYG{c+c1}{// if (isBlockFords() \PYGZam{}\PYGZam{} (\PYGZdq{}ford\PYGZdq{}.equals(highwayValue) || way.hasTag(\PYGZdq{}ford\PYGZdq{})) \PYGZam{}\PYGZam{} !carsAllowed)}
+        \PYG{c+c1}{//     return 0;}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{isBlockFords}\PYG{o}{()} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}ford\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highwayValue}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ford\PYGZdq{}}\PYG{o}{)))}
+            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+
+        \PYG{c+c1}{// check access restrictions}
+        \PYG{c+c1}{// if (way.hasTag(restrictions, restrictedValues) \PYGZam{}\PYGZam{} !carsAllowed)}
+        \PYG{c+c1}{// \PYGZob{}}
+        \PYG{c+c1}{// 	// filter special type of access for hgv}
+        \PYG{c+c1}{// 	if (!way.hasTag(hgvAccess, intendedValues))}
+        \PYG{c+c1}{// 		return 0;}
+        \PYG{c+c1}{// \PYGZcb{}}
+
+        \PYG{c+c1}{// Amandus}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}lanes:psv\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}lanes:bus\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}lanes:taxi\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}busway, lane\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}busway:left, lane\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}busway:right, lane\PYGZdq{}}\PYG{o}{))}
+            \PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+        \PYG{c+c1}{// allow railway=tram where paved? no suitable exclusion criteria found yet}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}aeroway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}runway\PYGZdq{}}\PYG{o}{)} \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}aeroway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}taxilane\PYGZdq{}}\PYG{o}{))}
+        	\PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+        \PYG{c+c1}{//allow highway=footway, pedestrian}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{highwayValue} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}pedestrian\PYGZdq{}} \PYG{o}{||} \PYG{n}{highwayValue} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}footway\PYGZdq{}}\PYG{o}{)}
+        	\PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+
+        \PYG{c+c1}{// do not drive cars over railways (sometimes incorrectly mapped!)}
+    \PYG{c+cm}{/*    if (way.hasTag(\PYGZdq{}railway\PYGZdq{}) \PYGZam{}\PYGZam{} !way.hasTag(\PYGZdq{}railway\PYGZdq{}, acceptedRailways))}
+\PYG{c+cm}{        \PYGZob{}}
+\PYG{c+cm}{      	  // Runge, see http://www.openstreetmap.org/way/36106092}
+\PYG{c+cm}{      	    String motorcarTag = way.getTag(\PYGZdq{}motorcar\PYGZdq{});}
+\PYG{c+cm}{            if (motorcarTag == null)}
+\PYG{c+cm}{                motorcarTag = way.getTag(\PYGZdq{}motor\PYGZus{}vehicle\PYGZdq{});}
+
+\PYG{c+cm}{            if (motorcarTag == null || \PYGZdq{}no\PYGZdq{}.equals(motorcarTag))}
+\PYG{c+cm}{          	  return 0;}
+\PYG{c+cm}{        \PYGZcb{}*/}
+
+        \PYG{k}{return} \PYG{n}{acceptBit}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{public} \PYG{k+kt}{long} \PYG{n+nf}{handleRelationTags}\PYG{o}{(}\PYG{n}{ReaderRelation} \PYG{n}{relation}\PYG{o}{,} \PYG{k+kt}{long} \PYG{n}{oldRelationFlags} \PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{oldRelationFlags}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{public} \PYG{k+kt}{long} \PYG{n+nf}{handleWayTags}\PYG{o}{(} \PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{,} \PYG{k+kt}{long} \PYG{n}{allowed}\PYG{o}{,} \PYG{k+kt}{long} \PYG{n}{relationFlags} \PYG{o}{)}
+    \PYG{o}{\PYGZob{}}
+    	\PYG{k}{if} \PYG{o}{(!}\PYG{n}{isAccept}\PYG{o}{(}\PYG{n}{allowed}\PYG{o}{))}
+            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{o}{;}
+
+        \PYG{k+kt}{long} \PYG{n}{flags} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{o}{;}
+        \PYG{k}{if} \PYG{o}{(!}\PYG{n}{isFerry}\PYG{o}{(}\PYG{n}{allowed}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+            \PYG{c+c1}{// get assumed speed from highway type}
+            \PYG{k+kt}{double} \PYG{n}{speed} \PYG{o}{=} \PYG{n}{getSpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{);}
+            \PYG{n}{speed} \PYG{o}{=} \PYG{n}{applyMaxSpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{,} \PYG{n}{speed}\PYG{o}{);}
+
+            \PYG{n}{speed} \PYG{o}{=} \PYG{n}{applyBadSurfaceSpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{,} \PYG{n}{speed}\PYG{o}{);}
+
+            \PYG{n}{flags} \PYG{o}{=} \PYG{n}{setSpeed}\PYG{o}{(}\PYG{n}{flags}\PYG{o}{,} \PYG{n}{speed}\PYG{o}{);}
+
+            \PYG{k+kt}{boolean} \PYG{n}{isRoundabout} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}junction\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}roundabout\PYGZdq{}}\PYG{o}{);}
+            \PYG{k}{if} \PYG{o}{(}\PYG{n}{isRoundabout}\PYG{o}{)}
+                \PYG{n}{flags} \PYG{o}{=} \PYG{n}{setBool}\PYG{o}{(}\PYG{n}{flags}\PYG{o}{,} \PYG{n}{K\PYGZus{}ROUNDABOUT}\PYG{o}{,} \PYG{k+kc}{true}\PYG{o}{);}
+
+            \PYG{k}{if} \PYG{o}{((}\PYG{n}{isOneway}\PYG{o}{(}\PYG{n}{way}\PYG{o}{)} \PYG{o}{||} \PYG{n}{isRoundabout}\PYG{o}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{speed} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{80}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+            		\PYG{k}{if} \PYG{o}{(}\PYG{n}{isBackwardOneway}\PYG{o}{(}\PYG{n}{way}\PYG{o}{))}
+            			\PYG{n}{flags} \PYG{o}{|=} \PYG{n}{backwardBit}\PYG{o}{;}
+
+            		\PYG{k}{if} \PYG{o}{(}\PYG{n}{isForwardOneway}\PYG{o}{(}\PYG{n}{way}\PYG{o}{))}
+            			\PYG{n}{flags} \PYG{o}{|=} \PYG{n}{forwardBit}\PYG{o}{;}
+            \PYG{o}{\PYGZcb{}} \PYG{k}{else}
+                \PYG{n}{flags} \PYG{o}{|=} \PYG{n}{directionBitMask}\PYG{o}{;}
+
+        \PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{o}{\PYGZob{}}
+            \PYG{k+kt}{double} \PYG{n}{ferrySpeed} \PYG{o}{=} \PYG{n}{getFerrySpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{,} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}living\PYGZus{}street\PYGZdq{}}\PYG{o}{),} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}service\PYGZdq{}}\PYG{o}{),} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSpeed}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}residential\PYGZdq{}}\PYG{o}{));}
+            \PYG{n}{flags} \PYG{o}{=} \PYG{n}{setSpeed}\PYG{o}{(}\PYG{n}{flags}\PYG{o}{,} \PYG{n}{ferrySpeed}\PYG{o}{);}
+            \PYG{n}{flags} \PYG{o}{|=} \PYG{n}{directionBitMask}\PYG{o}{;}
+        \PYG{o}{\PYGZcb{}}
+
+        \PYG{c+cm}{/*}
+\PYG{c+cm}{        for (String restriction : restrictions) \PYGZob{}}
+\PYG{c+cm}{            if (way.hasTag(restriction, \PYGZdq{}destination\PYGZdq{})) \PYGZob{}}
+\PYG{c+cm}{                // This is problematic as Speed != Time}
+\PYG{c+cm}{                flags = this.speedEncoder.setDoubleValue(flags, destinationSpeed);}
+\PYG{c+cm}{            \PYGZcb{}}
+\PYG{c+cm}{        \PYGZcb{}}
+\PYG{c+cm}{          */}
+        \PYG{k}{return} \PYG{n}{flags}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * @param way:   needed to retrieve tags}
+\PYG{c+cm}{     * @param speed: speed guessed e.g. from the road type or other tags}
+\PYG{c+cm}{     * @return The assumed speed}
+\PYG{c+cm}{     */}
+    \PYG{k+kd}{protected} \PYG{k+kt}{double} \PYG{n+nf}{applyBadSurfaceSpeed}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{,} \PYG{k+kt}{double} \PYG{n}{speed}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{c+c1}{// limit speed if bad surface}
+       \PYG{c+c1}{// if (badSurfaceSpeed \PYGZgt{} 0 \PYGZam{}\PYGZam{} speed \PYGZgt{} badSurfaceSpeed \PYGZam{}\PYGZam{} way.hasTag(\PYGZdq{}surface\PYGZdq{}, badSurfaceSpeedMap))}
+       \PYG{c+c1}{//     speed = badSurfaceSpeed;}
+    	\PYG{n}{String} \PYG{n}{surface} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}surface\PYGZdq{}}\PYG{o}{);}
+    	\PYG{k}{if} \PYG{o}{(}\PYG{n}{surface} \PYG{o}{!=} \PYG{k+kc}{null}\PYG{o}{)}
+    	\PYG{o}{\PYGZob{}}
+    		\PYG{n}{Integer} \PYG{n}{surfaceSpeed} \PYG{o}{=} \PYG{n}{\PYGZus{}speedLimitHandler}\PYG{o}{.}\PYG{n+na}{getSurfaceSpeed}\PYG{o}{(}\PYG{n}{surface}\PYG{o}{);}
+    		\PYG{k}{if} \PYG{o}{(}\PYG{n}{speed} \PYG{o}{\PYGZgt{}} \PYG{n}{surfaceSpeed} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{surfaceSpeed} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{)}
+    		   \PYG{k}{return} \PYG{n}{surfaceSpeed}\PYG{o}{;}
+    	\PYG{o}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{speed}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * make sure that isOneway is called before}
+\PYG{c+cm}{     */}
+    \PYG{k+kd}{protected} \PYG{k+kt}{boolean} \PYG{n+nf}{isBackwardOneway}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}oneway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}vehicle:forward\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle:forward\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{     * make sure that isOneway is called before}
+\PYG{c+cm}{     */}
+    \PYG{k+kd}{protected} \PYG{k+kt}{boolean} \PYG{n+nf}{isForwardOneway}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{k}{return} \PYG{o}{!}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}oneway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}vehicle:forward\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle:forward\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}no\PYGZdq{}}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+
+    \PYG{k+kd}{protected} \PYG{k+kt}{boolean} \PYG{n+nf}{isOneway}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}oneway\PYGZdq{}}\PYG{o}{,} \PYG{n}{oneways}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}vehicle:backward\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}vehicle:forward\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle:backward\PYGZdq{}}\PYG{o}{)}
+                \PYG{o}{||} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}motor\PYGZus{}vehicle:forward\PYGZdq{}}\PYG{o}{);}
+    \PYG{o}{\PYGZcb{}}
+
+
+    \PYG{k+kd}{protected} \PYG{k+kt}{int} \PYG{n+nf}{handlePriority}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{n}{TreeMap}\PYG{o}{\PYGZlt{}}\PYG{n}{Double}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{weightToPrioMap} \PYG{o}{=} \PYG{k}{new} \PYG{n}{TreeMap}\PYG{o}{\PYGZlt{}}\PYG{n}{Double}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}();}
+
+		\PYG{n}{collect}\PYG{o}{(}\PYG{n}{way}\PYG{o}{,} \PYG{n}{weightToPrioMap}\PYG{o}{);}
+
+		\PYG{c+c1}{// pick priority with biggest order value}
+		\PYG{k}{return} \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{lastEntry}\PYG{o}{().}\PYG{n+na}{getValue}\PYG{o}{();}
+	\PYG{o}{\PYGZcb{}}
+
+    \PYG{c+cm}{/**}
+\PYG{c+cm}{	 * @param weightToPrioMap}
+\PYG{c+cm}{	 *            associate a weight with every priority. This sorted map allows}
+\PYG{c+cm}{	 *            subclasses to \PYGZsq{}insert\PYGZsq{} more important priorities as well as}
+\PYG{c+cm}{	 *            overwrite determined priorities.}
+\PYG{c+cm}{	 */}
+	\PYG{k+kd}{protected} \PYG{k+kt}{void} \PYG{n+nf}{collect}\PYG{o}{(}\PYG{n}{ReaderWay} \PYG{n}{way}\PYG{o}{,} \PYG{n}{TreeMap}\PYG{o}{\PYGZlt{}}\PYG{n}{Double}\PYG{o}{,} \PYG{n}{Integer}\PYG{o}{\PYGZgt{}} \PYG{n}{weightToPrioMap}\PYG{o}{)} \PYG{o}{\PYGZob{}} \PYG{c+c1}{// Runge}
+\PYG{c+c1}{//		if (way.hasTag(\PYGZdq{}hgv\PYGZdq{}, \PYGZdq{}designated\PYGZdq{}) || (way.hasTag(\PYGZdq{}access\PYGZdq{}, \PYGZdq{}designated\PYGZdq{}) \PYGZam{}\PYGZam{} (way.hasTag(\PYGZdq{}goods\PYGZdq{}, \PYGZdq{}yes\PYGZdq{}) || way.hasTag(\PYGZdq{}hgv\PYGZdq{}, \PYGZdq{}yes\PYGZdq{}) || way.hasTag(\PYGZdq{}bus\PYGZdq{}, \PYGZdq{}yes\PYGZdq{}) || way.hasTag(\PYGZdq{}agricultural\PYGZdq{}, \PYGZdq{}yes\PYGZdq{}) || way.hasTag(\PYGZdq{}forestry\PYGZdq{}, \PYGZdq{}yes\PYGZdq{}) )))}
+\PYG{c+c1}{//			weightToPrioMap.put(100d, PriorityCode.BEST.getValue());}
+		\PYG{c+c1}{// Amandus}
+        \PYG{k}{if} \PYG{o}{(}\PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}highway\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}service\PYGZdq{}}\PYG{o}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{hasTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}service\PYGZdq{}}\PYG{o}{,} \PYG{l+s}{\PYGZdq{}emergency\PYGZus{}access\PYGZdq{}}\PYG{o}{))}
+            \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{BEST}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+        \PYG{k}{else}
+		\PYG{o}{\PYGZob{}}
+            \PYG{c+c1}{// Amandus}
+			\PYG{n}{String} \PYG{n}{busway} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}busway\PYGZdq{}}\PYG{o}{);}\PYG{c+c1}{// FIXME || way.getTag(\PYGZdq{}busway:right\PYGZdq{}) || way.getTag(\PYGZdq{}busway:left\PYGZdq{});}
+            \PYG{k}{if} \PYG{o}{(!}\PYG{n}{Helper}\PYG{o}{.}\PYG{n+na}{isEmpty}\PYG{o}{(}\PYG{n}{busway}\PYG{o}{))}
+            \PYG{o}{\PYGZob{}}
+                \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}lane\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{busway}\PYG{o}{))}
+                    \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{10}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{PREFER}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+            \PYG{o}{\PYGZcb{}}
+
+            \PYG{n}{String} \PYG{n}{highway} \PYG{o}{=} \PYG{n}{way}\PYG{o}{.}\PYG{n+na}{getTag}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}highway\PYGZdq{}}\PYG{o}{);}
+			\PYG{k+kt}{double} \PYG{n}{maxSpeed} \PYG{o}{=} \PYG{n}{getMaxSpeed}\PYG{o}{(}\PYG{n}{way}\PYG{o}{);}
+
+			\PYG{k}{if} \PYG{o}{(!}\PYG{n}{Helper}\PYG{o}{.}\PYG{n+na}{isEmpty}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+			\PYG{o}{\PYGZob{}}
+				\PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}motorway\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}motorway\PYGZus{}link\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}trunk\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}trunk\PYGZus{}link\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{BEST}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}primary\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}primary\PYGZus{}link\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{PREFER}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}secondary\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}secondary\PYGZus{}link\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{PREFER}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}tertiary\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}tertiary\PYGZus{}link\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{UNCHANGED}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}residential\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}service\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}road\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{)} \PYG{o}{||} \PYG{l+s}{\PYGZdq{}unclassified\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+				\PYG{o}{\PYGZob{}}
+					 \PYG{k}{if} \PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{maxSpeed} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{30}\PYG{o}{)}
+						 \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{120}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{REACH\PYGZus{}DEST}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+					 \PYG{k}{else}
+						 \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{AVOID\PYGZus{}IF\PYGZus{}POSSIBLE}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{o}{\PYGZcb{}}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}living\PYGZus{}street\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					 \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{AVOID\PYGZus{}IF\PYGZus{}POSSIBLE}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{l+s}{\PYGZdq{}track\PYGZdq{}}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{highway}\PYG{o}{))}
+					 \PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,}  \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{REACH\PYGZus{}DEST}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} 
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{40}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{AVOID\PYGZus{}IF\PYGZus{}POSSIBLE}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+			\PYG{o}{\PYGZcb{}}
+			\PYG{k}{else}	
+				\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{100}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{UNCHANGED}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+
+			\PYG{k}{if} \PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{)}
+			\PYG{o}{\PYGZob{}}
+				\PYG{c+c1}{// We assume that the given road segment goes through a settlement.}
+				\PYG{k}{if} \PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{40}\PYG{o}{)}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{110}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{AVOID\PYGZus{}IF\PYGZus{}POSSIBLE}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+				\PYG{k}{else} \PYG{k}{if} \PYG{o}{(}\PYG{n}{maxSpeed} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{50}\PYG{o}{)}
+					\PYG{n}{weightToPrioMap}\PYG{o}{.}\PYG{n+na}{put}\PYG{o}{(}\PYG{l+m+mi}{110}\PYG{n}{d}\PYG{o}{,} \PYG{n}{PriorityCode}\PYG{o}{.}\PYG{n+na}{UNCHANGED}\PYG{o}{.}\PYG{n+na}{getValue}\PYG{o}{());}
+			\PYG{o}{\PYGZcb{}}
+		\PYG{o}{\PYGZcb{}}
+	\PYG{o}{\PYGZcb{}}
+
+    \PYG{n+nd}{@Override}
+    \PYG{k+kd}{public} \PYG{n}{String} \PYG{n+nf}{toString}\PYG{o}{()}
+    \PYG{o}{\PYGZob{}}
+        \PYG{k}{return} \PYG{l+s}{\PYGZdq{}emergency\PYGZdq{}}\PYG{o}{;}
+    \PYG{o}{\PYGZcb{}}
+
+	\PYG{n+nd}{@Override}
+	\PYG{k+kd}{public} \PYG{k+kt}{int} \PYG{n+nf}{getVersion}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{c+c1}{// TODO Auto\PYGZhy{}generated method stub}
+		\PYG{k}{return} \PYG{l+m+mi}{1}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

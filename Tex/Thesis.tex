@@ -27,6 +27,7 @@
 \usepackage{lipsum}
 \usepackage{array}
 \usepackage{textcomp}
+\usepackage{setspace}
 
 %Java und Javascript Code
 %\usepackage{listings}
@@ -64,8 +65,9 @@
 % no indent
 %\setlength{\parindent}{0pt}
 
-% todo command
+% commands
 \newcommand\todo[1]{\textcolor{red}{#1}}
+\renewcommand\listoflistingscaption{Sourcecodeverzeichnis}
 
 % Document Infos
 \author{Amandus Stefan Butzer}
@@ -101,13 +103,17 @@
 \newpage
 \listoffigures
 
-\newpage
 \listoftables
+
+\begin{spacing}{1.5}
+\listoflistings
+\end{spacing}
 
 %Abkürzungsverzeichnis
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
 \newpage
+\pagenumbering{arabic}
 
 \include{Einleitung}
 
@@ -119,7 +125,6 @@
 
 \include{Methodik}
 
-\newpage
 \newpage
 
 \include{Ergebnisse}
@@ -138,6 +143,8 @@
 %\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 
 \newpage
+
+
 
 \include{Anhang}
 

@@ -99,6 +99,7 @@ public class EmergencyVehicleEdgeFilter implements EdgeFilter {
 					else
 						return true;
 				} else {
+					// the restriction on the edge is smaller than the given = evade edge
 					if (gsAttributes.getEdgeRestrictionValues(edgeId, buffer, retValues))
 					{
 						double value = retValues[0];

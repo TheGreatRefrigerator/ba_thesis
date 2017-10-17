@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ *  Licensed to GIScience Research Group, Heidelberg University (GIScience)}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *   http://www.giscience.uni\PYGZhy{}hd.de}
+\PYG{c+cm}{ *   http://www.heigit.org}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ *  under one or more contributor license agreements. See the NOTICE file }
+\PYG{c+cm}{ *  distributed with this work for additional information regarding copyright }
+\PYG{c+cm}{ *  ownership. The GIScience licenses this file to you under the Apache License, }
+\PYG{c+cm}{ *  Version 2.0 (the \PYGZdq{}License\PYGZdq{}); you may not use this file except in compliance }
+\PYG{c+cm}{ *  with the License. You may obtain a copy of the License at}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *       http://www.apache.org/licenses/LICENSE\PYGZhy{}2.0}
+\PYG{c+cm}{ * }
+\PYG{c+cm}{ *  Unless required by applicable law or agreed to in writing, software}
+\PYG{c+cm}{ *  distributed under the License is distributed on an \PYGZdq{}AS IS\PYGZdq{} BASIS,}
+\PYG{c+cm}{ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}
+\PYG{c+cm}{ *  See the License for the specific language governing permissions and}
+\PYG{c+cm}{ *  limitations under the License.}
+\PYG{c+cm}{ */}
+\PYG{k+kn}{package} \PYG{n+nn}{heigit.ors.routing.graphhopper.extensions.storages}\PYG{o}{;}
+
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.storage.Directory}\PYG{o}{;}
+\PYG{k+kn}{import} \PYG{n+nn}{com.graphhopper.storage.Graph}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{EmergencyVehicleAttributesGraphStorage} \PYG{k+kd}{extends} \PYG{n}{HeavyVehicleAttributesGraphStorage} \PYG{o}{\PYGZob{}}
+	\PYG{k+kd}{public} \PYG{n+nf}{EmergencyVehicleAttributesGraphStorage}\PYG{o}{(}\PYG{k+kt}{boolean} \PYG{n}{includeRestrictions}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k+kd}{super}\PYG{o}{(}\PYG{n}{includeRestrictions}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+
+	\PYG{c+cm}{/* pointer for no entry */}
+	\PYG{k+kd}{public} \PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{o}{(}\PYG{n}{Graph} \PYG{n}{graph}\PYG{o}{,} \PYG{n}{Directory} \PYG{n}{dir}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{if} \PYG{o}{(}\PYG{n}{edgesCount} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{)}
+			\PYG{k}{throw} \PYG{k}{new} \PYG{n}{AssertionError}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}The ext\PYGZus{}emergency storage must be initialized only once.\PYGZdq{}}\PYG{o}{);}
+
+		\PYG{k}{this}\PYG{o}{.}\PYG{n+na}{orsEdges} \PYG{o}{=} \PYG{n}{dir}\PYG{o}{.}\PYG{n+na}{find}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}ext\PYGZus{}emergency\PYGZdq{}}\PYG{o}{);}
+	\PYG{o}{\PYGZcb{}}
+	
+	\PYG{k+kd}{public} \PYG{k+kt}{boolean} \PYG{n+nf}{loadExisting}\PYG{o}{()} \PYG{o}{\PYGZob{}}
+		\PYG{k}{if} \PYG{o}{(!}\PYG{n}{orsEdges}\PYG{o}{.}\PYG{n+na}{loadExisting}\PYG{o}{())}
+			\PYG{k}{throw} \PYG{k}{new} \PYG{n}{IllegalStateException}\PYG{o}{(}\PYG{l+s}{\PYGZdq{}Unable to load storage \PYGZsq{}ext\PYGZus{}emergency\PYGZsq{}. corrupt file or directory? \PYGZdq{}}\PYG{o}{);}
+
+		\PYG{n}{edgeEntryBytes} \PYG{o}{=} \PYG{n}{orsEdges}\PYG{o}{.}\PYG{n+na}{getHeader}\PYG{o}{(}\PYG{l+m+mi}{0}\PYG{o}{);}
+		\PYG{n}{edgesCount} \PYG{o}{=} \PYG{n}{orsEdges}\PYG{o}{.}\PYG{n+na}{getHeader}\PYG{o}{(}\PYG{l+m+mi}{4}\PYG{o}{);}
+		\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}
