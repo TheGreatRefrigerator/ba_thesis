@@ -1,0 +1,140 @@
+\section{Anhang}
+\label{sec:anhang}
+\subsection{Copyrights}
+Die Rechte für die mit geojson.io generierten Abbildungen(\ref{fig:footway}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
+Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\ref{fig:}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
+Für Abbildung \ref{fig:turnactual} liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
+Für Abbildung \ref{fig:traintunnel} liegt das Copyright bei \copyright DigitalGlobe.
+
+%### Testdrive 2
+%
+%Front
+%http://localhost:3005/directions?n1=48.454236&n2=10.826409&n3=18&a=48.454111,10.824569,48.457434,10.85755&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+%
+%Back
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111||10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%
+%Start
+%10.824569,48.454111
+%
+%WPS 1-5
+%10.827488,48.456986
+%10.835567,48.459512
+%10.84622,48.46324
+%10.852572,48.461468
+%10.85755,48.457434
+%
+%
+%### Testdrive 3
+%
+%Front
+%http://localhost:3005/directions?n1=48.44654&n2=10.826383&n3=15&a=48.454111,10.824569,48.443849,10.805097&b=5b&c=0&d=80&f3=3&f1=7.5&f2=2.5&f5=7&k1=en-US&k2=km
+%
+%Back
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%
+%Start
+%10.824569,48.454111
+%
+%WPS 1-5
+%10.821297,48.454111
+%10.819463,48.448041
+%10.816973,48.438369
+%10.806824,48.440618
+%10.805097,48.443849
+%
+%
+
+
+%#### waypoints as minutes
+%
+%[This](http://emergency.openrouteservice.org/directions?n1=48.460358&n2=10.807242&n3=15&a=48.45414,10.824698,48.45568,10.822102,48.460917,10.811641,48.464054,10.799421,48.46362,10.793488,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km 
+%) is the test drive with the Fire truck where each waypoint is 1 minute:
+%
+%![time](https://user-images.githubusercontent.com/23240110/30568811-8d74bd56-9cd7-11e7-86e9-930772f2151d.png)
+%
+%[The response](https://github.com/TheGreatRefrigerator/ba_thesis/blob/master/json\%20examples/time.json)
+%
+%Here are the Results for each point:
+%
+%
+%(table as .xls in this folder)
+%
+%
+%
+%### Testdrive 1 Repeat
+%
+%Front
+%http://localhost:3005/directions?n1=48.454186&n2=10.825616&n3=18&a=48.454111,10.824569,48.466555,10.789776&b=5b&c=0&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km
+%
+%Back
+%http://localhost:8082/openrouteservice-4.3.0/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m
+%
+%Start
+%10.824569,48.454111
+%
+%10.822102,48.45568
+%10.811641,48.460917
+%10.799421,48.464054
+%10.793488,48.46362
+%10.789776,48.466555
+%
+%
+%### All in one
+%![crop](https://user-images.githubusercontent.com/23240110/31310522-cc49c2a8-ab99-11e7-88a7-75a0731e9315.png)
+%
+%Calibration on drive 1
+%:
+%### Weighting 1
+%
+%Start/End 15 sek
+%Turn 20 sek
+%
+%#### Drive 1 
+%
+
+%
+%| Wegpunkt | Sekunden | Differenz |
+%|----------|----------|-----------|
+%|     1min |     78,3 |     +18,3 |
+%|     2min |    138.5 |     +18,5 |
+%|     3min |    188.5 |      +8,5 |
+%|     4min |    226.7 |      -3,3 |
+%|     5min |    298.9 |      -1,1 |
+%
+
+\subsection*{Links}
+
+\href{https://docs.google.com/document/d/1nwjmea0jwauJWezk_2TMQs5CbAHv7he2NI4kxqMu2w4/}{Fragenkatalog}\par
+\smallskip
+\href{http://emergency.openrouteservice.org/reach?n1=48.456787&n2=10.823207&n3=14&a=48.454054,10.824484&b=5b&i=0&j1=5&j2=1&f3=3&f1=7.5&f2=2.5&f5=7&d=80&k1=en-US&k2=km}{Emergency Profil}
+
+\subsection*{CodeFiles}
+
+\newpage
+\section*{Erklärung}
+\vspace{1cm}
+Hiermit versichere ich, dass ich die vorliegende Bachelorarbeit selbstständig verfasst, noch nicht anderweitig zu Prüfungszwecken vorgelegt, keine anderen als die angegebenen Quellen oder Hilfsmittel benutzt, sowie wörtlich und sinngemäße Zitate als solche gekennzeichnet habe.\par
+\bigskip
+
+{\flushleft Heidelberg den \today } {\hfill .....................................\par}
+{\hfill (Unterschrift)}
+
+\newpage
+\section*{Danksagungen}
+
+An dieser Stelle möchte ich allen Leuten danken, die dazu beigetragen haben diese Arbeit zu verwirklichen.\par
+\vspace{0.5cm}
+Ein großes Dankeschön geht natürlich an die Freiwillige Feuerwehr Lützelburg für die Bereitstellung des Fahrzeuges.
+Insbesondere möchte ich Stefan Witossek für die detaillierten Informationen sowie die Organisation und Durchführung aller Testfahrten danken.
+Ohne ihn wäre diese Arbeit nicht möglich gewesen.\par
+\vspace{0.5cm}
+Danke an meine Kollegen Tim, Max und Lu vom Openrouteservice, die mir mit motivierenden Gesprächen und hilfreichen Erklärungen zur Seite gestanden sind und mich in jeder Hinsicht unterstützt haben.\par
+\vspace{0.5cm}
+Meinem Betreuer Dr. Alexander Zipf möchte ich für das Korrigieren der Arbeit und der Möglichkeit Danken beim Openrouteservice zu arbeiten.\par
+\vspace{0.5cm}
+Außerdem möchte ich meinen Kommilitonen Angi und Marcel Danken für unterhaltsame Mittagspausen, Motivation und Korrekturlesen.
+
+\newpage
+\todo{empty last page}
+%last page
