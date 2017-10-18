@@ -51,7 +51,7 @@ Ein Vorteil von Graphen ist eine einfache Struktur.
 Dabei werden die Ecken als Punkte und die Kanten als Linien oder Pfeile dargestellt (Abbildung ~\ref{fig:simple}) (\cite[49]{kurt}).
 Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen.
 Darüber hinaus können sie mit sich selbst verbunden sein und eine sogenannte Schlinge bilden ($v_{5}$).
-Sind zwei Ecken durch eine Kante verbunden bezeichnet man sie als \textit{adjazent}(benachbart).
+Sind zwei Ecken durch eine Kante verbunden werden sie als \textit{adjazent}(benachbart) bezeichnet.
 Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objekte als \textit{inzident} zueinander bezeichnet.
 Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}.
 Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
@@ -223,7 +223,7 @@ Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite
 \begin{figure}[h]
 \centering
 \includegraphics[width = \textwidth]{../media/towers.pdf} \\
-\caption{Simplifizierung eines OSM Datensatzes}
+\caption{Simplifizierung eines \gls{osm} Datensatzes}
 \label{fig:tower}
 \end{figure}
 
@@ -397,7 +397,7 @@ Für jede Übereinstimmung wird die Distanz in beiden Instanzen Berechnet.
 Die Ecke ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.\par
 In der schematischen Abbildung ~\ref{fig:biD} wird die Einsparung gegenüber dem Early Stopping deutlich.
 Der graue Bereich muss nicht berechnet werden.
-Die Bearbeitungszeit lässt sich also theoretisch um die Hälfte reduzieren\footnote{In der Realität wir dieser Wert selten erreicht.
+Die Bearbeitungszeit lässt sich also theoretisch um die Hälfte reduzieren\footnote{In der Realität wird dieser Wert selten erreicht.
 Bei Graphen mit einer höheren Eckendichte in Nähe von $z~$ könnte die Bearbeitungszeit sogar größer werden.
 Allgemein wird aber ein signifikanter Vorteil erzielt.}.
 
@@ -429,7 +429,7 @@ Allgemein wird aber ein signifikanter Vorteil erzielt.}.
 
 
 \paragraph*{A*:}
-Der $A*~$ Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt.
+Der $A*~$Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt.
 Es wird durch eine Funktion für jede Ecke die Distanz zum Ziel geschätzt.
 Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden.
 Die standardmäßig kreisförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt.
@@ -442,17 +442,17 @@ Diese und weitere Möglichkeiten sind in \cite[209--213]{kurt} ausführlich besc
 Isochronen sind Linien gleicher Zeit (griech.: \textit{iso} = gleich + \textit{chronos} = Zeit).
 
 Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten, um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden.
-Dazu wird ein \gls{ssp} für eine zentrale Ecke ~$z$ mit einem gegebenen Zeitlimit ~$t$ gelöst.
+Dazu wird ein \gls{ssp} für eine zentrale Ecke~$z$ mit einem gegebenen Zeitlimit~$t$ gelöst.
 Isochronen können mit unterschiedlichen Methoden berechnet werden.
 Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
 
 
 \subsubsection{Gitterbasierter Ansatz}
 
-Beim \textit{Marching Squares} Algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet (~\ref{fig:grid1}).
-Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen(~\ref{fig:grid2}).
+Beim \textit{Marching Squares} Algorithmus wird um das Zentrum ein Gitter über dem Graphen gebildet~(\ref{fig:grid1}).
+Die Eckpunkte des Gitters erhalten dabei die Werte des nächsten Punktes auf dem Graphen~(\ref{fig:grid2}).
 Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei denen der Wert mit dem gesuchten Zeitlimit übereinstimmt.
-In Abbildung ~\ref{fig:grid3} wurde das für die Werte $t=5$ und $t=10$ durchgeführt.
+In Abbildung~\ref{fig:grid3} wurde das für die Werte $t=5$ und $t=10$ durchgeführt.
 Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
 \begin{figure}[h]

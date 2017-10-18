@@ -3,8 +3,8 @@
 Die Verwendung neuer Wegtypen konnte erfolgreich eingebunden werden wie in Abbildung \ref{fig:footway} zu erkennen ist.
 Hier wurden als Zielpunkte verschieden Stellen auf der Fußgängerzone(v.a. Hauptstraße) in der Heidelberger Altstadt\footnote{Heidelberg liegt natürlich nicht in Schwaben.
 Für diesen Test wurde ein Gebiet um Heidelberg als Datengrundlage verwendet.} gewählt.
-Da der ORS zur Darstellung mehrerer Routen bisher noch nicht geeignet ist, wurden die Antworten im GeoJson Format mit der Website \textit{http://geojson.io} visualisiert.
-Im Gegensatz zum Auto Profil des ORS findet das Emergency-Profil seinen Weg bis zum gewünschten Zielpunkt.
+Da der \gls{ors} zur Darstellung mehrerer Routen bisher noch nicht geeignet ist, wurden die Antworten im GeoJson Format mit der Website \textit{http://geojson.io} visualisiert.
+Im Gegensatz zum Auto Profil des \gls{ors} findet das Emergency-Profil seinen Weg bis zum gewünschten Zielpunkt.
 Durch die niedrige Geschwindigkeitsangabe des Backends wird auch nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller gehen würde.
 Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
 
@@ -87,15 +87,16 @@ Um genaue Anpassungen am Backend vorzunehmen wurde eine weitere Testfahrt durchg
 Diese Angaben wurden mit den bisherigen Rückgabewerten des Profils verglichen.
 Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtlich, ist das Emergency Profil ungefähr 90 Sekunden zu schnell.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \includegraphics[width = 0.7 \textwidth]{../media/Fahrt1.png} \\
 \caption{Testfahrt 1}
 \label{fig:drive1}
 \end{figure}
 
-\begin{table}[]
+\begin{table}[htb]
 \centering
+\footnotesize
 \caption{Fahrt 1 -- 1. Auswertung}
 \label{tab:driveinit}
 \begin{tabular}{|l|r|r|r|r|r|}
@@ -106,8 +107,8 @@ Fahrtzeit (Profil)                     & 28,6 s                 & 88,7 s        
 Fahrtzeit (Testfahrt)                  & 60,0 s                 & 120,0 s                & 180,0 s                & 240,0 s                & 300,0 s                \\ \hline
 Fahrtzeit Abschnitt                    & 28,6 s                 & 60,1 s                 & 50,7 s                 & 38,2 s                 & 32,2 s                 \\ \hline
 Fahrtzeit Abschnitt (Testfahrt)        & 60,0 s                 & 60,0 s                 & 60,0 s                 & 60,0 s                 & 60,0 s                 \\ \hline
-Geschwindigkeit                        & 45,7 km/h              & 59,3 km/h              & 69,5 km/h              & 50,0 km/h              & 58,7 km/h              \\ \hline
-Geschwindigkeit (Testfahrt)            & 21,8 km/h              & 59,4 km/h              & 58,7 km/h              & 31,8 km/h              & 31,5 km/h              \\ \hline
+Geschwindigkeit                        & 45,7 $km/h$            & 59,3 $km/h$            & 69,5 $km/h$            & 50,0 $km/h$            & 58,7 $km/h$            \\ \hline
+Geschwindigkeit (Testfahrt)            & 21,8 $km/h$            & 59,4 $km/h$            & 58,7 $km/h$            & 31,8 $km/h$            & 31,5 $km/h$            \\ \hline
 \end{tabular}
 \end{table}
 

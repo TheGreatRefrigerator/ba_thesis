@@ -4,10 +4,10 @@ Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO
 Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
 Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
 Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}).
-Die Fragen wurden mit Hinblick auf die OSM Datenstruktur und das vorhandene ORS Backend gewählt.
+Die Fragen wurden mit Hinblick auf die \gls{osm} Datenstruktur und das vorhandene \gls{ors} Backend gewählt.
 Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben.
 Die wörtlichen Antworten sind dem Google Dokument im Anhang zu entnehmen.
-Auf Basis der erhobenen Informationen wurden geeignete OSM-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
+Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
 Anschließend wurden neue Java Funktionen geschrieben um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
 Außerdem wurde das Frontend an das neue Profil angepasst.
 
@@ -17,7 +17,7 @@ Außerdem wurde das Frontend an das neue Profil angepasst.
 \label{frage1}
 Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente.
 Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe.
-Hier stützt sich das ORS Backend auf Restriktionen durch die \gls{osm}-Tags: \texttt{maxlength, maxwidth, maxheight, maxweigth} und \texttt{maxaxleload} Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
+Hier stützt sich das \gls{ors} Backend auf Restriktionen durch die \gls{osm}-Tags: \texttt{maxlength, maxwidth, maxheight, maxweigth} und \texttt{maxaxleload} Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
 \begin{itemize}
 \centering
 \item[Länge:] 7 Meter
@@ -160,7 +160,7 @@ tracktype=footway(Fußweg) & 5\\
 \label{backendGraphBuild}
 
 Aufbauend auf den gewonnen Informationen aus dem Fragenkatalog werden nun Java-Klassen für das Emergency Profil Erstellt.
-Dazu werden die bereits vorhandenen Klassen eines ORS Profils verwendet.
+Dazu werden die bereits vorhandenen Klassen eines \gls{ors} Profils verwendet.
 Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen wird das HGV-Profil als Schablone benutzt.
 Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den richtigen Stellen im Code des Backends eingebunden werden müssen.
 
@@ -175,10 +175,10 @@ Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den ric
 Davon sind alleine drei für die Fahrzeugdimensionen zuständig.
 Die Klasse \texttt{EmergencyVehicleAttributesGraphStorage} initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Abb.~\ref{lst:storage}).
 Die Klasse \texttt{EmergencyVehicleGraphStorageBuilder} baut das Speicherobjekt zusammen.
-Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den OSM-Daten gespeichert.
+Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert.
 Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen.
 Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben.
-Andere Straßen dürfen normalerweise aufgrund des OSM-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
+Andere Straßen dürfen normalerweise aufgrund des \gls{osm}-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
 Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
 
 \begin{listing}[h]
@@ -216,7 +216,7 @@ Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkei
 \end{listing}
 
 Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Code Segment aus Abbildung \ref{lst:zone} übergangen werden.
-Wichtig ist dabei, dass der OSM-Tag \texttt{highway=living\_street} nicht automatisch eine Spielstraße ist.
+Wichtig ist dabei, dass der \gls{osm}-Tag \texttt{highway=living\_street} nicht automatisch eine Spielstraße ist.
 In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden.
 Diese Eigenschaft muss beim taggen\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden.
 Häufig wird solchen Straßen der Tag \texttt{maxspeed=7} zugewiesen.
@@ -262,11 +262,11 @@ Da Busspuren theoretisch auch vom normalen Verkehr freigehalten werden müssen, 
 Beim ausführen des Codes werden die auf diese Weise generierten Flags beim Bau des Graphen zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch viele weitere Flags auf den Kanten des Graphen gespeichert.
 Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben aufgebaut.
 
-Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des ORS Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert.
+Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert.
 Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben.
 
 Damit ist der prozessierungs Teil des Profils fertig gestellt.
-Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
+Es können an die Schnittstelle des \gls{ors} nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
 
 %
 %%\subsection{Limitierende Faktoren}
@@ -282,7 +282,7 @@ Es können an die Schnittstelle des ORS nun Routing-Anfragen mit dem neuen Profi
 
 \subsection{Anpassungen Frontend}
 
-Das ORS Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
+Das \gls{ors} Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
 Gleichzeitig kann das Ergebnis quasi sofort auf der gleichen Oberfläche dargestellt werden.
 Das Frontend für das Emergency-Profil kann unter \href{www.emergency.openrouteservice.org} erreicht werden.
 
