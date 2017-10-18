@@ -92,11 +92,11 @@ Wird die Differenz von 16.8 Sekunden von den bisherigen Abweichungen für die 3.
 \begin{tabular}{|l|r|r|}
 \hline
 Wegpunkt & Fahrzeit & Abweichung \\ \hline 
-1 & 70.8\footnote{Zum ersten Wegpunkt beträgt die Strecke nur 260m weshalb hier nur 12.6 Sekunden abgezogen werden} & -1.8  \\
-2 & 139.4 & +2.6  \\
-3 & 190 & -6.8  \\
-4 & 255.2 & -1.6  \\
-5 & 12.9 & -3.9  \\
+1$min$ & 58.2$s$\footnote{Zum ersten Wegpunkt beträgt die Strecke nur 260m weshalb hier nur 12.6 Sekunden abgezogen werden} & -1.8$s$  \\
+2$min$ & 122.6$s$ & +2.6$s$  \\
+3$min$ & 173.2$s$ & -6.8$s$  \\
+4$min$ & 238.4$s$ & -1.6$s$  \\
+5$min$ & 296.1$s$ & -3.9$s$  \\
 \hline
 \end{tabular}
 \end{table}
@@ -142,18 +142,16 @@ Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils
 \subsection{Benötigte Änderungen}
 
 Wie durch die Vorliegende Analyse zu sehen ist, müssen noch einige Änderungen vollzogen werden, damit das Profil realistischere Ergebnisse zurückgibt.\par
-\todo{liststyle}
 \begin{itemize}
-\item[*] Dass 30er Zonen noch nicht richtig erkannt werden muss repariert werden.
-\item[*] Für die Steigung muss eine Funktion implementiert werden, welche diese berücksichtigt.
-\item[*] Turns innerhalb von Routensegmenten (Abb.), an Pillar Nodes, werden bisher nicht berücksichtigt -- sollten aber.
-\item[*] Die Zeit für einen Turn sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden.
+\item Dass 30er Zonen noch nicht richtig erkannt werden muss repariert werden.
+\item Für die Steigung muss eine Funktion implementiert werden, welche diese berücksichtigt.
+\item Turns innerhalb von Routensegmenten(Abb.~\ref{fig:curve}), an Pillar Nodes, werden bisher nicht berücksichtigt und müssen mit einbezogen werden.
+\item Die Zeit für einen Turn sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden.
 Ansätze hierfür wurden bereits entwickelt(siehe Source Code) konnten aber noch nicht implementiert werden.
-\item[*] Für die Penalties sollte die Zeit, sofern vorhanden, aus der eigentlichen Beschleunigung und ansonsten möglicherweise aus dem Gewicht des Fahrzeugs berechnet werden.
+\item Für die Penalties muss die Zeit, sofern vorhanden, aus der eigentlichen Beschleunigung und falls diese nicht vorhanden, zum Beispiel aus dem Gewicht des Fahrzeugs berechnet werden.
 Dadurch können einfacher spezifische Fahrzeugprofile erstellt und getestet werden.
 Da das AccelerationWeighting sowohl für das Löschfahrzeug als auch für allgemeine Einsatzfahrzeuge benutzt wird, erhalten diese bisher die gleichen Penalties.
-Das kann ebenfalls durch den zuletzt genannten Punkt behoben werden.
-\item[*] Weiterhin muss für Einbahnstraßen die in Gegenrichtung durchfahren werden ein Penalty(ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist).
+\item Weiterhin muss für Einbahnstraßen die in Gegenrichtung durchfahren werden ein Penalty(ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist).
 So kann ein Routing auf der Gegenfahrbahn wegen dem Gewinn von ein paar Sekunden verhindern werden.
 Ausserdem werden damit bevorzugt vorhandene Parallelstraßen benutzt.
 \end{itemize}

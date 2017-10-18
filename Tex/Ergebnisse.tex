@@ -96,30 +96,30 @@ Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtl
 
 \begin{table}[htb]
 \centering
-\footnotesize
+\small
 \caption{Fahrt 1 -- 1. Auswertung}
 \label{tab:driveinit}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Wegpunkt                               & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{B}  \\ \hline
-Distanz                                & 363,2 m                & 1352,8 m               & 2331,9 m               & 2862,3 m               & 3387,3 m               \\ \hline
-Fahrtzeit (Profil)                     & 28,6 s                 & 88,7 s                 & 139,4 s                & 177,6 s                & 209,8 s                \\ \hline
-Fahrtzeit (Testfahrt)                  & 60,0 s                 & 120,0 s                & 180,0 s                & 240,0 s                & 300,0 s                \\ \hline
-Fahrtzeit Abschnitt                    & 28,6 s                 & 60,1 s                 & 50,7 s                 & 38,2 s                 & 32,2 s                 \\ \hline
-Fahrtzeit Abschnitt (Testfahrt)        & 60,0 s                 & 60,0 s                 & 60,0 s                 & 60,0 s                 & 60,0 s                 \\ \hline
-Geschwindigkeit                        & 45,7 $km/h$            & 59,3 $km/h$            & 69,5 $km/h$            & 50,0 $km/h$            & 58,7 $km/h$            \\ \hline
-Geschwindigkeit (Testfahrt)            & 21,8 $km/h$            & 59,4 $km/h$            & 58,7 $km/h$            & 31,8 $km/h$            & 31,5 $km/h$            \\ \hline
+Wegpunkt                               & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{4} & \multicolumn{1}{c|}{B}      \\ \hline
+Distanz                                & 363,2$m$                & 1352,8$m$               & 2331,9$m$               & 2862,3$m$               & 3387,3$m$               \\ \hline
+Fahrtzeit (Profil)                     & 28,6$s$                 & 88,7$s$                 & 139,4$s$                & 177,6$s$                & 209,8$s$                \\ \hline
+Fahrtzeit (Testfahrt)                  & 60,0$s$                 & 120,0$s$                & 180,0$s$                & 240,0$s$                & 300,0$s$                \\ \hline
+Fahrtzeit Abschnitt                    & 28,6$s$                 & 60,1$s$                 & 50,7$s$                 & 38,2$s$                 & 32,2$s$                 \\ \hline
+Fahrtzeit Abschnitt (Testfahrt)        & 60,0$s$                 & 60,0$s$                 & 60,0$s$                 & 60,0$s$                 & 60,0$s$                 \\ \hline
+Geschwindigkeit                        & 45,7$km/h$              & 59,3$km/h$              & 69,5$km/h$              & 50,0$km/h$              & 58,7$km/h$              \\ \hline
+Geschwindigkeit (Testfahrt)            & 21,8$km/h$              & 59,4$km/h$              & 58,7$km/h$              & 31,8$km/h$              & 31,5$km/h$              \\ \hline
 \end{tabular}
 \end{table}
 
-Die Vermutung liegt nahe, dass die große Differenz aufgrund der fehlenden Beschleunigungs- und Bremszeiten auftritt.
+Die große Differenz tritt aufgrund der fehlenden Beschleunigungs- und Bremszeiten auf.
 Bisher wird von graphhopper bei der Berechnung der Fahrzeit lediglich 90$\%$ des für ein Segment vorgegebenen Geschwindigkeitslimits verwendet.
 Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung auf jedenfall eingehalten wird.
 Dieser Faktor wurde für das Emergency Profil entfernt.
 Es wird also ein Straßensegment auf dem 50 km/h gefahren werden darf über die komplette Distanz bisher auch mit 50 km/h gefahren.
 In der Realität braucht ein Fahrzeug dieser Größenordnung aber einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen.
 Die selbe Situation besteht für Bremsvorgänge.
-Es bestehen also drei Szenarien auf einer Fahrt, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben.
+Daraus gehen drei Szenarien auf einer Fahrt hervor, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben.
 Das sind der Start, ein Abbiegevorgang (engl.: Turn) und die Ankunft.
 Es gibt selbstverständlich noch mehr Faktoren die zum Beispiel andere Verkehrsteilnehmer betreffen, aber die drei genannten Szenarien sind bereits aus der Routenführung ersichtlich und werden definitiv bei jeder Fahrt auftreten\footnote{Wenn die Fahrt nur geradeaus geht ist auch kein Abbiegevorgang dabei}.
 
@@ -155,11 +155,11 @@ Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und
 \begin{tabular}{|l|r|r|}
 \hline
 Wegpunkt & Fahrtzeit & Abweichung \\ \hline 
-1min & 78,3 s & $+18,3$ \\
-2min & 138.5 s & $+18,5$ \\
-3min & 188.5 s & $+8,5$ \\
-4min & 226.7 s & $-3,3$ \\
-5min & 298.9 s & $-1,1$ \\
+1$min$ & 78,3$s$ & $+18,3s$ \\
+2$min$ & 138.5$s$ & $+18,5s$ \\
+3$min$ & 188.5$s$ & $+8,5s$ \\
+4$min$ & 226.7$s$ & $-3,3s$ \\
+5$min$ & 298.9$s$ & $-1,1s$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -183,11 +183,11 @@ Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich
 \begin{tabular}{|l|r|r|}
 \hline
 Wegpunkt & Fahrtzeit & Abweichung \\ \hline 
-1min & 86.6 $s$ & $+26.6 s$ \\
-2min & 149.9 $s$ & $+29.9 s$ \\
-3min & 207.5 $s$ & $+27.5 s$ \\
-4min & 253.5 $s$ & $+13.5 s$ \\
-5min & 318.6 $s$ & $+18.6 s$ \\
+1$min$ & 86.6$s$ & $+26.6s$ \\
+2$min$ & 149.9$s$ & $+29.9s$ \\
+3$min$ & 207.5$s$ & $+27.5s$ \\
+4$min$ & 253.5$s$ & $+13.5s$ \\
+5$min$ & 318.6$s$ & $+18.6s$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -207,11 +207,11 @@ Wegpunkt & Fahrtzeit & Abweichung \\ \hline
 \begin{tabular}{|l|r|r|}
 \hline
 Wegpunkt & Fahrtzeit & Abweichung \\ \hline 
-1min: &  89.8 s & $+29.8s$ \\
-2min: &  162.4 s & $+42.4$ \\
-3min: &  213 s & $+33$ \\
-4min: &  282.3 s & $+42.3$ \\
-5min: &  343.9 s & $+43.9$ \\
+1$min$ &  89.8$s$ & $+29.8s$ \\
+2$min$ &  162.4$s$ & $+42.4s$ \\
+3$min$ &  213$s$ & $+33s$ \\
+4$min$ &  282.3$s$ & $+42.3s$ \\
+5$min$ &  343.9$s$ & $+43.9s$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -229,12 +229,12 @@ Die Ergebnisse sind der Tabelle \ref{tab:all} zu entnehmen.
 \begin{tabular}{|l|r|r|r|r|r|r|}
 \hhline{~|-|-|-|-|-|-}
 \multicolumn{1}{l|}{} & \multicolumn{2}{c|}{Fahrt 1} & \multicolumn{2}{c|}{Fahrt 2} & \multicolumn{2}{c|}{Fahrt 3} \\ \hline
-Wegpunkt & Fahrtzeit & Abweichung & Fahrtzeit & Abweichung & Fahrtzeit & Abweichung \\ \hline 
-1min & 59.5 & -0.5 & 67.6 & +7.6 & 70.8 & +10.8  \\
-2min & 119.5 & -0.5 & 126.9 & +6.9 & 139.4 & +19.4  \\
-3min & 169.5 & -10.5 & 184.5 & +4.5 & 190 & +10  \\
-4min & 207.7 & -32.2 & 230.5 & -10.5 & 255.2 & +15.2  \\
-5min & 271.9 & -28.1 & 291.6 & -8.4 & 312.9 & +12.9   \\
+Wegpunkt              & Fahrtzeit   & Abweichung     & Fahrtzeit   & Abweichung     & Fahrtzeit  & Abweichung      \\ \hline 
+1$min$                & 59.5$s$     & -0.5$s$        & 67.6$s$     & +7.6$s$        & 70.8$s$    & +10.8$s$        \\
+2$min$                & 119.5$s$    & -0.5$s$        & 126.9$s$    & +6.9$s$        & 139.4$s$   & +19.4$s$        \\
+3$min$                & 169.5$s$    & -10.5$s$       & 184.5$s$    & +4.5$s$        & 190$s$     & +10$s$          \\
+4$min$                & 207.7$s$    & -32.2$s$       & 230.5$s$    & -10.5$s$       & 255.2$s$   & +15.2$s$        \\
+5$min$                & 271.9$s$    & -28.1$s$       & 291.6$s$    & -8.4$s$        & 312.9$s$   & +12.9$s$        \\
 \hline
 \end{tabular}
 \end{table}

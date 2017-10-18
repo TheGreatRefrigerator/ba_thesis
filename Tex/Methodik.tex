@@ -3,7 +3,7 @@ Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwäh
 Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen.
 Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
 Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
-Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im \ref{sec:anhang}).
+Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im Anhang auf S.\pageref{sec:anhang}).
 Die Fragen wurden mit Hinblick auf die \gls{osm} Datenstruktur und das vorhandene \gls{ors} Backend gewählt.
 Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben.
 Die wörtlichen Antworten sind dem Google Dokument im Anhang zu entnehmen.
@@ -15,6 +15,7 @@ Außerdem wurde das Frontend an das neue Profil angepasst.
 
 \paragraph*{1. Maße der Fahrzeuge:}
 \label{frage1}
+\par
 Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente.
 Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe.
 Hier stützt sich das \gls{ors} Backend auf Restriktionen durch die \gls{osm}-Tags: \texttt{maxlength, maxwidth, maxheight, maxweigth} und \texttt{maxaxleload} Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
@@ -28,6 +29,7 @@ Hier stützt sich das \gls{ors} Backend auf Restriktionen durch die \gls{osm}-Ta
 
 \paragraph*{2. Maximale Geschwindigkeiten auf unterschiedlichen Straßentypen:}
 \label{frage2}
+\par
 Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit des Fahrzeugs gefahren werden.
 Deswegen werden für jede Kante des Graphen Geschwindigkeitsmaxima definiert.
 Dabei wird auf einen Standardwert für den Straßentyp, die \textit{Values}(Werte) des \gls{osm} \textit{Keys} (Schlüssel) \texttt{highway}, zurückgegriffen.
@@ -39,7 +41,7 @@ Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{os
 
 \begin{table}[h]
 \centering
-\caption{Standardgeschwindigkeiten für unterschiedliche highway Values}
+\caption{Standardgeschwindigkeiten für unterschiedliche \texttt{highway} Values}
 \label{tab:speedinfo}
 \begin{tabular}{|l|r|}
 \hline
@@ -71,8 +73,8 @@ track (Wald-/Feldweg) & 15 \\
 \end{tabular}
 \end{table}
 
-Auf Wirtschafts-, Wald- und Feldwegen mit dem Key-Value-Pair \texttt{highway=track} kann zusätzlich der Zustand des Weges mit dem Tag \texttt{waytype} beschrieben werden.
-Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
+Auf Wirtschafts-, Wald- und Feldwegen mit dem Key-Value-Pair \texttt{highway=track} kann zusätzlich der Zustand des Weges mit dem Tag \texttt{tracktype} beschrieben werden.
+Die bisherigen und die von der \gls{ffl} vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
 \begin{table}[h]
 \centering
@@ -80,7 +82,7 @@ Die bisherigen und vorgeschlagenen Geschwindigkeit für die jeweiligen Values si
 \label{tab:speedinfotrack}
 \begin{tabular}{|l|r|}
 \hline
-tracktype Value & \textit{km/h} \\
+\texttt{tracktype} Value & \textit{km/h} \\
 \hline
 grade1 (Wasserfester Belag) & 20(25)   \\
 grade2 (Wassergebundene Decke) & 15  \\
@@ -93,25 +95,26 @@ grade5 (Unbefestigter Weg) & 5   \\
 
 \paragraph*{3. Dürfen vorgegebene Geschwindigkeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
 \label{frage3}
+\par
 Manchmal sind besondere Geschwindigkeitsrestriktionen, wie zum Beispiel Tempo-30-Zonen vorhanden.
 In Tempo-30-Zonen darf 50 km/h und in Spielstraßen darf 20 km/h gefahren werden.
 Dabei ist immer noch auf die Unversehrtheit der anderen Verkehrsteilnehmer (vor allem Kinder) zu achten.
 
 \paragraph*{4. Dürfen Gewicht und/oder Achslast für Straßen mit Vorgabe überschritten werden?}
 \label{frage4}
-
+\par
 Es dürfen Straßen benutzt werden die zum Beispiel wegen einer folgenden Brücke auf 7,5 Tonnen beschränkt sind.
 Um die Brücke selbst zu nutzen ist allerdings lokales Wissen über die tatsächliche Tragfähigkeit notwendig.
 Allgemein müssen bei Zu- oder Durchfahrten für die Feuerwehr die Aufstellflächen und die Bewegungsflächen so befestigt sein, dass sie von Feuerwehrfahrzeugen mit einer Achslast bis zu 10 t und einem zulässigen Gesamtgewicht bis zu 16 t befahren werden können.
 
 \paragraph*{5. Dürfen Einbahnstraßen in Entgegengesetzter Richtung durchfahren werden?}
 \label{frage5}
-
+\par
 Einbahnstraßen dürfen in entgegengesetzter Richtung durchfahren werden.
 
 \paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?}
 \label{frage6}
-
+\par
 Ob eine Einbahnstraße benutzt wird muss der Fahrer während dem Einsatz entscheiden.
 Es hängt dabei von der verfügbaren Breite und der Länge der Straße ab.
 Auch die Möglichkeit des Ausweichens bei Gegenverkehr spielt eine Rolle.
@@ -119,21 +122,21 @@ Anhand dieser Faktoren wird entschieden ob Zeit gewonnen wird und die Einbahnstr
 
 \paragraph*{7. Zu welchen weiteren Routen bzw. Verkehrsnetz bezogenen Besonderheiten kommt es im Einsatz?}
 \label{frage7}
-
+\par
 Es dürfen Bus-, Taxi- und Tram-Spuren verwendet werden.
 
 \paragraph*{8. Ist es wichtig auf der richtigen Straßenseite anzukommen ?}
-
+\par
 Nein.
 
 \paragraph*{9. Wäre eine Suche nach Hydranten, Löschwassertanks etc. am Zielort bzw. im Einzugsgebiet sinnvoll?}
 \label{frage9}
-
+\par
 Vor Ort gibt es nicht immer Löschwasser, weshalb eine Suche nach Hydranten, Seen, Tanks, Flüssen und ähnlichen Quellen auf jeden Fall sinnvoll ist.
 
 \paragraph*{10. Dürfen folgende Wegtypen befahren werden? Wenn ja mit welcher Geschwindigkeit?}
 \label{frage10}
-
+\par
 Es dürfen die in Tabelle \ref{tab:speedinfospecial} gelisteten, für den normalen Straßenverkehr nicht zugänglichen Wegtypen benutzt werden.
 
 \begin{table}
@@ -164,7 +167,7 @@ Dazu werden die bereits vorhandenen Klassen eines \gls{ors} Profils verwendet.
 Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen wird das HGV-Profil als Schablone benutzt.
 Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den richtigen Stellen im Code des Backends eingebunden werden müssen.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
 \inputminted[fontsize=\footnotesize, breaklines, breakanywhere, firstline=26, lastline=47]{java}{../data/JavaFiles/EmergencyVehicleAttributesGraphStorage.java}
@@ -181,10 +184,10 @@ Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrze
 Andere Straßen dürfen normalerweise aufgrund des \gls{osm}-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
 Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=7, fontsize=\footnotesize, breaklines=true, firstline=143, lastline=158]{java}{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
+\inputminted[gobble=7, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=143, lastline=158]{java}{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
 \caption{Entnahme der Dimensionsbeschränkungen}
 \label{lst:builder}
 \end{listing}
@@ -193,10 +196,10 @@ Die Klasse \texttt{EmergencyVehicleEdgeFilter} vergleicht bei der Ausführung de
 Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden.
 Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen (Abb. ~\ref{lst:filter}).
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=5, fontsize=\footnotesize, breaklines=true, firstline=102, lastline=130]{java}{../data/JavaFiles/EmergencyVehicleEdgeFilter.java}
+\inputminted[gobble=5, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=102, lastline=107]{java}{../data/JavaFiles/EmergencyVehicleEdgeFilter.java}
 \caption{Vergleich der übergebenen Dimensionen mit den Restriktionen des Graphen}
 \label{lst:filter}
 \end{listing}
@@ -207,10 +210,10 @@ Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewähl
 Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp.
 Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, firstline=149, lastline=179]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=149, lastline=179]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Definition von Maximalgeschwindigkeiten für unterschiedliche Wegtypen}
 \label{lst:flag}
 \end{listing}
@@ -221,32 +224,32 @@ In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden.
 Diese Eigenschaft muss beim taggen\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden.
 Häufig wird solchen Straßen der Tag \texttt{maxspeed=7} zugewiesen.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=2, fontsize=\footnotesize, breaklines=true, firstline=275, lastline=280]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=2, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=275, lastline=280]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Limit für 30er-Zonen und Spielstraßen}
 \label{lst:zone}
 \end{listing}
 
 Um Bus- und Taxispuren für das Profil nutzbar zu machen wurde das Code Segment \ref{lst:bus} implementiert.
-Für mit Fahrzeugen befahrbare Tramspuren gibt es in OpenStreetMap bisher leider keinen geeigneten Tag.
+Für mit Fahrzeugen befahrbare Tramspuren gibt es in \gls{osm} bisher leider keinen geeigneten Tag.
 Die Segmente der Tramspur die befahren werden können liegen sowieso meistens auf einer vorhandenen Straße.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, firstline=366, lastline=373]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=366, lastline=373]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von speziellen Wegtypen}
 \label{lst:bus}
 \end{listing}
 
 Um Einbahnstraßen in jeder Richtung nutzen zu können wurden Teile des Codes auskommentiert, die einer Kante eine Vorwärts oder Rückwärts Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
 
-\begin{listing}[h]
+\begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=1, fontsize=\footnotesize, breaklines=true, firstline=503, lastline=504]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=1, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=503, lastline=504]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von Notfalleinfahrten}
 \label{lst:weight}
 \end{listing}
