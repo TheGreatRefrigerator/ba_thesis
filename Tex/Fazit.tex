@@ -33,10 +33,12 @@ Im Hinblick auf \gls{osm}-Daten kann keine endgültige Sicherheit gewährleistet
 Für die Erstellung von Einzugsgebieten für das Emergency Profil, muss letztlich die Gewichtung für den Isochrones Service verfügbar gemacht werden.
 Das ist in der bisherigen Implementierung noch nicht gelungen.
 
-\newpage
-\section{Ausblick}
-
-\todo{Add Ausblick to Fazit?}
+\begin{figure}[htb]
+\centering
+\caption{Hydranten Informationen in Heidelberg}
+\label{fig:firehydrants}
+\includegraphics[width = 0.80 \textwidth]{../media/firehydrants.png} \\
+\end{figure}
 
 Das Analysieren der Teststrecken ist durch das einzelne Senden der Requests und das anschließende Extrahieren der benötigten Werte relativ zeitaufwändig.
 Es wäre hilfreich ein Werkzeug zum gleichzeitigen senden von allen Testrequests zu entwickeln mit welchem danach ebenso die Antworten adäquat dargestellt werden können.
@@ -46,14 +48,8 @@ Ein weiterer interessanter Aspekt den es zu beleuchten gilt, ist das unterschied
 So könnten Geschwindigkeiten für bestimmte Wegsegmente je nach Zeit anhand von Berufsverkehr oder Tageszeit angepasst werden.
 Nachts sollten zum Beispiel generell weniger Autos unterwegs sein, wodurch Zeit gespaart wird, Umgekehrt zur Rush-Hour.
 
+
 Die im Fragebogen erwähnte Suche nach Löschwasser Quellen am Zielort kann und sollte verwirklicht werden.
 In der \gls{osm} Datengrundlage existieren bereits diverse Tags für Objekte die von Einsatzkräften genutzt werden können.
 Für die Feuerwehr besonders interessant ist zum Beispiel der \texttt{emergency=fire\_hydrant} Tag für Hydranten.
-In vielen Städten sind diese durch das OpenFireMap-Projekt\footnote{https://wiki.openstreetmap.org/wiki/DE:OpenFireMap} flächendeckend abdigitalisiert und der OSM Datenbank zugefügt worden (Abb.~\ref{fig:firehydrants}).
-
-\begin{figure}[h]
-\centering
-\caption{Hydranten Informationen in Heidelberg}
-\label{fig:firehydrants}
-\includegraphics[width = 0.80 \textwidth]{../media/firehydrants.png} \\
-\end{figure}
+In vielen Städten sind diese durch das OpenFireMap-Projekt\footnote{https://wiki.openstreetmap.org/wiki/DE:OpenFireMap} flächendeckend abdigitalisiert und der \gls{osm} Datenbank zur Verfügung gestellt worden (Abb.~\ref{fig:firehydrants}).

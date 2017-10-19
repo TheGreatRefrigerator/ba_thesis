@@ -2,15 +2,14 @@
 
 \vspace{1cm}
 
-Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg (in Schwaben) zu entwickeln.
+Ziel der vorliegenden Bachelorarbeit war es ein prototypisches Routing-Profil für Löschfahrzeuge in einer Forschungskooperation mit der Freiwilligen Feuerwehr Lützelburg zu entwickeln.
 \medskip
 
-Bisher gibt es keinen Routing-Service der die Tatsache berücksichtigt, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
-Auf Basis des Openrouteservice wurde mit OpenStreetMap als Datengrundlage ein Emergency Profil entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet sowie Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Weiterhin dürfen Einbahnstraßen in Gegenrichtung durchfahren werden.\par
-Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Penalties für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
-Das Profil wurde durch analytische Vergleichen zwischen den Fahrtzeiten von drei durchgeführten Testfahrten kalibriert.
-Die Ergebnisse zeigen, dass eine Funktion für die Steigung eingebaut werden muss.
-Die Differenzen der Fahrzeiten für die Minuten-Marker der zwei weitgehend ebenen Teststrecken liegen nahezu komplett im 10-Sekunden-Bereich.
+Gegenwärtige Routing-Services sind für ein Routing im Notfall nicht effizient, da sie nicht berücksichtigen, dass Einsatzfahrzeuge im Notfall alle Vorschriften der StVO vernachlässigen dürfen.
+Auf Basis des Openrouteservice wurde mit OpenStreetMap als Datengrundlage ein Routing-Profil für Einsatzfahrzeuge entwickelt, welches für Einsatzfahrzeuge adäquate Geschwindigkeiten verwendet sowie Radwege, Fußgängerzonen und weitere Wegtypen befahren darf. Weiterhin dürfen Einbahnstraßen in Gegenrichtung durchfahren werden.
+Die Verzögerung durch Beschleunigungs- und Abbremsvorgänge wurde anhand von Zeit-Strafen für Anfahrt, Abbiegevorgänge und Ankunft berücksichtigt.
+Es wurden Testfahrten durchgeführt um das Profil zu kalibrieren und mittels analytischer Vergleiche zwischen den Fahrtzeiten zu validieren.\par
+Die Ergebnisse zeigen, dass \newline $a)$ eine Funktion zur Berücksichtigung der Steigung in einer zukünftigen Version des Routing-Profils eingebaut werden muss und \newline $b)$ die Fahrtzeitunterschiede zwischen den Testfahrten und dem Profil für die meisten Wegpunkte der Teststrecken im 10-Sekunden-Bereich liegen.
 \bigskip
 
-Der Autor möchte mit dieser Arbeit eine Grundlage für exaktere Routenfindung und Fahrzeitberechnung für Notfallfahrzeuge sowie Hilfestellung bei der Entwicklung von Bedarfsplänen zu liefern.
+Die vorliegende Arbeit bildet eine Grundlage für effiziente Routenfindung und Fahrzeitberechnung für Notfallfahrzeuge und bietet darüber hinaus Hilfestellung bei der Entwicklung von Bedarfsplänen.

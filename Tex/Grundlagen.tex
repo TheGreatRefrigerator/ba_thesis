@@ -17,7 +17,7 @@ Für den Graphen in Abbildung ~\ref{simpleGraph} sehen ~$V$ und ~$E$ folgenderma
 $$V = \{(v_{1},v_{2},v_{3},v_{4},v_{5})\} $$
 $$E = \{(v_{1}v_{2},v_{1}v_{3},v_{2}v_{3},v_{2}v_{3},v_{3}v_{5})\} $$
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -56,7 +56,7 @@ Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objekte als \te
 Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}.
 Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
 
-Computer können Graphen sehr gut verarbeiten, da sich alle Ecken und Kanten in Form von Matrizen speichern lassen.
+Computer können Graphen verarbeiten, da sich alle Ecken und Kanten in Form von Matrizen speichern lassen.
 Die Abbildung ~\ref{mx:simple} zeigt die Adjazenzmatrix des Graphen aus ~\ref{fig:simple}.
 Darin sind die Nachbarschaften für die jeweilige Eckenkombination gespeichert.
 Die Reihen sind die Start- und die Spalten die Endecken.
@@ -69,7 +69,7 @@ Besitzt der Graph keine Schlingen, besteht die Hauptdiagonale lediglich aus Null
 
 Im Folgenden werden nur zusammenhängende Graphen ohne Schlingen betrachtet, da diese für viele Problemstellungen irrelevant sind (\cite[4\psq]{theory}).
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.42\textwidth}
 \centering
@@ -118,7 +118,7 @@ $$G = (V,R)$$
 
 Demnach muss in Abbildung~\ref{fig:directed} um von $v_{5}$ nach $v_{4}$ zu gelangen der Weg über die Ecken $v_{3}$ und $v_{2}$ führen.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -157,12 +157,12 @@ mit
 \end{center}
 $$c: E \rightarrow \mathbb{R}$$
 
-Neben dem Kanten-gewichteten gibt es auch Knoten-gewichtete Graphen, bei welchen entsprechend die Knoten gewichtet werden.
+Neben dem Kanten-gewichteten gibt es auch Ecken-gewichtete Graphen, bei welchen entsprechend die Ecken gewichtet werden.
 Diese werden aber nur für wenige Problemstellungen benötigt und sind hier nicht von Belang.
 Gewichtete Graphen können gerichtet und ungerichtet sein.
-Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Knotenpunkte einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
+Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Ecken einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -195,32 +195,32 @@ Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, be
 Mit gewichteten Graphen können diverse Problemstellungen gelöst werden, zum Beispiel die Bestimmung maximaler (Durch-)Flüsse in Rohrsystemen oder das Berechnen kürzester Wege.
 Andererseits kann ein gewichteter Graph auch für Routing-Zwecke eingesetzt werden, indem räumliche Positionen sowie Eigenschaften von Straßen in der Datenstruktur eines Graphen gespeichert werden.
 
-\subsubsection{Bau eines Graphen aus \gls{osm} Daten}
+\subsubsection{Erstellung eines Graphen aus OpenStreetMap-Daten}
 \label{sec:osmgraph}
 
-Die \gls{osm} Datenstruktur kann als Graph abgebildet werden.
-Hier werden Punktobjekte als \textit{Nodes}(Knoten) und Linienobjekte wie Straßen als \textit{Ways}(Wege) bezeichnet.
-Ein Way ist dabei die Verbindung zwischen zwei Nodes.
-Zusätzlich gibt es \textit{Relations}(Relationen) die einem Set aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben.
-Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegebeschränkungen an Kreuzungen zu beschreiben (\cite{osmrelation}).
+Die \gls{osm}\footnote{OpenStreetMap ist ein 2004 gegründetes internationales Projekt mit dem Ziel, eine freie Weltkarte zu erschaffen (\href{www.openstreetmap.de}). Die Daten werden von vielen Freiwilligen auf der ganzen Welt generiert und in einer Datenbank unter der Open Database Lizenz zur verfügung gestellt.} Datenstruktur kann als Graph abgebildet werden.
+Hier werden Punktobjekte als \textit{Nodes} (Knoten) und Linienobjekte wie Straßen als \textit{Ways} (Wege) bezeichnet.
+Ein Way ist dabei die Verbindung zwischen zwei oder mehreren Nodes.
+Zusätzlich gibt es \textit{Relations} (Relationen) die eine Menge aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben.
+Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegevorschriften an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
 Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren.
-Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichneten Ways (zum Beispiel asphaltiert, allerdings ohne Straßentyp).
-Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten etc. sowie Sackgassen interessant.
-Daher werden diese \textit{Tower Nodes} aus den importierten Daten ermittelt.
+Dazu gehören alle Arten von Straßen und Wegen sowie als befahrbar gekennzeichnete Ways (beispielsweise asphaltiert, allerdings ohne angegebenen Straßentyp).
+Für das Routing sind vor allem Verbindungspunkte wie Kreuzungen, Ab- und Auffahrten sowie Sackgassen wichtig.
+Daher werden diese sogenannten \textit{Tower Nodes} aus den importierten Daten ermittelt.
 Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert.
 Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet.
 Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt.
-Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Edges an (\cite{osmgraph}).
+Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Kanten an (\cite{osmgraph}).
 Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt.
-Sie werden als \textit{WayGeometry} auf der jeweiligen Edge gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}).
+Sie werden als \textit{WayGeometry} auf der jeweiligen Kante gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abbildung ~\ref{fig:tower}).
 Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}).
-Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} (Markierungen) auf der Edge gespeichert.
+Relevante Attribute wie Geschwindigkeit oder Straßentyp werden vereinheitlicht und als \textit{Flags} (Markierungen) auf der Kante gespeichert.
 Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.
 (Mehr zu Gewichtung später in Kapitel ~\ref{backendGraphBuild}).
 Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite{osmgraph}).
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \includegraphics[width = \textwidth]{../media/towers.pdf} \\
 \caption{Simplifizierung eines \gls{osm} Datensatzes}
@@ -231,17 +231,17 @@ Zuletzt wird der Graph abgespeichert und ist für Routing Abfragen bereit (\cite
 
 Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können.
 Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet.
-Im Fachbereich der \gls{gis} werden hauptsächlich Straßennetze für Routing-Analysen verwendet (\cite[165]{handbook}).
-Ein Weg \textit{P} (\textit{engl: path}) von einem Startecke ~$s$ zu einem Zielecke ~$z$ ist eine Folge von benachbarten Ecken mit $s~$ als erster Ecke und $z~$ als letzter Ecke der Folge.
+Im Fachbereich der Geoinformationssysteme werden hauptsächlich Straßennetze für Routing-Analysen verwendet (\cite[165]{handbook}).
+Ein Weg \textit{P} (\textit{engl: path}) von einer Startecke ~$s$ zu einemr Zielecke ~$z$ ist eine Folge von benachbarten Ecken mit $s~$ als erste Ecke und $z~$ als letzte Ecke der Folge.
 Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewichte.
 
-Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Knoten.
+Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Ecken.
 Jedes Navigationssystem muss diese Aufgabe erfüllen können.
 Ein kürzester Weg hat demnach die Eigenschaft, dass die Summe aller Kantengewichte, in anderen Worten die Kosten des Weges, minimal gegenüber allen anderen Wegen im Graphen ist.
 
 \subsubsection{Shortest Path Problem}
 Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{\gls{tsp}} verwechselt werden sollte.
-Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jeden Knoten des Graphen besucht(\cite[135]{algorithms}).
+Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus V mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede Ecke des Graphen besucht (\cite[135]{algorithms}).
 Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,E)$ mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}$ zugrunde liegt.
 Beim \textit{\gls{spp}} wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht.
 Das \textit{\gls{ssp}} möchte den kürzesten Weg einer Ecke $a~$ zu jeder anderen Ecke ermitteln (Formel ?).
@@ -270,7 +270,7 @@ Die Ecke mit den geringsten Kosten wird als nächstes markiert, da der Weg dorth
 Dieser Vorgang wird wiederholt bis alle Ecken aus $W_{s}$ markiert wurden und $W_{s}$ somit leer ist.
 
 % Init Dijkstra
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -300,7 +300,7 @@ Dieser Vorgang wird wiederholt bis alle Ecken aus $W_{s}$ markiert wurden und $W
 \label{dijkstraGraph}
 \end{figure}
 
-Die Funktionsweise des Dijkstra Algorithmus wird am Graphen aus Abbildung ~\ref{dijkstraGraph} mit der Startecke $s=v_{1}$ veranschaulicht.
+Die Funktionsweise des Dijkstra Algorithmus wird am Graphen aus Abbildung~\ref{dijkstraGraph} mit der Startecke $s=v_{1}$ veranschaulicht.
 
 Die erste Ecke der Warteschlange ist $s=v_{1}$.
 Da $s~$ der einzige Eintrag ist, sind die Kosten automatisch am geringsten.
@@ -321,7 +321,7 @@ Im fünften Durchgang wird $v_{5}$ als letzte Ecke in $W_{s}$ nach $K_{s}$ versc
 Von dort sind keine neuen Ecken sichtbar.
 Die Warteschlange ist leer und der Algorithmus damit beendet.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.32\textwidth}
 \includegraphics[width = \textwidth]{../media/dijkstra1.pdf} \\
@@ -357,7 +357,7 @@ Die Warteschlange ist leer und der Algorithmus damit beendet.
 \label{dijkstraIterations}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[htb]
 \centering
 \label{tab:dijkstraLists}
 \caption{$W_{s}$ und $K_{s}$ für jede Iteration aus Abb.~\ref{dijkstraIterations}}
@@ -401,7 +401,7 @@ Die Bearbeitungszeit lässt sich also theoretisch um die Hälfte reduzieren\foot
 Bei Graphen mit einer höheren Eckendichte in Nähe von $z~$ könnte die Bearbeitungszeit sogar größer werden.
 Allgemein wird aber ein signifikanter Vorteil erzielt.}.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.30\textwidth}
 \centering
@@ -441,7 +441,7 @@ Diese und weitere Möglichkeiten sind in \cite[209--213]{kurt} ausführlich besc
 
 Isochronen sind Linien gleicher Zeit (griech.: \textit{iso} = gleich + \textit{chronos} = Zeit).
 
-Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten, um von einem Knoten zum nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden.
+Wenn in einem gewichteten Graphen die Kanten die benötigte Zeit enthalten, um von einer Ecke zur nächsten zu gelangen, können damit Analysen zur Erreichbarkeit durchgeführt werden.
 Dazu wird ein \gls{ssp} für eine zentrale Ecke~$z$ mit einem gegebenen Zeitlimit~$t$ gelöst.
 Isochronen können mit unterschiedlichen Methoden berechnet werden.
 Das resultierende Objekt ist immer ein Polygon, welches jeden in gegebenem Zeitlimit erreichbaren Punkt beinhaltet.
@@ -455,7 +455,7 @@ Anschließend werden auf den Kanten des Gitters diejenigen Punkte markiert, bei 
 In Abbildung~\ref{fig:grid3} wurde das für die Werte $t=5$ und $t=10$ durchgeführt.
 Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 \begin{subfigure}{0.47\textwidth}
 \centering
@@ -489,32 +489,32 @@ Die markierten Punkte werden verbunden und bilden schließlich die Isochrone.
 
 Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann.
 Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis.
-Allerdings werden dabei mehr Ressourcen zur Berechnung gebraucht.
-Daher können nur kleine Gebiete und geringe Zeitlimits berechnet werden.
-Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann große Distanzen und lange Zeitspannen berechnen.
+Allerdings werden dabei mehr Ressourcen zur Berechnung benötigt.
+Daher sollten lediglich kleine Gebiete sowie geringe Zeitbeschränkungen berechnet werden.
+Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann größere Distanzen und längere Zeitspannen berechnen.
 Das Ergebnis ist dementsprechend aber auch ungenauer.
-Auch in Abbildung ~\ref{fig:grid4} wurde die Größe der Maschen unglücklich gewählt.
-Eine Ecke mit Abstand 4 Minuten vom Zentrum liegt dadurch außerhalb der 5-Minuten-Isochrone.
+In Abbildung ~\ref{fig:grid4} wurde die Größe der Maschen beispielsweise ungeschickt gewählt, da eine Ecke mit Abstand vier Minuten vom Zentrum liegt und dadurch außerhalb der fünf-Minuten-Isochrone.
 
 \subsubsection{Dreiecksvermaschung}
-\cite{isochrones} beschreiben ein anschauliche Methode um Isochronen zu berechnen.
-Nach der Lösung des \gls{ssp}s werden den Ecken des Graphen die geographische Koordinate der repräsentierten Kreuzung zugeteilt.
+\cite{isochrones} beschreiben eine anschauliche Methode um Isochronen zu berechnen.
+Nach der Lösung des \gls{ssp}s werden den Ecken des Graphen der geographischen Koordinate der repräsentierten Kreuzung zugeteilt.
 Die Kanten werden nicht benötigt und daher entfernt.
-Es liegt also eine 3D-Punktwolke vor.
+Es liegt demnach eine 3D-Punktwolke vor.
 Jeder Ecke wird nun die benötigte Zeit zugewiesen, mit der diese zu erreichen ist.
 Anschließend werden die Ecken nach dem Delaunay Triangulationsverfahren vermascht.
-Es entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null.
+Dadurch entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null.
 Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben betrachtet die Randkanten des Trichters der Isochrone.
 
 
 \subsubsection{Formenbasierter Ansatz}
-Die Implementierung des \gls{ors} zur Berechnung von Isochronen verwendet ist einen Form-basierten Ansatz.
+\label{sec:form}
+Die Implementierung des \gls{ors} zur Berechnung von Isochronen verwendet einen Form-basierten Ansatz.
 Zuerst werden mit dem in Kapitel ~\ref{sec:dijkstra} bereits ausführlich erklärten Dijkstra Algorithmus alle in gegebener Zeit erreichbaren Kanten markiert.
-Anschließend werden die geographischen Punkte (Pillar Nodes) aus der WayGeometry der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}).
+Anschließend werden die geographischen Punkte (Pillar Nodes) aus der $WayGeometry$ der Kante extrahiert (Siehe Kapitel ~\ref{sec:osmgraph} auf Seite ~\pageref{sec:osmgraph}).
 Um jeden der extrahierten Punkte wird ein kreisförmiger Pufferbereich gelegt.
 Dadurch können nahe beieinanderliegende Punkte übersprungen werden.
 Mit den verbleibenden Punkten wird eine Punktwolke generiert.
-Auf diese Punktwolke wird nun der Alpha-Shape Algorithmus(Zitat) angewandt um die Isochrone als Hülle um die erreichbaren Wegsegmente zu zeichnen.
+Auf dieser Punktwolke wird nun der Alpha-Shape Algorithmus (\cite{akkiraju1995alpha}) angewandt, um die Isochrone als Hülle um die erreichbaren Wegsegmente zu zeichnen.
 %\todo{(Abb. Pictures shape based stuff)}
 Dieser Ansatz liefert präzise Ergebnisse bei schnellen Berechnungszeiten.
-Die Verwendung der Alpha-Shapes verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren 'Löchern' innerhalb der Isochronen.
+Die Verwendung der Alpha-Shapes verhindert allerdings die Möglichkeit der Darstellung von nicht erreichbaren Gebieten innerhalb der Isochronen.

@@ -205,7 +205,7 @@ public class AccelerationWeighting extends FastestWeighting {
 			long currPart = 8;
 			
 			return (lastPart + currPart)*1000;// 10 seconds for every turn
-//			return 0;
+			// return 0;
 		}
 		// TODO add ascent Part
 		return 0;

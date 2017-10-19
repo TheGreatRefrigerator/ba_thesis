@@ -1,26 +1,26 @@
 \section{Anhang}
 \label{sec:anhang}
 \subsection*{Copyrights}
-Die Rechte für die mit geojson.io generierten Abbildungen(\ref{fig:footway}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
-Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\ref{fig:isochrones}, \ref{fig:drive1}, \ref{fig:drive2}, \ref{fig:drive3}, \ref{fig:steig}, \ref{fig:curve}, \ref{fig:temp30}, \ref{fig:turnosm}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
+Die Rechte für die mit geojson.io generierten Abbildungen(\ref{fig:footway}, \ref{fig:school}, \ref{fig:ramp}, \ref{fig:oneway}, \ref{fig:opposite}) gehen an \copyright Mapbox für den Kartenstil und \copyright OpenStreetMap für die Daten.
+\newline Die Rechte der mit dem \gls{ors} entworfenen Abbildungen(\ref{fig:isochrones}, \ref{fig:drive1}, \ref{fig:drive2}, \ref{fig:drive3}, \ref{fig:steig}, \ref{fig:curve}, \ref{fig:temp30}, \ref{fig:turnosm}) gehen an \copyright OpenStreetMap contributors für die Daten und \copyright Maxim Rylov für den Kartenstil.
 Für Abbildung \ref{fig:turnworld} liegt das Copyright bei \copyright 2017 Google für die Bilder und \copyright 2017 GeoBasis-DE/BKG für die Kartendaten.
 Für Abbildung \ref{fig:traintunnel} liegt das Copyright bei \copyright DigitalGlobe.
 
 \subsection*{Links}
 \textbf{Fragenkatalog:}
-
-\url{https://docs.google.com/document/d/1nwjmea0jwauJWezk_2TMQs5CbAHv7he2NI4kxqMu2w4/}
+\sloppy
+\url{https://docs.google.com/document/d/1nwjmea0jwauJWezk\_2TMQs5CbAHv7he2NI4kxqMu2w4/}
 \medskip
 
 \textbf{Emergency Routing Service:}
 
-\url{http://emergency.openrouteservice.org/directions?n1=48.448646&n2=10.826855&n3=14&b=0&c=0&k1=en-US&k2=km}
+\url{http://emergency.openrouteservice.org/directions?n1=48.448646\&n2=10.826855\&n3=14\&b=0\&c=0\&k1=en-US\&k2=km}
 \medskip
 
 \textbf{Testfahrt 1:}
 
-Response:\par
-\url{https://disaster-api.openrouteservice.org/emergency/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m}
+GeoJson-Antwort:\par
+\url{https://disaster-api.openrouteservice.org/emergency/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.789776,48.466555&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}\&preference=fastest\&profile=driving-emergency\&units=m}
 \medskip
 
 Anzeige im \gls{ors} Client:\par
@@ -29,8 +29,8 @@ Anzeige im \gls{ors} Client:\par
 
 \textbf{Testfahrt 2:}
 
-Response:\par
-\url{https://disaster-api.openrouteservice.org/emergency/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m}
+GeoJson-Antwort:\par
+\url{https://disaster-api.openrouteservice.org/emergency/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.85755,48.457434&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest\&profile=driving-emergency&units=m}
 \medskip
 
 Anzeige im \gls{ors} Client:\par
@@ -39,7 +39,7 @@ Anzeige im \gls{ors} Client:\par
 
 \textbf{Testfahrt 3:}
 
-Response:\par
+GeoJson-Antwort:\par
 \url{https://disaster-api.openrouteservice.org/emergency/routes?api_key=58d904a497c67e00015b45fcbd837ca3e137425f653e26a676ecd396&attributes=detourfactor|percentage&coordinates=10.824569,48.454111|10.805097,48.443849&elevation=true&extra_info=steepness|waytype|surface|avgspeed&geometry=true&geometry_format=geojson&instructions=true&instructions_format=html&language=en-US&options={"profile_params":{"restrictions":{"width":"2.5","height":"3","weight":"7.5","length":"7"}},"maximum_speed":"80"}&preference=fastest&profile=driving-emergency&units=m}
 \medskip
 
@@ -48,13 +48,20 @@ Anzeige im \gls{ors} Client:\par
 \medskip
 
 \subsection*{Sourcecode}
+\label{sec:source}
 
-\textbf{Backend:}
+\sloppy
+\textbf{Komplettes Backend:}\newline
 \url{https://github.com/TheGreatRefrigerator/openrouteservice/tree/emergencyrouting}
+\newline
+\smallskip
+\textbf{Erstellte Java-Klassen}\newline
+\url{https://github.com/TheGreatRefrigerator/ba_thesis/tree/master/data/JavaFiles}
+\newline
 \medskip
-
-\textbf{Frontend:}
+\textbf{Frontend:}\newline
 \url{https://github.com/GIScience/openrouteservice-app/tree/emergencyrouting}
+\fussy
 
 \newpage
 \section*{Erklärung}
@@ -77,9 +84,10 @@ Ohne ihn wäre diese Arbeit nicht möglich gewesen.\par
 Danke an meine Kollegen vom Openrouteservice Tim, Max und Lu, die mir mit motivierenden Gesprächen und hilfreichen Erklärungen zur Seite gestanden sind und mich in jeder Hinsicht unterstützt haben.\par
 \vspace{0.5cm}
 Bei meinem Betreuer Dr. Alexander Zipf möchte ich mich für das Prüfen der Arbeit und der Möglichkeit bedanken beim Openrouteservice zu arbeiten.\par
-Ebenfalls bedanken möchte ich mich bei Dr. Jo\~ao Porto de Albuquerque der trotz eines internationalen Reisen gefüllten Terminkalenders Zeit für das Prüfen meiner Arbeit gefunden hat.
+Ebenfalls bedanken möchte ich mich bei Dr. Jo\~ao Porto de Albuquerque der trotz eines internationalen Reisen gefüllten Terminkalenders Zeit für das Prüfen meiner Arbeit gefunden hat.\par
 \vspace{0.5cm}
 Außerdem möchte ich mich bei meinen Kommilitonen Angi und Marcel sowie meiner WG-Kollegin Nanni bedanken die mich in dieser Zeit mit unterhaltsame Mittagspausen, motivierenden Gesprächen, Tipps und dem Korrekturlesen der Arbeit besonders unterstütz haben.
+
 
 \newpage
 \vspace{1cm}

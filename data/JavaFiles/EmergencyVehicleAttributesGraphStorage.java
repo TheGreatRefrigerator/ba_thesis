@@ -23,22 +23,28 @@ package heigit.ors.routing.graphhopper.extensions.storages;
 import com.graphhopper.storage.Directory;
 import com.graphhopper.storage.Graph;
 
-public class EmergencyVehicleAttributesGraphStorage extends HeavyVehicleAttributesGraphStorage {
-	public EmergencyVehicleAttributesGraphStorage(boolean includeRestrictions) {
+public class EmergencyVehicleAttributesGraphStorage extends
+		HeavyVehicleAttributesGraphStorage {
+	public EmergencyVehicleAttributesGraphStorage(
+			boolean includeRestrictions) {
 		super(includeRestrictions);
 	}
 
 	/* pointer for no entry */
 	public void init(Graph graph, Directory dir) {
 		if (edgesCount > 0)
-			throw new AssertionError("The ext_emergency storage must be initialized only once.");
+			throw new AssertionError(
+					"The ext_emergency storage must 
+					be initialized only once.");
 
 		this.orsEdges = dir.find("ext_emergency");
 	}
-	
+
 	public boolean loadExisting() {
 		if (!orsEdges.loadExisting())
-			throw new IllegalStateException("Unable to load storage 'ext_emergency'. corrupt file or directory? ");
+			throw new IllegalStateException(
+					"Unable to load storage 'ext_emergency'.
+					 corrupt file or directory? ");
 
 		edgeEntryBytes = orsEdges.getHeader(0);
 		edgesCount = orsEdges.getHeader(4);

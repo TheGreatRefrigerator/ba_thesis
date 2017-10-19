@@ -1,17 +1,17 @@
 \section{Methodik}
 Die Grundsätzlichen Überlegungen beruhen, wie in der Einleitung bereits erwähnt, auf den Notstandsvollmachten durch §35 Absatz 1 der StVO für Einsatzfahrzeuge des Rettungsdienstes, der Feuerwehr und der Polizei.
 Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO hinwegsetzen.
-Die Frage ist allerdings in wieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
-Um dieser Sache auf den Grund zu gehen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
-Dieser wurde als Datei auf Google Docs gespeichert und ist auch weiterhin verfügbar(Link im Anhang auf S.\pageref{sec:anhang}).
-Die Fragen wurden mit Hinblick auf die \gls{osm} Datenstruktur und das vorhandene \gls{ors} Backend gewählt.
-Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben.
-Die wörtlichen Antworten sind dem Google Dokument im Anhang zu entnehmen.
+
+Die Frage, die sich hierbei stellt, ist, inwieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
+Um diesen Sachverhalt zu untersuchen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
+Dieser wurde als Datei in der Cloud gespeichert und ist auch weiterhin verfügbar (Link im Anhang auf S.\pageref{sec:anhang}).
+Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene ORS Backend gewählt.
+Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind im Cloud-Dokument im Anhang zu entnehmen.
 Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
-Anschließend wurden neue Java Funktionen geschrieben um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
+Anschließend wurden neue Java-Funktionen geschrieben um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
 Außerdem wurde das Frontend an das neue Profil angepasst.
 
-\subsection{Informations Erhebung}
+\subsection{Informationserhebung}
 
 \paragraph*{1. Maße der Fahrzeuge:}
 \label{frage1}
@@ -39,7 +39,7 @@ Im Fall eines Staus wäre laut \gls{ffl} auch die Anfahrt auf der Gegenfahrbahn 
 
 Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{osmwiki}) entnommen werden.
 
-\begin{table}[h]
+\begin{table}[htb]
 \centering
 \caption{Standardgeschwindigkeiten für unterschiedliche \texttt{highway} Values}
 \label{tab:speedinfo}
@@ -161,40 +161,41 @@ tracktype=footway(Fußweg) & 5\\
 
 \subsection{Generierung des Routing-Profils}
 \label{backendGraphBuild}
-
-Aufbauend auf den gewonnen Informationen aus dem Fragenkatalog werden nun Java-Klassen für das Emergency Profil Erstellt.
-Dazu werden die bereits vorhandenen Klassen eines \gls{ors} Profils verwendet.
-Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen wird das HGV-Profil als Schablone benutzt.
-Die eigentliche Arbeit wird von vier Klassen erledigt, die allerdings an den richtigen Stellen im Code des Backends eingebunden werden müssen.
+Aufbauend auf den gewonnen Informationen aus dem Fragenkatalog können entsprechende Java-Klassen für das Löschfahrzeug-Profil erstellt werden.
+Dazu werden die bereits vorhandenen Klassen eines \gls{ors}-Profils verwendet.
+Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen, wird das Heavy-Vehicle-Profil als Grundlage benutzt.
+Die Prozessierung wird von vier Klassen gehandhabt, die an den passenden Stellen im Backends eingebunden werden müssen.
 
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[fontsize=\footnotesize, breaklines, breakanywhere, firstline=26, lastline=47]{java}{../data/JavaFiles/EmergencyVehicleAttributesGraphStorage.java}
+\inputminted[fontsize=\footnotesize, breaklines, breakanywhere, firstline=26, lastline=53]{java}{../data/JavaFiles/EmergencyVehicleAttributesGraphStorage.java}
 \caption{Speicherobjekt für die Fahrzeugeigenschaften}
 \label{lst:storage}
 \end{listing}
 
-Davon sind alleine drei für die Fahrzeugdimensionen zuständig.
-Die Klasse \texttt{EmergencyVehicleAttributesGraphStorage} initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Abb.~\ref{lst:storage}).
+Davon sind drei für die Fahrzeugdimensionen zuständig:
+\newline
+Die Klasse \texttt{EmergencyVehicleAttributesGraphStorage} initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Sourcecode~\ref{lst:storage}).
+\newline
 Die Klasse \texttt{EmergencyVehicleGraphStorageBuilder} baut das Speicherobjekt zusammen.
-Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert.
+Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert (Sourcecode~\ref{lst:builder}).
 Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen.
 Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben.
 Andere Straßen dürfen normalerweise aufgrund des \gls{osm}-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
-Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht, daher konnte hier einiges auskommentiert werden.
+Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht.
 
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=7, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=143, lastline=158]{java}{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
+\inputminted[gobble=6, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=161, lastline=180]{java}{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
 \caption{Entnahme der Dimensionsbeschränkungen}
 \label{lst:builder}
 \end{listing}
 
-Die Klasse \texttt{EmergencyVehicleEdgeFilter} vergleicht bei der Ausführung des Routing Requests für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \texttt{EmergencyVehicleGraphStorageBuilder} produzierten Speicherobjekt.
+Die Klasse \texttt{EmergencyVehicleEdgeFilter} vergleicht bei der Ausführung der Routing-Anfrage für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \texttt{EmergencyVehicleGraphStorageBuilder} produzierten Objekt.
 Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden.
-Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen (Abb. ~\ref{lst:filter}).
+Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen (Sourcecode~\ref{lst:filter}).
 
 \begin{listing}[htb]
 \centering
@@ -205,120 +206,102 @@ Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über die
 \end{listing}
 
 Der Hauptteil der Änderungen wird in der \texttt{EmergencyFlagEncoder} Klasse vorgenommen.
-Hier werden zum Beispiel die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen aus der 2.Frage mit eingebaut (Abb. ~\ref{lst:flag}).
-Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt, mit der Absicht das Emergency Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen.
-Das Geschwindigkeitslimit von 80km/h hängt nämlich mit der Fahrzeugklasse zusammen und nicht mit dem Wegtyp.
+Hier werden beispielsweise die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen (Frage 2.) implementiert (Abb. ~\ref{lst:flag}).
+Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt, mit der Absicht das Löschfahrzeug-Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei nutzbar zu machen.
+Das Geschwindigkeitslimit von 80km/h hängt mit der ausgewählten Fahrzeugklasse zusammen und nicht mit der Straßenart.
 Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht.
 
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=149, lastline=179]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=2, fontsize=\footnotesize, breaklines, breakbytoken=|, firstline=169, lastline=199]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Definition von Maximalgeschwindigkeiten für unterschiedliche Wegtypen}
 \label{lst:flag}
 \end{listing}
 
-Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Code Segment aus Abbildung \ref{lst:zone} übergangen werden.
-Wichtig ist dabei, dass der \gls{osm}-Tag \texttt{highway=living\_street} nicht automatisch eine Spielstraße ist.
+Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Schnipsel aus Code-Beispiel \ref{lst:zone} übergangen werden.
+Wichtig dabei ist, dass der \gls{osm}-Tag \texttt{highway=living\_street} nicht automatisch eine Spielstraße ist.
 In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden.
-Diese Eigenschaft muss beim taggen\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden.
+Diese Eigenschaft muss beim \textit{Tagging}\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden.
 Häufig wird solchen Straßen der Tag \texttt{maxspeed=7} zugewiesen.
 
+
+Um Bus- und Taxispuren für das Profil nutzbar zu machen, wurde das Code Segment \ref{lst:bus} implementiert.
+Für mit Fahrzeugen befahrbare Tramspuren gibt es in \gls{osm} bisher bis dato keinen geeigneten Tag.
+Die Segmente der Tramspur, die befahren werden können, liegen in der Regel auf einer vorhandenen Straße.
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=2, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=275, lastline=280]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=2, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=299, lastline=303]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Limit für 30er-Zonen und Spielstraßen}
 \label{lst:zone}
 \end{listing}
 
-Um Bus- und Taxispuren für das Profil nutzbar zu machen wurde das Code Segment \ref{lst:bus} implementiert.
-Für mit Fahrzeugen befahrbare Tramspuren gibt es in \gls{osm} bisher leider keinen geeigneten Tag.
-Die Segmente der Tramspur die befahren werden können liegen sowieso meistens auf einer vorhandenen Straße.
+Um Einbahnstraßen in jeder Richtung nutzen zu können, wurden Teile des Codes entfernt, die einer Kante eine vorwärts- oder rückwärts-Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
+
+Der \texttt{EmergencyFlagEncoder} beinhaltet desweiteren die Funktion \texttt{collect}, welche dem Wegsegment anhand seines Wegtyps eine Priorität zugeschreibt.
+Auf diese Weise können Straßen auf denen hohe Geschwindigkeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind, bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
 
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=8, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=366, lastline=373]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=2, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=403, lastline=417]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von speziellen Wegtypen}
 \label{lst:bus}
 \end{listing}
 
-Um Einbahnstraßen in jeder Richtung nutzen zu können wurden Teile des Codes auskommentiert, die einer Kante eine Vorwärts oder Rückwärts Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
+Durch den Code-Ausschnitt in Beispiel \ref{lst:weight} soll die höchste Priorität jene Straßen mit dem Tag \texttt{service=emergency\_access} erhalten.
+Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen.
+Da Busspuren auch vom motorisierten Individualverkehr freigehalten werden müssen, werden diesen an dieser Stelle ebenfalls eine höhere Priorität zugewiesen.
+
+Beim Ausführen des Codes werden die auf diese Weise generierten Attribute (Flags) beim Bau des Graphen zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch vielen weiteren Attributen auf den Kanten des Graphen gespeichert.
+Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben, aufgebaut.
 
 \begin{listing}[htb]
 \centering
 \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=1, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=503, lastline=504]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
+\inputminted[gobble=1, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=562, lastline=567]{java}{../data/JavaFiles/EmergencyFlagEncoder.java}
 \caption{Nutzung von Notfalleinfahrten}
 \label{lst:weight}
 \end{listing}
 
-Der EmergencyFlagEncoder beinhaltet auch die Funktion \texttt{collect} mit welcher dem Wegsegment anhand seines Wegtyps eine Priorität zugeschrieben wird.
-So können Straßen auf denen hohe Geschwindigkeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
-
-
-Durch das den Code in Abbildung \ref{lst:weight} sollen die höchste Priorität Straßen mit dem Tag \texttt{service=emergency\_access} erhalten.
-Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen.
-Da Busspuren theoretisch auch vom normalen Verkehr freigehalten werden müssen, werden diesen hier ebenfalls eine höhere Priorität zugewiesen.
-
-Beim ausführen des Codes werden die auf diese Weise generierten Flags beim Bau des Graphen zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch viele weitere Flags auf den Kanten des Graphen gespeichert.
-Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben aufgebaut.
-
-Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends mit diesen Änderungen auf einem Tomcat Server der Universität Heidelberg Installiert.
+Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends mit diesen Änderungen auf einen Server der Universität Heidelberg installiert.
 Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben.
 
-Damit ist der prozessierungs Teil des Profils fertig gestellt.
-Es können an die Schnittstelle des \gls{ors} nun Routing-Anfragen mit dem neuen Profil gestellt werden, die eine Antwort im GeoJson Format zurückgeben.
+Damit ist Prozessierung des Routing-Profils für Einsatzfahrzeuge fertiggestellt und es können Anfragen an die Schnittstelle des \gls{ors} gesendet werden.
 
-%
-%%\subsection{Limitierende Faktoren}
-%
-%geschwindigkeit limits
-%hgv restrictions
-%
-%%\subsection{Erweiternde Faktoren}
-%
-%Einbahnstraßen
-%neue Wegtypen
-%-> Graph neu generieren.
 
 \subsection{Anpassungen Frontend}
 
-Das \gls{ors} Frontend ist ein \gls{gui} welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
-Gleichzeitig kann das Ergebnis quasi sofort auf der gleichen Oberfläche dargestellt werden.
-Das Frontend für das Emergency-Profil kann unter \href{www.emergency.openrouteservice.org} erreicht werden.
+Das \gls{ors} Frontend ist ein \gls{gui}, welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
+Gleichzeitig kann das Ergebnis auf der gleichen Oberfläche dargestellt werden.
+Das Frontend für das Löschfahrzeug-Profil kann unter dem Link \href{emergency.openrouteservice.org} erreicht werden.
 
 \bigskip
 
 Allgemein kann über einen Rechtsklick auf die Karte ein Start-, Weg- oder Endpunkt platziert werden.
-Sobald zwei Punkte vorhanden sind wird ein Routing Request für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt.
+Sobald zwei Punkte vorhanden sind, wird ein Routing-Anfrage für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt.
 Genauere Informationen zu der Route, wie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
 Um eine Erreichbarkeitsanalyse durchzuführen kann am linken Rand der Website von Routing auf Isochronen umgestellt werden.
 Hier kann mit einem Rechtsklick auf die Karte ein Zentrum gesetzt werden.
-Nach einem Klick auf den Isochronen Generieren Button wird die Antwort für den aus den Einstellungen generierten Request angezeigt.
+Nach einem Klick auf den \texttt{Isochronen-Generieren-Button} wird die Antwort für den aus den Einstellungen generierten Anfrage angezeigt.
 
 \bigskip
 
-Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob umrissen.
-Alle Änderungen können aber im Detail nachvollzogen werden, da auch hier der Quellcode Opensource ist (Siehe Anhang S.~\pageref{sec:anhang}).
-
-\bigskip
-
-Da die Fußgänger-, das Rollstuhl- und die Fahrrad-Profile für Einsatzfahrten irrelevant sind wurden diese aus der Darstellung auskommentiert.
-Das Auto- und HGV-Profil wurde für direkte Vergleiche zum Emergency-Profil beibehalten.
-Gleichzeitig wurde das neue Emergency-Profil eingefügt für welches 2 Fahrzeugklassen vorhanden sind.
+Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob dargestellt.
+Alle Änderungen können im Detail nachvollzogen werden, da der Quellcode online verfügbar ist (Siehe Anhang S.~\pageref{sec:anhang}). Das Auto- und Heavy-Vehicle-Profil wurde für direkte Vergleiche zu den Profil für Einsatzfahrzeuge beibehalten.
+Gleichzeitig wurde das neue Profil für Einsatzfahrzeuge eingefügt für welches zwei Fahrzeugklassen vorhanden sind.
 
 \bigskip
 
 1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt.
 Damit müssen diese Daten bei einem neuen Aufruf der Seite nicht jedes mal neu eingegeben werden.
-2. Profil allgemein für Einsatzfahrzeuge: Hier werden keine Fahrzeugdimensionen eingestellt.
+2. Profil allgemein für Einsatzfahrzeuge: Hier werden Fahrzeugdimensionen nicht automatisch eingestellt.
 Die Höchstgeschwindigkeit für dieses Profil ist standardmäßig auf 130km/h gesetzt.
 Diese kann in den weiteren Einstellungen deaktiviert werden.
 
 \bigskip
 
-Aufgrund der Berechnungszeit für Graphen wurde der Datenbereich auf den politischen Raum Schwaben begrenzt.
-Abfragen können nur in diesem Bereich getätigt werden weshalb dieser als durchsichtiges Polygon über der Karte automatisch angezeigt wird.
-Der Datenbereich kann über eine Checkbox in der rechten unteren Ecke ausgeschaltet werden.
+Aufgrund der Berechnungszeit für den Graphen wurde der Datenbereich auf den politischen Raum von Schwaben begrenzt.
+Abfragen können nur in diesem Bereich getätigt werden, weshalb dieser als durchsichtiges Polygon über der Karte visualisiert wird.
+Der aktive Datenbereich kann über eine Checkbox in der rechten unteren Ecke angeschaltet werden.

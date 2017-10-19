@@ -2,6 +2,7 @@
 \documentclass[12pt,a4paper]{article}
 %\documentclass[a4paper,12pt]{scrreprt}
 \usepackage[left= 2.5cm,right = 2.5cm, bottom = 2.5 cm, top = 2.5cm, head = 14.5pt]{geometry}
+\renewcommand{\baselinestretch}{1.5}
 
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
@@ -23,11 +24,18 @@
 %utils
 \usepackage{color}
 \usepackage{xcolor}
+\usepackage{url}
 \usepackage[hidelinks]{hyperref}
 \usepackage{lipsum}
 \usepackage{array}
 \usepackage{textcomp}
 \usepackage{setspace}
+
+%breaklines
+%\usepackage{etoolbox}
+%\g@addto@macro{\UrlBreaks}{\UrlOrds}
+%\def\UrlOrds{\do\*\do\-\do\~\do\'\do\"\do\-}%
+
 
 %Java und Javascript Code
 %\usepackage{listings}
@@ -47,6 +55,48 @@
 \usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
 \bibliography{Thesis}
 \usepackage[nottoc]{tocbibind}
+
+\appto\UrlBreaks{\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j
+\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w
+\do\x\do\y\do\z\do\|\do\*\do\-\do\~\do\'\do\"\do\-}
+
+%\renewcounter{biburlnumpenalty}
+%\renewcounter{biburlucpenalty}
+%\renewcounter{biburllcpenalty}
+%
+%\newcommand*{\biburlsetup}{%
+%  \Urlmuskip=0mu plus 3mu\relax
+%  \mathchardef\UrlBigBreakPenalty=100\relax
+%  \mathchardef\UrlBreakPenalty=200\relax
+%  \def\UrlBigBreaks{\do\:\do\-}%
+%  \def\UrlBreaks{%
+%    \do\.\do\@\do\/\do\\\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\}%
+%    \do\,\do\?\do\'\do\+\do\=\do\#\do\$\do\&\do\*\do\^\do\"}%
+%  \ifnumgreater{\value{biburlnumpenalty}}{0}
+%    {\def\do##1{\appto\UrlSpecials{\do##1{\mathchar`##1 \penalty\value{biburlnumpenalty}}}}%
+%     \do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\0}
+%    {}%
+%  \ifnumgreater{\value{biburlucpenalty}}{0}
+%    {\def\do##1{\appto\UrlSpecials{\do##1{\mathchar`##1 \penalty\value{biburlucpenalty}}}}%
+%     \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+%     \do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T
+%     \do\U\do\V\do\W\do\X\do\Y\do\Z}
+%    {}%
+%  \ifnumgreater{\value{biburllcpenalty}}{0}
+%    {\def\do##1{\appto\UrlSpecials{\do##1{\mathchar`##1 \penalty\value{biburllcpenalty}}}}%
+%     \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j
+%     \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t
+%     \do\u\do\v\do\w\do\x\do\y\do\z}
+%    {}%
+%  \let\do=\noexpand}
+
+\setcounter{biburlnumpenalty}{8000}
+\setcounter{biburlucpenalty}{8000}
+\setcounter{biburllcpenalty}{8000}
+
+%\defcounter{biburlnumpenalty}{3000}
+%\defcounter{biburlucpenalty}{6000}
+%\defcounter{biburllcpenalty}{9000}
 
 % Header Footer
 \usepackage[automark,headsepline]{scrlayer-scrpage}
@@ -72,10 +122,12 @@
 \hyphenation{Emer-gen-cy-Ve-hi-cle-Graph-Sto-rage-Builder}
 \hyphenation{Emer-gen-cy-Flag-En-coder}
 \hyphenation{Ac-cel-er-a-tion-Weigh-ting}
+\hyphenation{Open-Street-Map}
 
 % commands
 \newcommand\todo[1]{\textcolor{red}{#1}}
 \renewcommand\listoflistingscaption{Sourcecodeverzeichnis}
+\renewcommand{\listingscaption}{Sourcecode}
 
 % Document Infos
 \author{Amandus Stefan Butzer}
@@ -105,7 +157,7 @@
 
 \listoftables
 
-\begin{spacing}{1.5}
+\begin{spacing}{1.9}
 \listoflistings
 \end{spacing}
 
@@ -140,7 +192,8 @@
 
 \newpage
 \printbibliography
-%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\addtocounter{section}{1}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Literatur}
 
 \newpage
 

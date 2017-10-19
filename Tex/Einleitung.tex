@@ -2,20 +2,17 @@
 
 \subsection{Motivation}
 Zum Zeitpunkt der Erstellung dieser Arbeit ist der Verfasser in der Geoinformatik Abteilung des Geographischen Instituts der Ruprecht-Karls-Universität Heidelberg als wissenschaftliche Hilfskraft im Projekt \gls{ors} tätig.
-Dieser bietet neben einer Fülle von Webdiensten, wie Geocoding und Routing, auch einen Isochronen-Service an.
+Dieser bietet neben einer Fülle von Webdiensten, einen Isochronen-Service an, welcher zur Berechnung unterschiedliche Routing-Profile nutzen muss.\par
 Mit Isochronen werden Orte bestimmt, die von einem Standort aus in einer bestimmten Zeit erreicht werden können.
-Für Unternehmen ist so eine Analyse zum Beispiel bei der Standortwahl zur Berechnung von Umsatzpotentialen interessant.
+Für Unternehmen ist solch eine Analyse zum Beispiel bei der Standortwahl zur Berechnung von Umsatzpotentialen interessant.
 Arbeitnehmer können über Isochronen geeignete Wohnorte für eine zukünftige Arbeitsstelle ermitteln.
 Bus und Bahn richten an Isochronen ihre Verkehrsnetze aus oder legen Tarifzonen damit fest.
 Für Polizei, Rettungsdienst sowie Feuerwehr geht es vor allem um das Einhalten amtlich vorgegebener zeitlicher Hilfsfristen.
 Diese stellen eine bedeutende Eigenschaft für die Planung und Qualität der Einsätze von Feuerwehr und Rettungsdienst dar.\par
 Der Brandschutz ist im Gegensatz zum Rettungsdienst eine kommunale Aufgabe und unterliegt nur in manchen Bundesländern bestimmten Standards (\cite{bedarfsplan}).
 Daher bedienen sich diese Organisationen unterschiedlicher Hilfsmittel um Bedarfspläne für ihren Standort zu erstellen.
-\medskip
-
-Da mit dem Isochronen-Service jene zeitlichen Erreichbarkeitsanalysen durchgeführt werden können, ist dieser für die Erstellung eines Brandschutzbedarfsplans der Feuerwehr geeignet.
-Jedoch kann der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge erfüllen.
-Um diese Nachteile zu überwinden, wurde eine Forschungskooperation mit der \gls{ffl} eingegangen.
+Der Isochronen-Service wird in diesem Zusammenhang bereits von unterschiedlichen Feuerwehreinheiten genutzt, allerdings bietet der Dienst in seiner bisherigen Form noch nicht alle erforderlichen Anforderungen für Einsatzfahrzeuge.
+Um diese Nachteile zu überwinden, wurde eine Forschungskooperation mit der \gls{ffl} initiiert.
 \vspace{1.2cm}
 
 \textbf{§35 Abs. 1 StVO:}
@@ -28,10 +25,10 @@ Um diese Nachteile zu überwinden, wurde eine Forschungskooperation mit der \gls
 
 Dieser kurze Absatz der Straßenverkehrs-Ordnung ermöglicht Einsatzfahrzeugen sich unter Benutzung von Martinshorn und Blaulicht über jede Vorschrift im Straßenverkehr hinwegzusetzen.
 In einem Notfall hat das schnellste Erreichen des Zielorts eine höhere Priorität als Geschwindigkeitsbegrenzungen oder Fahrverbote.
-Bisher gibt es trotz einer großen Anzahl an Routing-Services keinen, der diese Tatsache berücksichtigt.
+Bisher gibt es trotz einer großen Anzahl an Routing-Services auf dem Markt, keinen, der diese Zusammenhänge berücksichtigt.
 
 \subsection{Zielsetzung}
-Das Ziel dieser Arbeit ist in Kooperation mit der \gls{ffl} zu Ermitteln, bis zu welchem Grad diese Notstandsvollmachten im Ernstfall in Anspruch genommen werden können.
+Das Ziel dieser Arbeit ist in Kooperation mit der \gls{ffl} zu ermitteln, bis zu welchem Grad diese Notstandsvollmachten im Ernstfall in Anspruch genommen werden können.
 Auf Basis dieser Informationen soll dann ein prototypisches Routing-Profil für Einsatzfahrzeuge entwickelt werden.
 Die Implementierung wird aufgrund des Umfangs einer Bachelorarbeit auf einen Fahrzeugtyp der Feuerwehr begrenzt.
 Dabei handelt es sich um Löschfahrzeuge der Klassen LF8, LF8/6 und MLF zwischen 3,5 und 7,5 Tonnen (je nach Beladung).
@@ -40,6 +37,6 @@ Allerdings wird bei der Erstellung dieses Routing-Profils darauf geachtet, dass 
 \vspace{0.5cm}
 
 Als Basis wird das Profil auf dem Backend\footnote{Programm und Datenbanken die sich zur Berechnung von Routen auf einem über das Internet ansprechbaren Server befinden} des bereits bestehenden Routing Service des \gls{ors} aufgebaut.
-Zusätzlich sollen Java Funktionen implementiert werden, die speziell auf das Emergency Profil zugeschnitten sind.
-Zur Darstellung wird das \gls{ors} Frontend\footnote{Graphische Benutzeroberfläche der \gls{ors}-Website mit der Anfragen an das Backend gestellt und die Antworten dargestellt werden können} mit Hilfe der Java-Script Programmiersprache angepasst.
+Zusätzlich sollen Java-Funktionen implementiert werden, die speziell auf das Profil für Einsatzfahrzeuge zugeschnitten sind.
+Zur Darstellung wird das \gls{ors} Frontend\footnote{Graphische Benutzeroberfläche der \gls{ors}-Website mit der Anfragen an das Backend gestellt und die Antworten dargestellt werden können} mit Hilfe der Javascript Programmiersprache angepasst.
 Dadurch können die Ergebnisse in verständlicher und anschaulicher Weise präsentiert werden.

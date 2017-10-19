@@ -2,17 +2,17 @@
 
 \vspace{1cm}
 
-
-The goal of the present bachelor thesis was to develop a prototypical Routing-Profile for Fireengines in a research cooperation with the voluntary fire department in Lützelburg (in swabia).
+This study aims to develop a prototype routing profile for fire engines.
 \medskip
 
-So far there is no routing-service considering that emergency vehicles are allowed to ignore the StVO\footnote{german road traffic regulation}.
-Based on the Openrouteservice using OpenStreetMap as data pool, an Emergency Profile was developed, which uses reasonable speeds for emergency vehicles and is allowed to drive on cycling-ways, pedestrian zones and additional waytypes.Furthermore oneways can be passed through from the opposite direction.
-The delay for acceleration and break processes were taken into account with time penalties for starting, turns and arrival.
-The Profile was calibrated through analytical comparison of three Test runs.
-The results show, that a function for the steepness has yet to be added.
-Differences in Travel times for the minute markers of the two mostly level test routes were mostly in 10 second range.
+The research is carried out with the voluntary fire department of Lützelburg.
+The existing routing services are not efficient for emergency routings since for example, they do not consider that emergency vehicles are allowed to ignore the StVO\footnote{german road traffic regulation}.
+This study presents the development of an emergency routing profile, as an extention of OpenRouteService, a routing engine based on OpenStreetMap database.
+The new emergency routing profile considers reasonable speed of emergency vehicles, and further allows the possibility of navigating through cycleways, pedestrian zones and other possible routes that should not be used by vehicles in normal situations.
+Other special characteristics such as the possibility of driving in the opposite direction of a one-way road makes the routing profile efficient and applicable for emergency routing.
+As another example, the time delay as causes of acceleration and break processes are taken into account with calculating time penalties for starting, turnings and arrival.
+Simulations were done in order to evaluate and calibrate the routing profile through analytical comparison.\par
+The results show that \newline $a)$ the functionality to consider road incline is necessary and should be included in future versions of the routing profile and \newline $b)$ the differences in travel time between the test runs and the profile are less than 10 seconds for most of the waypoints on the test route.
 \bigskip
 
-The Author wants to provide a basis for more accurate routing and travel time calculation for emergency vehicles as well as assistance in the development for demand plans.
-
+The present study provides the basis for an efficient routing and travel time calculation of emergency vehicles as well as assistance in the development of demand plans.
