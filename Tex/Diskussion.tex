@@ -3,8 +3,8 @@
 \subsection{Teststrecke 1}
 
 Durch die implementierten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde.
-Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}).
-Über die hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$.
+Auf der ersten Teststrecke muss das Löschfahrzeug insgesamt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}).
+Über die Hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$.
 Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
 
 
@@ -29,14 +29,14 @@ Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die f�
 \label{steig}
 \end{figure}
 
-Darüberhinaus liegen auf der Strecke im inneren Lützelburgs einige langezogene aber dennoch enge Kurven (Abb.~\ref{fig:curve}).
+Darüber hinaus liegen auf der Strecke im inneren Lützelburgs einige langgezogene aber dennoch enge Kurven (Abb.~\ref{fig:curve}).
 Auch hier kann das Löschfahrzeug nicht die gegebene Geschwindigkeit beibehalten und muss abbremsen.
-Diese Kurven werden allerdings von Löschfahrzeug-Profil nicht als Turn erkannt, da der Winkel zwischen den Segmenten zu groß ist.
+Diese Kurven werden allerdings von Löschfahrzeug-Profil nicht als Abbiegung erkannt, da der Winkel zwischen den Segmenten zu groß ist.
 Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das echte Fahrzeug.
 
 \begin{figure}[htb]
 \centering
-\caption{Fahrt 1 -- Unregistrierte Turns}
+\caption{Fahrt 1 -- Unregistrierte Abbiegungen}
 \label{fig:curve}
 \includegraphics[width = 0.50 \textwidth]{../media/Fahrt1_curve.png} \\
 \end{figure}
@@ -46,7 +46,7 @@ Die Erklärung dafür ist, dass das Löschfahrzeug die angegebene Maximalgeschwi
 Auch wenn die Angabe mit der Geschwindigkeitsanzeige übereinstimmt, ist die effektive Geschwindigkeit geringer.
 
 Die Zeitdifferenzen aus Tabelle \ref{tab:all} zeigen: das Profil fährt dem echten Fahrzeug mit der derzeitigen Gewichtung über die ganze Strecke hinweg.
-Wenn die genannten Faktoren der Steigung, der nicht miteinberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis von etwa 5 Minuten zu erwarten.
+Wenn die genannten Faktoren der Steigung, der nicht mit einberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis von etwa 5 Minuten zu erwarten.
 
 \subsection{Teststrecke 2}
 
@@ -109,23 +109,23 @@ Wie bei der Diskussion der 1. Fahrt bereits erwähnt, ist zu erwarten, dass die 
 \begin{subfigure}{0.49\textwidth}
 \centering
 \includegraphics[width = 0.80\textwidth]{../media/Fahrt3_Turn.png} \\
-\caption{Turn auf \gls{osm}-Datenebene}
+\caption{Abbiegung auf \gls{osm}-Datenebene}
 \label{fig:turnosm}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
 \centering
 \includegraphics[width = 0.80\textwidth]{../media/Fahrt3_actualturn.png} \\
-\caption{Eigentlicher Turn}
+\caption{Eigentliche Abbiegung}
 \label{fig:turnworld}
 \end{subfigure}
-\caption{Fahrt 3 -- Vergleich eines Turns}
+\caption{Fahrt 3 -- Vergleich eines Abbiegevorgangs}
 \label{fig:turn}
 \end{figure}
 
 Zwischen Punkt 3 und 4 fällt das Löschfahrzeug-Profil um fünf Sekunden zurück.
-Zwischen diesen Punkten befindet sich ein Abbiegevorgang, der deutlich schneller als andere Kurven gefahren werden kann.
+Zwischen diesen Punkten befindet sich eine Abbiegung, die deutlich schneller als andere Kurven gefahren werden kann.
 Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Abbiegevorgangs zwischen den \gls{osm} Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}).
-Es ist zu erkennen, dass der Turn um einiges ''weicher'' ist als die Daten beschreiben.
+Es ist zu erkennen, dass die Abbiegung um einiges ''weicher'' ist als die Daten beschreiben.
 Daher konnte das Löschfahrzeug gegenüber dem Profil hier Zeit gewinnen.
 
 Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb. \ref{fig:profile2}), der noch nicht mit einberechnet wird, und dem Löschfahrzeug-Profil somit einen kleinen Vorsprung gibt.
@@ -152,5 +152,5 @@ Dadurch können einfacher spezifische Fahrzeugprofile erstellt und getestet werd
 Da das \texttt{AccelerationWeighting} sowohl für das Löschfahrzeug als auch für allgemeine Einsatzfahrzeuge benutzt wird, erhalten diese bisher die gleichen Penalties.
 \item Weiterhin muss für Einbahnstraßen, die in Gegenrichtung durchfahren werden, ein Penalty (ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können, wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist).
 Auf diese Weise kann außerdem ein Routing auf der Gegenfahrbahn, lediglich für den Gewinn von wenigen Sekunden, verhindert werden.
-Darüberhinaus werden damit bevorzugt vorhandene Parallelstraßen benutzt.
+Darüber hinaus werden damit bevorzugt vorhandene Parallelstraßen benutzt.
 \end{itemize}

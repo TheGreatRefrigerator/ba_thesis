@@ -5,7 +5,7 @@ Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO
 Die Frage, die sich hierbei stellt, ist, inwieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
 Um diesen Sachverhalt zu untersuchen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
 Dieser wurde als Datei in der Cloud gespeichert und ist auch weiterhin verfügbar (Link im Anhang auf S.\pageref{sec:anhang}).
-Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene ORS Backend gewählt.
+Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene \gls{ors}-Backend gewählt.
 Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind im Cloud-Dokument im Anhang zu entnehmen.
 Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
 Anschließend wurden neue Java-Funktionen geschrieben um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
@@ -93,7 +93,7 @@ grade5 (Unbefestigter Weg) & 5   \\
 \end{tabular}
 \end{table}
 
-\paragraph*{3. Dürfen vorgegebene Geschwindigkeiten (Bsp. 30er Zone/ Tempolimit 70 etc) überschritten werden?}
+\paragraph*{3. Dürfen vorgegebene Geschwindigkeiten (Bsp. 30er Zone/ Tempolimit 70 etc.) überschritten werden?}
 \label{frage3}
 \par
 Manchmal sind besondere Geschwindigkeitsrestriktionen, wie zum Beispiel Tempo-30-Zonen vorhanden.
@@ -239,7 +239,7 @@ Die Segmente der Tramspur, die befahren werden können, liegen in der Regel auf 
 
 Um Einbahnstraßen in jeder Richtung nutzen zu können, wurden Teile des Codes entfernt, die einer Kante eine vorwärts- oder rückwärts-Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
 
-Der \texttt{EmergencyFlagEncoder} beinhaltet desweiteren die Funktion \texttt{collect}, welche dem Wegsegment anhand seines Wegtyps eine Priorität zugeschreibt.
+Der \texttt{EmergencyFlagEncoder} beinhaltet des weiteren die Funktion \texttt{collect}, welche dem Wegsegment anhand seines Wegtyps eine Priorität zuschreibt.
 Auf diese Weise können Straßen auf denen hohe Geschwindigkeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind, bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
 
 \begin{listing}[htb]

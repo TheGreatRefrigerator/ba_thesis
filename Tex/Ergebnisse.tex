@@ -83,7 +83,7 @@ Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt
 In einem weiteren Beispiel wird die schnellste Route zu einem Punkt auf der $A5$ auf der östlichen Spur südlich von Eppelheim in Heidelberg mit Startpunkt in der Weststadt gesucht (\ref{fig:ramp}).
 Für den normalen Verkehr führt der Weg über das südliche Autobahnkreuz (\ref{fig:normalramp}).
 Ein Einsatzfahrzeug kann stattdessen vorher auf eine Nebenstraße einbiegen und die in Abbildung~\ref{fig:emeramp} rot eingefärbte Notauffahrt verwenden.
-Damit kann in diesem Fall eine Strecke von mehr als 2,5 Kilometern eingespaart werden.
+Damit kann in diesem Fall eine Strecke von mehr als 2,5 Kilometern eingespart werden.
 
 \subsubsection{Einbahnstraßen}
 
@@ -224,7 +224,7 @@ Geschwindigkeit (Fahrt 1)            & 21,8$km/h$              & 59,4$km/h$     
 
 Die große Differenz tritt aufgrund von fehlenden Beschleunigungs- und Bremszeiten auf.
 Bisher wird bei der Berechnung der Fahrzeit lediglich 90$\%$ des für ein Segment vorgegebenen Geschwindigkeitslimits verwendet.
-Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung auf jedenfall eingehalten wird.
+Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung definitiv eingehalten wird.
 Dieser Faktor wurde allerdings für die Implementierung in dieser Arbeit entfernt.
 Demnach wird ein Straßensegment auf dem 50 km/h gefahren werden dürfte über die komplette Distanz mit 50 km/h befahren.
 In der Realität benötigt ein Fahrzeug dieser Größenordnung allerdings einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen.
@@ -235,7 +235,7 @@ Es gibt weitere Faktoren die beispielsweise andere Verkehrsteilnehmer betreffen,
 
 Anhand dieses Zusammenhangs wurde eine weitere Java-Klasse \texttt{AccelerationWeighting} in der die zusätzliche Zeit für diese Szenarien berechnet wird, implementiert (Siehe Anhang S.\pageref{sec:source}).
 Diese Klasse soll zwei Funktionen erfüllen:
-Zum einen muss bereits bei der Suche nach dem schnellsten Weg im Gegensatz zu geraden Strecken eine zusätzliche Zeit für Abbiegevorgänge miteinfließen.
+Zum einen muss bereits bei der Suche nach dem schnellsten Weg im Gegensatz zu geraden Strecken eine zusätzliche Zeit für Abbiegevorgänge mit einfließen.
 Zum anderen müssen bei der Berechnung der Fahrzeit Start-, Ankunfts- und Abbiegezeit mit berücksichtigt werden.
 
 Es stellt sich nun die Frage, wie ein Abbiegevorgang auf dem Graphen identifiziert werden kann.
@@ -268,9 +268,9 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 Anhand der vorliegenden Testfahrt wurde das Profil derart kalibriert, dass durch die Penalties für Abbiegungen, Start und Ziel die fehlenden 90 Sekunden benötigt wurden.
 Für Start sowie Ankunft wurden 15 und für Abbiegungen 20 Sekunden veranschlagt.
 
-Mit dem neu eingestellten Profil wurde nun erneut ein Request für die erste Testfahrt gesendet.
+Mit dem neu eingestellten Profil wurde nun erneut eine Anfrage für die erste Testfahrt gesendet.
 Wie erwartet, benötigte das Profil nun für diesen Weg ebenfalls fast genau fünf Minuten.
-In Tabelle \ref{tab:drive11} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diesen Request zu sehen.
+In Tabelle \ref{tab:drive11} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diese Anfrage zu sehen.
 Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und den zweiten Teil zu schnell absolviert.
 
 \begin{figure}[htb]
@@ -326,9 +326,9 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 \end{table}
 
 Die Penalties für Start und Ankunft wurden für die folgenden Analysen um die Hälfte reduziert und lagen somit bei 7,5 Sekunden.
-Turnpenalties wurden auf 16 Sekunden reduziert.
+Penalties für Abbiegungen wurden auf 16 Sekunden reduziert.
 
-Mit der neuen Gewichtung wurden die Requests für die drei Testfahrten erneut gesendet und mit den Minuten-Markierungen der wirklich benötigten Zeiten verglichen.
+Mit der neuen Gewichtung wurden die Anfragen für die drei Testfahrten erneut gesendet und mit den Minuten-Markierungen der wirklich benötigten Zeiten verglichen.
 Die Ergebnisse sind der Tabelle \ref{tab:all} zu entnehmen.
 
 \begin{table}[htb]
@@ -351,5 +351,5 @@ Wegpunkt              & Fahrtzeit   & Differenz     & Fahrtzeit   & Differenz   
 
 Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen erweitert.
 Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punkte zurückgegeben.
-Im Frontend konnten dadurch nun die Wegtypen und Wegoberfächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden.
+Im Frontend konnten dadurch nun die Wegtypen und Wegoberflächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden.
 Außerdem wurde ein Feature zur Darstellung der Höchstgeschwindigkeit der einzelnen Streckensegmente eingebaut.

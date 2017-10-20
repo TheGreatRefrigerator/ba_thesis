@@ -4,10 +4,10 @@ Das erstellte Profil für Löschfahrzeuge wird als Prototyp betrachtet und kann 
 Es werden bei der Suche nach dem kürzesten Weg in einem Straßennetz die für andere Fahrzeuge geltenden Geschwindigkeitslimits auf geeignetere Werte angehoben.
 
 Es ist für das Profil möglich Einbahnstraßen in beide Richtungen zu befahren.
-Bisher wird deswegen allerdings ab und zu die Gegenfahrbahn über längere Distanzen wegen einem Gewinn von nur wenigen Sekunden verwendet.
-Darüber hinaus würde ein Penalty dem Risiko des Gegenverkehrs gerecht werden.
-Interessant wäre es daher einen Penalty-Faktor einzubauen, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
-Dadurch würden auch in der Nähe liegende Parallelstraßen vorgezogen werden.
+Dadurch kann die Distanz zum Ziel signifikant reduziert werden.
+Das führt aber auch dazu, dass häufig über längere Strecken auf der Gegenfahrbahn gefahren wird und Abbiegespuren des Gegenverkehrs wegen wenigen gewonnenen Metern verwendet werden.
+Infolgedessen sollte ein Penalty-Faktor eingebaut werden, der bei einer Nutzung entgegen der Fahrtrichtung eine Verzögerung mit einberechnet.
+
 Darüber hinaus werden bisher nicht befahrbare Straßentypen wie Fußgängerzonen und Radwege für das Profil verfügbar gemacht.
 Eine Routenführung bis zum Zielpunkt wird so gegenüber den normalen Fahrzeug Profilen in den meisten Fällen erreicht.
 
@@ -20,12 +20,12 @@ Hierbei wird ein Abbiegevorgang durch den Winkel zwischen zwei Straßensegmenten
 Bisher erhält jeder Abbiegevorgang den gleichen Penalty obwohl manche Kurven schneller befahren werden können.
 Kurven innerhalb eines zusammenhängenden Segmentes werden bisher noch nicht betrachtet, die für realistischere Ergebnisse ebenfalls als Abbiegevorgang registriert werden sollten.
 
-Darüberhinaus muss der Öffnungswinkel einer Kurve mit in die Berechnung der zusätzlichen Zeit einfließen, da Turns mit größerem Winkel ebenfalls schneller befahren werden können.
+Darüber hinaus muss der Öffnungswinkel einer Kurve mit in die Berechnung der zusätzlichen Zeit einfließen, da Abbiegungen mit größerem Winkel ebenfalls schneller befahren werden können.
 Gleichzeitig muss auch die Geschwindigkeit des vorherigen und folgenden Straßensegments beachtet werden, da diese die Brems- bzw. Beschleunigungsstrecke alterieren.
-Die Steigung eines Straßensegments hat einen signifikannten Einfluss auf die benötigte Zeit und muss daher ebenfalls einkalkuliert werden.
+Die Steigung eines Straßensegments hat einen signifikanten Einfluss auf die benötigte Zeit und muss daher ebenfalls einkalkuliert werden.
 Es werden für die Implementierung dieser Funktionen noch weitere Analysen zu speziellen Testfahren für das jeweilige Szenario (Steigung, Abbiegevorgang) benötigt.
 
-Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend festcodiert sondern können als Parameter bei der Abfrage mitgeliefert werden.
+Die Fahrzeugdimensionen und die Höchstgeschwindigkeit sind nicht im Backend fest codiert sondern können als Parameter bei der Abfrage mitgeliefert werden.
 Damit ist eine Erweiterung für andere Fahrzeugklassen der Feuerwehr als auch des Rettungsdienstes oder der Polizei möglich, da für alle die selbe Grundprämisse gilt (~\ref{cit:STVO}).
 
 Im Hinblick auf \gls{osm}-Daten kann keine endgültige Sicherheit gewährleistet werden, da die Ergebnisse höchstens so gut wie die Daten sein können.
@@ -39,8 +39,8 @@ Für die Erstellung von Einzugsgebieten für das Profil für Einsatzfahrzeug  mu
 \includegraphics[width = 0.80 \textwidth]{../media/firehydrants.png} \\
 \end{figure}
 
-Das Analysieren der Teststrecken ist durch das einzelne Senden der Requests und das anschließende Extrahieren der benötigten Werte zeitaufwändig.
-Es wäre demnach hilfreich ein Service zum gleichzeitigen senden von allen Testrequests zu entwickeln mit welchem danach ebenso die Antworten adäquat dargestellt werden können.
+Das Analysieren der Teststrecken ist durch das einzelne Senden der Anfragen und das anschließende Extrahieren der benötigten Werte zeitaufwändig.
+Es wäre demnach hilfreich ein Service zum gleichzeitigen senden von allen Test Anfragen zu entwickeln mit welchem danach ebenso die Antworten adäquat dargestellt werden können.
 Dabei sollten zum Beispiel die Distanzen zwischen wichtigen Änderungspunkten auf einer Route berechnet werden können und tabellarisch aufgelistet werden.
 
 Ein weiterer interessanter Aspekt den es zu beleuchten gilt, ist das unterschiedliche Verkehrsaufkommen auf einer Straße oder Fußgängerzone.
