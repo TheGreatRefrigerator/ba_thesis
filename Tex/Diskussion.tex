@@ -2,9 +2,10 @@
 
 \subsection{Teststrecke 1}
 
-Durch die eingebauten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde.
+Durch die implementierten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde.
 Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}).
-Über die hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$ Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
+Über die hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$.
+Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
 
 
 \begin{figure}[htb]
@@ -28,7 +29,7 @@ Auf der ersten Teststrecke muss das Löschfahrzeug insgesammt einen Höhenunters
 \label{steig}
 \end{figure}
 
-Darüber hinaus liegen auf der Strecke im inneren Lützelburgs ein paar langezogene aber dennoch scharfe Kurven (Abb.~\ref{fig:curve}).
+Darüberhinaus liegen auf der Strecke im inneren Lützelburgs einige langezogene aber dennoch enge Kurven (Abb.~\ref{fig:curve}).
 Auch hier kann das Löschfahrzeug nicht die gegebene Geschwindigkeit beibehalten und muss abbremsen.
 Diese Kurven werden allerdings von Löschfahrzeug-Profil nicht als Turn erkannt, da der Winkel zwischen den Segmenten zu groß ist.
 Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das echte Fahrzeug.
@@ -40,22 +41,20 @@ Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das 
 \includegraphics[width = 0.50 \textwidth]{../media/Fahrt1_curve.png} \\
 \end{figure}
 
-
 Weiterhin wurde für jede der drei Fahrten beobachtet, dass auf den Segmenten mit Maximalgeschwindigkeit (80 km/h) das Profil ebenfalls konstant ein paar Sekunden gegenüber der Testfahrt gutmachen kann.
 Die Erklärung dafür ist, dass das Löschfahrzeug die angegebene Maximalgeschwindigkeit nicht komplett erreichen kann.
-Auch wenn die Angabe mit der Tachoanzeige übereinstimmt ist die effektive Geschwindigkeit geringer.
+Auch wenn die Angabe mit der Geschwindigkeitsanzeige übereinstimmt, ist die effektive Geschwindigkeit geringer.
 
-Die Zeitdifferenzen aus Tabelle \ref{tab:all} zeigen: das Profil fährt dem echten Fahrzeug mit der derzeitigen Gewichtung über die ganze Strecke hinweg davon.
-Wenn die genannten Faktoren der Steigung, der nicht miteinberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis von ungefähr 5 Minuten zu erwarten.
-
+Die Zeitdifferenzen aus Tabelle \ref{tab:all} zeigen: das Profil fährt dem echten Fahrzeug mit der derzeitigen Gewichtung über die ganze Strecke hinweg.
+Wenn die genannten Faktoren der Steigung, der nicht miteinberechneten schärferen Kurven und der Maximalgeschwindigkeit mit einbezogen werden, ist ein Ergebnis von etwa 5 Minuten zu erwarten.
 
 \subsection{Teststrecke 2}
 
-Da die 2. Strecke nur in der Ebene verläuft sind keine Abweichungen durch die Steigung zu erwarten.
-Die Differenzzeiten betragen für alle fünf Wegpunkte ungefähr plus minus 10 Sekunden.
+Da die 2. Strecke nur in der Ebene verläuft, sind keine Abweichungen durch die Steigung zu erwarten.
+Die Differenzzeiten betragen für alle fünf Wegpunkte ungefähr 10 Sekunden.
 Auffallend ist der Sprung vom 3. zum 4. Wegpunkt, bei welchem das Profil 14 Sekunden aufholt.
 Nach einer genaueren Betrachtung dieses Segments stellte sich heraus, dass hier eine einspurige Unterführung durchfahren werden musste auf die eine durch die Topologie unübersichtliche Kurve folgt (Abb. \ref{fig:traintunnel}).
-Daher kam es auf der Fahrt zu Verzögerungen, was das Aufholen des Profils gegenüber der Testfahrt erklärt.
+Daher kam es auf der Fahrt zu Verzögerungen, welches das Aufholen des Profils gegenüber der Testfahrt erklärt.
 
 \begin{figure}[htb]
 \centering
@@ -71,7 +70,7 @@ Bei den Ergebnissen der 3. Strecke (Tab. \ref{tab:all}) ist das Profil bereits n
 Bis zum Zwei-Minuten-Wegpunkt wird dieser Rückstand fast verdoppelt.
 Nach genauerer Überprüfung der Durchschnittsgeschwindigkeiten stellte sich heraus, dass der Weg hier durch eine 30er-Zone führt.
 Allerdings wird diese nicht mit den erwarteten 50 km/h sondern nur mit den durch den \texttt{maxspeed} Tag festgelegten 30 km/h durchfahren.
-Offensichtlich ein Bug im Backend der noch behoben werden muss.
+Offensichtlich ist dies ein Fehler im Backend welcher behoben werden muss.
 
 \begin{figure}[htb]
 \centering
@@ -103,7 +102,7 @@ Wegpunkt & Fahrzeit & Abweichung \\ \hline
 
 Vor der 2-Minuten-Marke beginnt eine Überlandstraße, die bis kurz vor Holzhausen (zwischen Marker 3 und 4) reicht.
 Das sind 56$\%$ der Gesamtstrecke.
-Wie bei der Diskussion der 1. Fahrt bereits erwähnt ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h zu hoch angesetzt ist, was den leichten Vorsprung zur 3-Minuten-Marke erklärt.
+Wie bei der Diskussion der 1. Fahrt bereits erwähnt, ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h zu hoch angesetzt ist, welches den leichten Vorsprung zur 3-Minuten-Marke erklärt.
 
 \begin{figure}[htb]
 \centering
@@ -124,12 +123,12 @@ Wie bei der Diskussion der 1. Fahrt bereits erwähnt ist zu erwarten, dass die M
 \end{figure}
 
 Zwischen Punkt 3 und 4 fällt das Löschfahrzeug-Profil um fünf Sekunden zurück.
-Zwischen diesen Punkten befindet sich ein Turn, der deutlich schneller als andere Abbiegungen gefahren werden kann.
-Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Turns zwischen den \gls{osm} Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}).
+Zwischen diesen Punkten befindet sich ein Abbiegevorgang, der deutlich schneller als andere Kurven gefahren werden kann.
+Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Abbiegevorgangs zwischen den \gls{osm} Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}).
 Es ist zu erkennen, dass der Turn um einiges ''weicher'' ist als die Daten beschreiben.
-Daher konnte das Löschfahrzeug gegenüber dem Profil Zeit gewinnen.
+Daher konnte das Löschfahrzeug gegenüber dem Profil hier Zeit gewinnen.
 
-Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb. \ref{fig:profile2}) der noch nicht mit einberechnet wird und dem Löschfahrzeug-Profil wieder einen kleinen Vorsprung gibt.
+Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb. \ref{fig:profile2}), der noch nicht mit einberechnet wird, und dem Löschfahrzeug-Profil somit einen kleinen Vorsprung gibt.
 
 \begin{figure}[htb]
 \centering
@@ -141,17 +140,17 @@ Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils
 
 \subsection{Benötigte Änderungen}
 
-Wie durch die Vorliegende Analyse zu sehen ist, müssen noch einige Änderungen vollzogen werden, damit das Profil realistischere Ergebnisse zurückgibt.\par
+Wie durch die vorliegenden Analysen zu sehen ist, müssen einige Änderungen vollzogen werden, damit das Profil realistischere Ergebnisse zurückgibt.\par
 \begin{itemize}
-\item Dass 30er Zonen noch nicht richtig erkannt werden muss repariert werden.
-\item Für die Steigung muss eine Funktion implementiert werden, welche diese berücksichtigt.
-\item Turns innerhalb von Routensegmenten(Abb.~\ref{fig:curve}), an Pillar Nodes, werden bisher nicht berücksichtigt und müssen mit einbezogen werden.
-\item Die Zeit für einen Turn sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden.
-Ansätze hierfür wurden bereits entwickelt(siehe Source Code) konnten aber noch nicht implementiert werden.
+\item 30er Zonen werden noch nicht richtig erkannt.
+\item Die Steigung muss berücksichtigt werden.
+\item Abbiegevorgänge innerhalb von Segmenten (Abb.~\ref{fig:curve}), an Pillar Nodes, werden bisher nicht berücksichtigt und müssen mit einbezogen werden.
+\item Die Zeit für einen Abbiegevorgang sollte sowohl anhand des effektiven Winkels als auch anhand der Geschwindigkeiten des vorherigen und folgenden Wegsegmentes bestimmt werden.
+Ansätze hierfür wurden bereits entwickelt (siehe Source Code), wurden allerdings noch nicht getestet.
 \item Für die Penalties muss die Zeit, sofern vorhanden, aus der eigentlichen Beschleunigung und falls diese nicht vorhanden, zum Beispiel aus dem Gewicht des Fahrzeugs berechnet werden.
 Dadurch können einfacher spezifische Fahrzeugprofile erstellt und getestet werden.
 Da das \texttt{AccelerationWeighting} sowohl für das Löschfahrzeug als auch für allgemeine Einsatzfahrzeuge benutzt wird, erhalten diese bisher die gleichen Penalties.
-\item Weiterhin muss für Einbahnstraßen die in Gegenrichtung durchfahren werden ein Penalty (ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist).
-Auf diese Weise kann ausserdem ein Routing auf der Gegenfahrbahn, lediglich für den Gewinn von wenigen Sekunden, verhindern werden.
-Darüber hinaus werden damit bevorzugt vorhandene Parallelstraßen benutzt.
+\item Weiterhin muss für Einbahnstraßen, die in Gegenrichtung durchfahren werden, ein Penalty (ca. *0.9) gesetzt werden, da diese oft nicht mit der selben Geschwindigkeit durchfahren werden können, wie in der eigentlichen Fahrtrichtung (auch wenn es erlaubt ist).
+Auf diese Weise kann außerdem ein Routing auf der Gegenfahrbahn, lediglich für den Gewinn von wenigen Sekunden, verhindert werden.
+Darüberhinaus werden damit bevorzugt vorhandene Parallelstraßen benutzt.
 \end{itemize}

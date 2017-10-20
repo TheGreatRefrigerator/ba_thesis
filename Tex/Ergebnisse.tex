@@ -1,8 +1,8 @@
 \section{Ergebnisse}
 
-Um das Routing-Profil für Einsatzfahrzeuge auf seine Funktionalität zu überprüfen mussten zwei unterschiedliche Aspekte beleuchtet werden.
-Durch die implementierten Java-Klassen waren Veränderungen zum Einen bei der Prozessierung des Graphen und zum Anderen in den Routing-Ergebnissen zu erwarten.
-Die Vollständigkeit des Graphen, sprich die Integration der Attribute für Feuerwehreinfahrten, Rad- und Fußwegen sowie Einbahnstraßen, musste bestätigt werden.
+Um das Routing-Profil für Einsatzfahrzeuge auf seine Funktionalität zu validieren, müssen zwei unterschiedliche Aspekte beleuchtet werden.
+Durch die Implementierung waren Veränderungen zum einen bei der Prozessierung des Graphen und zum anderen in den Routing-Ergebnissen zu erwarten.
+Der Graph beziehungsweise das Straßennetzwerk und die Integration der Attribute für Feuerwehreinfahrten, Rad- und Fußwegen sowie Einbahnstraßen, musste bestätigt werden.
 Außerdem wurden die Routing-Antworten auf ihre Praxistauglichkeit geprüft und daher die benötigten Fahrzeiten als auch die zurückgelegten Distanzen anhand von Testfahrten analysiert.
 
 
@@ -32,9 +32,9 @@ Da der \gls{ors} zur Darstellung mehrerer Routen bisher noch nicht geeignet ist,
 \subsubsection{Fußgängerzonen}
 
 Die Verwendung neuer Wegtypen konnte eingebunden werden wie in Abbildung~\ref{fig:footway} zu erkennen ist.
-Hier wurden als Zielpunkte verschieden Stellen auf der Fußgängerzone (v.a. Hauptstraße) in der Heidelberger Altstadt.
-Im Gegensatz zum Auto-Profil des \gls{ors} findet das Profil für Einsatzfahrzeuge seinen Weg bis zum gewünschten Zielpunkt.
-Durch die niedrige Geschwindigkeitsangabe des Backends wird auch nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller gehen würde.
+Hier wurden als Zielpunkte verschiedene Stellen auf der Fußgängerzone (v.a. Hauptstraße) in der Heidelberger Altstadt gewählt.
+Im Gegensatz zu dem gewöhnlichen Auto-Profil des \gls{ors} findet das Profil für Einsatzfahrzeuge seinen Weg bis zum gewünschten Zielpunkt durch Fußgängerzonen.
+Durch die niedrige Geschwindigkeitsangabe des Backends wird allerdings nicht durchgehend in der Fußgängerzone gefahren, welches zu manchen Nachtzeiten durchaus schneller erfolgen kann.
 Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
 
 
@@ -59,7 +59,8 @@ Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefah
 \end{figure}
 
 Auch die Nutzung von Notfalleinfahrten konnte implementiert werden.
-Abbildung~\ref{fig:school} zeigt zwei Zielpunkte die sich auf dem Gebäude einer Grundschule in Augsburg befinden. Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt (\ref{fig:schoolfire}) kann mit der Standard Routenführung nur die Rückseite des Schulgebäudes erreicht werden (\ref{fig:schoolcar}).
+Abbildung~\ref{fig:school} zeigt zwei Zielpunkte, die sich auf dem Gebäude einer Grundschule in Augsburg befinden. 
+Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt (\ref{fig:schoolfire}), kann mit gewöhnlicher Routenführung nur die Rückseite des Schulgebäudes erreicht werden (\ref{fig:schoolcar}).
 
 \begin{figure}[htb]
 \centering
@@ -79,7 +80,7 @@ Abbildung~\ref{fig:school} zeigt zwei Zielpunkte die sich auf dem Gebäude einer
 \label{fig:ramp}
 \end{figure}
 
-In einem weiteren Beispiel wird die schnellste Route zu einem Punkt auf der $A5$ auf der östlichen Spur südlich von Eppelheim mit Start in der Weststadt gesucht (\ref{fig:ramp}).
+In einem weiteren Beispiel wird die schnellste Route zu einem Punkt auf der $A5$ auf der östlichen Spur südlich von Eppelheim in Heidelberg mit Startpunkt in der Weststadt gesucht (\ref{fig:ramp}).
 Für den normalen Verkehr führt der Weg über das südliche Autobahnkreuz (\ref{fig:normalramp}).
 Ein Einsatzfahrzeug kann stattdessen vorher auf eine Nebenstraße einbiegen und die in Abbildung~\ref{fig:emeramp} rot eingefärbte Notauffahrt verwenden.
 Damit kann in diesem Fall eine Strecke von mehr als 2,5 Kilometern eingespaart werden.
@@ -87,8 +88,8 @@ Damit kann in diesem Fall eine Strecke von mehr als 2,5 Kilometern eingespaart w
 \subsubsection{Einbahnstraßen}
 
 Die Verwendung von Einbahnstraßen in Gegenrichtung konnte ebenfalls bestätigt werden.
-Auch durch diese Funktion können kürzere Wegstrecken erzielt werden. 
-Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profil für Einsatzfahrzeuge (Abb.~\ref{fig:onewayeme}) gegenüber dem Auto-Profil (Abb.~\ref{fig:oneway})eine wesentlich unkompliziertere Route nutzen und muss auf diese Weise knapp 400 Meter weniger zurücklegen.
+Auch durch diese Funktion können kürzere Wegstrecken für die Einsatzfahrzeuge gefunden werden. 
+Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profil für Einsatzfahrzeuge (Abb.~\ref{fig:onewayeme}) gegenüber dem Auto-Profil (Abb.~\ref{fig:oneway}) eine wesentlich passendere Route nutzen und muss auf diese Weise etwa 400 Meter weniger zurücklegen.
 
 \begin{figure}[htb]
 \centering
@@ -109,8 +110,8 @@ Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profi
 \end{figure}
 
 Allerdings verwendet das Löschfahrzeug-Profil Einbahnstraßen bisher ohne Einschränkung.
-Daher wird die Gegenfahrbahn auch schon bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
-Deswegen wird wie Abbildung~\ref{fig:oppositelane} zeigt, über weite Strecken die Gegenfahrbahn verwendet, obwohl unmittelbar daneben auch normalen Spur verfügbar ist.
+Daher wird die Gegenfahrbahn auch bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
+Deswegen wird, wie Abbildung~\ref{fig:oppositelane} zeigt, über weite Strecken die Gegenfahrbahn verwendet, obwohl unmittelbar daneben auch die normale Spur verfügbar ist.
 Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwendet, was keine realistische Lösung darstellt (Abb.~\ref{fig:oppositecurve}).
 
 
@@ -139,19 +140,18 @@ Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwen
 \newpage
 \subsection{Validierung der Distanzen und der Fahrzeit}
 
-Im Folgenden wurden Isochronen mit der Freiwilligen Feuerwehr Gablingen als Zentrum berechnet (48.454063,10.824415 [Latitude, Longitude]).
-Folgende Einstellungen wurden dabei vorgenommen:
+Im Folgenden wurden Isochronen mit der Freiwilligen Feuerwehr Gablingen als Zentrum berechnet (\texttt{48.454063,10.824415 [Latitude, Longitude]}).
+Folgende Einstellungen wurden dabei genutzt:
 \sloppy
 \begin{itemize}
-\item Distanz: 5 min
-\item Intervall: 1 min
-\item Maximale Geschwindigkeit: 80 km/h für Löschfahrzeug und Heavy-Vehicle; 130 km/h für PKW und Einsatzfahrzeug
+\item Distanz: 5 Minuten
+\item Intervall: 1 Minuten
+\item Maximale Geschwindigkeit: 80 km/h für Löschfahrzeug sowie Heavy-Vehicle; 130 km/h für PKW sowie Einsatzfahrzeug
 \item Heavy-Vehicle-Einstellungen für Löschfahrzeug- und Heavy-Vehicle-Profil: Länge=7m ; Breite= 2.5m; Höhe= 3m; Gewicht= 7.5t
 \end{itemize}
 \fussy
 
-Die Ersten Ergebnisse lieferten zu erwartende Resultate (Abb.~\ref{fig:isochrones}).
-Das Profil für allgemeine Einsatzfahrzeuge (\ref{fig:isoeme}) konnte gegenüber dem normalen Auto-Profil (\ref{fig:isocar}) einen größeren Bereich abdecken.
+Die ersten Ergebnisse lieferten zu erwartende Resultate (Abb.~\ref{fig:isochrones}), denn das Profil für allgemeine Einsatzfahrzeuge (\ref{fig:isoeme}) konnte gegenüber dem normalen Auto-Profil (\ref{fig:isocar}) einen größeren Bereich abdecken.
 Genauso ist das in fünf Minuten zu erreichende Gebiet für Löschfahrzeuge (\ref{fig:isofire}) sichtbar größer als für das Heavy-Vehicle-Profil (\ref{fig:isohgv}).
 Auffällig sind dabei die ausgedehnten 5-Minuten-Isochronen, welche durch den Alpha-Shape Algorithmus (Kapitel \ref{sec:form}) auch unzugängliche Bereiche beinhalten.
 
@@ -189,14 +189,13 @@ Auffällig sind dabei die ausgedehnten 5-Minuten-Isochronen, welche durch den Al
 \label{fig:isochrones}
 \end{figure}
 
-Nach einer Testfahrt der \gls{ffl} wurde allerdings schnell klar, dass die Ergebnisse nicht im realistischen Bereich liegen.
+Nach einer Testfahrt der \gls{ffl} wurde allerdings ersichtlich, dass die Ergebnisse nicht im realistischen Bereich liegen.
 In fünf Minuten konnte das Löschfahrzeug auf der Einsatzfahrt vom Startpunkt in Gablingen Richtung Muttershofen nur den nordwestlichen Rand von Lützelburg erreichen.
-Das Profil kam für das Löschfahrzeug sogar über Muttershofen hinaus.
+Das Profil des Löschfahrzeugs erreichte allerdings Orte über Muttershofen hinaus.
 
-
-Um genaue Anpassungen am Backend vorzunehmen wurde eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb.~\ref{fig:drive1}).
+Um genaue Anpassungen am Backend vorzunehmen, wurde zunächst eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb.~\ref{fig:drive1}).
 Diese Angaben wurden mit den bisherigen Rückgabewerten des Profils verglichen.
-Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtlich, ist das Emergency Profil ungefähr 90 Sekunden zu schnell.
+Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtlich wird, ist das Profil für Einsatzfahrzeuge ungefähr 90 Sekunden zu schnell.
 
 \begin{figure}[htb]
 \centering
@@ -226,27 +225,26 @@ Geschwindigkeit (Fahrt 1)            & 21,8$km/h$              & 59,4$km/h$     
 Die große Differenz tritt aufgrund von fehlenden Beschleunigungs- und Bremszeiten auf.
 Bisher wird bei der Berechnung der Fahrzeit lediglich 90$\%$ des für ein Segment vorgegebenen Geschwindigkeitslimits verwendet.
 Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung auf jedenfall eingehalten wird.
-Dieser Faktor wurde für das Emergency Profil entfernt.
-Es wird also ein Straßensegment auf dem 50 km/h gefahren werden darf über die komplette Distanz bisher auch mit 50 km/h gefahren.
-In der Realität braucht ein Fahrzeug dieser Größenordnung aber einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen.
-Die selbe Situation besteht für Bremsvorgänge.
-Daraus gehen drei Szenarien auf einer Fahrt hervor, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben.
+Dieser Faktor wurde allerdings für die Implementierung in dieser Arbeit entfernt.
+Demnach wird ein Straßensegment auf dem 50 km/h gefahren werden dürfte über die komplette Distanz mit 50 km/h befahren.
+In der Realität benötigt ein Fahrzeug dieser Größenordnung allerdings einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen.
+Der selbe Zusammenhang besteht für Bremsvorgänge ebenfalls.
+Daraus gehen drei Szenarien hervor, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben können.
 Das sind der Start, ein Abbiegevorgang (engl.: Turn) und die Ankunft.
-Es gibt noch mehr Faktoren die zum Beispiel andere Verkehrsteilnehmer betreffen, aber die drei genannten Szenarien sind bereits aus der Routenführung ersichtlich und werden definitiv bei jeder Fahrt auftreten\footnote{\textit{Ausnahme:} Wenn die Fahrt nur geradeaus geht ist auch kein Abbiegevorgang dabei}.
+Es gibt weitere Faktoren die beispielsweise andere Verkehrsteilnehmer betreffen, allerdings sind die drei genannten Szenarien aus jeder Routenführung ersichtlich und werden bei einer Einsatzfahrt in der Regel auftreten.
 
-Anhand dieser Idee wurde eine weitere Java-Klasse \texttt{AccelerationWeighting} in der die zusätzliche Zeit für diese Szenarien berechnet wird implementiert (Siehe Anhang S.\pageref{sec:source}).
-Diese Klasse soll zwei Funktionen erfüllen.
-Zum einen muss bereits bei der Suche nach dem schnellsten Weg im Gegensatz zu geraden Strecken zusätzliche Zeit für Turns mit einfließen.
-Zum Anderen müssen bei der Berechnung der Fahrzeit Start-, Ankunfts- und Turnzeit mit berücksichtigt werden.
+Anhand dieses Zusammenhangs wurde eine weitere Java-Klasse \texttt{AccelerationWeighting} in der die zusätzliche Zeit für diese Szenarien berechnet wird, implementiert (Siehe Anhang S.\pageref{sec:source}).
+Diese Klasse soll zwei Funktionen erfüllen:
+Zum einen muss bereits bei der Suche nach dem schnellsten Weg im Gegensatz zu geraden Strecken eine zusätzliche Zeit für Abbiegevorgänge miteinfließen.
+Zum anderen müssen bei der Berechnung der Fahrzeit Start-, Ankunfts- und Abbiegezeit mit berücksichtigt werden.
 
-Es stellt sich die Frage, wie eine Turn auf dem Graphen identifiziert werden kann.
+Es stellt sich nun die Frage, wie ein Abbiegevorgang auf dem Graphen identifiziert werden kann.
 Die Änderung des Straßennamens ist sicherlich eine Möglichkeit viele Abbiegevorgänge abzudecken.
 Allerdings ist nicht immer ein Straßenname vorhanden und nicht immer bedeutet der Wechsel des Straßennamens, dass in diese Straße eingebogen werden muss.
-Eine bessere Lösung bietet die Ausrichtung der Straßensegmente, da hier die Daten auf jeden Fall vorhanden sind.
-Deshalb wird in der AccelerationWeighting Klasse an Tower Nodes (also Kreuzungen) der Winkel zwischen dem letzten und dem nächsten Straßensegment berechnet.
-Eine Abbiegung bzw.
-scharfe Kurve wird durch einen Winkel zwischen 50 und 140 Grad definiert.
-Bei einer Routing Abfrage wird in einem solchen Fall das Gewicht der auf die Kurve folgenden Kante erhöht.
+Eine effizientere Lösung bietet die Ausrichtung der Straßensegmente, da hier die Daten in allen Fälle vorhanden sind.
+Deshalb wird in der AccelerationWeighting Klasse an Tower Nodes (Kreuzungen) der Winkel zwischen dem letzten und dem nächsten Straßensegment berechnet.
+Eine Abbiegung bzw. eine enge Kurve wird in dieser Arbeit durch einen Winkel zwischen 50 und 140 Grad definiert.
+Bei einer Routing-Abfrage wird in einem solchen Fall das Gewicht der auf die Kurve folgenden Kante erhöht.
 Ebenso wird sobald der schnellste Weg ermittelt ist an diesen Stellen die Bremszeit vor der Abbiegung und die Beschleunigungszeit nach der Abbiegung zur Gesamtzeit des folgenden Wegsegmentes addiert.
 Der gleiche Vorgang wird für Start und Ziel durchgeführt.
 Die addierte Zeit wird als \textit{Penalty} (dt.: Strafe) bezeichnet.
@@ -267,11 +265,11 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 \end{tabular}
 \end{table}
 
-Anhand der vorliegenden Testfahrt wurde das Profil derart kalibriert, dass durch die Penalties für Abbiegungen, Start und Ziel genau die fehlenden 90 Sekunden gebraucht wurden.
+Anhand der vorliegenden Testfahrt wurde das Profil derart kalibriert, dass durch die Penalties für Abbiegungen, Start und Ziel die fehlenden 90 Sekunden benötigt wurden.
 Für Start sowie Ankunft wurden 15 und für Abbiegungen 20 Sekunden veranschlagt.
 
 Mit dem neu eingestellten Profil wurde nun erneut ein Request für die erste Testfahrt gesendet.
-Wie erwarte brauchte das Profil nun für diesen Weg ebenfalls fast genau fünf Minuten.
+Wie erwartet, benötigte das Profil nun für diesen Weg ebenfalls fast genau fünf Minuten.
 In Tabelle \ref{tab:drive11} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diesen Request zu sehen.
 Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und den zweiten Teil zu schnell absolviert.
 
@@ -351,7 +349,7 @@ Wegpunkt              & Fahrtzeit   & Differenz     & Fahrtzeit   & Differenz   
 \end{table}
 
 
-Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen.
-Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punte zurückgegeben.
+Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen erweitert.
+Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punkte zurückgegeben.
 Im Frontend konnten dadurch nun die Wegtypen und Wegoberfächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden.
 Außerdem wurde ein Feature zur Darstellung der Höchstgeschwindigkeit der einzelnen Streckensegmente eingebaut.
