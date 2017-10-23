@@ -8,7 +8,7 @@ Dieser wurde als Datei in der Cloud gespeichert und ist auch weiterhin verfügba
 Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene \gls{ors}-Backend gewählt.
 Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind im Cloud-Dokument im Anhang zu entnehmen.
 Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
-Anschließend wurden neue Java-Funktionen geschrieben um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
+Anschließend wurden neue Java-Funktionen geschrieben, um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
 Außerdem wurde das Frontend an das neue Profil angepasst.
 
 \subsection{Informationserhebung}
@@ -183,19 +183,11 @@ Davon sind drei für die Fahrzeugdimensionen zuständig:
 Die Klasse \texttt{EmergencyVehicleAttributesGraphStorage} initiiert das Speicherobjekt und ist für die Fehlerbehandlung zuständig (Sourcecode~\ref{lst:storage}).
 \newline
 Die Klasse \texttt{EmergencyVehicleGraphStorageBuilder} baut das Speicherobjekt zusammen.
-Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert (Sourcecode~\ref{lst:builder}).
+Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert.
 Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen.
 Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben.
 Andere Straßen dürfen normalerweise aufgrund des \gls{osm}-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
 Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht.
-
-\begin{listing}[htb]
-\centering
-\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
-\inputminted[gobble=6, fontsize=\footnotesize, breaklines=true, breakbytoken=|, firstline=161, lastline=180]{java}{../data/JavaFiles/EmergencyVehicleGraphStorageBuilder.java}
-\caption{Entnahme der Dimensionsbeschränkungen}
-\label{lst:builder}
-\end{listing}
 
 Die Klasse \texttt{EmergencyVehicleEdgeFilter} vergleicht bei der Ausführung der Routing-Anfrage für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \texttt{EmergencyVehicleGraphStorageBuilder} produzierten Objekt.
 Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden.
@@ -208,7 +200,7 @@ Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über die
 \caption[Vergleich der übergebenen Dimensionen mit den Restriktionen des Graphen]
 {\centering Vergleich der übergebenen Dimensionen mit den Restriktionen des Graphen
 \par\justifying\scriptsize
-Hier werden die in \textit{Sourcecode 2} aus der Anfrage entnommenen Beschränkungen mit den Restriktionen auf der Kante des Graphen verglichen.
+Hier werden die aus der Anfrage entnommenen Beschränkungen mit den Restriktionen auf der Kante des Graphen verglichen.
 Liegt der zugelassene Wert unter dem für das Fahrzeug definierten Limit, kann die Kante nicht befahren werden.
 }
 \label{lst:filter}
@@ -283,7 +275,6 @@ Ist eine Kante als Notfalleinfahrt getaggt, wird sie gegenüber anderen Straßen
 \end{listing}
 
 Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends mit diesen Änderungen auf einen Server der Universität Heidelberg installiert.
-Genaue Anweisungen zum Aufsetzen so eines Servers werden in \cite{neisdoktor} ausführlich beschrieben.
 
 Damit ist Prozessierung des Routing-Profils für Einsatzfahrzeuge fertiggestellt und es können Anfragen an die Schnittstelle des \gls{ors} gesendet werden.
 

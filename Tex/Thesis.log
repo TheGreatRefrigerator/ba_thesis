@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  23 OCT 2017 19:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.24)  23 OCT 2017 21:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1469,28 +1469,28 @@ File: german.lbx 2016/03/03 v3.3 biblatex localization (PK/JW/AB)
 (./Diskussion.aux) (./Fazit.aux) (./Anhang.aux))
 \openout1 = `Thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 140.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 140.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 143.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 140.
+LaTeX Font Info:    ... okay on input line 143.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1573,7 +1573,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 140.
+Package hyperref Info: Link coloring OFF on input line 143.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1583,16 +1583,16 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count372
 )
-LaTeX Info: Redefining \ref on input line 140.
-LaTeX Info: Redefining \pageref on input line 140.
-LaTeX Info: Redefining \nameref on input line 140.
+LaTeX Info: Redefining \ref on input line 143.
+LaTeX Info: Redefining \pageref on input line 143.
+LaTeX Info: Redefining \nameref on input line 143.
 
 (./Thesis.out) (./Thesis.out)
 \@outlinefile=\write9
 \openout9 = `Thesis.out'.
 
  ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 140.
+LaTeX Info: Redefining \selectfont on input line 143.
 
 (./_minted-Thesis/default-pyg-prefix.pygstyle)
 Package biblatex Info: Input encoding 'utf8' detected.
@@ -1603,10 +1603,10 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Thesis.bbl' found.
  (./Thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 140.
-Package biblatex Info: Reference segment=0 on input line 140.
+Package biblatex Info: Reference section=0 on input line 143.
+Package biblatex Info: Reference segment=0 on input line 143.
 Package scrlayer Info: Setting magic \footheight to \baselineskip while
-(scrlayer)             \begin{document} on input line 140.
+(scrlayer)             \begin{document} on input line 143.
 
 
 Package scrlayer-scrpage Warning: Very small head height detected!
@@ -1620,91 +1620,91 @@ Package scrlayer-scrpage Warning: Very small head height detected!
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/it' undefined
-(Font)              using `T1/cmtt/b/n' instead on input line 140.
+(Font)              using `T1/cmtt/b/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/sl' undefined
-(Font)              using `T1/cmtt/b/n' instead on input line 140.
+(Font)              using `T1/cmtt/b/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/b/sc' undefined
-(Font)              using `T1/cmtt/b/n' instead on input line 140.
+(Font)              using `T1/cmtt/b/n' instead on input line 143.
 
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 140.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 143.
 LaTeX Font Info:    Font shape `T1/cmtt/bx/it' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/it' tried instead on input line 140.
+(Font)              Font shape `T1/cmtt/m/it' tried instead on input line 143.
 
 LaTeX Font Warning: Font shape `T1/cmtt/bx/sl' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 140.
+(Font)              using `T1/cmtt/bx/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/bx/sc' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 140.
+(Font)              using `T1/cmtt/bx/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/sb/n' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/sb/it' undefined
-(Font)              using `T1/cmtt/sb/n' instead on input line 140.
+(Font)              using `T1/cmtt/sb/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/sb/sl' undefined
-(Font)              using `T1/cmtt/sb/n' instead on input line 140.
+(Font)              using `T1/cmtt/sb/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/sb/sc' undefined
-(Font)              using `T1/cmtt/sb/n' instead on input line 140.
+(Font)              using `T1/cmtt/sb/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/c/n' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/c/it' undefined
-(Font)              using `T1/cmtt/c/n' instead on input line 140.
+(Font)              using `T1/cmtt/c/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/c/sl' undefined
-(Font)              using `T1/cmtt/c/n' instead on input line 140.
+(Font)              using `T1/cmtt/c/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/c/sc' undefined
-(Font)              using `T1/cmtt/c/n' instead on input line 140.
+(Font)              using `T1/cmtt/c/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/l/n' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/l/it' undefined
-(Font)              using `T1/cmtt/l/n' instead on input line 140.
+(Font)              using `T1/cmtt/l/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/l/sl' undefined
-(Font)              using `T1/cmtt/l/n' instead on input line 140.
+(Font)              using `T1/cmtt/l/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/l/sc' undefined
-(Font)              using `T1/cmtt/l/n' instead on input line 140.
+(Font)              using `T1/cmtt/l/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/ui' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/bx/ui' undefined
-(Font)              using `T1/cmtt/bx/n' instead on input line 140.
+(Font)              using `T1/cmtt/bx/n' instead on input line 143.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/m/In' undefined
-(Font)              using `T1/cmtt/m/n' instead on input line 140.
+(Font)              using `T1/cmtt/m/n' instead on input line 143.
 
 \openout2 = `Title.aux'.
 
@@ -1731,12 +1731,12 @@ Package babel Info: Redefining german shorthand "~
 
 
 (./Zusammenfassung.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 12.
+LaTeX Font Info:    Try loading font information for U+msa on input line 13.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 12.
+LaTeX Font Info:    Try loading font information for U+msb on input line 13.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1750,23 +1750,23 @@ Package scrlayer-scrpage Warning: \headheight to low.
 (scrlayer-scrpage)                e.g., setting geometry's option
 (scrlayer-scrpage)                `head=21.74998pt'.
 (scrlayer-scrpage)                I'll also decrease \topmargin on input line 1
-50.
+53.
 
 
 Overfull \vbox (7.24998pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 150.
+(babel)             in language  on input line 153.
 
 [1
 
@@ -1776,17 +1776,17 @@ Package babel Info: Redefining german shorthand "~
 
  (./Abstract.tex)
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 156.
  [2
 
 
@@ -1810,34 +1810,34 @@ Package babel Info: Redefining german shorthand "~
 \openout10 = `Thesis.toc'.
 
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 158.
+(babel)             in language  on input line 161.
  [4]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 162.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 162.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 162.
  (./Thesis.lof)
 \tf@lof=\write11
 \openout11 = `Thesis.lof'.
 
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 161.
+(babel)             in language  on input line 164.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 161.
+(babel)             in language  on input line 164.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 161.
+(babel)             in language  on input line 164.
  (./Thesis.lot
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 7.
@@ -1863,17 +1863,17 @@ Package babel Info: Redefining german shorthand "~
 
 No file Thesis.acr.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 170.
+(babel)             in language  on input line 173.
 [6]
 \openout2 = `Einleitung.aux'.
 
@@ -1918,17 +1918,17 @@ Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 29.
 )
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 173.
+(babel)             in language  on input line 176.
  [2]
 \openout2 = `Grundlagen.aux'.
 
@@ -1946,7 +1946,7 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 6.
 
-<../media/simpel.pdf, id=358, 182.98863pt x 94.05037pt>
+<../media/simpel.pdf, id=356, 182.98863pt x 94.05037pt>
 File: ../media/simpel.pdf Graphic file (type pdf)
 
 <use ../media/simpel.pdf>
@@ -1974,13 +1974,13 @@ Package babel Info: Redefining german shorthand "~
 
 
  <../media/simpel.pdf>]
-<../media/iso1.pdf, id=387, 160.08406pt x 94.05037pt>
+<../media/iso1.pdf, id=385, 160.08406pt x 94.05037pt>
 File: ../media/iso1.pdf Graphic file (type pdf)
  <use ../media/iso1.pdf>
 Package pdftex.def Info: ../media/iso1.pdf used on input line 78.
 (pdftex.def)             Requested size: 191.20169pt x 112.33461pt.
 
-<../media/iso2.pdf, id=388, 115.57881pt x 117.29019pt>
+<../media/iso2.pdf, id=386, 115.57881pt x 117.29019pt>
 File: ../media/iso2.pdf Graphic file (type pdf)
  <use ../media/iso2.pdf>
 Package pdftex.def Info: ../media/iso2.pdf used on input line 85.
@@ -2004,7 +2004,7 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 119.
 
-[4] <../media/gerichtet.pdf, id=397, 182.98863pt x 94.05037pt>
+[4] <../media/gerichtet.pdf, id=395, 182.98863pt x 94.05037pt>
 File: ../media/gerichtet.pdf Graphic file (type pdf)
 
 <use ../media/gerichtet.pdf>
@@ -2029,7 +2029,7 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 156.
  [5 <../media/iso1.pdf> <../media/iso2.pdf> <../media/gerichtet.pdf>] <../media
-/gewichtet.pdf, id=423, 160.08406pt x 94.05037pt>
+/gewichtet.pdf, id=421, 160.08406pt x 94.05037pt>
 File: ../media/gewichtet.pdf Graphic file (type pdf)
 
 <use ../media/gewichtet.pdf>
@@ -2054,289 +2054,289 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 207.
  [6 <../media/gewichtet.pdf>]
-<../media/towers.pdf, id=452, 579.44691pt x 280.17674pt>
+<../media/towers.pdf, id=450, 579.44691pt x 280.17674pt>
 File: ../media/towers.pdf Graphic file (type pdf)
 
 <use ../media/towers.pdf>
-Package pdftex.def Info: ../media/towers.pdf used on input line 226.
+Package pdftex.def Info: ../media/towers.pdf used on input line 227.
 (pdftex.def)             Requested size: 455.24411pt x 220.12305pt.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 235.
+(babel)             in language  on input line 236.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 235.
+(babel)             in language  on input line 236.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 235.
+(babel)             in language  on input line 236.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 242.
+(babel)             in language  on input line 243.
  [7]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 247.
+(babel)             in language  on input line 248.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 247.
+(babel)             in language  on input line 248.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 247.
+(babel)             in language  on input line 248.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 254.
+(babel)             in language  on input line 255.
  [8 <../media/towers.pdf>]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 259.
+(babel)             in language  on input line 260.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 259.
+(babel)             in language  on input line 260.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 259.
+(babel)             in language  on input line 260.
 
-<../media/dijkstra.pdf, id=492, 160.08406pt x 94.05037pt>
+<../media/dijkstra.pdf, id=490, 160.08406pt x 94.05037pt>
 File: ../media/dijkstra.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra.pdf>
-Package pdftex.def Info: ../media/dijkstra.pdf used on input line 282.
+Package pdftex.def Info: ../media/dijkstra.pdf used on input line 283.
 (pdftex.def)             Requested size: 223.07211pt x 131.05968pt.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 307.
  [9]
-<../media/dijkstra1.pdf, id=508, 163.06822pt x 96.60492pt>
+<../media/dijkstra1.pdf, id=506, 163.06822pt x 96.60492pt>
 File: ../media/dijkstra1.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra1.pdf>
-Package pdftex.def Info: ../media/dijkstra1.pdf used on input line 332.
+Package pdftex.def Info: ../media/dijkstra1.pdf used on input line 333.
 (pdftex.def)             Requested size: 145.68144pt x 86.3068pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
 
  []
 
-<../media/dijkstra2.pdf, id=509, 163.06822pt x 96.60492pt>
+<../media/dijkstra2.pdf, id=507, 163.06822pt x 96.60492pt>
 File: ../media/dijkstra2.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra2.pdf>
-Package pdftex.def Info: ../media/dijkstra2.pdf used on input line 338.
+Package pdftex.def Info: ../media/dijkstra2.pdf used on input line 339.
 (pdftex.def)             Requested size: 145.68144pt x 86.3068pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--339
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
 
  []
 
-<../media/dijkstra3.pdf, id=510, 163.06822pt x 96.60492pt>
+<../media/dijkstra3.pdf, id=508, 163.06822pt x 96.60492pt>
 File: ../media/dijkstra3.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra3.pdf>
-Package pdftex.def Info: ../media/dijkstra3.pdf used on input line 344.
+Package pdftex.def Info: ../media/dijkstra3.pdf used on input line 345.
 (pdftex.def)             Requested size: 145.68144pt x 86.3068pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
-<../media/dijkstra4.pdf, id=511, 163.06822pt x 96.60492pt>
+<../media/dijkstra4.pdf, id=509, 163.06822pt x 96.60492pt>
 File: ../media/dijkstra4.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra4.pdf>
-Package pdftex.def Info: ../media/dijkstra4.pdf used on input line 350.
+Package pdftex.def Info: ../media/dijkstra4.pdf used on input line 351.
 (pdftex.def)             Requested size: 145.68144pt x 86.3068pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--351
+Underfull \hbox (badness 10000) in paragraph at lines 351--352
 
  []
 
-<../media/dijkstra5.pdf, id=512, 163.06822pt x 96.60492pt>
+<../media/dijkstra5.pdf, id=510, 163.06822pt x 96.60492pt>
 File: ../media/dijkstra5.pdf Graphic file (type pdf)
 
 <use ../media/dijkstra5.pdf>
-Package pdftex.def Info: ../media/dijkstra5.pdf used on input line 356.
+Package pdftex.def Info: ../media/dijkstra5.pdf used on input line 357.
 (pdftex.def)             Requested size: 145.68144pt x 86.3068pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--357
+Underfull \hbox (badness 10000) in paragraph at lines 357--358
 
  []
 
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 399.
+(babel)             in language  on input line 400.
 [10 <../media/dijkstra.pdf>]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 400.
+(babel)             in language  on input line 401.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 400.
+(babel)             in language  on input line 401.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 400.
+(babel)             in language  on input line 401.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 414.
+(babel)             in language  on input line 415.
  [11 <../media/dijkstra1.pdf> <../media/dijkstra2.pdf> <../media/dijkstra3.pdf>
  <../media/dijkstra4.pdf> <../media/dijkstra5.pdf>] <../media/normaldijkstra.pd
-f, id=588, 421.9765pt x 418.96524pt>
+f, id=586, 421.9765pt x 418.96524pt>
 File: ../media/normaldijkstra.pdf Graphic file (type pdf)
 
 <use ../media/normaldijkstra.pdf>
-Package pdftex.def Info: ../media/normaldijkstra.pdf used on input line 425.
+Package pdftex.def Info: ../media/normaldijkstra.pdf used on input line 426.
 (pdftex.def)             Requested size: 136.57462pt x 135.5995pt.
 
-<../media/bidijkstra.pdf, id=589, 418.96524pt x 418.96524pt>
+<../media/bidijkstra.pdf, id=587, 418.96524pt x 418.96524pt>
 File: ../media/bidijkstra.pdf Graphic file (type pdf)
 
 <use ../media/bidijkstra.pdf>
-Package pdftex.def Info: ../media/bidijkstra.pdf used on input line 431.
+Package pdftex.def Info: ../media/bidijkstra.pdf used on input line 432.
 (pdftex.def)             Requested size: 136.57462pt x 136.57762pt.
 
-<../media/stardijkstra.pdf, id=590, 275.429pt x 141.27179pt>
+<../media/stardijkstra.pdf, id=588, 275.429pt x 141.27179pt>
 File: ../media/stardijkstra.pdf Graphic file (type pdf)
 
 <use ../media/stardijkstra.pdf>
-Package pdftex.def Info: ../media/stardijkstra.pdf used on input line 438.
+Package pdftex.def Info: ../media/stardijkstra.pdf used on input line 439.
 (pdftex.def)             Requested size: 136.57462pt x 70.05153pt.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 464.
+(babel)             in language  on input line 465.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 464.
+(babel)             in language  on input line 465.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 464.
+(babel)             in language  on input line 465.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 468.
+(babel)             in language  on input line 469.
  [12 <../media/normaldijkstra.pdf> <../media/bidijkstra.pdf> <../media/stardijk
 stra.pdf>]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 474.
+(babel)             in language  on input line 475.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 474.
+(babel)             in language  on input line 475.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 474.
+(babel)             in language  on input line 475.
 
-<../media/grid.pdf, id=619, 118.81187pt x 75.31738pt>
+<../media/grid.pdf, id=617, 118.81187pt x 75.31738pt>
 File: ../media/grid.pdf Graphic file (type pdf)
  <use ../media/grid.pdf>
-Package pdftex.def Info: ../media/grid.pdf used on input line 486.
+Package pdftex.def Info: ../media/grid.pdf used on input line 487.
 (pdftex.def)             Requested size: 213.96529pt x 135.6539pt.
 
-<../media/gridsnap.pdf, id=620, 132.29425pt x 84.11426pt>
+<../media/gridsnap.pdf, id=618, 132.29425pt x 84.11426pt>
 File: ../media/gridsnap.pdf Graphic file (type pdf)
 
 <use ../media/gridsnap.pdf>
-Package pdftex.def Info: ../media/gridsnap.pdf used on input line 493.
+Package pdftex.def Info: ../media/gridsnap.pdf used on input line 494.
 (pdftex.def)             Requested size: 213.96529pt x 136.05385pt.
 
-<../media/gridedge.pdf, id=621, 139.63669pt x 88.00679pt>
+<../media/gridedge.pdf, id=619, 139.63669pt x 88.00679pt>
 File: ../media/gridedge.pdf Graphic file (type pdf)
 
 <use ../media/gridedge.pdf>
-Package pdftex.def Info: ../media/gridedge.pdf used on input line 500.
+Package pdftex.def Info: ../media/gridedge.pdf used on input line 501.
 (pdftex.def)             Requested size: 200.30852pt x 126.25562pt.
 
-<../media/gridiso.pdf, id=622, 147.45087pt x 77.088pt>
+<../media/gridiso.pdf, id=620, 147.45087pt x 77.088pt>
 File: ../media/gridiso.pdf Graphic file (type pdf)
 
 <use ../media/gridiso.pdf>
-Package pdftex.def Info: ../media/gridiso.pdf used on input line 506.
+Package pdftex.def Info: ../media/gridiso.pdf used on input line 507.
 (pdftex.def)             Requested size: 213.96529pt x 111.87117pt.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 530.
+(babel)             in language  on input line 531.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 530.
+(babel)             in language  on input line 531.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 530.
+(babel)             in language  on input line 531.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 539.
+(babel)             in language  on input line 540.
  [13]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 541.
+(babel)             in language  on input line 542.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 541.
+(babel)             in language  on input line 542.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 541.
+(babel)             in language  on input line 542.
 )
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
  [14 <../media/grid.pdf> <../media/gridsnap.pdf> <../media/gridedge.pdf> <../me
 dia/gridiso.pdf>]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 177.
+(babel)             in language  on input line 180.
  [15]
 \openout2 = `Methodik.aux'.
 
@@ -2425,103 +2425,87 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 191.
  [19]
-(./_minted-Thesis/4FDAA7E7767400A05024B9B9E2C75AC37763849CD07785ADF2157BA374FB5
-745.pygtex)
 (./_minted-Thesis/0F75DE29D21227BF05C1729750EF3592A2C0E7E0B74E6104B9C5CC552B7A9
 D71.pygtex)
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 222.
+(babel)             in language  on input line 214.
  [20]
 (./_minted-Thesis/B01C74658500BBD43E9560A80391EE0BF8CE6806DC33E2340BF12D32C5BA2
 05D.pygtex)
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 228.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 228.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 228.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 228.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 228.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 228.
+ [21]
 (./_minted-Thesis/B01C74658500BBD43E9560A80391EE0BF8CE6806DC33E2340BF12D32C5BA2
 05D.pygtex)
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 248.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 248.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 248.
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 248.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 248.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 248.
- [21]
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 253.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 253.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 253.
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 253.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 253.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 253.
- [22]
 (./_minted-Thesis/B01C74658500BBD43E9560A80391EE0BF8CE6806DC33E2340BF12D32C5BA2
 05D.pygtex)
 (./_minted-Thesis/B01C74658500BBD43E9560A80391EE0BF39B8BCD43006E9B48F0F8A42265E
 3B0.pygtex)
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 288.
+(babel)             in language  on input line 278.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 288.
- [23]
+(babel)             in language  on input line 278.
+ [22]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 291.
+(babel)             in language  on input line 282.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 291.
+(babel)             in language  on input line 282.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 291.
-)
+(babel)             in language  on input line 282.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 181.
+(babel)             in language  on input line 296.
+ [23])
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 184.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 184.
+Package babel Info: Redefining german shorthand "f
+(babel)             in language  on input line 184.
+Package babel Info: Redefining german shorthand "|
+(babel)             in language  on input line 184.
+Package babel Info: Redefining german shorthand "~
+(babel)             in language  on input line 184.
  [24]
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 181.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 181.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 181.
-Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 181.
-Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 181.
-Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 181.
- [25]
 \openout2 = `Ergebnisse.aux'.
 
  (./Ergebnisse.tex
@@ -2538,7 +2522,7 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 9.
 
-<../media/Altstadt_emergency.png, id=785, 831.105pt x 315.1775pt>
+<../media/Altstadt_emergency.png, id=776, 831.105pt x 315.1775pt>
 File: ../media/Altstadt_emergency.png Graphic file (type png)
 
 <use ../media/Altstadt_emergency.png>
@@ -2546,7 +2530,7 @@ Package pdftex.def Info: ../media/Altstadt_emergency.png used on input line 18.
 
 (pdftex.def)             Requested size: 211.91782pt x 80.36198pt.
 
-<../media/Altstadt_car.png, id=787, 827.09pt x 311.1625pt>
+<../media/Altstadt_car.png, id=778, 827.09pt x 311.1625pt>
 File: ../media/Altstadt_car.png Graphic file (type png)
 
 <use ../media/Altstadt_car.png>
@@ -2559,14 +2543,14 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 38.
 
-<../media/schoolfire.png, id=790, 731.73375pt x 676.5275pt>
+<../media/schoolfire.png, id=781, 731.73375pt x 676.5275pt>
 File: ../media/schoolfire.png Graphic file (type png)
 
 <use ../media/schoolfire.png>
 Package pdftex.def Info: ../media/schoolfire.png used on input line 50.
 (pdftex.def)             Requested size: 211.91782pt x 195.92987pt.
 
-<../media/schoolcar.png, id=791, 729.72626pt x 676.5275pt>
+<../media/schoolcar.png, id=782, 729.72626pt x 676.5275pt>
 File: ../media/schoolcar.png Graphic file (type png)
 
 <use ../media/schoolcar.png>
@@ -2584,7 +2568,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 67.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 67.
- [26
+ [25
 
 
  <../media/Altstadt_emergency.png> <../media/Altstadt_car.png>]
@@ -2594,28 +2578,28 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 69.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 69.
- <../media/notauffahrt.png, id=801, 729.72626pt x 676.5275pt>
+ <../media/notauffahrt.png, id=792, 729.72626pt x 676.5275pt>
 File: ../media/notauffahrt.png Graphic file (type png)
 
 <use ../media/notauffahrt.png>
 Package pdftex.def Info: ../media/notauffahrt.png used on input line 80.
 (pdftex.def)             Requested size: 211.91782pt x 196.46666pt.
 
-<../media/normalauffahrt.png, id=802, 729.72626pt x 676.5275pt>
+<../media/normalauffahrt.png, id=793, 729.72626pt x 676.5275pt>
 File: ../media/normalauffahrt.png Graphic file (type png)
 
 <use ../media/normalauffahrt.png>
 Package pdftex.def Info: ../media/normalauffahrt.png used on input line 86.
 (pdftex.def)             Requested size: 211.91782pt x 196.46666pt.
 
-<../media/onewayeme.png, id=806, 731.73375pt x 676.5275pt>
+<../media/onewayeme.png, id=797, 731.73375pt x 676.5275pt>
 File: ../media/onewayeme.png Graphic file (type png)
 
 <use ../media/onewayeme.png>
 Package pdftex.def Info: ../media/onewayeme.png used on input line 107.
 (pdftex.def)             Requested size: 211.91782pt x 195.92987pt.
 
-<../media/onewaycar.png, id=807, 730.73pt x 676.5275pt>
+<../media/onewaycar.png, id=798, 730.73pt x 676.5275pt>
 File: ../media/onewaycar.png Graphic file (type png)
 
 <use ../media/onewaycar.png>
@@ -2633,7 +2617,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 125.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 125.
- [27 <../media/schoolfire.png> <../media/schoolcar.png>]
+ [26 <../media/schoolfire.png> <../media/schoolcar.png>]
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 126.
 Package babel Info: Redefining german shorthand "|
@@ -2652,23 +2636,23 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 131.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 131.
- [28 <../media/notauffahrt.png> <../media/normalauffahrt.png> <../media/onewaye
+ [27 <../media/notauffahrt.png> <../media/normalauffahrt.png> <../media/onewaye
 me.png> <../media/onewaycar.png>]
-<../media/oppositecurve.png, id=824, 729.72626pt x 676.5275pt>
+<../media/oppositecurve.png, id=815, 729.72626pt x 676.5275pt>
 File: ../media/oppositecurve.png Graphic file (type png)
 
 <use ../media/oppositecurve.png>
 Package pdftex.def Info: ../media/oppositecurve.png used on input line 136.
 (pdftex.def)             Requested size: 211.91782pt x 196.46666pt.
 
-<../media/oppositelane.png, id=825, 729.72626pt x 676.5275pt>
+<../media/oppositelane.png, id=816, 729.72626pt x 676.5275pt>
 File: ../media/oppositelane.png Graphic file (type png)
 
 <use ../media/oppositelane.png>
 Package pdftex.def Info: ../media/oppositelane.png used on input line 142.
 (pdftex.def)             Requested size: 211.91782pt x 196.46666pt.
 
-<../media/legend4.png, id=826, 346.29375pt x 24.09pt>
+<../media/legend4.png, id=817, 346.29375pt x 24.09pt>
 File: ../media/legend4.png Graphic file (type png)
 
 <use ../media/legend4.png>
@@ -2686,7 +2670,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 163.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 163.
- [29 <../media/oppositecurve.png> <../media/oppositelane.png> <../media/legend4
+ [28 <../media/oppositecurve.png> <../media/oppositelane.png> <../media/legend4
 .png>]
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 164.
@@ -2695,35 +2679,35 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 164.
 
-<../media/isohgv.png, id=844, 670.505pt x 808.01875pt>
+<../media/isohgv.png, id=835, 670.505pt x 808.01875pt>
 File: ../media/isohgv.png Graphic file (type png)
 
 <use ../media/isohgv.png>
 Package pdftex.def Info: ../media/isohgv.png used on input line 189.
 (pdftex.def)             Requested size: 167.30408pt x 201.60965pt.
 
-<../media/isocar.png, id=845, 670.505pt x 808.01875pt>
+<../media/isocar.png, id=836, 670.505pt x 808.01875pt>
 File: ../media/isocar.png Graphic file (type png)
 
 <use ../media/isocar.png>
 Package pdftex.def Info: ../media/isocar.png used on input line 195.
 (pdftex.def)             Requested size: 167.30408pt x 201.60965pt.
 
-<../media/isofire.png, id=846, 670.505pt x 808.01875pt>
+<../media/isofire.png, id=837, 670.505pt x 808.01875pt>
 File: ../media/isofire.png Graphic file (type png)
 
 <use ../media/isofire.png>
 Package pdftex.def Info: ../media/isofire.png used on input line 201.
 (pdftex.def)             Requested size: 167.30408pt x 201.60965pt.
 
-<../media/isoeme.png, id=847, 671.50874pt x 809.0225pt>
+<../media/isoeme.png, id=838, 671.50874pt x 809.0225pt>
 File: ../media/isoeme.png Graphic file (type png)
 
 <use ../media/isoeme.png>
 Package pdftex.def Info: ../media/isoeme.png used on input line 207.
 (pdftex.def)             Requested size: 167.30408pt x 201.56383pt.
 
-<../media/legendiso.png, id=848, 577.15625pt x 23.08624pt>
+<../media/legendiso.png, id=839, 577.15625pt x 23.08624pt>
 File: ../media/legendiso.png Graphic file (type png)
 
 <use ../media/legendiso.png>
@@ -2741,8 +2725,8 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 223.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 223.
- [30]
-<../media/Fahrt1.png, id=857, 475.7775pt x 297.11pt>
+ [29]
+<../media/Fahrt1.png, id=847, 475.7775pt x 297.11pt>
 File: ../media/Fahrt1.png Graphic file (type png)
  <use ../media/Fahrt1.png>
 Package pdftex.def Info: ../media/Fahrt1.png used on input line 230.
@@ -2760,7 +2744,7 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 239.
 
-[31 <../media/isohgv.png> <../media/isocar.png> <../media/isofire.png> <../medi
+[30 <../media/isohgv.png> <../media/isocar.png> <../media/isofire.png> <../medi
 a/isoeme.png> <../media/legendiso.png>]
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 273.
@@ -2774,8 +2758,8 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 273.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 273.
- [32 <../media/Fahrt1.png>]
-<../media/Fahrt2crop.png, id=873, 466.74374pt x 254.9525pt>
+ [31 <../media/Fahrt1.png>]
+<../media/Fahrt2crop.png, id=864, 466.74374pt x 254.9525pt>
 File: ../media/Fahrt2crop.png Graphic file (type png)
 
 <use ../media/Fahrt2crop.png>
@@ -2793,8 +2777,8 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 312.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 312.
- [33]
-<../media/Fahrt3crop.png, id=884, 300.12125pt x 366.36874pt>
+ [32]
+<../media/Fahrt3crop.png, id=875, 300.12125pt x 366.36874pt>
 File: ../media/Fahrt3crop.png Graphic file (type png)
 
 <use ../media/Fahrt3crop.png>
@@ -2812,38 +2796,38 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 354.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 354.
- [34 <../media/Fahrt2crop.png>]
+ [33 <../media/Fahrt2crop.png>]
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 355.
 
 )
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 185.
- [35 <../media/Fahrt3crop.png>]
+(babel)             in language  on input line 188.
+ [34 <../media/Fahrt3crop.png>]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 185.
+(babel)             in language  on input line 188.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 185.
- [36]
+(babel)             in language  on input line 188.
+ [35]
 \openout2 = `Diskussion.aux'.
 
  (./Diskussion.tex
@@ -2860,21 +2844,21 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 3.
 
-<../media/Fahrt1_Steep.png, id=902, 550.055pt x 360.34625pt>
+<../media/Fahrt1_Steep.png, id=892, 550.055pt x 360.34625pt>
 File: ../media/Fahrt1_Steep.png Graphic file (type png)
 
 <use ../media/Fahrt1_Steep.png>
 Package pdftex.def Info: ../media/Fahrt1_Steep.png used on input line 11.
 (pdftex.def)             Requested size: 364.19667pt x 238.59354pt.
 
-<../media/legend2.png, id=903, 213.79875pt x 21.07875pt>
+<../media/legend2.png, id=893, 213.79875pt x 21.07875pt>
 File: ../media/legend2.png Graphic file (type png)
 
 <use ../media/legend2.png>
 Package pdftex.def Info: ../media/legend2.png used on input line 16.
 (pdftex.def)             Requested size: 113.81102pt x 11.22055pt.
 
-<../media/Fahrt1_Profile.png, id=904, 722.7pt x 215.80624pt>
+<../media/Fahrt1_Profile.png, id=894, 722.7pt x 215.80624pt>
 File: ../media/Fahrt1_Profile.png Graphic file (type png)
 
 <use ../media/Fahrt1_Profile.png>
@@ -2892,12 +2876,12 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 37.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 37.
- [37
+ [36
 
 
  <../media/Fahrt1_Steep.png> <../media/legend2.png> <../media/Fahrt1_Profile.pn
 g>]
-<../media/Fahrt1_curve.png, id=914, 310.15875pt x 202.7575pt>
+<../media/Fahrt1_curve.png, id=905, 310.15875pt x 202.7575pt>
 File: ../media/Fahrt1_curve.png Graphic file (type png)
 
 <use ../media/Fahrt1_curve.png>
@@ -2921,8 +2905,8 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 70.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 70.
- [38 <../media/Fahrt1_curve.png>]
-<../media/traintunnel.png, id=922, 970.62625pt x 610.28pt>
+ [37 <../media/Fahrt1_curve.png>]
+<../media/traintunnel.png, id=913, 970.62625pt x 610.28pt>
 File: ../media/traintunnel.png Graphic file (type png)
 
 <use ../media/traintunnel.png>
@@ -2935,14 +2919,14 @@ Package babel Info: Redefining german shorthand "|
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 83.
 
-<../media/Fahrt3_temp30.png, id=924, 376.40625pt x 155.58125pt>
+<../media/Fahrt3_temp30.png, id=915, 376.40625pt x 155.58125pt>
 File: ../media/Fahrt3_temp30.png Graphic file (type png)
 
 <use ../media/Fahrt3_temp30.png>
 Package pdftex.def Info: ../media/Fahrt3_temp30.png used on input line 99.
 (pdftex.def)             Requested size: 273.14923pt x 112.90865pt.
 
-<../media/legend3.png, id=925, 176.66pt x 21.07875pt>
+<../media/legend3.png, id=916, 176.66pt x 21.07875pt>
 File: ../media/legend3.png Graphic file (type png)
 
 <use ../media/legend3.png>
@@ -2960,15 +2944,15 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 126.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 126.
- [39 <../media/traintunnel.png>]
-<../media/Fahrt3_Turn.png, id=933, 440.64626pt x 367.3725pt>
+ [38 <../media/traintunnel.png>]
+<../media/Fahrt3_Turn.png, id=924, 440.64626pt x 367.3725pt>
 File: ../media/Fahrt3_Turn.png Graphic file (type png)
 
 <use ../media/Fahrt3_Turn.png>
 Package pdftex.def Info: ../media/Fahrt3_Turn.png used on input line 131.
 (pdftex.def)             Requested size: 178.45836pt x 148.77943pt.
 
-<../media/Fahrt3_actualturn.png, id=936, 438.63875pt x 365.365pt>
+<../media/Fahrt3_actualturn.png, id=927, 438.63875pt x 365.365pt>
 File: ../media/Fahrt3_actualturn.png Graphic file (type png)
 
 <use ../media/Fahrt3_actualturn.png>
@@ -2987,9 +2971,9 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 156.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 156.
- [40 <../media/Fahrt3_temp30.png> <../media/legend3.png> <../media/Fahrt3_Turn.
+ [39 <../media/Fahrt3_temp30.png> <../media/legend3.png> <../media/Fahrt3_Turn.
 png> <../media/Fahrt3_actualturn.png>]
-<../media/Fahrt3_Profile.png, id=952, 722.7pt x 215.80624pt>
+<../media/Fahrt3_Profile.png, id=943, 722.7pt x 215.80624pt>
 File: ../media/Fahrt3_Profile.png Graphic file (type png)
 
 <use ../media/Fahrt3_Profile.png>
@@ -3013,20 +2997,20 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 179.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 179.
- [41 <../media/Fahrt3_Profile.png>])
+ [40 <../media/Fahrt3_Profile.png>])
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 192.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 192.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 192.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 192.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 189.
+(babel)             in language  on input line 192.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 189.
- [42]
+(babel)             in language  on input line 192.
+ [41]
 \openout2 = `Fazit.aux'.
 
 
@@ -3049,10 +3033,10 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 27.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 27.
- [43
+ [42
 
 
-] <../media/firehydrants.png, id=974, 981.6675pt x 608.2725pt>
+] <../media/firehydrants.png, id=965, 981.6675pt x 608.2725pt>
 File: ../media/firehydrants.png Graphic file (type png)
 
 <use ../media/firehydrants.png>
@@ -3070,55 +3054,55 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 50.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 50.
- [44 <../media/firehydrants.png>])
+ [43 <../media/firehydrants.png>])
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 193.
+(babel)             in language  on input line 196.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 193.
- [45]
+(babel)             in language  on input line 196.
+ [44]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 197.
+(babel)             in language  on input line 200.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 197.
+(babel)             in language  on input line 200.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 197.
+(babel)             in language  on input line 200.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 197.
+(babel)             in language  on input line 200.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 197.
+(babel)             in language  on input line 200.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 197.
- [46
+(babel)             in language  on input line 200.
+ [45
 
 ]
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 199.
+(babel)             in language  on input line 202.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 199.
+(babel)             in language  on input line 202.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 199.
+(babel)             in language  on input line 202.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining german shorthand "f
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining german shorthand "|
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 Package babel Info: Redefining german shorthand "~
-(babel)             in language  on input line 201.
+(babel)             in language  on input line 204.
 
-[47]
+[46]
 \openout2 = `Anhang.aux'.
 
  (./Anhang.tex
@@ -3207,7 +3191,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 29.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 29.
-[48
+[47
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 33--35
@@ -3331,7 +3315,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 49.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 49.
-[49]
+[48]
 Overfull \hbox (7.76782pt too wide) in paragraph at lines 54--65
 []$\T1/cmtt/l/n/12 h t t p s : / / g i t h u b . c o m /T h eG r e a tR e f r i
  g e r a t o r / o p e n r o u t e s e r v i c e / t r e e / e m e r g e n c y 
@@ -3357,7 +3341,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 66.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 66.
-[50]
+[49]
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 76.
 Package babel Info: Redefining german shorthand "|
@@ -3370,7 +3354,7 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 76.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 76.
- [51]
+ [50]
 Package babel Info: Redefining german shorthand "f
 (babel)             in language  on input line 93.
 Package babel Info: Redefining german shorthand "|
@@ -3383,16 +3367,16 @@ Package babel Info: Redefining german shorthand "|
 (babel)             in language  on input line 93.
 Package babel Info: Redefining german shorthand "~
 (babel)             in language  on input line 93.
- [52])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
+ [51])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
  (./Thesis.aux (./Title.aux) (./Zusammenfassung.aux)
 (./Abstract.aux) (./Einleitung.aux) (./Grundlagen.aux) (./Methodik.aux)
 (./Ergebnisse.aux) (./Diskussion.aux) (./Fazit.aux) (./Anhang.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 02874DE0D4B318C48234271CAEC97B44;2420.
+(rerunfilecheck)             Checksum: 15BCEE1924A83FE83E8012031850E33F;2427.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -3402,10 +3386,10 @@ Package logreq Info: Writing requests to 'Thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25737 strings out of 493029
- 446498 string characters out of 6136234
- 1152042 words of memory out of 5000000
- 28473 multiletter control sequences out of 15000+600000
+ 25726 strings out of 493029
+ 445837 string characters out of 6136234
+ 1150989 words of memory out of 5000000
+ 28468 multiletter control sequences out of 15000+600000
  30145 words of font info for 75 fonts, out of 8000000 for 9000
  1149 hyphenation exceptions out of 8191
  48i,20n,81p,1934b,1807s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3501,10 +3485,10 @@ r/sfti0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr
 ype1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfti1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on Thesis.pdf (59 pages, 5963069 bytes).
+Output written on Thesis.pdf (58 pages, 5831483 bytes).
 PDF statistics:
- 1245 PDF objects out of 1440 (max. 8388607)
- 1015 compressed objects within 11 object streams
- 192 named destinations out of 1000 (max. 500000)
+ 1236 PDF objects out of 1440 (max. 8388607)
+ 1007 compressed objects within 11 object streams
+ 189 named destinations out of 1000 (max. 500000)
  534 words of extra memory for PDF output out of 10000 (max. 10000000)
 

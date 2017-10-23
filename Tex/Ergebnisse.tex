@@ -3,7 +3,7 @@
 Um das Routing-Profil für Einsatzfahrzeuge auf seine Funktionalität zu validieren, müssen zwei unterschiedliche Aspekte beleuchtet werden.
 Durch die Implementierung waren Veränderungen zum einen bei der Prozessierung des Graphen und zum anderen in den Routing-Ergebnissen zu erwarten.
 Der Graph beziehungsweise das Straßennetzwerk und die Integration der Attribute für Feuerwehreinfahrten, Rad- und Fußwegen sowie Einbahnstraßen, musste bestätigt werden.
-Außerdem wurden die Routing-Antworten auf ihre Praxistauglichkeit geprüft und daher die benötigten Fahrzeiten als auch die zurückgelegten Distanzen anhand von Testfahrten analysiert.
+Außerdem wurden die Routing-Antworten auf ihre Praxistauglichkeit geprüft und daher sowohl die benötigten Fahrzeiten, als auch die zurückgelegten Distanzen anhand von Testfahrten analysiert.
 
 
 \subsection{Validierung des Graphen}
@@ -25,11 +25,11 @@ Da der \gls{ors} zur Darstellung mehrerer Routen bisher noch nicht geeignet ist,
 \caption{Auto Routing}
 \label{fig:altcar}
 \end{subfigure}
-\caption[Routing in die Fußgängerzone der Heidelberger Altstadt]
-{\centering Routing in die Fußgängerzone der Heidelberger Altstadt
+\caption[Routing durch Fußgängerzonen]
+{\centering Routing durch Fußgängerzonen
 \par\justifying\scriptsize
 Straßensegmente die in OSM als Fußwege oder Fußgängerzonen getaggt sind, können von dem Profil für Löschfahrzeuge befahren werden.
-Das Profil (a) steuert die Fußgängerzone von den Seitenstraßen an.
+Das Profil (a) steuert die Fußgängerzone der Heidelberger Altstadt von den Seitenstraßen an.
 Dem Auto Profil ist es nicht erlaubt diesen Straßentyp zu benutzen, weshalb die Route vorzeitig endet (b).
 }
 \label{fig:footway}
@@ -260,7 +260,7 @@ Bisher wird bei der Berechnung der Fahrzeit lediglich 90$\%$ des für ein Segmen
 Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung definitiv eingehalten wird.
 Dieser Faktor wurde allerdings für die Implementierung in dieser Arbeit entfernt.
 Demnach wird ein Straßensegment auf dem 50 km/h gefahren werden dürfte über die komplette Distanz mit 50 km/h befahren.
-In der Realität benötigt ein Fahrzeug dieser Größenordnung allerdings einige Sekunden um diese Geschwindigkeit aus dem Stand zu erreichen.
+In der Realität benötigt ein Fahrzeug dieser Größenordnung allerdings einige Sekunden, um diese Geschwindigkeit aus dem Stand zu erreichen.
 Der selbe Zusammenhang besteht für Bremsvorgänge ebenfalls.
 Daraus gehen drei Szenarien hervor, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben können.
 Das sind der Start, ein Abbiegevorgang (engl.: Turn) und die Ankunft.
@@ -394,5 +394,5 @@ Wegpunkt              & Fahrtzeit   & Differenz     & Fahrtzeit   & Differenz   
 
 Um die Testfahrten genauer analysieren zu können, wurde das Backend um bisher fehlende Funktionen für die Rückgabe von zusätzlichen Informationen erweitert.
 Dabei wurden die Speicherobjekte für Wegtypen und Wegoberfläche hinzugefügt und zusätzlich die Höheninformationen der Punkte zurückgegeben.
-Im Frontend konnten dadurch nun die Wegtypen und Wegoberflächen aber auch die Steigung und somit auch ein Höhenprofil angezeigt werden.
+Im Frontend konnten dadurch nun die Wegtypen, die Wegoberflächen, die Steigung und somit auch ein Höhenprofil angezeigt werden.
 Außerdem wurde ein Feature zur Darstellung der Höchstgeschwindigkeit der einzelnen Streckensegmente eingebaut.

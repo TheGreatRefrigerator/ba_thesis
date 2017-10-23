@@ -81,7 +81,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>99</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
@@ -2072,7 +2072,6 @@
     <bcf:citekey order="19">isochrones</bcf:citekey>
     <bcf:citekey order="20">akkiraju1995alpha</bcf:citekey>
     <bcf:citekey order="21">osmwiki</bcf:citekey>
-    <bcf:citekey order="22">neisdoktor</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="anyt/global" type="entry" sortscheme="anyt" sortnamekeyscheme="global">
   <bcf:sorting>

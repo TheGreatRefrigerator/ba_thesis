@@ -114,11 +114,11 @@ Daraus ergibt sich für isomorphe Graphen auch immer eine gleiche Adjazenzmatrix
 
 \subsubsection{Gerichtete Graphen}
 Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten lediglich in einer Richtung durchlaufen werden.
-Die Kanten werden daher durch Pfeile anstatt durch Linien dargestellt.
+Die Kanten werden daher durch Pfeile, anstatt durch Linien, dargestellt.
 
 $$G = (V,R)$$
 
-Demnach muss in Abbildung~\ref{fig:directed} um von der Ecke $v_{5}$ nach $v_{4}$ zu gelangen, der Weg über die Ecken $v_{3}$ und $v_{2}$ führen.
+Demnach muss in Abbildung~\ref{fig:directed}, um von der Ecke $v_{5}$ nach $v_{4}$ zu gelangen, der Weg über die Ecken $v_{3}$ und $v_{2}$ führen.
 
 \begin{figure}[htb]
 \centering
@@ -203,18 +203,19 @@ Die \gls{osm}\footnote{OpenStreetMap ist ein 2004 gegründetes internationales P
 Hier werden Punktobjekte als \textit{Nodes} (Ecken) und Linienobjekte als \textit{Ways} (Kanten) bezeichnet.
 Ein Way ist dabei die Verbindung zwischen zwei oder mehreren Nodes.
 Zusätzlich gibt es \textit{Relations} (Relationen) die eine Menge aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben.
-Für Straßennetze kann dies durchaus hilfreich sein um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegevorschriften an Kreuzungen zu beschreiben (\cite{osmrelation}).
+Für Straßennetze kann dies durchaus hilfreich sein, um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegevorschriften an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
-Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden, um sie dann anhand ihrer \gls{osm}-Tags zu identifizieren.
+Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden.
+Diese werden anhand ihrer \gls{osm}-Tags identifiziert.
 Dazu gehören alle Arten von Straßen und Wegen, sowie als befahrbar gekennzeichnete Ways (beispielsweise asphaltiert, aber ohne angegebenen Straßentyp).
 Für das Routing sind vor allem Verbindungspunkte, wie Kreuzungen, Ab- und Auffahrten sowie Sackgassen, wichtig.
 Diese sogenannten \textit{Tower Nodes} werdeb dager aus den importierten Daten ermittelt.
 Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert.
 Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet.
 Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt.
-Einbahnstraßen und Abbiegebeschränkungen werden berücksichtigt und geben die Richtung der Kanten an (\cite{osmgraph}).
+Einbahnstraßen und Abbiegevorschriften werden berücksichtigt und geben die Richtung der Kanten an (\cite{osmgraph}).
 Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt.
-Sie werden als \textit{WayGeometry} auf der jeweiligen Kante gespeichert, da sie nicht für den Routing Vorgang benötigt werden (Abb. ~\ref{fig:tower}).
+Sie werden als \textit{WayGeometry} auf der jeweiligen Kante gespeichert, da sie nicht für das berechnen der Route benötigt werden (Abb. ~\ref{fig:tower}).
 Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}).
 Relevante Attribute, wie Geschwindigkeit oder Straßentyp, werden vereinheitlicht und als \textit{Flags} (Markierungen) auf der Kante gespeichert.
 Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.
@@ -522,13 +523,13 @@ Die Punkte werden zu Polygonen verbunden und as Isochrone über dem Graphen darg
 Der Vorteil dieses Algorithmus ist, dass die Maschengröße des Gitters angepasst werden kann.
 Bei sehr kleinen Maschen liefert der Algorithmus ein sehr genaues Ergebnis.
 Allerdings werden dabei mehr Ressourcen zur Berechnung benötigt.
-Daher sollten lediglich kleine Gebiete sowie geringe Zeitbeschränkungen berechnet werden.
+Daher sollten lediglich kleine Gebiete sowie geringe Zeitlimits berechnet werden.
 Bei weiten Maschen ist der Algorithmus dagegen sehr schnell und kann größere Distanzen und längere Zeitspannen berechnen.
-Das Ergebnis ist dementsprechend aber auch ungenauer.
+Das Ergebnis ist jedoch dementsprechend ungenauer.
 In Abbildung~\ref{fig:grid4} wurde die Größe der Maschen beispielsweise ungeschickt gewählt, da eine Ecke mit Abstand vier Minuten vom Zentrum liegt und dadurch außerhalb der fünf-Minuten-Isochrone.
 
 \subsubsection{Dreiecksvermaschung}
-\cite{isochrones} beschreiben eine anschauliche Methode um Isochronen zu berechnen.
+\cite{isochrones} beschreiben eine anschauliche Methode, um Isochronen zu berechnen.
 Nach der Lösung des \gls{ssp}s werden den Ecken des Graphen der geographischen Koordinate der repräsentierten Kreuzung zugeteilt.
 Die Kanten werden nicht benötigt und daher entfernt.
 Es liegt demnach eine 3D-Punktwolke vor.

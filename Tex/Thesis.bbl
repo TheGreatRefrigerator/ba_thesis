@@ -178,19 +178,74 @@
       \verb https://github.com/graphhopper/graphhopper/blob/master/docs/core/low-level-api.md
       \endverb
     \endentry
-    \entry{kurt}{book}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=1c5075da493885d22b56ad27b9c4292a}{%
-           family={Kurt\bibnamedelima Mehlhorn},
-           family_i={K\bibinitperiod\bibinitdelim M\bibinitperiod},
-           given={Peter\bibnamedelima Sanders},
-           given_i={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+    \entry{handbook}{collection}{}
+      \name{editor}{2}{}{%
+        {{uniquename=0,hash=a17538ab2dfd8840a7016357c44247c7}{%
+           family={Kresse},
+           family_i={K\bibinitperiod},
+           given={Wolfgang},
+           given_i={W\bibinitperiod}}}%
+        {{uniquename=0,hash=4fd8d77912127c23ead958484a4793af}{%
+           family={Danko},
+           family_i={D\bibinitperiod},
+           given={David\bibnamedelima M.},
+           given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
       }
-      \strng{namehash}{1c5075da493885d22b56ad27b9c4292a}
-      \strng{fullhash}{1c5075da493885d22b56ad27b9c4292a}
-      \field{labelalpha}{Kur08}
+      \strng{namehash}{9e999ce844d7b22b3f2b732db195c57d}
+      \strng{fullhash}{9e999ce844d7b22b3f2b732db195c57d}
+      \field{labelalpha}{KD12}
       \field{sortinit}{K}
       \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{title}{Handbook of Geographic Information}
+      \field{year}{2012}
+    \endentry
+    \entry{algorithms}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=6a015aa951a486f29e088cd623235393}{%
+           family={Krumke},
+           family_i={K\bibinitperiod},
+           given={Sven\bibnamedelima Oliver},
+           given_i={S\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{uniquename=0,hash=fa635339d9dd880b647f1bcbfa519361}{%
+           family={Noltemeier},
+           family_i={N\bibinitperiod},
+           given={Hartmut},
+           given_i={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{3509665b946d9b98282084bdbc7a7849}
+      \strng{fullhash}{3509665b946d9b98282084bdbc7a7849}
+      \field{labelalpha}{KN12}
+      \field{sortinit}{K}
+      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Graphentheoretische Konzepte und Algorithmen}
+      \field{year}{2012}
+    \endentry
+    \entry{kurt}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=c2f239e3cf9c48b72ce5f4ca9b5e478e}{%
+           family={Mehlhorn},
+           family_i={M\bibinitperiod},
+           given={Kurt},
+           given_i={K\bibinitperiod}}}%
+        {{uniquename=0,hash=be6c7f12620ef1a8d1d85d96d476a158}{%
+           family={Sanders},
+           family_i={S\bibinitperiod},
+           given={Peter},
+           given_i={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{83db01c125531396385c0293b2187d95}
+      \strng{fullhash}{83db01c125531396385c0293b2187d95}
+      \field{labelalpha}{MS08}
+      \field{sortinit}{M}
+      \field{sortinithash}{2684bec41e9697b92699b46491061da2}
       \field{labelyear}{2008}
       \field{datelabelsource}{}
       \field{labelnamesource}{author}
@@ -199,7 +254,7 @@
       \field{year}{2008}
     \endentry
     \entry{isochrones}{inbook}{}
-      \name{author}{4}{uniquelist=1}{%
+      \name{author}{4}{}{%
         {{uniquename=0,hash=b1ff694d3df32638a2bf4fdc4b3e6ede}{%
            family={Neis},
            family_i={N\bibinitperiod},
@@ -233,30 +288,6 @@
       \field{booktitle}{Aktuelle Arbeiten auf dem Gebiet der informations- und Messtechnik}
       \field{title}{Webbasierte Erreichbarkeitsanalyse – Vorschläge zur Definition eines Accessibility Analysis Service (AAS) auf Basis des OpenLS Route Service}
       \field{year}{2008}
-    \endentry
-    \entry{neisdoktor}{thesis}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=b1ff694d3df32638a2bf4fdc4b3e6ede}{%
-           family={Neis},
-           family_i={N\bibinitperiod},
-           given={Pascal},
-           given_i={P\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {Fachhochschule Mainz}%
-      }
-      \strng{namehash}{b1ff694d3df32638a2bf4fdc4b3e6ede}
-      \strng{fullhash}{b1ff694d3df32638a2bf4fdc4b3e6ede}
-      \field{labelalpha}{Nei06}
-      \field{sortinit}{N}
-      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
-      \field{labelyear}{2006}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Routenplaner für einen Emergency Route Service auf Basis der OpenLS(TM) Spezifikation}
-      \field{type}{phdthesis}
-      \field{year}{2006}
     \endentry
     \entry{osmgraph}{inbook}{}
       \name{author}{7}{}{%
@@ -331,46 +362,6 @@
       \verb{url}
       \verb http://www.agbf.de/pdf/Fortschreibung%20der%20Empfehlung%20der%20Qualitaetskriterien%20fuer%20die%20Bedarfsplanung%20in%20Staedten%20Layout%20neu%202016.pdf
       \endverb
-    \endentry
-    \entry{algorithms}{book}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=d08f36c00db9c97e9f7794958d2e717d}{%
-           family={Sven\bibnamedelimb Oliver\bibnamedelima Krumke},
-           family_i={S\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim K\bibinitperiod},
-           given={Harmut\bibnamedelima Noltemeier},
-           given_i={H\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
-      }
-      \strng{namehash}{d08f36c00db9c97e9f7794958d2e717d}
-      \strng{fullhash}{d08f36c00db9c97e9f7794958d2e717d}
-      \field{labelalpha}{Sve12}
-      \field{sortinit}{S}
-      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
-      \field{labelyear}{2012}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Graphentheoretische Konzepte und Algorithmen}
-      \field{year}{2012}
-    \endentry
-    \entry{handbook}{collection}{}
-      \name{editor}{1}{}{%
-        {{uniquename=0,hash=fc79c527b041939370ce5622e3665d26}{%
-           family={Wolfgang\bibnamedelima Kresse},
-           family_i={W\bibinitperiod\bibinitdelim K\bibinitperiod},
-           given={David\bibnamedelimb M.\bibnamedelimi Danko},
-           given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-      }
-      \strng{namehash}{fc79c527b041939370ce5622e3665d26}
-      \strng{fullhash}{fc79c527b041939370ce5622e3665d26}
-      \field{labelalpha}{Wol12}
-      \field{sortinit}{W}
-      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
-      \field{labelyear}{2012}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{editor}
-      \field{labeltitlesource}{title}
-      \field{title}{Handbook of Geographic Information}
-      \field{year}{2012}
     \endentry
   \endsortlist
 \endrefsection

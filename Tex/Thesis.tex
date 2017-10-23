@@ -55,9 +55,12 @@
 \loadglsentries{acronyms}
 
 % Bibliographie
-\usepackage[backend=biber,style=alphabetic,citestyle=authoryear]{biblatex}
+\usepackage[backend=biber,style=alphabetic,citestyle=authoryear,maxbibnames=99]{biblatex}
 \bibliography{Thesis}
 \usepackage[nottoc]{tocbibind}
+\DefineBibliographyStrings{german}{
+   andothers = {{et\,al\adddot}},            
+}
 
 \appto\UrlBreaks{\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j
 \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w
@@ -194,9 +197,9 @@
 
 
 \newpage
-\printbibliography
+\printbibliography[title=Quellennachweise]
 \addtocounter{section}{1}
-\addcontentsline{toc}{section}{\protect\numberline{\thesection}Literatur}
+\addcontentsline{toc}{section}{\protect\numberline{\thesection}Quellennachweise}
 
 \newpage
 
