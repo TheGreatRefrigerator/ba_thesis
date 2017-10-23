@@ -3,12 +3,8 @@
 \subsection{Teststrecke 1}
 
 Durch die implementierten Funktionen wurde ersichtlich, dass bei der Berechnung der Zeit bisher die Steigung als entscheidender Faktor nicht betrachtet wurde.
-Auf der ersten Teststrecke muss das Löschfahrzeug insgesamt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb. \ref{profile}).
-Über die Hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$.
-Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
 
-
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.80\textwidth}
 \centering
@@ -25,9 +21,20 @@ Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die f�
 \caption{Höhenprofil der ersten Strecke}
 \label{profile}
 \end{subfigure}
-\caption{Fahrt 1 -- Steigung und Höhenprofil}
+\caption[Einfluss der Steigung auf der ersten Teststrecke]
+{\centering Einfluss der Steigung auf der ersten Teststrecke
+\par\justifying\scriptsize
+Die Steigung der Strecke ist auf der ersten Testfahrt abgebildet (a).
+Auch das Höhenprofil (b) für die Strecke zeigt einen signifikanten Anstieg.
+Dieser wurde bisher nicht mit einkalkuliert, ist aber für ein Löschfahrzeug aufgrund des hohen Gewichts relevant.
+}
 \label{steig}
 \end{figure}
+
+Auf der ersten Teststrecke muss das Löschfahrzeug insgesamt einen Höhenunterschied von ungefähr 70 Metern überwinden (Abb.~\ref{profile}).
+Über die Hälfte der Distanz hat dabei eine Steigung von 1-3$\%$ und auf einem Viertel der Strecke sogar eine Steigung von 4-6$\%$.
+Ein Fahrzeug dieser Gewichtsklasse kann auf dieser Strecke folglich nicht die für den größten Teil dieses Anstiegs geltende Maximalgeschwindigkeit von 80 km/h erreichen.
+
 
 Darüber hinaus liegen auf der Strecke im inneren Lützelburgs einige langgezogene aber dennoch enge Kurven (Abb.~\ref{fig:curve}).
 Auch hier kann das Löschfahrzeug nicht die gegebene Geschwindigkeit beibehalten und muss abbremsen.
@@ -36,7 +43,12 @@ Daher absolviert das Profil diesen Streckenabschnitt in geringerer Zeit als das 
 
 \begin{figure}[htb]
 \centering
-\caption{Fahrt 1 -- Unregistrierte Abbiegungen}
+\caption[Teststrecke 1 -- Unregistrierte Abbiegungen]
+{\centering Teststrecke 1 -- Unregistrierte Abbiegungen
+\par\justifying\scriptsize
+Auf der Abbildung sind enge Kurven in der Ortsmitte von Lützelburg zu sehen.
+Diese können nicht mit der erlaubten Geschwindigkeit gefahren werden, wurden jedoch nicht als Abbiegung registriert, da sie innerhalb eines Wegsegmentes liegen.
+}
 \label{fig:curve}
 \includegraphics[width = 0.50 \textwidth]{../media/Fahrt1_curve.png} \\
 \end{figure}
@@ -53,12 +65,16 @@ Wenn die genannten Faktoren der Steigung, der nicht mit einberechneten schärfer
 Da die 2. Strecke nur in der Ebene verläuft, sind keine Abweichungen durch die Steigung zu erwarten.
 Die Differenzzeiten betragen für alle fünf Wegpunkte ungefähr 10 Sekunden.
 Auffallend ist der Sprung vom 3. zum 4. Wegpunkt, bei welchem das Profil 14 Sekunden aufholt.
-Nach einer genaueren Betrachtung dieses Segments stellte sich heraus, dass hier eine einspurige Unterführung durchfahren werden musste auf die eine durch die Topologie unübersichtliche Kurve folgt (Abb. \ref{fig:traintunnel}).
+Nach einer genaueren Betrachtung dieses Segments stellte sich heraus, dass hier eine einspurige Unterführung durchfahren werden musste auf die eine durch die Topologie unübersichtliche Kurve folgt (Abb.~\ref{fig:traintunnel}).
 Daher kam es auf der Fahrt zu Verzögerungen, welches das Aufholen des Profils gegenüber der Testfahrt erklärt.
 
 \begin{figure}[htb]
 \centering
-\caption{Fahrt 2 -- Unterführung}
+\caption[Teststrecke 2 -- Unterführung]
+{\centering Teststrecke 2 -- Unterführung
+\par\justifying\scriptsize
+Die Verzögerung durch diese enge Unterführung auf der zweiten Teststrecke wurde durch das Profil für Löschfahrzeuge nicht berücksichtigt.
+}
 \label{fig:traintunnel}
 \includegraphics[width = 0.70 \textwidth]{../media/traintunnel.png} \\
 \end{figure}
@@ -74,7 +90,11 @@ Offensichtlich ist dies ein Fehler im Backend welcher behoben werden muss.
 
 \begin{figure}[htb]
 \centering
-\caption{Fahrt 3 -- Tempo-30-Zone}
+\caption[Teststrecke 3 -- Tempo-30-Zone]
+{\centering Teststrecke 3 -- Tempo-30-Zone
+\par\justifying\scriptsize
+Auf der dritten Teststrecke befindet sich eine 30er-Zone welche von dem Profil für Löschfahrzeuge noch nicht erkannt wird.
+}
 \label{fig:temp30}
 \includegraphics[width = 0.60 \textwidth]{../media/Fahrt3_temp30.png} \\
 \includegraphics[width = 0.20 \textwidth]{../media/legend3.png} \\
@@ -86,7 +106,7 @@ Wird die Differenz von 16.8 Sekunden von den bisherigen Abweichungen für die 3.
 
 \begin{table}[htb]
 \centering
-\caption{Fahrt 3 -- neue Fahrzeit}
+\caption{Teststrecke 3 -- neue Fahrzeit}
 \label{tab:new3}
 \begin{tabular}{|l|r|r|}
 \hline
@@ -104,7 +124,7 @@ Vor der 2-Minuten-Marke beginnt eine Überlandstraße, die bis kurz vor Holzhaus
 Das sind 56$\%$ der Gesamtstrecke.
 Wie bei der Diskussion der 1. Fahrt bereits erwähnt, ist zu erwarten, dass die Maximalgeschwindigkeit von 80km/h zu hoch angesetzt ist, welches den leichten Vorsprung zur 3-Minuten-Marke erklärt.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -118,21 +138,27 @@ Wie bei der Diskussion der 1. Fahrt bereits erwähnt, ist zu erwarten, dass die 
 \caption{Eigentliche Abbiegung}
 \label{fig:turnworld}
 \end{subfigure}
-\caption{Fahrt 3 -- Vergleich eines Abbiegevorgangs}
+\caption[Teststrecke 3 -- Vergleich eines Abbiegevorgangs]
+{\centering Teststrecke 3 -- Vergleich eines Abbiegevorgangs
+\par\justifying\scriptsize
+Diese Abbiegung befindet sich zwischen Gablingen und Holzhausen.
+Die Kurve ist in OSM im rechten Winkel eingetragen (a).
+In der Wirklichkeit ist der Öffnungswinkel der Kurve allerdings größer (b).
+}
 \label{fig:turn}
 \end{figure}
 
 Zwischen Punkt 3 und 4 fällt das Löschfahrzeug-Profil um fünf Sekunden zurück.
 Zwischen diesen Punkten befindet sich eine Abbiegung, die deutlich schneller als andere Kurven gefahren werden kann.
-Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Abbiegevorgangs zwischen den \gls{osm} Daten(\ref{fig:turnosm}) und der eigentlichen Straße(\ref{fig:turnworld}).
+Abbildung \ref{fig:turn} zeigt einen Vergleich dieses Abbiegevorgangs zwischen den \gls{osm} Daten(Abb.~\ref{fig:turnosm}) und der eigentlichen Straße(Abb.~\ref{fig:turnworld}).
 Es ist zu erkennen, dass die Abbiegung um einiges ''weicher'' ist als die Daten beschreiben.
 Daher konnte das Löschfahrzeug gegenüber dem Profil hier Zeit gewinnen.
 
-Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb. \ref{fig:profile2}), der noch nicht mit einberechnet wird, und dem Löschfahrzeug-Profil somit einen kleinen Vorsprung gibt.
+Schließlich zeigte auch diese Strecke nach einer Untersuchung des Höhenprofils einen Anstieg auf den letzten 150 Metern um 7-9$\%$(Abb.~\ref{fig:profile2}), der noch nicht mit einberechnet wird, und dem Löschfahrzeug-Profil somit einen kleinen Vorsprung gibt.
 
 \begin{figure}[htb]
 \centering
-\caption{Fahrt 3 -- Höhenprofil}
+\caption{Teststrecke 3 -- Höhenprofil}
 \label{fig:profile2}
 \includegraphics[width = 0.90 \textwidth]{../media/Fahrt3_Profile.png} \\
 \end{figure}

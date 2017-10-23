@@ -25,22 +25,25 @@ Da der \gls{ors} zur Darstellung mehrerer Routen bisher noch nicht geeignet ist,
 \caption{Auto Routing}
 \label{fig:altcar}
 \end{subfigure}
-\caption{Routing in die Fußgängerzone der Heidelberger Altstadt}
+\caption[Routing in die Fußgängerzone der Heidelberger Altstadt]
+{\centering Routing in die Fußgängerzone der Heidelberger Altstadt
+\par\justifying\scriptsize
+Straßensegmente die in OSM als Fußwege oder Fußgängerzonen getaggt sind, können von dem Profil für Löschfahrzeuge befahren werden.
+Das Profil (a) steuert die Fußgängerzone von den Seitenstraßen an.
+Dem Auto Profil ist es nicht erlaubt diesen Straßentyp zu benutzen, weshalb die Route vorzeitig endet (b).
+}
 \label{fig:footway}
 \end{figure}
 
 \subsubsection{Fußgängerzonen}
 
-Die Verwendung neuer Wegtypen konnte eingebunden werden wie in Abbildung~\ref{fig:footway} zu erkennen ist.
+Die Verwendung neuer Wegtypen konnte eingebunden werden, wie in Abbildung~\ref{fig:footway} zu erkennen ist.
 Hier wurden als Zielpunkte verschiedene Stellen auf der Fußgängerzone (v.a. Hauptstraße) in der Heidelberger Altstadt gewählt.
 Im Gegensatz zu dem gewöhnlichen Auto-Profil des \gls{ors} findet das Profil für Einsatzfahrzeuge seinen Weg bis zum gewünschten Zielpunkt durch Fußgängerzonen.
 Durch die niedrige Geschwindigkeitsangabe des Backends wird allerdings nicht durchgehend in der Fußgängerzone gefahren, welches zu manchen Nachtzeiten durchaus schneller erfolgen kann.
 Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
 
-
-\subsubsection{Notfalleinfahrten}
-
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -54,13 +57,21 @@ Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefah
 \caption{Auto Routing}
 \label{fig:schoolcar}
 \end{subfigure}
-\caption{Routing durch Feuerwehreinfahrten}
+\caption[Routing durch Feuerwehreinfahrten]
+{\centering Routing durch Feuerwehreinfahrten
+\par\justifying\scriptsize
+Straßensegmente die in OSM als Notfalleinfahrt gekennzeichnet sind, können von dem Profil für Löschfahrzeuge befahren werden.
+Das Profil (a) erreicht das Schulgebäude über die vorgesehenen Wege während das Auto Profil (b) seine Anfahrt auf der Gebäuderückseite beendet.
+}
 \label{fig:school}
 \end{figure}
 
+\subsubsection{Notfalleinfahrten}
+
+
 Auch die Nutzung von Notfalleinfahrten konnte implementiert werden.
 Abbildung~\ref{fig:school} zeigt zwei Zielpunkte, die sich auf dem Gebäude einer Grundschule in Augsburg befinden. 
-Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt (\ref{fig:schoolfire}), kann mit gewöhnlicher Routenführung nur die Rückseite des Schulgebäudes erreicht werden (\ref{fig:schoolcar}).
+Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt (Abb.~\ref{fig:schoolfire}), kann mit gewöhnlicher Routenführung nur die Rückseite des Schulgebäudes erreicht werden (Abb.~\ref{fig:schoolcar}).
 
 \begin{figure}[htb]
 \centering
@@ -76,22 +87,20 @@ Während das Einsatzfahrzeug-Profil die verfügbaren Feuerwehreinfahrten benutzt
 \caption{Auto Routing}
 \label{fig:normalramp}
 \end{subfigure}
-\caption{Routing auf die $A5$ über eine Notauffahrt}
+\caption[Routing auf die $A5$ über eine Notauffahrt]
+{\centering Routing auf die $A5$ über eine Notauffahrt
+\par\justifying\scriptsize
+In diesem Beispiel ist die Anfahrt der $A5$ von Heidelberg aus zu sehen. Das Löschfahrzeug-Profil (a) kann durch die Nutzung der Notauffahrt (rote Linie) gegenüber dem Auto-Profil (b) mehrere Kilometer einsparen.
+}
 \label{fig:ramp}
 \end{figure}
 
-In einem weiteren Beispiel wird die schnellste Route zu einem Punkt auf der $A5$ auf der östlichen Spur südlich von Eppelheim in Heidelberg mit Startpunkt in der Weststadt gesucht (\ref{fig:ramp}).
-Für den normalen Verkehr führt der Weg über das südliche Autobahnkreuz (\ref{fig:normalramp}).
+In einem weiteren Beispiel wird die schnellste Route zu einem Punkt auf der $A5$ auf der östlichen Spur südlich von Eppelheim in Heidelberg mit Startpunkt in der Weststadt gesucht (Abb.~\ref{fig:ramp}).
+Für den normalen Verkehr führt der Weg über das südliche Autobahnkreuz (Abb.~\ref{fig:normalramp}).
 Ein Einsatzfahrzeug kann stattdessen vorher auf eine Nebenstraße einbiegen und die in Abbildung~\ref{fig:emeramp} rot eingefärbte Notauffahrt verwenden.
 Damit kann in diesem Fall eine Strecke von mehr als 2,5 Kilometern eingespart werden.
 
-\subsubsection{Einbahnstraßen}
-
-Die Verwendung von Einbahnstraßen in Gegenrichtung konnte ebenfalls bestätigt werden.
-Auch durch diese Funktion können kürzere Wegstrecken für die Einsatzfahrzeuge gefunden werden. 
-Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profil für Einsatzfahrzeuge (Abb.~\ref{fig:onewayeme}) gegenüber dem Auto-Profil (Abb.~\ref{fig:oneway}) eine wesentlich passendere Route nutzen und muss auf diese Weise etwa 400 Meter weniger zurücklegen.
-
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -105,17 +114,22 @@ Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profi
 \caption{Auto Routing}
 \label{fig:onewaycar}
 \end{subfigure}
-\caption{Routing durch Einbahnstraßen}
+\caption[Routing durch Einbahnstraßen]
+{\centering Routing durch Einbahnstraßen
+\par\justifying\scriptsize
+Um zu einem Zielpunkt in Neuenheim zu gelangen, kann das Profil für Löschfahrzeuge eine einfache Route wählen und eine Einbahnstraße, kurz vor dem Ziel, entgegen der Fahrtrichtung verwenden (a).
+Das Auto-Profil muss Einbahnstraßen beachten und daher einen Umweg zum Ziel wählen (b).
+}
 \label{fig:oneway}
 \end{figure}
 
-Allerdings verwendet das Löschfahrzeug-Profil Einbahnstraßen bisher ohne Einschränkung.
-Daher wird die Gegenfahrbahn auch bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
-Deswegen wird, wie Abbildung~\ref{fig:oppositelane} zeigt, über weite Strecken die Gegenfahrbahn verwendet, obwohl unmittelbar daneben auch die normale Spur verfügbar ist.
-Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwendet, was keine realistische Lösung darstellt (Abb.~\ref{fig:oppositecurve}).
+\subsubsection{Einbahnstraßen}
 
+Die Verwendung von Einbahnstraßen in Gegenrichtung konnte ebenfalls bestätigt werden.
+Auch durch diese Funktion können kürzere Wegstrecken für die Einsatzfahrzeuge gefunden werden. 
+Durch die große Zahl von Einbahnstraßen in Heidelberg-Neuenheim kann das Profil für Einsatzfahrzeuge (Abb.~\ref{fig:onewayeme}) gegenüber dem Auto-Profil (Abb.~\ref{fig:oneway}) eine wesentlich passendere Route nutzen und muss auf diese Weise etwa 400 Meter weniger zurücklegen.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -133,9 +147,18 @@ Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwen
 \centering
 \includegraphics[width = 0.45\textwidth]{../media/legend4.png} \\
 \end{subfigure}
-\caption{Routing auf der Gegenfahrbahn}
+\caption[Routing auf der Gegenfahrbahn]
+{\centering Routing auf der Gegenfahrbahn
+\par\justifying\scriptsize
+Durch die uneingeschränkte Verwendung von Einbahnstraßen routet das Löschfahrzeug-Profil oft über lange Strecken auf der Gegenfahrbahn. Auch an Abbiegungen wird die Spur des Gegenverkehrs verwendet.
+}
 \label{fig:opposite}
 \end{figure}
+
+Allerdings verwendet das Löschfahrzeug-Profil Einbahnstraßen bisher ohne Einschränkung.
+Daher wird die Gegenfahrbahn auch bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
+Deswegen wird, wie Abbildung~\ref{fig:oppositelane} zeigt, über weite Strecken die Gegenfahrbahn verwendet, obwohl unmittelbar daneben auch die normale Spur verfügbar ist.
+Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwendet, was keine realistische Lösung darstellt (Abb.~\ref{fig:oppositecurve}).
 
 \newpage
 \subsection{Validierung der Distanzen und der Fahrzeit}
@@ -151,11 +174,15 @@ Folgende Einstellungen wurden dabei genutzt:
 \end{itemize}
 \fussy
 
-Die ersten Ergebnisse lieferten zu erwartende Resultate (Abb.~\ref{fig:isochrones}), denn das Profil für allgemeine Einsatzfahrzeuge (\ref{fig:isoeme}) konnte gegenüber dem normalen Auto-Profil (\ref{fig:isocar}) einen größeren Bereich abdecken.
-Genauso ist das in fünf Minuten zu erreichende Gebiet für Löschfahrzeuge (\ref{fig:isofire}) sichtbar größer als für das Heavy-Vehicle-Profil (\ref{fig:isohgv}).
+Die ersten Ergebnisse lieferten zu erwartende Resultate (Abb.~\ref{fig:isochrones}), denn das Profil für allgemeine Einsatzfahrzeuge (Abb.~\ref{fig:isoeme}) konnte gegenüber dem normalen Auto-Profil (Abb.~\ref{fig:isocar}) einen größeren Bereich abdecken.
+Genauso ist das in fünf Minuten zu erreichende Gebiet für Löschfahrzeuge (Abb.~\ref{fig:isofire}) sichtbar größer als für das Heavy-Vehicle-Profil (Abb.~\ref{fig:isohgv}).
 Auffällig sind dabei die ausgedehnten 5-Minuten-Isochronen, welche durch den Alpha-Shape Algorithmus (Kapitel \ref{sec:form}) auch unzugängliche Bereiche beinhalten.
 
-\begin{figure}[htb]
+Nach einer Testfahrt der \gls{ffl} wurde allerdings ersichtlich, dass die Ergebnisse nicht im realistischen Bereich liegen.
+In fünf Minuten konnte das Löschfahrzeug auf der Einsatzfahrt vom Startpunkt in Gablingen Richtung Muttershofen nur den nordwestlichen Rand von Lützelburg erreichen.
+Das Profil des Löschfahrzeugs erreichte allerdings Orte über Muttershofen hinaus.
+
+\begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
 \centering
@@ -185,29 +212,35 @@ Auffällig sind dabei die ausgedehnten 5-Minuten-Isochronen, welche durch den Al
 \centering
 \includegraphics[width = 0.75\textwidth]{../media/legendiso.png} \\
 \end{subfigure}
-\caption{Ergebnis Isochronen}
+\caption[Ergebnis Isochronen]
+{\centering Ergebnis Isochronen
+\par\justifying\scriptsize
+Die Abbildung zeigt die Isochronen für 1-5 Minuten für die Profile: Heavy-Vehicle (a), Auto (b), Löschfahrzeug (c) und allgemeines Einsatzfahrzeug (d).
+Durch die höheren Geschwindigkeiten und die zusätzlichen Wegtypen decken die Isochronen der Einsatzfahrzeuge größere Gebiete ab.
+}
 \label{fig:isochrones}
 \end{figure}
-
-Nach einer Testfahrt der \gls{ffl} wurde allerdings ersichtlich, dass die Ergebnisse nicht im realistischen Bereich liegen.
-In fünf Minuten konnte das Löschfahrzeug auf der Einsatzfahrt vom Startpunkt in Gablingen Richtung Muttershofen nur den nordwestlichen Rand von Lützelburg erreichen.
-Das Profil des Löschfahrzeugs erreichte allerdings Orte über Muttershofen hinaus.
 
 Um genaue Anpassungen am Backend vorzunehmen, wurde zunächst eine weitere Testfahrt durchgeführt, bei der für jede volle Minute der Aufenthaltsort des Fahrzeuges markiert wurde (Abb.~\ref{fig:drive1}).
 Diese Angaben wurden mit den bisherigen Rückgabewerten des Profils verglichen.
 Wie aus der Gesamtdauer für die Strecke in Tabelle \ref{tab:driveinit} ersichtlich wird, ist das Profil für Einsatzfahrzeuge ungefähr 90 Sekunden zu schnell.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width = 0.7 \textwidth]{../media/Fahrt1.png} \\
-\caption{Testfahrt 1}
+\caption[Teststrecke 1]
+{\centering Teststrecke 1
+\par\justifying\scriptsize
+Die erste Testfahrt wurde von dem Feuerwehrstützpunkt (A) in Gablingen aus in Richtung Lützelburg durchgeführt.
+Nach jeder vollen Minute wurde die Position registriert und als Marker auf der Route platziert ($B=5$).
+}
 \label{fig:drive1}
 \end{figure}
 
 \begin{table}[htb]
 \centering
 \small
-\caption{Fahrt 1 -- 1. Auswertung}
+\caption{Teststrecke 1 -- 1. Auswertung}
 \label{tab:driveinit}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
@@ -238,20 +271,9 @@ Diese Klasse soll zwei Funktionen erfüllen:
 Zum einen muss bereits bei der Suche nach dem schnellsten Weg im Gegensatz zu geraden Strecken eine zusätzliche Zeit für Abbiegevorgänge mit einfließen.
 Zum anderen müssen bei der Berechnung der Fahrzeit Start-, Ankunfts- und Abbiegezeit mit berücksichtigt werden.
 
-Es stellt sich nun die Frage, wie ein Abbiegevorgang auf dem Graphen identifiziert werden kann.
-Die Änderung des Straßennamens ist sicherlich eine Möglichkeit viele Abbiegevorgänge abzudecken.
-Allerdings ist nicht immer ein Straßenname vorhanden und nicht immer bedeutet der Wechsel des Straßennamens, dass in diese Straße eingebogen werden muss.
-Eine effizientere Lösung bietet die Ausrichtung der Straßensegmente, da hier die Daten in allen Fälle vorhanden sind.
-Deshalb wird in der AccelerationWeighting Klasse an Tower Nodes (Kreuzungen) der Winkel zwischen dem letzten und dem nächsten Straßensegment berechnet.
-Eine Abbiegung bzw. eine enge Kurve wird in dieser Arbeit durch einen Winkel zwischen 50 und 140 Grad definiert.
-Bei einer Routing-Abfrage wird in einem solchen Fall das Gewicht der auf die Kurve folgenden Kante erhöht.
-Ebenso wird sobald der schnellste Weg ermittelt ist an diesen Stellen die Bremszeit vor der Abbiegung und die Beschleunigungszeit nach der Abbiegung zur Gesamtzeit des folgenden Wegsegmentes addiert.
-Der gleiche Vorgang wird für Start und Ziel durchgeführt.
-Die addierte Zeit wird als \textit{Penalty} (dt.: Strafe) bezeichnet.
-
 \begin{table}[htb]
 \centering
-\caption{Fahrt 1 -- Fahrzeit}
+\caption{Teststrecke 1 -- Fahrzeit}
 \label{tab:drive11}
 \begin{tabular}{|l|r|r|}
 \hline
@@ -265,6 +287,29 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 \end{tabular}
 \end{table}
 
+Es stellt sich nun die Frage, auf welche Art ein Abbiegevorgang auf dem Graphen identifiziert werden kann.
+Die Änderung des Straßennamens ist sicherlich eine Möglichkeit viele Abbiegevorgänge abzudecken.
+Allerdings ist nicht immer ein Straßenname vorhanden und nicht immer bedeutet der Wechsel des Straßennamens, dass in diese Straße eingebogen werden muss.
+Eine effizientere Lösung bietet die Ausrichtung der Straßensegmente, da hier die Daten in allen Fälle vorhanden sind.
+Deshalb wird in der AccelerationWeighting Klasse an Tower Nodes (Kreuzungen) der Winkel zwischen dem letzten und dem nächsten Straßensegment berechnet.
+Eine Abbiegung bzw. eine enge Kurve wird in dieser Arbeit durch einen Winkel zwischen 50 und 140 Grad definiert.
+Bei einer Routing-Abfrage wird in einem solchen Fall das Gewicht der auf die Kurve folgenden Kante erhöht.
+Ebenso wird sobald der schnellste Weg ermittelt ist an diesen Stellen die Bremszeit vor der Abbiegung und die Beschleunigungszeit nach der Abbiegung zur Gesamtzeit des folgenden Wegsegmentes addiert.
+Der gleiche Vorgang wird für Start und Ziel durchgeführt.
+Die addierte Zeit wird als \textit{Penalty} (dt.: Strafe) bezeichnet.
+
+\begin{figure}[H]
+\centering
+\caption[Teststrecke 2]
+{\centering Teststrecke 2
+\par\justifying\scriptsize
+Die zweite Testfahrt wurde von dem Feuerwehrstützpunkt (A) in Gablingen aus in östliche Richtung durchgeführt.
+Nach jeder vollen Minute wurde die Position registriert und als Marker auf der Route platziert ($B=5$).
+}
+\label{fig:drive2}
+\includegraphics[width = 0.70 \textwidth]{../media/Fahrt2crop.png} \\
+\end{figure}
+
 Anhand der vorliegenden Testfahrt wurde das Profil derart kalibriert, dass durch die Penalties für Abbiegungen, Start und Ziel die fehlenden 90 Sekunden benötigt wurden.
 Für Start sowie Ankunft wurden 15 und für Abbiegungen 20 Sekunden veranschlagt.
 
@@ -273,16 +318,9 @@ Wie erwartet, benötigte das Profil nun für diesen Weg ebenfalls fast genau fü
 In Tabelle \ref{tab:drive11} ist die Differenz zu den einzelnen Minutenmarkern der 1. Testfahrt für diese Anfrage zu sehen.
 Diese Ergebnisse zeigen dass das Profil den ersten Teil der Route zu langsam und den zweiten Teil zu schnell absolviert.
 
-\begin{figure}[htb]
-\centering
-\caption{Testfahrt 2}
-\label{fig:drive2}
-\includegraphics[width = 0.70 \textwidth]{../media/Fahrt2crop.png} \\
-\end{figure}
-
 \begin{table}[htb]
 \centering
-\caption{Fahrt 2 -- Fahrzeit}
+\caption{Teststrecke 2 -- Fahrzeit}
 \label{tab:drive2}
 \begin{tabular}{|l|r|r|}
 \hline
@@ -302,16 +340,21 @@ Diese Kalibrierung wurde an zwei weiteren Testfahrten (Abb.~\ref{fig:drive2} und
 In den Tabellen \ref{tab:drive2} und \ref{tab:drive3} ist zu sehen, das 8 von 10 Wegpunkten um mehr als 20 Sekunden, in 3 Fällen sogar 40 Sekunden zu spät erreicht werden.
 Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich zu langsam und die Penalties zu hoch.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
-\caption{Testfahrt 3}
+\caption[Teststrecke 3]
+{\centering Teststrecke 3
+\par\justifying\scriptsize
+Die dritte Testfahrt wurde von dem Feuerwehrstützpunkt (A) in Gablingen aus nach Holzhausen durchgeführt.
+Nach jeder vollen Minute wurde die Position registriert und als Marker auf der Route platziert ($B=5$).
+}
 \label{fig:drive3}
 \includegraphics[width = 0.40 \textwidth]{../media/Fahrt3crop.png} \\
 \end{figure}
 
 \begin{table}[]
 \centering
-\caption{Fahrt 3 -- Fahrzeit}
+\caption{Teststrecke 3 -- Fahrzeit}
 \label{tab:drive3}
 \begin{tabular}{|l|r|r|}
 \hline
@@ -333,7 +376,7 @@ Die Ergebnisse sind der Tabelle \ref{tab:all} zu entnehmen.
 
 \begin{table}[htb]
 \centering
-\caption{Fahrt 1,2,3 -- 2. Auswertung}
+\caption{2. Auswertung der drei Testfahrten}
 \label{tab:all}
 \begin{tabular}{|l|r|r|r|r|r|r|}
 \hhline{~|-|-|-|-|-|-}
