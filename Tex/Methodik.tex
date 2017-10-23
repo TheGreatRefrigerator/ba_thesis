@@ -6,7 +6,7 @@ Die Frage, die sich hierbei stellt, ist, inwieweit von diesen Rechten im Ernstfa
 Um diesen Sachverhalt zu untersuchen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
 Dieser wurde als Datei in der Cloud gespeichert und ist auch weiterhin verfügbar (Link im Anhang auf S.\pageref{sec:anhang}).
 Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene \gls{ors}-Backend gewählt.
-Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind im Cloud-Dokument im Anhang zu entnehmen.
+Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind dem Cloud-Dokument im Anhang zu entnehmen.
 Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
 Anschließend wurden neue Java-Funktionen geschrieben, um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
 Außerdem wurde das Frontend an das neue Profil angepasst.
@@ -18,7 +18,7 @@ Außerdem wurde das Frontend an das neue Profil angepasst.
 \par
 Die Dimensionen des Fahrzeuges sind limitierende Faktoren für bestimmte Wegsegmente.
 Manche Brücken halten nur ein bestimmtes Gewicht aus und ein Tunnel hat nur eine gewisse Höhe.
-Hier stützt sich das \gls{ors} Backend auf Restriktionen durch die \gls{osm}-Tags: \texttt{maxlength, maxwidth, maxheight, maxweigth} und \texttt{maxaxleload} Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
+Hier stützt sich das \gls{ors}-Backend auf Restriktionen durch die \gls{osm}-Tags: \texttt{maxlength, maxwidth, maxheight, maxweigth} und \texttt{maxaxleload} Von der \gls{ffl} wurde als wichtigstes Fahrzeug Löschfahrzeuge der Klasse LF8, LF8/6 und MLF mit folgenden Daten angegeben:
 \begin{itemize}
 \centering
 \item[Länge:] 7 Meter
@@ -33,11 +33,11 @@ Hier stützt sich das \gls{ors} Backend auf Restriktionen durch die \gls{osm}-Ta
 Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit des Fahrzeugs gefahren werden.
 Deswegen werden für jede Kante des Graphen Geschwindigkeitsmaxima definiert.
 Dabei wird auf einen Standardwert für den Straßentyp, die \textit{Values} (Werte) des \gls{osm} \textit{Keys} (Schlüssel) \texttt{highway}, zurückgegriffen.
-Tabelle \ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Schwerfahrzeug-Profil des \gls{ors} zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
+Tabelle \ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Heavy-Vehicle(\textit{dt.:Schwerfahrzeug})-Profil des \gls{ors}, zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
 Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten wenn kein Stau besteht.
 Im Fall eines Staus wäre laut \gls{ffl} auch die Anfahrt auf der Gegenfahrbahn bzw. entgegen der Verkehrsrichtung auf der gleichen Bahn interessant.
 
-Genaue Informationen zu einzelnen Tags können der \gls{osm} Wikipedia (\cite{osmwiki}) entnommen werden.
+Genaue Informationen zu einzelnen Tags können der \gls{osm}-Wikipedia (\cite{osmwiki}) entnommen werden.
 
 \begin{table}[htb]
 \centering
@@ -74,7 +74,7 @@ track (Wald-/Feldweg) & 15 \\
 \end{table}
 
 Auf Wirtschafts-, Wald- und Feldwegen mit dem Key-Value-Pair \texttt{highway=track} kann zusätzlich der Zustand des Weges mit dem Tag \texttt{tracktype} beschrieben werden.
-Die bisherigen und die von der \gls{ffl} vorgeschlagenen Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
+Die bisherigen, und die von der \gls{ffl} vorgeschlagenen, Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
 \begin{table}[h]
 \centering
@@ -164,7 +164,7 @@ tracktype=footway(Fußweg) & 5\\
 Aufbauend auf den gewonnen Informationen aus dem Fragenkatalog können entsprechende Java-Klassen für das Löschfahrzeug-Profil erstellt werden.
 Dazu werden die bereits vorhandenen Klassen eines \gls{ors}-Profils verwendet.
 Da die Dimensionen des Fahrzeuges mitberücksichtigt werden sollen, wird das Heavy-Vehicle-Profil als Grundlage benutzt.
-Die Prozessierung wird von vier Klassen gehandhabt, die an den passenden Stellen im Backends eingebunden werden müssen.
+Die Prozessierung wird von vier Klassen gehandhabt, die an den passenden Stellen im Backend eingebunden werden müssen.
 
 \begin{listing}[htb]
 \centering
@@ -185,12 +185,12 @@ Die Klasse \texttt{EmergencyVehicleAttributesGraphStorage} initiiert das Speiche
 Die Klasse \texttt{EmergencyVehicleGraphStorageBuilder} baut das Speicherobjekt zusammen.
 Hier werden die Beschränkungen für die Höhe, Breite, Länge, Achslast und das Gewicht aus den \gls{osm}-Daten gespeichert.
 Das Profil für Schwerfahrzeuge berücksichtigt hier normalerweise unterschiedliche Restriktionen für verschiedene Fahrzeugtypen.
-Manche Straßen sind beispielsweise nur für Forst- andere nur für Lieferfahrzeuge freigegeben.
+Manche Straßen sind beispielsweise nur für Forst-, andere nur für Lieferfahrzeuge freigegeben.
 Andere Straßen dürfen normalerweise aufgrund des \gls{osm}-Tags \texttt{access=private} oder \texttt{access=restricted} gar nicht verwendet werden.
 Außer den materiellen Beschränkungen durch die Fahrzeugdimensionen gelten für Einsatzfahrzeuge diese Beschränkungen nicht.
 
 Die Klasse \texttt{EmergencyVehicleEdgeFilter} vergleicht bei der Ausführung der Routing-Anfrage für jede Kante die als Parameter angegebenen Fahrzeug-Dimensionen mit den Restriktionen aus dem im \texttt{EmergencyVehicleGraphStorageBuilder} produzierten Objekt.
-Liegt der übergebene Wert unterhalb der Beschränkung kann potenziell über diese Kante geroutet werden.
+Liegt der übergebene Wert unterhalb der Beschränkung, kann potenziell über diese Kante geroutet werden.
 Überschreitet der Wert die Beschränkung, wird die Kante vom Routing ausgeschlossen (Sourcecode~\ref{lst:filter}).
 
 \begin{listing}[htb]
@@ -207,7 +207,7 @@ Liegt der zugelassene Wert unter dem für das Fahrzeug definierten Limit, kann d
 \end{listing}
 
 Der Hauptteil der Änderungen wird in der \texttt{EmergencyFlagEncoder} Klasse vorgenommen.
-Hier werden beispielsweise die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen (Frage 2.) implementiert (Abb. ~\ref{lst:flag}).
+Hier werden beispielsweise die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen (Frage 2.) implementiert (Sourcecode~\ref{lst:flag}).
 Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt, mit der Absicht das Löschfahrzeug-Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei, nutzbar zu machen.
 Das Geschwindigkeitslimit von 80km/h hängt mit der ausgewählten Fahrzeugklasse zusammen und nicht mit der Straßenart.
 Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht.
@@ -220,14 +220,14 @@ Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkei
 \label{lst:flag}
 \end{listing}
 
-Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Schnipsel aus Code-Beispiel \ref{lst:zone} übergangen werden.
+Die Beschränkungen 30er-Zonen und Spielstraßen sollen mit dem Schnipsel aus Code-Beispiel \ref{lst:zone} übergangen werden. \newline
 Wichtig dabei ist, dass der \gls{osm}-Tag \texttt{highway=living\_street} nicht automatisch eine Spielstraße ist.
 In Spielstraßen darf in Deutschland nur Schrittgeschwindigkeit gefahren werden.
 Diese Eigenschaft muss beim \textit{Tagging}\footnote{taggen: das Zuweisen eines Key-Value-Pairs zu einem \gls{osm} Objekt} berücksichtigt werden.
 Häufig wird solchen Straßen der Tag \texttt{maxspeed=7} zugewiesen.
 
 
-Um Bus- und Taxispuren für das Profil nutzbar zu machen, wurde das Code Segment \ref{lst:bus} implementiert.
+Um Bus- und Taxispuren für das Profil nutzbar zu machen, wurde das Code Segment aus Sourcecode~\ref{lst:bus} implementiert.
 Für mit Fahrzeugen befahrbare Tramspuren gibt es in \gls{osm} bisher bis dato keinen geeigneten Tag.
 Die Segmente der Tramspur, die befahren werden können, liegen in der Regel auf einer vorhandenen Straße.
 \begin{listing}[htb]
@@ -240,8 +240,8 @@ Die Segmente der Tramspur, die befahren werden können, liegen in der Regel auf 
 
 Um Einbahnstraßen in jeder Richtung nutzen zu können, wurden Teile des Codes entfernt, die einer Kante eine vorwärts- oder rückwärts-Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
 
-Der \texttt{EmergencyFlagEncoder} beinhaltet des weiteren die Funktion \texttt{collect}, welche dem Wegsegment anhand seines Wegtyps eine Priorität zuschreibt.
-Auf diese Weise können Straßen auf denen hohe Geschwindigkeiten gefahren werden können oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind, bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
+Der \texttt{EmergencyFlagEncoder} beinhaltet des weiteren die Funktion \texttt{collect}, welche dem Wegsegment, anhand seines Wegtyps, eine Priorität zuschreibt.
+Auf diese Weise können Straßen, auf denen hohe Geschwindigkeiten gefahren werden dürfen oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind, bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
 
 \begin{listing}[htb]
 \centering
@@ -255,11 +255,11 @@ Die Kante des Graphen wird auf OSM-Tags für Bus- und Taxispuren, Start- und Lan
 \label{lst:bus}
 \end{listing}
 
-Durch den Code-Ausschnitt in Beispiel \ref{lst:weight} soll die höchste Priorität jene Straßen mit dem Tag \texttt{service=emergency\_access} erhalten.
+Durch den Code-Ausschnitt in Sourcecode~\ref{lst:weight} sollen die höchste Priorität die Straßen mit dem Tag \texttt{service=emergency\_access} erhalten.
 Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen.
 Da Busspuren auch vom motorisierten Individualverkehr freigehalten werden müssen, werden diesen an dieser Stelle ebenfalls eine höhere Priorität zugewiesen.
 
-Beim Ausführen des Codes werden die auf diese Weise generierten Attribute (Flags) beim Bau des Graphen zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch vielen weiteren Attributen auf den Kanten des Graphen gespeichert.
+Beim Ausführen des Codes werden die auf diese Weise generierten Attribute (Flags) beim Bau des Graphen, zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch vielen weiteren Attributen auf den Kanten des Graphen gespeichert.
 Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben, aufgebaut.
 
 \begin{listing}[htb]
@@ -274,16 +274,16 @@ Ist eine Kante als Notfalleinfahrt getaggt, wird sie gegenüber anderen Straßen
 \label{lst:weight}
 \end{listing}
 
-Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends mit diesen Änderungen auf einen Server der Universität Heidelberg installiert.
+Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends, mit diesen Änderungen, auf einen Server der Universität Heidelberg installiert.
 
 Damit ist Prozessierung des Routing-Profils für Einsatzfahrzeuge fertiggestellt und es können Anfragen an die Schnittstelle des \gls{ors} gesendet werden.
 
 
 \subsection{Anpassungen Frontend}
 
-Das \gls{ors} Frontend ist ein \gls{gui}, welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
+Das \gls{ors}-Frontend ist ein \gls{gui}, welches die interaktive Erstellung einer Abfrage an das Backend ermöglicht.
 Gleichzeitig kann das Ergebnis auf der gleichen Oberfläche dargestellt werden.
-Das Frontend für das Löschfahrzeug-Profil kann unter dem Link \href{emergency.openrouteservice.org} erreicht werden.
+Das Frontend für das Löschfahrzeug-Profil kann unter dem Link \href{emergency.openrouteservice.org}{emergency.openrouteservice.org} erreicht werden.
 
 \bigskip
 
@@ -297,13 +297,16 @@ Nach einem Klick auf den \texttt{Isochronen-Generieren-Button} wird die Antwort 
 \bigskip
 
 Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob dargestellt.
-Alle Änderungen können im Detail nachvollzogen werden, da der Quellcode online verfügbar ist (Siehe Anhang S.~\pageref{sec:anhang}). Das Auto- und Heavy-Vehicle-Profil wurde für direkte Vergleiche zu den Profil für Einsatzfahrzeuge beibehalten.
+Alle Änderungen können im Detail nachvollzogen werden, da der Quellcode online verfügbar ist (Siehe Anhang S.~\pageref{sec:anhang}). Das Auto- und Heavy-Vehicle-Profil wurde für direkte Vergleiche zu dem Profil für Einsatzfahrzeuge beibehalten.
 Gleichzeitig wurde das neue Profil für Einsatzfahrzeuge eingefügt für welches zwei Fahrzeugklassen vorhanden sind.
 
 \bigskip
 
 1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt.
-Damit müssen diese Daten bei einem neuen Aufruf der Seite nicht jedes mal neu eingegeben werden.
+Damit müssen diese Daten, bei einem neuen Aufruf der Seite, nicht jedes mal neu eingegeben werden.
+
+\medskip
+
 2. Profil allgemein für Einsatzfahrzeuge: Hier werden Fahrzeugdimensionen nicht automatisch eingestellt.
 Die Höchstgeschwindigkeit für dieses Profil ist standardmäßig auf 130km/h gesetzt.
 Diese kann in den weiteren Einstellungen deaktiviert werden.

@@ -1,6 +1,6 @@
 \section{Theoretische Grundlagen}
 
-Um die kürzeste Route zwischen zwei Orten in einem Straßennetz zu ermitteln kann man die
+Um die kürzeste Route zwischen zwei Orten in einem Straßennetz zu ermitteln, kann man die
 Graphentheorie, als Teilgebiet der Mathematik, heranziehen.
 
 \subsection{Graphentheorie}
@@ -53,17 +53,17 @@ $$E = \{(v_{1}v_{2},v_{1}v_{3},v_{2}v_{3},v_{2}v_{3},v_{3}v_{5})\} $$
 
 Zwischen zwei Ecken können einfache, mehrfache oder keine Kanten bestehen.
 Darüber hinaus können sie mit sich selbst verbunden sein und eine sogenannte Schlinge bilden (Abb.~\ref{fig:simple}).
-Sind zwei Ecken durch eine Kante verbunden werden sie als \textit{adjazent}(benachbart) bezeichnet.
+Sind zwei Ecken durch eine Kante verbunden, werden sie als \textit{adjazent}(benachbart) bezeichnet.
 Ist eine Ecke der Start- oder Endpunkt einer Kante, werden beide Objekte als \textit{inzident} zueinander bezeichnet.
 Ist eine Ecke zu keiner Kante inzident heißt sie \textit{isoliert}.
 Ein Graph der keine isolierten Ecken besitzt heißt \textit{zusammenhängend}.(\cite[4\psq]{theory}) \par
 
 Computer können Graphen verarbeiten, da sich alle Ecken und Kanten in Form von Matrizen speichern lassen.
 Die Abbildung ~\ref{mx:simple} zeigt die Adjazenzmatrix des Graphen aus ~\ref{fig:simple}.
-In einer Matrix werden die Nachbarschaften für die jeweilige Eckenkombination gespeichert.
+In einer Adjazenzmatrix werden die Nachbarschaften für die jeweilige Eckenkombination gespeichert.
 Die Reihen stellen die Start- und die Spalten die Endecken dar.
 Eine bestehende Kante wird mit einer ~$1$ dargestellt. Wenn keine Verbindung besteht wird dies durch die ~$0$ angezeigt.
-Bestehen mehrere Kanten zwischen zwei Ecken wird dies durch die Anzahl der bestehenden Kanten dargestellt (z.b durch die Zahl $2$ für die Ecken $v_{2}$ und $v_{3}$).
+Bestehen mehrere Kanten zwischen zwei Ecken wird dies durch die Anzahl der bestehenden Kanten dargestellt (z.B. durch die Zahl $2$ für die Ecken $v_{2}$ und $v_{3}$).
 Für ungerichtete Graphen ist eine Kante von $v_{1}$ nach $v_{2}$ äquivalent mit einer Kante von $v_{2}$ nach $v_{1}$.
 Daher ist die Adjazenzmatrix für ungerichtete Graphen spiegelsymmetrisch entlang der Hauptdiagonale ($v_{1}v_{1} \rightarrow v_{5}v_{5}$).
 Der Speicherbedarf für solch eine Matrix wird folglich halbiert, da die eine Hälfte mithilfe der Anderen rekonstruiert werden kann (Abb.~\ref{mx:iso}).
@@ -113,7 +113,7 @@ Daraus ergibt sich für isomorphe Graphen auch immer eine gleiche Adjazenzmatrix
 
 
 \subsubsection{Gerichtete Graphen}
-Im Gegensatz zu einem ungerichteten Graphen können bei einem gerichteten Graphen Kanten lediglich in einer Richtung durchlaufen werden.
+Im Gegensatz zu einem ungerichteten Graphen, können bei einem gerichteten Graphen Kanten lediglich in einer Richtung durchlaufen werden.
 Die Kanten werden daher durch Pfeile, anstatt durch Linien, dargestellt.
 
 $$G = (V,R)$$
@@ -151,7 +151,7 @@ Demnach muss in Abbildung~\ref{fig:directed}, um von der Ecke $v_{5}$ nach $v_{4
 \end{figure}
 
 \subsubsection{Gewichtete Graphen}
-In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen Kanten-gewichteten Graphen, bei dem jeder Kante ein Wert ~$c$ zugewiesen wird.
+In dieser Arbeit bezeichnet der Begriff \textit{gewichteter Graph} einen \textit{Kanten}gewichteten Graphen, bei dem jeder Kante ein Wert ~$c$ zugewiesen wird.
 
 $$G = (V,E)$$ 
 \begin{center}
@@ -159,7 +159,7 @@ mit
 \end{center}
 $$c: E \rightarrow \mathbb{R}$$
 
-Neben dem Kanten-gewichteten gibt es auch Ecken-gewichtete Graphen, bei welchen entsprechend die Ecken gewichtet werden.
+Neben dem Kantengewichteten gibt es auch \textit{Ecken}gewichtete Graphen, bei welchen entsprechend die Ecken gewichtet werden.
 Gewichtete Graphen können gerichtet und ungerichtet sein.
 Ein klassisches Beispiel hierfür ist der Linien-Netzplan einer Straßenbahn, bei dem die Ecken einzelne Haltestellen darstellen und die Kantengewichte die benötigten Minuten beinhalten.
 
@@ -202,20 +202,20 @@ Andererseits kann ein gewichteter Graph auch für Routing-Zwecke eingesetzt werd
 Die \gls{osm}\footnote{OpenStreetMap ist ein 2004 gegründetes internationales Projekt mit dem Ziel, eine freie Weltkarte zu erschaffen (\href{www.openstreetmap.de}{www.openstreetmap.de}). Die Daten werden von vielen Freiwilligen auf der ganzen Welt generiert und in einer Datenbank unter der Open Database Lizenz zur verfügung gestellt.} Datenstruktur kann als Graph abgebildet werden.
 Hier werden Punktobjekte als \textit{Nodes} (Ecken) und Linienobjekte als \textit{Ways} (Kanten) bezeichnet.
 Ein Way ist dabei die Verbindung zwischen zwei oder mehreren Nodes.
-Zusätzlich gibt es \textit{Relations} (Relationen) die eine Menge aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben.
+Zusätzlich gibt es \textit{Relations} (Relationen) die einer Menge aus Nodes und Ways einen funktionalen Zusammenhang zuschreiben.
 Für Straßennetze kann dies durchaus hilfreich sein, um beispielsweise unterschiedliche Segmente eines Autobahnsegmentes zusammenzufassen oder um Abbiegevorschriften an Kreuzungen zu beschreiben (\cite{osmrelation}).
 
 Um aus den \gls{osm} Daten einen routingfähigen Graphen zu erhalten, müssen zuerst alle benutzbaren Nodes und Ways extrahiert werden.
 Diese werden anhand ihrer \gls{osm}-Tags identifiziert.
 Dazu gehören alle Arten von Straßen und Wegen, sowie als befahrbar gekennzeichnete Ways (beispielsweise asphaltiert, aber ohne angegebenen Straßentyp).
 Für das Routing sind vor allem Verbindungspunkte, wie Kreuzungen, Ab- und Auffahrten sowie Sackgassen, wichtig.
-Diese sogenannten \textit{Tower Nodes} werdeb dager aus den importierten Daten ermittelt.
+Diese sogenannten \textit{Tower Nodes} werden daher aus den importierten Daten ermittelt.
 Anschließend werden die Straßen anhand der Verbindungspunkte segmentiert.
 Danach werden die Verbindungen zwischen den Tower Nodes berechnet und anhand der Distanz gewichtet.
 Das Grundgerüst des eigentlichen Routing-Graphen ist damit erstellt.
 Einbahnstraßen und Abbiegevorschriften werden berücksichtigt und geben die Richtung der Kanten an (\cite{osmgraph}).
 Die Punkte zwischen zwei Tower Nodes werden \textit{Pillar Nodes} genannt.
-Sie werden als \textit{WayGeometry} auf der jeweiligen Kante gespeichert, da sie nicht für das berechnen der Route benötigt werden (Abb. ~\ref{fig:tower}).
+Sie werden als \textit{WayGeometry} auf der jeweiligen Kante gespeichert, da sie nicht für das berechnen der Route benötigt werden (Abb.~\ref{fig:tower}).
 Das Routing ist dadurch um ungefähr das 8-fache schneller (\cite{graphhopper}).
 Relevante Attribute, wie Geschwindigkeit oder Straßentyp, werden vereinheitlicht und als \textit{Flags} (Markierungen) auf der Kante gespeichert.
 Diese sind für die individuelle Gewichtung bei der Routenfindung interessant.
@@ -235,10 +235,10 @@ Bei der Erstellung des routingfähigen Graphen wird der Verlauf eines Wegsegment
 
 \subsection{Routing}
 
-Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Datenpakete entlang gesendet werden können.
+Routing bezeichnet den Vorgang in einem Netzwerk Wege zu finden, auf denen Daten entlang gesendet werden können.
 Diese Definition bezieht sich vor allem auf elektronische Datennetzwerke wie das Telefonnetz oder das Internet.
 Im Fachbereich der Geoinformationssysteme werden hauptsächlich Straßennetze für Routing-Analysen verwendet (\cite[165]{handbook}).
-Ein Weg \textit{P} (\textit{engl: path}) von einer Startecke ~$s$ zu einer Zielecke ~$z$ ist eine Folge von benachbarten Ecken mit $s~$ als erste Ecke und $z~$ als letzte Ecke der Folge.
+Ein Weg \textit{P} (\textit{engl: path}) von einer Startecke ~$s$ zu einer Zielecke ~$z$ ist eine Folge von benachbarten Ecken, mit $s~$ als erste Ecke und $z~$ als letzte Ecke der Folge.
 Die Weglänge entspricht in einem gewichteten Graphen der Summe aller Kantengewichte.
 
 Eine der wichtigsten Netzwerk-Analyse-Operationen ist die Berechnung des kürzesten Weges zwischen zwei Ecken.
@@ -247,7 +247,7 @@ Der kürzeste Weg hat demnach die Eigenschaft, dass die Summe aller Kantengewich
 
 \subsubsection{Shortest Path Problem}
 Die nächstliegendste zu beleuchtende Problemstellung ist das \textit{Shortest Path Problem} welches aber nicht mit dem \textit{\gls{tsp}} verwechselt werden sollte.
-Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen $G = (V,E) = K_{n}$\footnote{$K_{n}$ bezeichnet einen vollständigen Graphen bei dem jede Ecke aus $V$ mit jeder anderen Ecke verbunden ist} mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}_{+}$ gesucht, die jede Ecke des Graphen besucht (\cite[135]{algorithms}).
+Beim \gls{tsp} ist die kürzeste Tour auf einem Graphen gesucht, die jede Ecke des Graphen besucht (\cite[135]{algorithms}).
 Das Shortest Path Problem lässt sich in drei Typen untergliedern denen jeweils ein gerichteter Graph $G = (V,E)$ mit der Gewichtsfunktion $c: E \rightarrow \mathbb{R}$ zugrunde liegt.
 Beim \textit{\gls{spp}} wird der kürzeste Weg von einer Ecke $a~$ zu einer anderen Ecke $b~$ mit $a,b\in V$ gesucht.
 Beim \textit{\gls{ssp}} wird der kürzeste Weg einer Ecke $a~$ zu jeder anderen Ecke ermittelt.
@@ -259,10 +259,10 @@ Allerdings wird dazu das \gls{ssp} herangezogen, welches mit dem Algorithmus von
 
 \subsubsection{Dijkstra-Algorithmus}
 \label{sec:dijkstra}
-Der in 1959 von Edsger W. Dijkstra entwickelte Algorithmus (\cite{dijkstra}) benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen.
+Der von Dijkstra entwickelte Algorithmus (\cite{dijkstra}) benötigt einen gewichteten Graphen ohne negative Kantengewichte\footnote{Das Problem bei Graphen mit negativer Gewichtung entsteht, wenn diese auf einer Schlinge oder der Kante eines Rings liegen.
 Sobald der Algorithmus den Zyklus erreicht, werden die Kosten für die Ecken des Zyklus immer geringer.
 Die Kosten für den kürzesten Weg nähern sich $-\infty $ während der Algorithmus in einer Endlosschleife läuft.
-Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})} sowie eine Startecke $s \in V$.
+Deswegen ist der Dijkstra nur für positive Kantengewichte anwendbar (\cite[194\psq]{kurt})}, sowie eine Startecke $s \in V$.
 Es gibt eine Warteliste $W_{s}$ mit unmarkierten \textit{gesichteten} Ecken.
 Dort sind für alle $v~$ die Kosten für den bisher kürzesten Weg von $s~$ und die jeweilige vorangehende Ecke auf diesem Weg gespeichert.
 Die Kosten können sich ändern wenn ein noch kürzerer Weg gefunden wird.
@@ -395,7 +395,7 @@ Zu jeder Ecke wurde der kürzeste Weg gefunden.
 Damit wurde das \gls{ssp} gelöst und ein kürzester Weg zu jeder Ecke des Graphen vom Startpunkt berechnet.
 Daraus ergibt sich auch die Lösung aller \gls{spp} für $s~$ zu jeder anderen Ecke aus $V~$.
 Es ist jedoch nicht sinnvoll für die Lösung eines \gls{spp} jedes Mal das \gls{ssp} für den kompletten Graphen zu berechnen.
-Das liefert nicht nur viele irrelevante Ergebnissel, sondern kostet auch mehr Berechnungsressourcen und Zeit.
+Das liefert nicht nur viele irrelevante Ergebnisse, sondern kostet auch mehr Berechnungsressourcen und Zeit.
 Daher gibt es unterschiedliche Möglichkeiten den Dijkstra Algorithmus zu beschleunigen.
 
 \subsubsection{Speed-up Techniken}
@@ -409,8 +409,8 @@ Beim \textit{Bidirectional Dijkstra} werden zeitgleich zwei Algorithmen nebenein
 Einer auf $s~$ und einer auf $z~$ (auf einem umgekehrt gerichteten Graphen).
 Für beide Instanzen gibt es eine separate Warteschlange $W_{s}$ und $W_{z}$.
 Zu Beginn wird für jeden Startpunkt die Initiale der umliegenden Ecken durchgeführt.
-Anschließend wird die Ecke mit der geringsten Distanz in beiden Warteschlangen markiert und aus der jeweiligen Warteschlange entfernt.
-Wird eine Ecke aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Ecken geprüft.
+Anschließend wird jeweils die Ecke mit der geringsten Distanz aus beiden Warteschlangen markiert und aus der zugehörigen Warteschlange entfernt.
+Wird die gleiche Ecke aus beiden Warteschlangen entfernt, werden $W_{s}$ und $W_{z}$ auf weitere übereinstimmende Ecken geprüft.
 Für jede Übereinstimmung wird die Distanz in beiden Instanzen berechnet.
 Die Ecke ist Teil des kürzesten Weges wenn die Summe beider Distanzen minimal ist.\par
 In der schematischen Abbildung ~\ref{fig:biD} wird die Einsparung gegenüber dem Early Stopping deutlich.
@@ -454,9 +454,9 @@ Die Auswahl der betrachteten Ecken kann in Richtung des Zielpunktes gelenkt werd
 \end{figure}
 
 \paragraph*{A*:}
-Der $A*~$Algorithmus ist eine Variante des Dijkstras die den Suchraum in Richtung der Zielecke lenkt.
+Der $A*~$Algorithmus ist eine Variante des Dijkstras, die den Suchraum in Richtung der Zielecke lenkt.
 Es wird durch eine Funktion für jede Ecke die Distanz zum Ziel geschätzt.
-Diese wird mit den Kantengewichten verrechnet damit Ecken in Zielrichtung früher markiert werden.
+Diese wird mit den Kantengewichten verrechnet, damit Ecken in Zielrichtung früher markiert werden.
 Die standardmäßig kreisförmige Ausbreitung des Dijkstras wird mit dem A* zu einem Oval gestreckt.
 Da der Zielpunkt so früher erreicht wird, müssen weniger Iterationen durchgeführt werden.
 
@@ -535,7 +535,7 @@ Die Kanten werden nicht benötigt und daher entfernt.
 Es liegt demnach eine 3D-Punktwolke vor.
 Jeder Ecke wird nun die benötigte Zeit zugewiesen, mit der diese zu erreichen ist.
 Anschließend werden die Ecken nach dem Delaunay Triangulationsverfahren vermascht.
-Dadurch entsteht eine Art Trichter mit der Startecke als Tiefpunkt auf der Höhe Null.
+Dadurch entsteht eine Art Trichter, mit der Startecke als Tiefpunkt auf der Höhe Null.
 Wird dieser Trichter auf Höhe des Zeitlimits geschnitten, entsprechen von oben betrachtet die Randkanten des Trichters der Isochrone.
 
 
