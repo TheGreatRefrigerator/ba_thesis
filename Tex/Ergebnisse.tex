@@ -2,7 +2,7 @@
 
 Um das Routing-Profil für Einsatzfahrzeuge auf seine Funktionalität zu validieren, müssen zwei unterschiedliche Aspekte beleuchtet werden.
 Durch die Implementierung waren Veränderungen zum einen bei der Prozessierung des Graphen und zum anderen in den Routing-Ergebnissen zu erwarten.
-Der Graph, beziehungsweise das Straßennetzwerk, und die Integration der Attribute für Feuerwehreinfahrten, Rad- und Fußwegen sowie Einbahnstraßen, musste bestätigt werden.
+Der Graph, beziehungsweise das Straßennetzwerk, und die Integration der Attribute für Feuerwehreinfahrten, Rad- und Fußwege sowie Einbahnstraßen musste bestätigt werden.
 Außerdem wurden die Routing-Antworten auf ihre Praxistauglichkeit geprüft und daher sowohl die benötigten Fahrzeiten, als auch die zurückgelegten Distanzen anhand von Testfahrten analysiert.
 
 
@@ -40,7 +40,7 @@ Dem Auto Profil ist es nicht erlaubt diesen Straßentyp zu benutzen, weshalb die
 Die Verwendung neuer Wegtypen konnte eingebunden werden, wie in Abbildung~\ref{fig:footway} zu erkennen ist.
 Hier wurden als Zielpunkte verschiedene Stellen auf der Fußgängerzone (v.a. Hauptstraße) in der Heidelberger Altstadt gewählt.
 Im Gegensatz zu dem gewöhnlichen Auto-Profil des \gls{ors}, findet das Profil für Einsatzfahrzeuge seinen Weg bis zum gewünschten Zielpunkt durch Fußgängerzonen.
-Durch die niedrige Geschwindigkeitsangabe des Backends, wird allerdings nicht durchgehend in der Fußgängerzone gefahren, welches zu manchen Nachtzeiten durchaus schneller erfolgen kann.
+Durch die niedrige Geschwindigkeitsangabe des Backends, wird allerdings nicht durchgehend in der Fußgängerzone gefahren, was zu manchen Nachtzeiten durchaus schneller erfolgen kann.
 Stattdessen werden die Zielpunkte von den schnelleren Seitenstraßen aus angefahren.
 
 \begin{figure}[H]
@@ -156,7 +156,7 @@ Durch die uneingeschränkte Verwendung von Einbahnstraßen routet das Löschfahr
 \end{figure}
 
 Allerdings verwendet das Löschfahrzeug-Profil Einbahnstraßen bisher ohne Einschränkung.
-Daher wird die Gegenfahrbahn auch bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
+So wird die Gegenfahrbahn auch bei einem Gewinn von wenigen Sekunden verwendet (Abb.~\ref{fig:opposite}).
 Deswegen wird, wie Abbildung~\ref{fig:oppositelane} zeigt, über weite Strecken die Gegenfahrbahn verwendet, obwohl unmittelbar daneben auch die normale Spur verfügbar ist.
 Außerdem wird an größeren Kreuzungen die Abbiegespur des Gegenverkehrs verwendet, was keine realistische Lösung darstellt (Abb.~\ref{fig:oppositecurve}).
 
@@ -168,7 +168,7 @@ Folgende Einstellungen wurden dabei genutzt:
 \sloppy
 \begin{itemize}
 \item Distanz: 5 Minuten
-\item Intervall: 1 Minuten
+\item Intervall: 1 Minute
 \item Maximale Geschwindigkeit: 80 km/h für Löschfahrzeug sowie Heavy-Vehicle; 130 km/h für PKW sowie Einsatzfahrzeug
 \item Heavy-Vehicle-Einstellungen für Löschfahrzeug- und Heavy-Vehicle-Profil: Länge=7m ; Breite= 2.5m; Höhe= 3m; Gewicht= 7.5t
 \end{itemize}
@@ -261,7 +261,7 @@ Damit soll sichergestellt sein, dass die Geschwindigkeitsbegrenzung definitiv ei
 Dieser Faktor wurde allerdings für die Implementierung in dieser Arbeit entfernt.
 Demnach wird ein Straßensegment auf dem 50 km/h gefahren werden dürfte, über die komplette Distanz mit 50 km/h befahren.
 In der Realität benötigt ein Fahrzeug dieser Größenordnung allerdings einige Sekunden, um diese Geschwindigkeit aus dem Stand zu erreichen.
-Der selbe Zusammenhang besteht für Bremsvorgänge.
+Das Gleiche gilt auch für Bremsvorgänge.
 Daraus gehen drei Szenarien hervor, welche nach festgelegter Route einen Einfluss auf die Fahrzeit haben können.
 Das sind der Start, ein Abbiegevorgang (engl.: Turn) und die Ankunft.
 Es gibt weitere Faktoren die beispielsweise andere Verkehrsteilnehmer betreffen, allerdings sind die drei genannten Szenarien aus jeder Routenführung ersichtlich und werden bei einer Einsatzfahrt in der Regel auftreten.
@@ -288,7 +288,7 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 \end{table}
 
 Es stellt sich nun die Frage, auf welche Art ein Abbiegevorgang auf dem Graphen identifiziert werden kann.
-Die Änderung des Straßennamens ist sicherlich eine Möglichkeit viele Abbiegevorgänge abzudecken.
+Die Änderung des Straßennamens ist sicherlich eine Möglichkeit, viele Abbiegevorgänge abzudecken.
 Allerdings ist nicht immer ein Straßenname vorhanden und nicht immer bedeutet der Wechsel des Straßennamens, dass in diese Straße eingebogen werden muss.
 Eine effizientere Lösung bietet die Ausrichtung der Straßensegmente, da hier die Daten in jedem Fall vorhanden sind.
 Deshalb wird in der AccelerationWeighting-Klasse, an Tower Nodes (Kreuzungen), der Winkel zwischen dem letzten und dem nächsten Straßensegment berechnet.
@@ -337,7 +337,7 @@ Wegpunkt & Fahrtzeit & Differenz \\ \hline
 
 Diese Kalibrierung wurde an zwei weiteren Testfahrten (Abb.~\ref{fig:drive2} und \ref{fig:drive3}) vom selben Ausgangspunkt überprüft.
 
-In den Tabellen \ref{tab:drive2} und \ref{tab:drive3} ist zu sehen, das 8 von 10 Wegpunkten um mehr als 20 Sekunden, in 3 Fällen sogar 40 Sekunden zu spät erreicht werden.
+In den Tabellen \ref{tab:drive2} und \ref{tab:drive3} ist zu sehen, dass 8 von 10 Wegpunkten um mehr als 20 Sekunden, in 3 Fällen sogar 40 Sekunden zu spät erreicht werden.
 Mit den Ergebnissen dieser Testfahrten steht fest: das Profil ist noch erheblich zu langsam und die Penalties zu hoch.
 
 \begin{figure}[H]

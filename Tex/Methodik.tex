@@ -5,9 +5,9 @@ Demnach dürfen sich Einsatzfahrzeuge im Notfall über die Vorschriften der StVO
 Die Frage, die sich hierbei stellt, ist, inwieweit von diesen Rechten im Ernstfall Gebrauch gemacht werden kann.
 Um diesen Sachverhalt zu untersuchen, wurde ein Fragenkatalog für die \gls{ffl} zusammengestellt.
 Dieser wurde als Datei in der Cloud gespeichert und ist auch weiterhin verfügbar (Link im Anhang auf S.\pageref{sec:anhang}).
-Die Fragen wurden unter Rücksicht der \gls{osm}-Datenstruktur und das vorhandene \gls{ors}-Backend gewählt.
+Die Fragen wurden unter Berücksichtigung der \gls{osm}-Datenstruktur und des vorhandenen \gls{ors}-Backend gewählt.
 Die Antworten der \gls{ffl} sind hier sinngemäß wiedergegeben und die wörtlichen Antworten sind dem Cloud-Dokument im Anhang zu entnehmen.
-Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht mit denen die empfohlenen Änderungen verwirklicht werden können.
+Auf Basis der erhobenen Informationen wurden geeignete \gls{osm}-Tags gesucht, mit denen die empfohlenen Änderungen verwirklicht werden können.
 Anschließend wurden neue Java-Funktionen geschrieben, um diese Tags bei der Erstellung des Graphen und bei Anfragen zu berücksichtigen.
 Außerdem wurde das Frontend an das neue Profil angepasst.
 
@@ -34,7 +34,7 @@ Es kann nicht auf jeder Straße mit maximaler Geschwindigkeit des Fahrzeugs gefa
 Deswegen werden für jede Kante des Graphen Geschwindigkeitsmaxima definiert.
 Dabei wird auf einen Standardwert für den Straßentyp, die \textit{Values} (Werte) des \gls{osm} \textit{Keys} (Schlüssel) \texttt{highway}, zurückgegriffen.
 Tabelle \ref{tab:speedinfo} zeigt die bisherigen Standardgeschwindigkeiten für das Heavy-Vehicle(\textit{dt.:Schwerfahrzeug})-Profil des \gls{ors}, zusammen mit den vorgeschlagenen Werten der \gls{ffl} in Klammer.
-Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten wenn kein Stau besteht.
+Es wurde darauf hingewiesen, dass die 80km/h auf Autobahnen nur gelten, wenn kein Stau besteht.
 Im Fall eines Staus wäre laut \gls{ffl} auch die Anfahrt auf der Gegenfahrbahn bzw. entgegen der Verkehrsrichtung auf der gleichen Bahn interessant.
 
 Genaue Informationen zu einzelnen Tags können der \gls{osm}-Wikipedia (\cite{osmwiki}) entnommen werden.
@@ -74,7 +74,7 @@ track (Wald-/Feldweg) & 15 \\
 \end{table}
 
 Auf Wirtschafts-, Wald- und Feldwegen mit dem Key-Value-Pair \texttt{highway=track} kann zusätzlich der Zustand des Weges mit dem Tag \texttt{tracktype} beschrieben werden.
-Die bisherigen, und die von der \gls{ffl} vorgeschlagenen, Geschwindigkeit für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
+Die bisherigen und die von der \gls{ffl} vorgeschlagenen Geschwindigkeiten für die jeweiligen Values sind in Tabelle \ref{tab:speedinfotrack} zu sehen.
 
 \begin{table}[h]
 \centering
@@ -112,13 +112,12 @@ Allgemein müssen bei Zu- oder Durchfahrten für die Feuerwehr die Aufstellfläc
 \par
 Einbahnstraßen dürfen in entgegengesetzter Richtung durchfahren werden.
 
-\paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?}
+\paragraph*{6. Ist 5. im Einsatz überhaupt sinnvoll? (falls z.B. die Straße durch Fahrzeug(e) blockiert ist?)}
 \label{frage6}
 \par
-Ob eine Einbahnstraße benutzt wird muss der Fahrer während dem Einsatz entscheiden.
-Es hängt dabei von der verfügbaren Breite und der Länge der Straße ab.
-Auch die Möglichkeit des Ausweichens bei Gegenverkehr spielt eine Rolle.
-Anhand dieser Faktoren wird entschieden ob Zeit gewonnen wird und die Einbahnstraße benutzt wird oder nicht.
+Ob eine Einbahnstraße benutzt wird, muss der Fahrer während des Einsatzes entscheiden.
+Die verfügbare Breite und Länge der Straße, aber auch die Möglichkeit des Ausweichens bei Gegenverkehr spielen eine Rolle.
+Anhand dieser Faktoren wird entschieden, ob Zeit gewonnen wird und die Einbahnstraße benutzt wird oder nicht.
 
 \paragraph*{7. Zu welchen weiteren Routen bzw. Verkehrsnetz bezogenen Besonderheiten kommt es im Einsatz?}
 \label{frage7}
@@ -208,7 +207,7 @@ Liegt der zugelassene Wert unter dem für das Fahrzeug definierten Limit, kann d
 
 Der Hauptteil der Änderungen wird in der \texttt{EmergencyFlagEncoder} Klasse vorgenommen.
 Hier werden beispielsweise die Maximalgeschwindigkeiten für die unterschiedlichen Wegtypen (Frage 2.) implementiert (Sourcecode~\ref{lst:flag}).
-Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt, mit der Absicht das Löschfahrzeug-Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei, nutzbar zu machen.
+Die Geschwindigkeiten sind bewusst höher als die zurückgegebenen Werte gewählt mit der Absicht, das Löschfahrzeug-Profil auch für andere Einsatzfahrzeuge, wie zum Beispiel PKW der Polizei, nutzbar zu machen.
 Das Geschwindigkeitslimit von 80km/h hängt mit der ausgewählten Fahrzeugklasse zusammen und nicht mit der Straßenart.
 Fahrradwege und Fußgängerzonen werden durch die Zuweisung einer Geschwindigkeit ebenfalls für das Profil nutzbar gemacht.
 
@@ -238,7 +237,7 @@ Die Segmente der Tramspur, die befahren werden können, liegen in der Regel auf 
 \label{lst:zone}
 \end{listing}
 
-Um Einbahnstraßen in jeder Richtung nutzen zu können, wurden Teile des Codes entfernt, die einer Kante eine vorwärts- oder rückwärts-Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
+Um Einbahnstraßen in jeder Richtung nutzen zu können, wurden Teile des Codes entfernt, die einer Kante eine Vorwärts- oder Rückwärts-Richtung geben\footnote{Jeweils aus Sicht der Startecke einer Kante gesehen}.
 
 Der \texttt{EmergencyFlagEncoder} beinhaltet des weiteren die Funktion \texttt{collect}, welche dem Wegsegment, anhand seines Wegtyps, eine Priorität zuschreibt.
 Auf diese Weise können Straßen, auf denen hohe Geschwindigkeiten gefahren werden dürfen oder die extra für Liefer- oder Forstfahrzeuge ausgeschrieben sind, bevorzugt benutzt werden und Straßen durch Wohngebiete oder Spielstraßen nur dann verwendet werden, wenn das Ziel anders nicht zu erreichen ist.
@@ -257,7 +256,7 @@ Die Kante des Graphen wird auf OSM-Tags für Bus- und Taxispuren, Start- und Lan
 
 Durch den Code-Ausschnitt in Sourcecode~\ref{lst:weight} sollen die höchste Priorität die Straßen mit dem Tag \texttt{service=emergency\_access} erhalten.
 Das sind zum Beispiel Rettungszufahrten zu Gebäuden und gesonderte Autobahnauffahrten, die vom normalen Verkehr nicht benutzt werden dürfen.
-Da Busspuren auch vom motorisierten Individualverkehr freigehalten werden müssen, werden diesen an dieser Stelle ebenfalls eine höhere Priorität zugewiesen.
+Da Busspuren auch vom motorisierten Individualverkehr freigehalten werden müssen, wird diesen an dieser Stelle ebenfalls eine höhere Priorität zugewiesen.
 
 Beim Ausführen des Codes werden die auf diese Weise generierten Attribute (Flags) beim Bau des Graphen, zusammen mit den geographischen Koordinaten, den Wegtypen, der Richtung, der Oberfläche und noch vielen weiteren Attributen auf den Kanten des Graphen gespeichert.
 Der Graph wird, wie in Kapitel ~\ref{sec:osmgraph} bereits beschrieben, aufgebaut.
@@ -276,7 +275,7 @@ Ist eine Kante als Notfalleinfahrt getaggt, wird sie gegenüber anderen Straßen
 
 Um das Profil auch für die Kooperationspartner in Lützelburg nutzbar zu machen, wurde eine Instanz des \gls{ors} Backends, mit diesen Änderungen, auf einen Server der Universität Heidelberg installiert.
 
-Damit ist Prozessierung des Routing-Profils für Einsatzfahrzeuge fertiggestellt und es können Anfragen an die Schnittstelle des \gls{ors} gesendet werden.
+Damit ist die Prozessierung des Routing-Profils für Einsatzfahrzeuge fertiggestellt und es können Anfragen an die Schnittstelle des \gls{ors} gesendet werden.
 
 
 \subsection{Anpassungen Frontend}
@@ -289,21 +288,22 @@ Das Frontend für das Löschfahrzeug-Profil kann unter dem Link \href{emergency.
 
 Allgemein kann über einen Rechtsklick auf die Karte ein Start-, Weg- oder Endpunkt platziert werden.
 Sobald zwei Punkte vorhanden sind, wird ein Routing-Anfrage für das ausgewählte Profil an das Backend gesendet und die erhaltene Antwort als schnellster Weg zwischen den Punkten dargestellt.
-Genauere Informationen zu der Route, wie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
+Genauere Informationen zu der Route wie die benötigte Zeit, die Distanz oder die einzelnen Wegstücke können der Seitenleiste entnommen werden.
 Um eine Erreichbarkeitsanalyse durchzuführen kann am linken Rand der Website von Routing auf Isochronen umgestellt werden.
 Hier kann mit einem Rechtsklick auf die Karte ein Zentrum gesetzt werden.
-Nach einem Klick auf den \texttt{Isochronen-Generieren-Button} wird die Antwort für den aus den Einstellungen generierten Anfrage angezeigt.
+Nach einem Klick auf den \texttt{Isochronen-Generieren-Button} wird die Antwort für die aus den Einstellungen generierte Anfrage angezeigt.
 
 \bigskip
 
-Da der Fokus der Arbeit auf der Erstellung des Profils und nicht der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob dargestellt.
-Alle Änderungen können im Detail nachvollzogen werden, da der Quellcode online verfügbar ist (Siehe Anhang S.~\pageref{sec:anhang}). Das Auto- und Heavy-Vehicle-Profil wurde für direkte Vergleiche zu dem Profil für Einsatzfahrzeuge beibehalten.
-Gleichzeitig wurde das neue Profil für Einsatzfahrzeuge eingefügt für welches zwei Fahrzeugklassen vorhanden sind.
+Da der Fokus der Arbeit auf der Erstellung des Profils und nicht auf der Darstellung der Ergebnisse liegt, werden die Änderungen am Frontend hier nur grob skizziert.
+Alle Änderungen können im Detail nachvollzogen werden, da der Quellcode online verfügbar ist (Siehe Anhang S.~\pageref{sec:anhang}).
+Das Auto- und Heavy-Vehicle-Profil wurde für direkte Vergleiche zu dem Profil für Einsatzfahrzeuge beibehalten.
+Gleichzeitig wurde das neue Profil für Einsatzfahrzeuge eingefügt, für welches zwei Fahrzeugklassen vorhanden sind.
 
 \bigskip
 
 1. Profil für Löschfahrzeuge: Für dieses Profil werden automatisch die Höhe, Länge, Breite, Achslast, das Gewicht sowie die Höchstgeschwindigkeit eingestellt.
-Damit müssen diese Daten, bei einem neuen Aufruf der Seite, nicht jedes mal neu eingegeben werden.
+Damit müssen diese Daten, bei einem neuen Aufruf der Seite, nicht jedes Mal neu eingegeben werden.
 
 \medskip
 
